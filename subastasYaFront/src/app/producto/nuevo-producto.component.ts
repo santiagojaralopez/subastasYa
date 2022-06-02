@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductoService } from '../service/producto.service';
 import { Producto } from '../models/producto';
-import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
+
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-nuevo-producto',
@@ -15,7 +16,6 @@ export class NuevoProductoComponent implements OnInit {
 
   constructor(
     private productoService: ProductoService,
-    private toastr: ToastrService,
     private router: Router
     ) { }
 
@@ -26,15 +26,20 @@ export class NuevoProductoComponent implements OnInit {
     const producto = new Producto(this.nombre, this.precio);
     this.productoService.save(producto).subscribe(
       data => {
-        this.toastr.success('Producto Creado', 'OK', {
-          timeOut: 3000, positionClass: 'toast-top-center'
-        });
+        Swal.fire(
+          'Realizado!',
+          'Producto eliminado',
+          'success'
+        );
+
         this.router.navigate(['/lista']);
       },
       err => {
-        this.toastr.error(err.error.mensaje, 'Fail', {
-          timeOut: 3000,  positionClass: 'toast-top-center',
-        });
+        Swal.fire(
+          'Error',
+          'Ha ocurrido un error',
+          'error'
+        );
       }
     );
   }
