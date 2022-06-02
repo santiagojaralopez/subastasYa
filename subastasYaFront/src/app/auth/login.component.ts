@@ -55,7 +55,7 @@ export class LoginComponent implements OnInit {
           'Error',
           'Error de autenticación',
           'error'
-        )
+        );
       }
     );
   }

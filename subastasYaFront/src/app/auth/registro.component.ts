@@ -40,7 +40,7 @@ export class RegistroComponent implements OnInit {
           'Éxito',
           'Su cuenta ha sido creada con éxito',
           'success'
-        )
+        );
 
         this.router.navigate(['/login']);
       },
@@ -49,7 +49,7 @@ export class RegistroComponent implements OnInit {
           'Error',
           'Ha ocurrido un error en el registro',
           'error'
-        )
+        );
 
         this.errMsj = err.error.mensaje;
       }
