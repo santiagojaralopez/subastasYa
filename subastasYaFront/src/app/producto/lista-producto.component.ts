@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Producto } from '../models/producto';
 import { ProductoService } from '../service/producto.service';
+import { ToastrService } from 'ngx-toastr';
 import { TokenService } from '../service/token.service';
-
-import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-lista-producto',
@@ -16,6 +15,7 @@ export class ListaProductoComponent implements OnInit {
 
   constructor(
     private productoService: ProductoService,
+    private toastr: ToastrService,
     private tokenService: TokenService
   ) { }
 
@@ -42,21 +42,18 @@ export class ListaProductoComponent implements OnInit {
 
   borrar(id: number) {
     this.productoService.delete(id).subscribe(
-      data => {
-        Swal.fire(
-          'Realizado!',
-          'Producto eliminado',
-          'success'
-        );
-
+      (data) => {
+        this.toastr.success('Producto Eliminado', 'OK', {
+          timeOut: 3000,
+          positionClass: 'toast-top-center',
+        });
         this.cargarProductos();
       },
-      err => {
-        Swal.fire(
-          'Error',
-          'Ha ocurrido un error',
-          'error'
-        );
+      (err) => {
+        this.toastr.error(err.error.mensaje, 'Fail', {
+          timeOut: 3000,
+          positionClass: 'toast-top-center',
+        });
       }
     );
   }

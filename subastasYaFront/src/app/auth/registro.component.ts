@@ -1,14 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { NuevoUsuario } from '../models/nuevo-usuario';
 import { AuthService } from '../service/auth.service';
 import { TokenService } from '../service/token.service';
 
-import Swal from 'sweetalert2';
-
 @Component({
   selector: 'app-registro',
-  templateUrl: './registro.component.html'
+  templateUrl: './registro.component.html',
+  styleUrls: ['./login.component.css']
 })
 export class RegistroComponent implements OnInit {
 
@@ -19,11 +19,16 @@ export class RegistroComponent implements OnInit {
   email: string;
   password: string;
   errMsj: string;
+  departaments: string[] = ['Amazonas','Antioquia','Arauca','Atlantico','Bolivar','Boyaca','Caldas',
+'Caqueta','Casanare','Cauca','Cesar','Choco','Cordoba','Cundinamarca','Guainia','Guaviare','Huila',
+'La guajira','Magdalena','Meta','Narino','Norte de Santander','Putumayo','Quindio','Risaralda',
+'San Andres y Providencia','Santander','Sucre','Tolima','Valle del cauca','Vaupes','Vichada'];
 
   constructor(
     private tokenService: TokenService,
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private toastr: ToastrService
   ) { }
 
   ngOnInit() {
@@ -36,22 +41,19 @@ export class RegistroComponent implements OnInit {
     this.nuevoUsuario = new NuevoUsuario(this.nombre, this.nombreUsuario, this.email, this.password);
     this.authService.nuevo(this.nuevoUsuario).subscribe(
       data => {
-        Swal.fire(
-          'Éxito',
-          'Su cuenta ha sido creada con éxito',
-          'success'
-        );
+        this.toastr.success('Cuenta Creada', 'OK', {
+          timeOut: 3000, positionClass: 'toast-top-center'
+        });
 
         this.router.navigate(['/login']);
       },
       err => {
-        Swal.fire(
-          'Error',
-          'Ha ocurrido un error en el registro',
-          'error'
-        );
+        this.toastr.error(this.errMsj, 'Fail', {
+          timeOut: 3000,  positionClass: 'toast-top-center',
+        });
 
         this.errMsj = err.error.mensaje;
+        // console.log(err.error.message);
       }
     );
   }

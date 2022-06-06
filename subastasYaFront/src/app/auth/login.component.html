@@ -1,33 +1,40 @@
 <app-menu></app-menu>
 
-<div class="container d-flex justify-content-center">
-    <div class="card">
+<div class="">
+    <div style="width: 45%;" class="card text-center center shadow-sm p-3 mb-5 bg-body rounded">
         <div class="card-header">
-            <ul class="nav nav-tabs">
+            <ul class="nav nav-tabs card-header-tabs">
                 <li class="nav-item">
-                    <a class="nav-link active" routerLink="/login">Iniciar Sesión</a>
+                    <a class="nav-link active" aria-current="true" routerLink="/login">Inicio de sesion</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" routerLink="/registro">Registrarse</a>
+                    <a class="nav-link" routerLink="/registro">Registro</a>
                 </li>
             </ul>
         </div>
         <div class="card-body">
+            <div class="mb-4">
+                <h3>Inicio de sesion</h3>
+            </div>
+            <div class="mb-4">
+                <a>A continuacion ingrese sus credenciales para iniciar sesion en SubastasYa</a>
+            </div>
             <form #f="ngForm" (ngSubmit)="onLogin()" novalidate>
                 <div class="form-group">
                     <label for="nombreUsuario">Nombre de Usuario</label>
-                    <input type="text" name="nonbreUsuario" id="nombreUsuario" class="form-control" autocomplete="off"
-                    [(ngModel)]="nombreUsuario" required>
+                    <input type="text" name="nonbreUsuario" id="nombreUsuario" class="form-control" autocomplete="off" [(ngModel)]="nombreUsuario" required>
                 </div>
                 <div class="form-group">
                     <label for="password">Contraseña</label>
-                    <input type="password" name="password" id="password" class="form-control" autocomplete="off"
-                    [(ngModel)]="password" required>
+                    <input type="password" name="password" id="password" class="form-control" autocomplete="off" [(ngModel)]="password" required>
                 </div>
                 <div class="form-group">
                     <button class="btn btn-outline-success btn-block" [disabled]="!f.valid">
                         <i class="fas fa-sign-in-alt"></i> Iniciar Sesión
                     </button>
+                </div>
+                <div class="">
+                    <a href="#" class="link-primary">Olvide mi contraseña</a>
                 </div>
             </form>
         </div>
