@@ -20,7 +20,7 @@
                 <a>A continuacion ingrese sus datos sin dejar campos vacios para registrarse en subastasYa</a>
             </div>
             <div class="container-fluid">
-                <form #f="ngForm" (ngSubmit)="onRegister()" novalidate>
+                <form #f="ngForm" (ngSubmit)="onRegister()">
                     <div class="row row-cols-2">
                         <div class="form-group  col ">
                             <label for="nombre">Nombre(s)</label>
@@ -61,7 +61,7 @@
                         </div>
                         <div class="form-group  col">
                             <label for="nombreUsuario">Departamento</label>
-                            <select class="selectBox form-select border border-opacity-90" aria-label="select example" [(ngModel)]="departamento">
+                            <select class="selectBox form-select border border-opacity-90 rounded" aria-label="select example" [(ngModel)]="departamento">
                                     <option selected>Seleccione su departamento</option>
                                     <option *ngFor='let departament of departaments'>{{departament}}</option>
                         </select>
