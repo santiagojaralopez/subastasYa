@@ -34,7 +34,7 @@ public class AnuncioController {
     }
 
 
-    
+
     //MOSTRAR ANUNCIOS ESTADOS
     @GetMapping("/listaAnuncioBloqueados")
     public List<Anuncio> listBloqueados(){
@@ -48,8 +48,6 @@ public class AnuncioController {
     public List<Anuncio> listInactivo(){
         return anuncioService.listByEstados(Estado.INACTIVO);
     }
-
-
 
 
 
@@ -176,7 +174,6 @@ public class AnuncioController {
         System.out.println("estado INACTIVO jiji");
         return new ResponseEntity(new Mensaje("estado del anuncio actualizado"), HttpStatus.OK);
     }
-
 
 
 

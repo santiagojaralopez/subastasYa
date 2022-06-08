@@ -12,6 +12,7 @@ public class ProductoDto {
     @NotBlank
     private TipoProducto tipoProducto;
 
+    
     public ProductoDto() {
     }
 
