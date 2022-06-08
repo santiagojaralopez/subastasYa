@@ -1,6 +1,6 @@
 .containerConfig {
-    margin-left: 160px;
-    margin-right: 160px;
+    margin-left: 200px;
+    margin-right: 200px;
 }
 
 .containerParams {}
@@ -18,7 +18,7 @@
 }
 
 .backButton {
-    margin-left: 160px;
+    margin-left: 200px;
 }
 
 .headerConfig {
@@ -73,3 +73,22 @@
 .xd {
     height: 90vh;
 }
+
+.filterHeader {
+    margin-left: 10px;
+}
+
+.filterText {
+    margin-left: 130px;
+}
+
+.prueba {
+    width: 100%;
+}
+
+.anouncementTxt {
+    display: flex;
+    align-items: center;
+}
+
+.anouncementImg {}

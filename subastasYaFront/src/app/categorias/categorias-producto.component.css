@@ -34,6 +34,11 @@
     background-opacity: 60%;
 }
 
+.cardHeader2 {
+    background-color: #B3E8E5;
+    background-opacity: 60%;
+}
+
 .maestro {
     width: 100%;
     height: 140px;
@@ -42,6 +47,11 @@
 .detalle {
     width: 100%;
     height: 140px;
+}
+
+.rowGen {
+    display: flex;
+    justify-content: center;
 }
 
 .headerCat {
@@ -70,6 +80,34 @@
     width: 250px;
 }
 
-.xd {
-    height: 90vh;
+.inputS2 {
+    width: 550px;
+}
+
+.inputS3 {
+    border-top-right-radius: 7px;
+    border-bottom-right-radius: 7px;
+}
+
+.inputS4 {
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;
+    border-top-left-radius: 7px;
+    border-bottom-left-radius: 7px;
+}
+
+.buttonEdit {
+    background-color: white;
+    color: black;
+    border: 2px solid #82DBD8;
+    border-radius: 5px;
+    /* Green */
+}
+
+.buttonDelete {
+    background-color: white;
+    color: black;
+    border: 2px solid rgb(247, 93, 93);
+    border-radius: 5px;
+    /* Green */
 }
