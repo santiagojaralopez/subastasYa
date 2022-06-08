@@ -6,6 +6,11 @@
     <div class="txNav collapse navbar-collapse" id="navbarNav">
         <ul class="txNav navbar-nav ml-auto">
             <li class="ido nav-item">
+                <a class="txNav nav-link" routerLink="/">
+                    <i class="txNav fas fa-home"></i> Inicio
+                </a>
+            </li>
+            <li class="ido nav-item">
                 <a class="txNav nav-link" *ngIf="isLogged" routerLink="/config">
                     <i class="txNav fas fa-list-alt"></i> Configuracion
                 </a>
@@ -13,11 +18,6 @@
             <li class="ido nav-item">
                 <a class="txNav nav-link" *ngIf="isLogged" routerLink="/category/list">
                     <i class="txNav fas fa-list-alt"></i> Categorias
-                </a>
-            </li>
-            <li class="ido nav-item">
-                <a class="txNav nav-link" routerLink="/">
-                    <i class="txNav fas fa-home"></i> Inicio
                 </a>
             </li>
             <li class="ido nav-item" *ngIf="isLogged">

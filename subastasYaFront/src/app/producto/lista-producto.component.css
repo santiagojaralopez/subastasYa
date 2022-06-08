@@ -1,0 +1,75 @@
+.containerConfig {
+    margin-left: 160px;
+    margin-right: 160px;
+}
+
+.containerParams {}
+
+.fixMargin {}
+
+.containerBtn {
+    display: flex;
+    justify-content: center;
+}
+
+.botonRight {
+    display: flex;
+    justify-content: right;
+}
+
+.backButton {
+    margin-left: 160px;
+}
+
+.headerConfig {
+    font-size: 19px;
+}
+
+.bodyConfig {
+    font-size: 15px;
+}
+
+.cardHeader {
+    background-color: #B3E8E5;
+    background-opacity: 60%;
+}
+
+.maestro {
+    width: 100%;
+    height: 140px;
+}
+
+.detalle {
+    width: 100%;
+    height: 140px;
+}
+
+.headerCat {
+    display: flex;
+    justify-content: center;
+}
+
+.containerMaestro {
+    height: max-content;
+}
+
+.inputX {
+    width: 250px;
+}
+
+.inputY {
+    width: 450px;
+}
+
+.rightTxt {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.inputS {
+    width: 250px;
+}
+
+.xd {
+    height: 90vh;
+}

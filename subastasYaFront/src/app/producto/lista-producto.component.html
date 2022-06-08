@@ -1,41 +1,97 @@
 <app-menu></app-menu>
+<div class="xd">
+    <div class="backButton mb-3">
+        <button type="button" class="btn btn-outline-primary" routerLink="/">
+          <i class=" ">Volver</i>
+      </button>
+    </div>
+    <div class="containerConfig card shadow rounded mb-5">
+        <div class="cardHeader card-header ">
+            <div>
+                <a class="headerConfig">Configuracion de la pagina</a>
+            </div>
+            <div class="bodyConfig">
+                <a>A continuacion puede modificar las configuraciones globales de subastasYa</a>
+            </div>
+        </div>
+        <div class="containerParams card-body ">
+            <!--CUERPO DE LA TARJETA(PARAMETROS AQUI)-->
+            <div class="fixMargin container ">
+                <div class="row mb-4">
+                    <div class="col">
+                        <div class="row ">
+                            <div class="col rightTxt">
+                                Edad minima de registro:
+                            </div>
+                            <div class="col ">
+                                <div class="input-group flex-nowrap inputS">
+                                    <input type="text " class="form-control inputS" placeholder="18 " aria-label="Username " aria-describedby="addon-wrapping ">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mb-4 ">
+                    <div class="col m">
+                        <div class="row">
+                            <div class="col rightTxt">
+                                Duracion limite de anuncios:
+                            </div>
+                            <div class="col ">
+                                <div class="input-group flex-nowrap inputS">
+                                    <input type="text " class="form-control inputS" placeholder="1 " aria-label="Username " aria-describedby="addon-wrapping ">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mb-4">
+                    <div class="col m ">
+                        <div class="row ">
+                            <div class="col rightTxt">
+                                Cantidad maxima de ofertas:
+                            </div>
+                            <div class="col ">
+                                <div class="input-group flex-nowrap inputS">
+                                    <input type="text " class="form-control inputS" placeholder="3 " aria-label="Username " aria-describedby="addon-wrapping ">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mb-4">
+                    <div class="col m ">
+                        <div class="row ">
+                            <div class="col rightTxt">
+                                Cantidad maxima de anuncios:
+                            </div>
+                            <div class="col ">
+                                <div class="input-group flex-nowrap inputS">
+                                    <input type="text " class="form-control inputS" placeholder="3 " aria-label="Username " aria-describedby="addon-wrapping ">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-<div class="container">
-  <table class="table table-dark">
-    <thead>
-      <tr>
-        <th scope="col">Id</th>
-        <th scope="col">Nombre</th>
-        <th scope="col">Precio</th>
-        <th scope="col">Ver</th>
-        <th scope="col" *ngIf="isAdmin">Editar</th>
-        <th scope="col" *ngIf="isAdmin">Borrar</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let producto of productos">
-        <td>{{producto.id}}</td>
-        <td>{{producto.nombre}}</td>
-        <td>{{producto.precio}}€</td>
-        <td>
-          <button class="btn btn-outline-primary" routerLink="/detalle/{{producto.id}}">
-            <i class="far fa-eye"></i> Ver
-          </button>
-        </td>
-        <td *ngIf="isAdmin">
-          <button class="btn btn-outline-warning" routerLink="/editar/{{producto.id}}">
-            <i class="far fa-edit"></i> Editar
-          </button>
-        </td>
-        <td *ngIf="isAdmin">
-          <button class="btn btn-outline-danger" (click)="borrar(producto.id)">
-            <i class="far fa-trash-alt"></i> Eliminar
-          </button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-  <div class="btn btn-outline-success btn-lg" *ngIf="isAdmin" routerLink="/nuevo">
-    <i class="fas fa-plus-circle"></i> Nuevo Producto
-  </div>
+
+
+
+            </div>
+            <div class="containerBtn mt-4 ">
+                <!--botones confirmar y descartar-->
+                <div class="container ">
+                    <div class="row justify-content-center ">
+                        <div class="botonRight col-3 ">
+                            <button type="button " class="btn btn-outline-success ">Confirmar</button>
+                        </div>
+                        <div class="col-3 ">
+                            <button type="button " class="btn btn-outline-danger ">Descartar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+<app-footer></app-footer>
