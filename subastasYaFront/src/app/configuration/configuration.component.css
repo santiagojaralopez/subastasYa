@@ -1,0 +1,45 @@
+.containerConfig {
+    margin-left: 70px;
+    margin-right: 70px;
+}
+
+.containerParams {}
+
+.fixMargin {}
+
+.containerBtn {
+    display: flex;
+    justify-content: center;
+}
+
+.botonRight {
+    display: flex;
+    justify-content: right;
+}
+
+.backButton {
+    margin-left: 70px;
+}
+
+.headerConfig {
+    font-size: 19px;
+}
+
+.bodyConfig {
+    font-size: 15px;
+}
+
+.cardHeader {
+    background-color: #B3E8E5;
+    background-opacity: 60%;
+}
+
+.maestro {
+    width: 100%;
+    height: 140px;
+}
+
+.detalle {
+    width: 100%;
+    height: 140px;
+}

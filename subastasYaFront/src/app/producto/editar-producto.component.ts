@@ -2,8 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Producto } from '../models/producto';
 import { ProductoService } from '../service/producto.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import Swal from 'sweetalert2';
-
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-editar-producto',
@@ -16,6 +15,7 @@ export class EditarProductoComponent implements OnInit {
   constructor(
     private productoService: ProductoService,
     private activatedRoute: ActivatedRoute,
+    private toastr: ToastrService,
     private router: Router
   ) { }
 
@@ -26,12 +26,9 @@ export class EditarProductoComponent implements OnInit {
         this.producto = data;
       },
       err => {
-        Swal.fire(
-          'Error',
-          'Ha ocurrido un error',
-          'error'
-        );
-
+        this.toastr.error(err.error.mensaje, 'Fail', {
+          timeOut: 3000,  positionClass: 'toast-top-center',
+        });
         this.router.navigate(['/lista']);
       }
     );
@@ -41,19 +38,15 @@ export class EditarProductoComponent implements OnInit {
     const id = this.activatedRoute.snapshot.params.id;
     this.productoService.update(id, this.producto).subscribe(
       data => {
-        Swal.fire(
-          'Realizado!',
-          'Producto actualizado',
-          'success'
-        );
+        this.toastr.success('Producto Actualizado', 'OK', {
+          timeOut: 3000, positionClass: 'toast-top-center'
+        });
         this.router.navigate(['/lista']);
       },
       err => {
-        Swal.fire(
-          'Error',
-          'Ha ocurrido un error',
-          'error'
-        );
+        this.toastr.error(err.error.mensaje, 'Fail', {
+          timeOut: 3000,  positionClass: 'toast-top-center',
+        });
       }
     );
   }

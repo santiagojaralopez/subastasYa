@@ -1,0 +1,32 @@
+.backG {
+    background-color: #2F8F9D;
+}
+
+.navB {
+    height: 57px;
+}
+
+.txNav {
+    color: white;
+    opacity: 150%;
+    font-size: 16px;
+}
+
+.ido {
+    display: flex;
+    align-items: center;
+}
+
+.menuTxt {
+    color: black;
+}
+
+.profilePicture {
+    align-self: center;
+    height: 35px;
+    width: 35px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+    margin-top: 5.3px;
+}
