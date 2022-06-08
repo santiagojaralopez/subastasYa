@@ -22,6 +22,7 @@ import { IndexComponent } from './index/index.component';
 import { ConfigurationComponent } from './configuration/configuration.component';
 import { CategoriasProductoComponent } from './categorias/categorias-producto.component';
 import { FooterComponent } from './footer/footer.component';
+import { UserListComponent } from './users/user-list.component';
 
 
 
@@ -38,7 +39,8 @@ import { FooterComponent } from './footer/footer.component';
     IndexComponent,
     ConfigurationComponent,
     CategoriasProductoComponent,
-    FooterComponent
+    FooterComponent,
+    UserListComponent
   ],
   imports: [
     BrowserModule,
