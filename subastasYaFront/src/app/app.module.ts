@@ -42,7 +42,7 @@ import { UserEditProfileComponent } from './users/user-edit-profile.component';
     IndexComponent,
     ConfigurationComponent,
     SendEmailComponent,
-    ChangePasswordComponent
+    ChangePasswordComponent,
     CategoriasProductoComponent,
     FooterComponent,
     UserListComponent,
