@@ -11,6 +11,7 @@ import { ConfigurationComponent } from './configuration/configuration.component'
 import { ProdGuardService as guard } from './guards/prod-guard.service';
 import { CategoriasProductoComponent } from './categorias/categorias-producto.component';
 import { UserListComponent } from './users/user-list.component';
+import { UserEditProfileComponent } from './users/user-edit-profile.component';
 
 
 const routes: Routes = [
@@ -18,6 +19,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'registro', component: RegistroComponent },
   { path: 'lista', component: ListaProductoComponent, canActivate: [guard], data: {expectedRole: ['admin', 'user']} },
+  { path: 'user/edit/id', component: UserEditProfileComponent, canActivate: [guard], data: {expectedRole: ['admin', 'user']} },
   { path: 'detalle/:id', component: DetalleProductoComponent, canActivate: [guard], data: {expectedRole: ['admin', 'user']} },
   { path: 'nuevo', component: NuevoProductoComponent, canActivate: [guard], data: {expectedRole: ['admin']} },
   { path: 'config', component: ConfigurationComponent, canActivate: [guard], data: {expectedRole: ['admin']} },

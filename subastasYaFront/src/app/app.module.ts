@@ -23,6 +23,7 @@ import { ConfigurationComponent } from './configuration/configuration.component'
 import { CategoriasProductoComponent } from './categorias/categorias-producto.component';
 import { FooterComponent } from './footer/footer.component';
 import { UserListComponent } from './users/user-list.component';
+import { UserEditProfileComponent } from './users/user-edit-profile.component';
 
 
 
@@ -40,7 +41,8 @@ import { UserListComponent } from './users/user-list.component';
     ConfigurationComponent,
     CategoriasProductoComponent,
     FooterComponent,
-    UserListComponent
+    UserListComponent,
+    UserEditProfileComponent
   ],
   imports: [
     BrowserModule,
