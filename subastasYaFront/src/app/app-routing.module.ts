@@ -9,12 +9,16 @@ import { LoginComponent } from './auth/login.component';
 import { RegistroComponent } from './auth/registro.component';
 import { ConfigurationComponent } from './configuration/configuration.component';
 import { ProdGuardService as guard } from './guards/prod-guard.service';
+import { SendEmailComponent } from './changepassword/send-email.component';
+import { ChangePasswordComponent } from './changepassword/change-password.component';
 
 
 const routes: Routes = [
   { path: '', component: IndexComponent },
   { path: 'login', component: LoginComponent },
   { path: 'registro', component: RegistroComponent },
+  { path: 'send-email', component: SendEmailComponent },
+  { path: 'change-password/:tokenPassword', component: ChangePasswordComponent },
   { path: 'lista', component: ListaProductoComponent, canActivate: [guard], data: {expectedRole: ['admin', 'user']} },
   { path: 'detalle/:id', component: DetalleProductoComponent, canActivate: [guard], data: {expectedRole: ['admin', 'user']} },
   { path: 'nuevo', component: NuevoProductoComponent, canActivate: [guard], data: {expectedRole: ['admin']} },

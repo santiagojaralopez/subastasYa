@@ -20,6 +20,8 @@ import { RegistroComponent } from './auth/registro.component';
 import { MenuComponent } from './menu/menu.component';
 import { IndexComponent } from './index/index.component';
 import { ConfigurationComponent } from './configuration/configuration.component';
+import { SendEmailComponent } from './changepassword/send-email.component';
+import { ChangePasswordComponent } from './changepassword/change-password.component';
 
 
 
@@ -34,7 +36,9 @@ import { ConfigurationComponent } from './configuration/configuration.component'
     RegistroComponent,
     MenuComponent,
     IndexComponent,
-    ConfigurationComponent
+    ConfigurationComponent,
+    SendEmailComponent,
+    ChangePasswordComponent
   ],
   imports: [
     BrowserModule,
