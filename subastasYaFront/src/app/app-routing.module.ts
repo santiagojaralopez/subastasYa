@@ -9,6 +9,8 @@ import { LoginComponent } from './auth/login.component';
 import { RegistroComponent } from './auth/registro.component';
 import { ConfigurationComponent } from './configuration/configuration.component';
 import { ProdGuardService as guard } from './guards/prod-guard.service';
+import { SendEmailComponent } from './changepassword/change-password.component';
+import { ChangePasswordComponent } from './changepassword/change-password.component';
 import { CategoriasProductoComponent } from './categorias/categorias-producto.component';
 import { UserListComponent } from './users/user-list.component';
 import { UserEditProfileComponent } from './users/user-edit-profile.component';
