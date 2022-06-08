@@ -1,1 +1,63 @@
-<p>categorias-producto works!</p>
+<app-menu></app-menu>
+<div class="backButton mb-3">
+    <button type="button" class="btn btn-outline-primary" routerLink="/">
+        <i class=" ">Volver</i>
+    </button>
+</div>
+<div class="containerConfig card shadow rounded">
+    <div class="cardHeader card-header ">
+        <div>
+            <a class="headerConfig">Gestion de categorias</a>
+        </div>
+        <div class="bodyConfig">
+            <a>A continuacion puede gestionar la categoria de productos que se encuentran disponibles en SubastasYa</a>
+        </div>
+    </div>
+    <div class=" card-body ">
+        <!--CUERPO DE LA TARJETA(PARAMETROS AQUI)-->
+        <div class="maestro card mb-4">
+            <div class="cardHeader2 card-header">Agregar nueva categoria</div>
+            <div class="card-body">
+                <div class="input-group">
+                    <span class="inputS4 input-group-text">Nombre:</span>
+                    <input type="text" aria-label="First name" class="mr-3 inputS3 form-control">
+                    <span class="inputS4 input-group-text">Descripcion:</span>
+                    <input type="text" aria-label="Last name" class="inputS3 form-control">
+                    <button type="button " class="ml-2 btn btn-outline-success ">Agregar</button>
+
+                </div>
+
+            </div>
+        </div>
+        <div class="card">
+            <div class="cardHeader2 card-header">Lista de categorias</div>
+            <div class="card-body">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">Descripcion</th>
+                            <th scope="col">Editar</th>
+                            <th scope="col">Eliminar</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row">1</th>
+                            <td>nombreCategoria</td>
+                            <td>descripcionCategoria</td>
+                            <td>
+                                <button class="buttonEdit" type="button">Editar</button>
+                            </td>
+                            <td>
+                                <button class="buttonDelete" type="button">Eliminar</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </div>
+</div>
