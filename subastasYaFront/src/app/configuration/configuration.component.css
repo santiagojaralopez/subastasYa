@@ -1,6 +1,6 @@
 .containerConfig {
-    margin-left: 70px;
-    margin-right: 70px;
+    margin-left: 160px;
+    margin-right: 160px;
 }
 
 .containerParams {}
@@ -18,7 +18,7 @@
 }
 
 .backButton {
-    margin-left: 70px;
+    margin-left: 160px;
 }
 
 .headerConfig {
@@ -59,4 +59,13 @@
 
 .inputY {
     width: 450px;
+}
+
+.rightTxt {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.inputS {
+    width: 250px;
 }
