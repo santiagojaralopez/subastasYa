@@ -6,18 +6,28 @@
     <div class="txNav collapse navbar-collapse" id="navbarNav">
         <ul class="txNav navbar-nav ml-auto">
             <li class="ido nav-item">
-                <a class="txNav nav-link" routerLink="/config">
+                <a class="txNav nav-link" routerLink="/">
+                    <i class="txNav fas fa-home"></i> Inicio
+                </a>
+            </li>
+            <li class="ido nav-item">
+                <a class="txNav nav-link" *ngIf="isLogged" routerLink="/config">
                     <i class="txNav fas fa-list-alt"></i> Configuracion
                 </a>
             </li>
             <li class="ido nav-item">
-                <a class="txNav nav-link" routerLink="/">
-                    <i class="txNav fas fa-home"></i> Inicio
+                <a class="txNav nav-link" *ngIf="isLogged" routerLink="/category/list">
+                    <i class="txNav fas fa-list-alt"></i> Categorias
                 </a>
             </li>
             <li class="ido nav-item" *ngIf="isLogged">
                 <a class="txNav nav-link" routerLink="/lista">
                     <i class="txNav far fa-list-alt"></i> Anuncios
+                </a>
+            </li>
+            <li class="ido nav-item" *ngIf="isLogged">
+                <a class="txNav nav-link" routerLink="/users/list">
+                    <i class="txNav far fa-list-alt"></i> Usuarios
                 </a>
             </li>
             <li class="nav-item" *ngIf="!isLogged">
@@ -36,7 +46,7 @@
                       {{nombreUsuario}}
                     </button>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Mi Perfil</a></li>
+                        <li><a class="dropdown-item" href="#" routerLink="/user/edit/id">Mi Perfil</a></li>
                         <li class="menuTxt" *ngIf="isLogged" (click)="onLogOut()"><a class="dropdown-item" href="#">Cerrar Sesion</a></li>
                     </ul>
                 </div>
