@@ -1,16 +1,20 @@
 package co.edu.cue.subastasYa.entity;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 
 public class TipoProducto {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
+    @NotBlank
     private String nombreTipo;
+    @NotBlank
     private String descripcion;
+
+
 
     public TipoProducto() {
     }

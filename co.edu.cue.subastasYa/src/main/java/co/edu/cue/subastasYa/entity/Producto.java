@@ -1,22 +1,29 @@
 package co.edu.cue.subastasYa.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 
 @Entity
 public class Producto {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
+    @NotBlank
     private String nombre;
+
+    //@NotBlank
+    //private TipoProducto tipoProducto;
+
+
 
     public Producto() {
     }
 
-    public Producto(String nombre) {
+    public Producto(String nombre, TipoProducto tipoProducto) {
         this.nombre = nombre;
+        // this.tipoProducto= tipoProducto;
     }
 
     public int getId() {
@@ -34,4 +41,12 @@ public class Producto {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
+
+    //public TipoProducto getTipoProducto() {
+    //   return tipoProducto;
+    //}
+
+    // public void setTipoProducto(TipoProducto tipoProducto) {
+    //    this.tipoProducto = tipoProducto;
+    // }
 }

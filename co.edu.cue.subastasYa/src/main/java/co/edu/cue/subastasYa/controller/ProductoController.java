@@ -51,7 +51,7 @@ public class ProductoController {
             return new ResponseEntity(new Mensaje("el nombre es obligatorio"), HttpStatus.BAD_REQUEST);
         if(productoService.existsByNombre(productoDto.getNombre()))
             return new ResponseEntity(new Mensaje("ese nombre ya existe"), HttpStatus.BAD_REQUEST);
-        Producto producto = new Producto(productoDto.getNombre());
+        Producto producto = new Producto(productoDto.getNombre(), productoDto.getTipoProducto());
         productoService.save(producto);
         return new ResponseEntity(new Mensaje("producto creado"), HttpStatus.OK);
     }
