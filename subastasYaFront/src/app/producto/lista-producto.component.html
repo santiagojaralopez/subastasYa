@@ -8,85 +8,240 @@
     <div class="containerConfig card shadow rounded mb-5">
         <div class="cardHeader card-header ">
             <div>
-                <a class="headerConfig">Configuracion de la pagina</a>
+                <a class="headerConfig">Gestion de anuncios</a>
             </div>
             <div class="bodyConfig">
-                <a>A continuacion puede modificar las configuraciones globales de subastasYa</a>
+                <a>A continuacion puede gestionar la información de los anuncios publicados en SubastasYa</a>
             </div>
         </div>
         <div class="containerParams card-body ">
-            <!--CUERPO DE LA TARJETA(PARAMETROS AQUI)-->
-            <div class="fixMargin container ">
-                <div class="row mb-4">
-                    <div class="col">
-                        <div class="row ">
-                            <div class="col rightTxt">
-                                Edad minima de registro:
-                            </div>
-                            <div class="col ">
-                                <div class="input-group flex-nowrap inputS">
-                                    <input type="text " class="form-control inputS" placeholder="18 " aria-label="Username " aria-describedby="addon-wrapping ">
-                                </div>
-                            </div>
+            <!--tabla aqui-->
+            <div class="card">
+                <div class="card-header">
+                    <div class="row">
+                        Lista de anuncios
+                        <div class="filterText">
+                            Buscar:
+                        </div>
+                        <div class="filterHeader">
+                            <input type="text" class="" placeholder="Buscar">
                         </div>
                     </div>
                 </div>
-                <div class="row mb-4 ">
-                    <div class="col m">
+                <div class="card-body">
+                    <div class="prueba card float-right shadow p-3 mb-3 bg-body rounded">
                         <div class="row">
-                            <div class="col rightTxt">
-                                Duracion limite de anuncios:
+                            <div class="col-2">
+                                <img class="d-block" src="https://picsum.photos/150?image=641" alt="">
                             </div>
-                            <div class="col ">
-                                <div class="input-group flex-nowrap inputS">
-                                    <input type="text " class="form-control inputS" placeholder="1 " aria-label="Username " aria-describedby="addon-wrapping ">
+                            <div class="col justify-content-center anouncementTxt">
+                                <div class="row">
+                                    <div class="col">
+                                        <a>Nombre del producto<br></a>
+                                        <a>Valor del producto<br></a>
+                                        <a>Nombre del anunciante</a>
+                                    </div>
+                                    <div class="col">
+                                        <div class="row">
+                                            <div class="col">
+                                                <a>Fecha de Finalizacion</a>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col">
+                                                <a>13 de mayo de 1027</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="row ">
+                                            <div class="col-6 ">
+                                                <button type="button" class="btn btn-outline-primary" routerLink="/">
+                                                    <i class=" ">Ver</i>
+                                                </button>
+                                            </div>
+                                            <div class="col-6">
+                                                <button type="button" class="btn btn-outline-danger" routerLink="/">
+                                                    <i class=" ">Bloquear</i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
+
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="row mb-4">
-                    <div class="col m ">
-                        <div class="row ">
-                            <div class="col rightTxt">
-                                Cantidad maxima de ofertas:
+                    <div class="prueba card float-right shadow p-3 mb-3 bg-body rounded">
+                        <div class="row">
+                            <div class="col-2">
+                                <img class="d-block" src="https://picsum.photos/150?image=641" alt="">
                             </div>
-                            <div class="col ">
-                                <div class="input-group flex-nowrap inputS">
-                                    <input type="text " class="form-control inputS" placeholder="3 " aria-label="Username " aria-describedby="addon-wrapping ">
+                            <div class="col justify-content-center anouncementTxt">
+                                <div class="row">
+                                    <div class="col">
+                                        <a>Nombre del producto<br></a>
+                                        <a>Valor del producto<br></a>
+                                        <a>Nombre del anunciante</a>
+                                    </div>
+                                    <div class="col">
+                                        <div class="row">
+                                            <div class="col">
+                                                <a>Fecha de Finalizacion</a>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col">
+                                                <a>13 de mayo de 1027</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="row ">
+                                            <div class="col-6 ">
+                                                <button type="button" class="btn btn-outline-primary" routerLink="/">
+                                                    <i class=" ">Ver</i>
+                                                </button>
+                                            </div>
+                                            <div class="col-6">
+                                                <button type="button" class="btn btn-outline-danger" routerLink="/">
+                                                    <i class=" ">Bloquear</i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
+
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="row mb-4">
-                    <div class="col m ">
-                        <div class="row ">
-                            <div class="col rightTxt">
-                                Cantidad maxima de anuncios:
+                    <div class="prueba card float-right shadow p-3 mb-3 bg-body rounded">
+                        <div class="row">
+                            <div class="col-2">
+                                <img class="d-block" src="https://picsum.photos/150?image=641" alt="">
                             </div>
-                            <div class="col ">
-                                <div class="input-group flex-nowrap inputS">
-                                    <input type="text " class="form-control inputS" placeholder="3 " aria-label="Username " aria-describedby="addon-wrapping ">
+                            <div class="col justify-content-center anouncementTxt">
+                                <div class="row">
+                                    <div class="col">
+                                        <a>Nombre del producto<br></a>
+                                        <a>Valor del producto<br></a>
+                                        <a>Nombre del anunciante</a>
+                                    </div>
+                                    <div class="col">
+                                        <div class="row">
+                                            <div class="col">
+                                                <a>Fecha de Finalizacion</a>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col">
+                                                <a>13 de mayo de 1027</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="row ">
+                                            <div class="col-6 ">
+                                                <button type="button" class="btn btn-outline-primary" routerLink="/">
+                                                    <i class=" ">Ver</i>
+                                                </button>
+                                            </div>
+                                            <div class="col-6">
+                                                <button type="button" class="btn btn-outline-danger" routerLink="/">
+                                                    <i class=" ">Bloquear</i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
+
                             </div>
                         </div>
                     </div>
-                </div>
+                    <div class="prueba card float-right shadow p-3 mb-3 bg-body rounded">
+                        <div class="row">
+                            <div class="col-2">
+                                <img class="d-block" src="https://picsum.photos/150?image=641" alt="">
+                            </div>
+                            <div class="col justify-content-center anouncementTxt">
+                                <div class="row">
+                                    <div class="col">
+                                        <a>Nombre del producto<br></a>
+                                        <a>Valor del producto<br></a>
+                                        <a>Nombre del anunciante</a>
+                                    </div>
+                                    <div class="col">
+                                        <div class="row">
+                                            <div class="col">
+                                                <a>Fecha de Finalizacion</a>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col">
+                                                <a>13 de mayo de 1027</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="row ">
+                                            <div class="col-6 ">
+                                                <button type="button" class="btn btn-outline-primary" routerLink="/">
+                                                    <i class=" ">Ver</i>
+                                                </button>
+                                            </div>
+                                            <div class="col-6">
+                                                <button type="button" class="btn btn-outline-danger" routerLink="/">
+                                                    <i class=" ">Bloquear</i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
 
-
-
-
-            </div>
-            <div class="containerBtn mt-4 ">
-                <!--botones confirmar y descartar-->
-                <div class="container ">
-                    <div class="row justify-content-center ">
-                        <div class="botonRight col-3 ">
-                            <button type="button " class="btn btn-outline-success ">Confirmar</button>
+                            </div>
                         </div>
-                        <div class="col-3 ">
-                            <button type="button " class="btn btn-outline-danger ">Descartar</button>
+                    </div>
+                    <div class="prueba card float-right shadow p-3 mb-3 bg-body rounded">
+                        <div class="row">
+                            <div class="col-2">
+                                <img class="d-block" src="https://picsum.photos/150?image=641" alt="">
+                            </div>
+                            <div class="col justify-content-center anouncementTxt">
+                                <div class="row">
+                                    <div class="col">
+                                        <a>Nombre del producto<br></a>
+                                        <a>Valor del producto<br></a>
+                                        <a>Nombre del anunciante</a>
+                                    </div>
+                                    <div class="col">
+                                        <div class="row">
+                                            <div class="col">
+                                                <a>Fecha de Finalizacion</a>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col">
+                                                <a>13 de mayo de 1027</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="row ">
+                                            <div class="col-6 ">
+                                                <button type="button" class="btn btn-outline-primary" routerLink="/">
+                                                    <i class=" ">Ver</i>
+                                                </button>
+                                            </div>
+                                            <div class="col-6">
+                                                <button type="button" class="btn btn-outline-danger" routerLink="/">
+                                                    <i class=" ">Bloquear</i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -94,4 +249,3 @@
         </div>
     </div>
 </div>
-<app-footer></app-footer>
