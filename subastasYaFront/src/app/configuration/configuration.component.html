@@ -1,27 +1,66 @@
 <app-menu></app-menu>
+<div class="backButton mb-3">
+    <button type="button" class="btn btn-secondary">Secondary</button>
+</div>
 <div class="containerConfig  card">
     <div class="card-header">
         Configuracion de la pagina
+        <div class="">
+            <a>buf</a>
+        </div>
     </div>
     <div class="containerParams card-body">
         <!--CUERPO DE LA TARJETA(PARAMETROS AQUI)-->
         <div class="fixMargin container">
             <div class="row">
-                <div class="col border">
+                <div class="col m">
                     <div class="row">
                         <div class="col">
-                            Edad minima de registro
+                            Edad minima de registro:
                         </div>
                         <div class="col">
-                            campo de texto
+                            <div class="input-group flex-nowrap">
+                                <input type="text" class="form-control" placeholder="18" aria-label="Username" aria-describedby="addon-wrapping">
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-6 border">
-                    Duracion de los anuncios
+                <div class="col m border-left border-right border-info border-opacity-30">
+                    <div class="row">
+                        <div class="col">
+                            Duracion Limite de anuncio:
+                        </div>
+                        <div class="col">
+                            <div class="input-group flex-nowrap">
+                                <input type="text" class="form-control" placeholder="1" aria-label="Username" aria-describedby="addon-wrapping">
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="col border">
-                    Cantidad maxima de ofertas por usuario
+                <div class="col m">
+                    <div class="row">
+                        <div class="col">
+                            Cantidad maxima de anuncios:
+                        </div>
+                        <div class="col">
+                            <div class="input-group flex-nowrap">
+                                <input type="text" class="form-control" placeholder="3" aria-label="Username" aria-describedby="addon-wrapping">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="containerBtn mt-4">
+            <!--botones confirmar y descartar-->
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="botonRight col-3">
+                        <button type="button " class="btn btn-outline-success ">Confirmar</button>
+                    </div>
+                    <div class="col-3">
+                        <button type="button " class="btn btn-outline-danger ">Descartar</button>
+                    </div>
                 </div>
             </div>
         </div>

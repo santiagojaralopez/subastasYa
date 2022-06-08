@@ -1,8 +1,22 @@
 .containerConfig {
-    margin-left: 20px;
-    margin-right: 20px;
+    margin-left: 70px;
+    margin-right: 70px;
 }
 
-.containerParams {
-    position: relative;
+.containerParams {}
+
+.fixMargin {}
+
+.containerBtn {
+    display: flex;
+    justify-content: center;
+}
+
+.botonRight {
+    display: flex;
+    justify-content: right;
+}
+
+.backButton {
+    margin-left: 70px;
 }
