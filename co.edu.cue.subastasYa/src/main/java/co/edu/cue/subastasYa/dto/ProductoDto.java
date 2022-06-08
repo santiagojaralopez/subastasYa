@@ -1,5 +1,7 @@
 package co.edu.cue.subastasYa.dto;
 
+import co.edu.cue.subastasYa.entity.TipoProducto;
+
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 
@@ -7,30 +9,31 @@ public class ProductoDto {
 
     @NotBlank
     private String nombre;
-    @Min(0)
-    private Float precio;
+    @NotBlank
+    private TipoProducto tipoProducto;
 
+    
     public ProductoDto() {
     }
 
-    public ProductoDto(@NotBlank String nombre, @Min(0) Float precio) {
+    public ProductoDto(@NotBlank String nombre,  @NotBlank TipoProducto tipoProducto) {
         this.nombre = nombre;
-        this.precio = precio;
+        this.tipoProducto= tipoProducto;
     }
 
     public String getNombre() {
-        return nombre;
+       return nombre;
     }
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
 
-    public Float getPrecio() {
-        return precio;
+    public TipoProducto getTipoProducto() {
+        return tipoProducto;
     }
 
-    public void setPrecio(Float precio) {
-        this.precio = precio;
+    public void setTipoProducto(TipoProducto tipoProducto) {
+        this.tipoProducto = tipoProducto;
     }
 }
