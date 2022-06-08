@@ -20,6 +20,7 @@ import { RegistroComponent } from './auth/registro.component';
 import { MenuComponent } from './menu/menu.component';
 import { IndexComponent } from './index/index.component';
 import { ConfigurationComponent } from './configuration/configuration.component';
+import { CategoriasProductoComponent } from './categorias/categorias-producto.component';
 
 
 
@@ -34,7 +35,8 @@ import { ConfigurationComponent } from './configuration/configuration.component'
     RegistroComponent,
     MenuComponent,
     IndexComponent,
-    ConfigurationComponent
+    ConfigurationComponent,
+    CategoriasProductoComponent
   ],
   imports: [
     BrowserModule,

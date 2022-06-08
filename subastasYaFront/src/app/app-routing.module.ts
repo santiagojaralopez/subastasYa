@@ -9,6 +9,7 @@ import { LoginComponent } from './auth/login.component';
 import { RegistroComponent } from './auth/registro.component';
 import { ConfigurationComponent } from './configuration/configuration.component';
 import { ProdGuardService as guard } from './guards/prod-guard.service';
+import { CategoriasProductoComponent } from './categorias/categorias-producto.component';
 
 
 const routes: Routes = [
@@ -19,6 +20,7 @@ const routes: Routes = [
   { path: 'detalle/:id', component: DetalleProductoComponent, canActivate: [guard], data: {expectedRole: ['admin', 'user']} },
   { path: 'nuevo', component: NuevoProductoComponent, canActivate: [guard], data: {expectedRole: ['admin']} },
   { path: 'config', component: ConfigurationComponent, canActivate: [guard], data: {expectedRole: ['admin']} },
+  { path: 'category/list', component: CategoriasProductoComponent, canActivate: [guard], data: {expectedRole: ['admin']} },
   { path: 'editar/:id', component: EditarProductoComponent, canActivate: [guard], data: {expectedRole: ['admin']} },
   { path: '**', redirectTo: '', pathMatch: 'full' },
 ];
