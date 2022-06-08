@@ -1,92 +1,98 @@
 <app-menu></app-menu>
-<div class="backButton mb-3">
-    <button type="button" class="btn btn-outline-secondary" routerLink="/">
-        <i class=" ">Volver</i>
-    </button>
-</div>
-<div class="containerConfig card shadow rounded mb-5">
-    <div class="cardHeader card-header ">
-        <div>
-            <a class="headerConfig">Configuracion de la pagina</a>
-        </div>
-        <div class="bodyConfig">
-            <a>A continuacion puede modificar las configuraciones globales de subastasYa</a>
-        </div>
+<div class="xd">
+    <div class="backButton mb-3">
+        <button type="button" class="btn btn-outline-primary" routerLink="/">
+            <i class=" ">Volver</i>
+        </button>
     </div>
-    <div class="containerParams card-body ">
-        <!--CUERPO DE LA TARJETA(PARAMETROS AQUI)-->
-        <div class="fixMargin container ">
-            <div class="row ">
-                <div class="col m ">
-                    <div class="row ">
-                        <div class="col ">
-                            Edad minima de registro:
-                        </div>
-                        <div class="col ">
-                            <div class="input-group flex-nowrap ">
-                                <input type="text " class="form-control " placeholder="18 " aria-label="Username " aria-describedby="addon-wrapping ">
+    <div class="containerConfig card shadow rounded mb-5">
+        <div class="cardHeader card-header ">
+            <div>
+                <a class="headerConfig">Configuracion de la pagina</a>
+            </div>
+            <div class="bodyConfig">
+                <a>A continuacion puede modificar las configuraciones globales de subastasYa</a>
+            </div>
+        </div>
+        <div class="containerParams card-body ">
+            <!--CUERPO DE LA TARJETA(PARAMETROS AQUI)-->
+            <div class="fixMargin container ">
+                <div class="row mb-4">
+                    <div class="col">
+                        <div class="row ">
+                            <div class="col rightTxt">
+                                Edad minima de registro:
+                            </div>
+                            <div class="col ">
+                                <div class="input-group flex-nowrap inputS">
+                                    <input type="text " class="form-control inputS" placeholder="18 " aria-label="Username " aria-describedby="addon-wrapping ">
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col m border-left border-right border-info border-opacity-30 ">
-                    <div class="row ">
-                        <div class="col ">
-                            Duracion limite de anuncios:
-                        </div>
-                        <div class="col ">
-                            <div class="input-group flex-nowrap ">
-                                <input type="text " class="form-control " placeholder="1 " aria-label="Username " aria-describedby="addon-wrapping ">
+                <div class="row mb-4 ">
+                    <div class="col m">
+                        <div class="row">
+                            <div class="col rightTxt">
+                                Duracion limite de anuncios:
+                            </div>
+                            <div class="col ">
+                                <div class="input-group flex-nowrap inputS">
+                                    <input type="text " class="form-control inputS" placeholder="1 " aria-label="Username " aria-describedby="addon-wrapping ">
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col m ">
-                    <div class="row ">
-                        <div class="col ">
-                            Cantidad maxima de anuncios:
-                        </div>
-                        <div class="col ">
-                            <div class="input-group flex-nowrap ">
-                                <input type="text " class="form-control " placeholder="3 " aria-label="Username " aria-describedby="addon-wrapping ">
+                <div class="row mb-4">
+                    <div class="col m ">
+                        <div class="row ">
+                            <div class="col rightTxt">
+                                Cantidad maxima de ofertas:
                             </div>
+                            <div class="col ">
+                                <div class="input-group flex-nowrap inputS">
+                                    <input type="text " class="form-control inputS" placeholder="3 " aria-label="Username " aria-describedby="addon-wrapping ">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mb-4">
+                    <div class="col m ">
+                        <div class="row ">
+                            <div class="col rightTxt">
+                                Cantidad maxima de anuncios:
+                            </div>
+                            <div class="col ">
+                                <div class="input-group flex-nowrap inputS">
+                                    <input type="text " class="form-control inputS" placeholder="3 " aria-label="Username " aria-describedby="addon-wrapping ">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+            </div>
+            <div class="containerBtn mt-4 ">
+                <!--botones confirmar y descartar-->
+                <div class="container ">
+                    <div class="row justify-content-center ">
+                        <div class="botonRight col-3 ">
+                            <button type="button " class="btn btn-outline-success ">Confirmar</button>
+                        </div>
+                        <div class="col-3 ">
+                            <button type="button " class="btn btn-outline-danger ">Descartar</button>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="containerBtn mt-4 ">
-            <!--botones confirmar y descartar-->
-            <div class="container ">
-                <div class="row justify-content-center ">
-                    <div class="botonRight col-3 ">
-                        <button type="button " class="btn btn-outline-success ">Confirmar</button>
-                    </div>
-                    <div class="col-3 ">
-                        <button type="button " class="btn btn-outline-danger ">Descartar</button>
-                    </div>
-                </div>
-            </div>
-        </div>
     </div>
 </div>
 
-<div class="containerConfig card shadow rounded">
-    <div class="cardHeader card-header ">
-        <div>
-            <a class="headerConfig">Gestion de categorias</a>
-        </div>
-        <div class="bodyConfig">
-            <a>A continuacion puede gestionar la categoria de productos que se encuentran disponibles en SubastasYa</a>
-        </div>
-    </div>
-    <div class="containerParams card-body ">
-        <!--CUERPO DE LA TARJETA(PARAMETROS AQUI)-->
-        <div class="maestro container border mb-3">
-
-        </div>
-        <div class="detalle container border">
-
-        </div>
-    </div>
-</div>
+<app-footer></app-footer>

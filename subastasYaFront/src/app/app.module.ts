@@ -22,6 +22,10 @@ import { IndexComponent } from './index/index.component';
 import { ConfigurationComponent } from './configuration/configuration.component';
 import { SendEmailComponent } from './changepassword/send-email.component';
 import { ChangePasswordComponent } from './changepassword/change-password.component';
+import { CategoriasProductoComponent } from './categorias/categorias-producto.component';
+import { FooterComponent } from './footer/footer.component';
+import { UserListComponent } from './users/user-list.component';
+import { UserEditProfileComponent } from './users/user-edit-profile.component';
 
 
 
@@ -38,7 +42,11 @@ import { ChangePasswordComponent } from './changepassword/change-password.compon
     IndexComponent,
     ConfigurationComponent,
     SendEmailComponent,
-    ChangePasswordComponent
+    ChangePasswordComponent,
+    CategoriasProductoComponent,
+    FooterComponent,
+    UserListComponent,
+    UserEditProfileComponent
   ],
   imports: [
     BrowserModule,
