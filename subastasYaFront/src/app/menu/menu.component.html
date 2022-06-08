@@ -6,7 +6,7 @@
     <div class="txNav collapse navbar-collapse" id="navbarNav">
         <ul class="txNav navbar-nav ml-auto">
             <li class="ido nav-item">
-                <a class="txNav nav-link" routerLink="/config">
+                <a class="txNav nav-link" *ngIf="isLogged" routerLink="/config">
                     <i class="txNav fas fa-list-alt"></i> Configuracion
                 </a>
             </li>

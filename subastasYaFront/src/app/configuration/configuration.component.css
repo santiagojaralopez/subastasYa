@@ -43,3 +43,20 @@
     width: 100%;
     height: 140px;
 }
+
+.headerCat {
+    display: flex;
+    justify-content: center;
+}
+
+.containerMaestro {
+    height: max-content;
+}
+
+.inputX {
+    width: 250px;
+}
+
+.inputY {
+    width: 450px;
+}
