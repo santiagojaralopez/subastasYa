@@ -125,19 +125,19 @@ public class Usuario {
         this.apellido = apellido;
     }
 
-    public String getNumero_doc() {
+    public String getNumerodoc() {
         return numerodoc;
     }
 
-    public void setNumero_doc(String numerodoc) {
+    public void setNumerodoc(String numerodoc) {
         this.numerodoc = numerodoc;
     }
 
-    public Date getFecha_nacto() {
+    public Date getFechanacto() {
         return fechanacto;
     }
 
-    public void setFecha_nacto(Date fechanacto) {
+    public void setFechanacto(Date fechanacto) {
         this.fechanacto = fechanacto;
     }
 

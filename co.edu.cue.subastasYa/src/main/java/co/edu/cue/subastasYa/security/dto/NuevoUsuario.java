@@ -13,7 +13,7 @@ public class NuevoUsuario {
     @NotBlank
     private String nombre;
     @NotBlank
-    private String nombre_Usuario;
+    private String nombreUsuario;
     @Email
     private String email;
     @NotBlank
@@ -21,9 +21,9 @@ public class NuevoUsuario {
     @NotBlank
     private String apellido;
     @NotBlank
-    private String numero_doc;
+    private String numerodoc;
     @NotBlank
-    private Date fecha_nacto;
+    private Date fechanacto;
     @NotBlank
     private String direccion;
     @NotBlank
@@ -41,12 +41,9 @@ public class NuevoUsuario {
         this.nombre = nombre;
     }
 
-    public String getNombreUsuario() {
-        return nombre_Usuario;
-    }
 
     public void setNombre_Usuario(String nombreUsuario) {
-        this.nombre_Usuario = nombreUsuario;
+        this.nombreUsuario = nombreUsuario;
     }
 
     public String getEmail() {
@@ -73,8 +70,8 @@ public class NuevoUsuario {
         this.roles = roles;
     }
 
-    public String getNombre_Usuario() {
-        return nombre_Usuario;
+    public String getNombreUsuario() {
+        return nombreUsuario;
     }
 
     public String getApellido() {
@@ -85,20 +82,20 @@ public class NuevoUsuario {
         this.apellido = apellido;
     }
 
-    public String getNumero_doc() {
-        return numero_doc;
+    public String getNumerodoc() {
+        return numerodoc;
     }
 
-    public void setNumero_doc(String numero_doc) {
-        this.numero_doc = numero_doc;
+    public void setNumerodoc(String numero_doc) {
+        this.numerodoc = numero_doc;
     }
 
-    public Date getFecha_nacto() {
-        return fecha_nacto;
+    public Date getFechanacto() {
+        return fechanacto;
     }
 
-    public void setFecha_nacto(Date fecha_nacto) {
-        this.fecha_nacto = fecha_nacto;
+    public void setFechanacto(Date fecha_nacto) {
+        this.fechanacto = fecha_nacto;
     }
 
     public String getDireccion() {

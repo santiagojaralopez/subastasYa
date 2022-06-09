@@ -60,7 +60,7 @@ import java.util.Set;
         if (usuarioService.existsByEmail(nuevoUsuario.getEmail()))
             return new ResponseEntity(new Mensaje("Ese Email ya está registrado"), HttpStatus.BAD_REQUEST);
 
-        Usuario usuario = new Usuario(nuevoUsuario.getNombre(), nuevoUsuario.getApellido(), nuevoUsuario.getNumero_doc(), nuevoUsuario.getFecha_nacto(),nuevoUsuario.getDireccion(), EstadoUsuario.HABILITADO, nuevoUsuario.getTipoDocumento(), nuevoUsuario.getNombreUsuario(), nuevoUsuario.getEmail(), nuevoUsuario.getPassword());
+        Usuario usuario = new Usuario(nuevoUsuario.getNombre(), nuevoUsuario.getApellido(), nuevoUsuario.getNumerodoc(), nuevoUsuario.getFechanacto(),nuevoUsuario.getDireccion(), EstadoUsuario.HABILITADO, nuevoUsuario.getTipoDocumento(), nuevoUsuario.getNombreUsuario(), nuevoUsuario.getEmail(), nuevoUsuario.getPassword());
 
         Set<Rol> roles = new HashSet<>();
         roles.add(rolService.getByRolNombre(RolNombre.ROLE_USER).get());
@@ -94,9 +94,9 @@ import java.util.Set;
         Usuario usuario = usuarioService.getOne(id).get();
         usuario.setNombre(usuariodto.getNombre());
         usuario.setApellido(usuariodto.getApellido());
-        usuario.setFecha_nacto(usuariodto.getFechanacto());
+        usuario.setFechanacto(usuariodto.getFechanacto());
         usuario.setDireccion(usuariodto.getDireccion());
-        usuario.setNumero_doc(usuariodto.getNumeroDoc());
+        usuario.setNumerodoc(usuariodto.getNumeroDoc());
         usuario.setEmail(usuariodto.getEmail());
 
 
