@@ -22,10 +22,10 @@ public class Usuario {
     private String apellido;
 
     @NotNull
-    private String numero_doc;
+    private String numerodoc;
 
     @NotNull
-    private Date fecha_nacto;
+    private Date fechanacto;
 
     @NotNull
     private String direccion;
@@ -62,11 +62,11 @@ public class Usuario {
     public Usuario() {
     }
 
-    public Usuario( String nombre, String apellido, String numero_doc, Date fecha_nacto, String direccion, EstadoUsuario estadoUsuario, TipoDocumento tipoDocumento, String nombreUsuario, String email, String password) {
+    public Usuario( String nombre, String apellido, String numerodoc, Date fechanacto, String direccion, EstadoUsuario estadoUsuario, TipoDocumento tipoDocumento, String nombreUsuario, String email, String password) {
         this.nombre = nombre;
         this.apellido = apellido;
-        this.numero_doc = numero_doc;
-        this.fecha_nacto = fecha_nacto;
+        this.numerodoc = numerodoc;
+        this.fechanacto = fechanacto;
         this.direccion = direccion;
         this.estadoUsuario = estadoUsuario;
         this.tipoDocumento = tipoDocumento;
@@ -75,19 +75,7 @@ public class Usuario {
         this.password = password;
     }
 
-    public Usuario( String nombre, String apellido, String numero_doc, Date fecha_nacto, String direccion, EstadoUsuario estadoUsuario, TipoDocumento tipoDocumento, String nombreUsuario, String email, String password, Set<Rol> roles) {
-        this.nombre = nombre;
-        this.apellido = apellido;
-        this.numero_doc = numero_doc;
-        this.fecha_nacto = fecha_nacto;
-        this.direccion = direccion;
-        this.estadoUsuario = estadoUsuario;
-        this.tipoDocumento = tipoDocumento;
-        this.nombreUsuario = nombreUsuario;
-        this.email = email;
-        this.password = password;
-        this.roles = roles;
-    }
+
 
     public int getId() {
         return id;
@@ -138,19 +126,19 @@ public class Usuario {
     }
 
     public String getNumero_doc() {
-        return numero_doc;
+        return numerodoc;
     }
 
-    public void setNumero_doc(String numero_doc) {
-        this.numero_doc = numero_doc;
+    public void setNumero_doc(String numerodoc) {
+        this.numerodoc = numerodoc;
     }
 
     public Date getFecha_nacto() {
-        return fecha_nacto;
+        return fechanacto;
     }
 
-    public void setFecha_nacto(Date fecha_nacto) {
-        this.fecha_nacto = fecha_nacto;
+    public void setFecha_nacto(Date fechanacto) {
+        this.fechanacto = fechanacto;
     }
 
     public String getDireccion() {
