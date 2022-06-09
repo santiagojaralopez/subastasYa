@@ -29,7 +29,7 @@
                     </div>
                 </div>
                 <div class="card-body">
-                    <div class="prueba card float-right shadow p-3 mb-3 bg-body rounded">
+                    <div *ngFor="let anuncio of anuncios" class="prueba card float-right shadow p-3 mb-3 bg-body rounded">
                         <div class="row">
                             <div class="col-2">
                                 <img class="d-block" src="https://picsum.photos/150?image=641" alt="">
@@ -37,186 +37,14 @@
                             <div class="col justify-content-center anouncementTxt">
                                 <div class="row">
                                     <div class="col">
-                                        <a>Nombre del producto<br></a>
-                                        <a>Valor del producto<br></a>
-                                        <a>Nombre del anunciante</a>
+                                        <a>{{anuncio.producto.nombre}}<br></a>
+                                        <a>{{anuncio.valor}}<br></a>
+                                        <a>{{anuncio.usuario.nombre}}</a>
                                     </div>
                                     <div class="col">
                                         <div class="row">
                                             <div class="col">
-                                                <a>Fecha de Finalizacion</a>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col">
-                                                <a>13 de mayo de 1027</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col">
-                                        <div class="row ">
-                                            <div class="col-6 ">
-                                                <button type="button" class="btn btn-outline-primary" routerLink="/">
-                                                    <i class=" ">Ver</i>
-                                                </button>
-                                            </div>
-                                            <div class="col-6">
-                                                <button type="button" class="btn btn-outline-danger" routerLink="/">
-                                                    <i class=" ">Bloquear</i>
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-                    <div class="prueba card float-right shadow p-3 mb-3 bg-body rounded">
-                        <div class="row">
-                            <div class="col-2">
-                                <img class="d-block" src="https://picsum.photos/150?image=641" alt="">
-                            </div>
-                            <div class="col justify-content-center anouncementTxt">
-                                <div class="row">
-                                    <div class="col">
-                                        <a>Nombre del producto<br></a>
-                                        <a>Valor del producto<br></a>
-                                        <a>Nombre del anunciante</a>
-                                    </div>
-                                    <div class="col">
-                                        <div class="row">
-                                            <div class="col">
-                                                <a>Fecha de Finalizacion</a>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col">
-                                                <a>13 de mayo de 1027</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col">
-                                        <div class="row ">
-                                            <div class="col-6 ">
-                                                <button type="button" class="btn btn-outline-primary" routerLink="/">
-                                                    <i class=" ">Ver</i>
-                                                </button>
-                                            </div>
-                                            <div class="col-6">
-                                                <button type="button" class="btn btn-outline-danger" routerLink="/">
-                                                    <i class=" ">Bloquear</i>
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-                    <div class="prueba card float-right shadow p-3 mb-3 bg-body rounded">
-                        <div class="row">
-                            <div class="col-2">
-                                <img class="d-block" src="https://picsum.photos/150?image=641" alt="">
-                            </div>
-                            <div class="col justify-content-center anouncementTxt">
-                                <div class="row">
-                                    <div class="col">
-                                        <a>Nombre del producto<br></a>
-                                        <a>Valor del producto<br></a>
-                                        <a>Nombre del anunciante</a>
-                                    </div>
-                                    <div class="col">
-                                        <div class="row">
-                                            <div class="col">
-                                                <a>Fecha de Finalizacion</a>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col">
-                                                <a>13 de mayo de 1027</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col">
-                                        <div class="row ">
-                                            <div class="col-6 ">
-                                                <button type="button" class="btn btn-outline-primary" routerLink="/">
-                                                    <i class=" ">Ver</i>
-                                                </button>
-                                            </div>
-                                            <div class="col-6">
-                                                <button type="button" class="btn btn-outline-danger" routerLink="/">
-                                                    <i class=" ">Bloquear</i>
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-                    <div class="prueba card float-right shadow p-3 mb-3 bg-body rounded">
-                        <div class="row">
-                            <div class="col-2">
-                                <img class="d-block" src="https://picsum.photos/150?image=641" alt="">
-                            </div>
-                            <div class="col justify-content-center anouncementTxt">
-                                <div class="row">
-                                    <div class="col">
-                                        <a>Nombre del producto<br></a>
-                                        <a>Valor del producto<br></a>
-                                        <a>Nombre del anunciante</a>
-                                    </div>
-                                    <div class="col">
-                                        <div class="row">
-                                            <div class="col">
-                                                <a>Fecha de Finalizacion</a>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col">
-                                                <a>13 de mayo de 1027</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col">
-                                        <div class="row ">
-                                            <div class="col-6 ">
-                                                <button type="button" class="btn btn-outline-primary" routerLink="/">
-                                                    <i class=" ">Ver</i>
-                                                </button>
-                                            </div>
-                                            <div class="col-6">
-                                                <button type="button" class="btn btn-outline-danger" routerLink="/">
-                                                    <i class=" ">Bloquear</i>
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-                    <div class="prueba card float-right shadow p-3 mb-3 bg-body rounded">
-                        <div class="row">
-                            <div class="col-2">
-                                <img class="d-block" src="https://picsum.photos/150?image=641" alt="">
-                            </div>
-                            <div class="col justify-content-center anouncementTxt">
-                                <div class="row">
-                                    <div class="col">
-                                        <a>Nombre del producto<br></a>
-                                        <a>Valor del producto<br></a>
-                                        <a>Nombre del anunciante</a>
-                                    </div>
-                                    <div class="col">
-                                        <div class="row">
-                                            <div class="col">
-                                                <a>Fecha de Finalizacion</a>
+                                                <a></a>
                                             </div>
                                         </div>
                                         <div class="row">
