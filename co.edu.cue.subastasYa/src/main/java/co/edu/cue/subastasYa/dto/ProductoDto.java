@@ -7,12 +7,13 @@ import javax.validation.constraints.NotBlank;
 
 public class ProductoDto {
 
+
     @NotBlank
     private String nombre;
     @NotBlank
     private TipoProducto tipoProducto;
 
-    
+
     public ProductoDto() {
     }
 

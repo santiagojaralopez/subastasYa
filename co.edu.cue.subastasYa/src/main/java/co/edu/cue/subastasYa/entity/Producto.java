@@ -15,8 +15,7 @@ public class Producto {
 
     //@NotBlank
     //private TipoProducto tipoProducto;
-
-
+    
 
     public Producto() {
     }
