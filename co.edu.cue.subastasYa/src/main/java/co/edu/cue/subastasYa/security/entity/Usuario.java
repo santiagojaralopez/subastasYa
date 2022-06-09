@@ -1,7 +1,11 @@
 package co.edu.cue.subastasYa.security.entity;
 
+import co.edu.cue.subastasYa.security.enums.EstadoUsuario;
+import co.edu.cue.subastasYa.security.enums.TipoDocumento;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -13,6 +17,25 @@ public class Usuario {
 
     @NotNull
     private String nombre;
+
+    @NotNull
+    private String apellido;
+
+    @NotNull
+    private String numerodoc;
+
+    @NotNull
+    private Date fechanacto;
+
+    @NotNull
+    private String direccion;
+
+    @NotNull
+    private EstadoUsuario estadoUsuario;
+
+    @NotNull
+    private TipoDocumento tipoDocumento;
+
 
     @NotNull
     @Column(unique=true)
@@ -37,12 +60,20 @@ public class Usuario {
     public Usuario() {
     }
 
-    public Usuario(String nombre, String nombreUsuario, String email, String password) {
+    public Usuario( String nombre, String apellido, String numerodoc, Date fechanacto, String direccion, EstadoUsuario estadoUsuario, TipoDocumento tipoDocumento, String nombreUsuario, String email, String password) {
         this.nombre = nombre;
+        this.apellido = apellido;
+        this.numerodoc = numerodoc;
+        this.fechanacto = fechanacto;
+        this.direccion = direccion;
+        this.estadoUsuario = estadoUsuario;
+        this.tipoDocumento = tipoDocumento;
         this.nombreUsuario = nombreUsuario;
         this.email = email;
         this.password = password;
     }
+
+
 
     public int getId() {
         return id;
@@ -58,14 +89,6 @@ public class Usuario {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
-    }
-
-    public String getNombreUsuario() {
-        return nombreUsuario;
-    }
-
-    public void setNombreUsuario(String nombreUsuario) {
-        this.nombreUsuario = nombreUsuario;
     }
 
     public String getEmail() {
@@ -98,5 +121,61 @@ public class Usuario {
 
     public void setRoles(Set<Rol> roles) {
         this.roles = roles;
+    }
+
+    public String getApellido() {
+        return apellido;
+    }
+
+    public void setApellido(String apellido) {
+        this.apellido = apellido;
+    }
+
+    public String getNumerodoc() {
+        return numerodoc;
+    }
+
+    public void setNumerodoc(String numerodoc) {
+        this.numerodoc = numerodoc;
+    }
+
+    public Date getFechanacto() {
+        return fechanacto;
+    }
+
+    public void setFechanacto(Date fechanacto) {
+        this.fechanacto = fechanacto;
+    }
+
+    public String getDireccion() {
+        return direccion;
+    }
+
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
+    }
+
+    public EstadoUsuario getEstadoUsuario() {
+        return estadoUsuario;
+    }
+
+    public void setEstadoUsuario(EstadoUsuario estadoUsuario) {
+        this.estadoUsuario = estadoUsuario;
+    }
+
+    public TipoDocumento getTipoDocumento() {
+        return tipoDocumento;
+    }
+
+    public void setTipoDocumento(TipoDocumento tipoDocumento) {
+        this.tipoDocumento = tipoDocumento;
+    }
+
+    public String getNombreUsuario() {
+        return nombreUsuario;
+    }
+
+    public void setNombreUsuario(String nombreUsuario) {
+        this.nombreUsuario = nombreUsuario;
     }
 }
