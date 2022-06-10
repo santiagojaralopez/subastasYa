@@ -21,5 +21,9 @@ export class UsuarioService {
     );
   }
 
+  getUsuario(id:number): Observable<Usuario>{
+    return this.http.get<Usuario>(`${this.usuarioURL}detail-user/${id}`);
+  }
+
 
 }
