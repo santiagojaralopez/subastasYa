@@ -6,7 +6,8 @@ import { AnuncioService } from '../service/anuncio.service';
 
 @Component({
   selector: 'app-detalle-producto',
-  templateUrl: './detalle-producto.component.html'
+  templateUrl: './detalle-producto.component.html',
+  styleUrls: ['./detalle-producto.component.css']
 })
 export class DetalleProductoComponent implements OnInit {
 
