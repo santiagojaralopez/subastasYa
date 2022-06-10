@@ -15,29 +15,27 @@ public class AnuncioDto {
 
     @NotBlank
     private String descripcion;
-    @NotBlank
+    //@NotBlank
     private Date fecha_inicio;
-    @NotBlank
+    //@NotBlank
     private Date fecha_fin;
 
     @OneToOne
     @JoinColumn(name = "usuario_id")
-    @NotBlank
     private Usuario usuario;
 
 
-    @NotBlank
+
     private Estado estado;
-    @NotBlank
+
     private Ciudad ciudad;
-    @NotBlank
+
     private Departamento departamento;
     @NotBlank
     private Double valor;
 
     @OneToOne
     @JoinColumn(name = "producto_id")
-    @NotBlank
     private Producto producto;
 
 
@@ -45,7 +43,7 @@ public class AnuncioDto {
     }
 
 
-    public AnuncioDto(@NotBlank String descripcion,@NotBlank Date fecha_inicio,@NotBlank Date fecha_fin,@NotBlank Usuario usuario,@NotBlank Estado estado,@NotBlank Ciudad ciudad,@NotBlank Departamento departamento,@NotBlank Double valor,@NotBlank Producto producto) {
+    public AnuncioDto(@NotBlank String descripcion,Date fecha_inicio,Date fecha_fin,@NotBlank Usuario usuario,@NotBlank Estado estado,@NotBlank Ciudad ciudad,@NotBlank Departamento departamento,@NotBlank Double valor,@NotBlank Producto producto) {
         this.descripcion = descripcion;
         this.fecha_inicio = fecha_inicio;
         this.fecha_fin = fecha_fin;

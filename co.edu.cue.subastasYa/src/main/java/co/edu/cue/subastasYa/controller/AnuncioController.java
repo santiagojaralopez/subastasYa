@@ -13,6 +13,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -37,15 +38,20 @@ public class AnuncioController {
     //MOSTRAR ANUNCIOS ESTADOS
     @GetMapping("/listaAnuncioBloqueados")
     public List<Anuncio> listBloqueados(){
-        return anuncioService.listByEstados(Estado.BLOQUEADO);
+        List<Anuncio> list = anuncioService.listByEstados(Estado.BLOQUEADO);
+        return list;
     }
+
     @GetMapping("/listaAnuncioActivos")
     public List<Anuncio> listActivos(){
-        return anuncioService.listByEstados(Estado.ACTIVO);
+        List<Anuncio> list = anuncioService.listByEstados(Estado.ACTIVO);
+        return list;
     }
+
     @GetMapping("/listaAnuncioInactivo")
     public List<Anuncio> listInactivo(){
-        return anuncioService.listByEstados(Estado.INACTIVO);
+        List<Anuncio> list = anuncioService.listByEstados(Estado.INACTIVO);
+        return list;
     }
 
 
@@ -121,7 +127,7 @@ public class AnuncioController {
         return new ResponseEntity(new Mensaje("anuncio actualizado"), HttpStatus.OK);
     }
 
-
+    {}
     @DeleteMapping("/deleteAnuncio/{id}")
     public ResponseEntity<?> delete(@PathVariable("id")int id){
         if(!anuncioService.existsById(id))
@@ -131,6 +137,7 @@ public class AnuncioController {
     }
 
 
+    @PreAuthorize("hasRole('ADMIN')")
     @PutMapping("/updateAnuncioBloqueo/{id}")
     public ResponseEntity<?> updateBloqueoAdmin(@PathVariable("id")int id, @RequestBody AnuncioDto anuncioDto){
         if(!anuncioService.existsById(id))

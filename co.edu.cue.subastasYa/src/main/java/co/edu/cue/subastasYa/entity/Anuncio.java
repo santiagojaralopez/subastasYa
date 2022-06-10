@@ -17,9 +17,9 @@ public class Anuncio {
 
     @NotBlank
     private String descripcion;
-    @NotBlank
+    //@NotBlank
     private Date fecha_inicio;
-    @NotBlank
+    //@NotBlank
     private Date fecha_fin;
 
     @OneToOne

@@ -44,20 +44,20 @@ public class ProductoController {
     }
 
 
-    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("/create")
     public ResponseEntity<?> create(@RequestBody ProductoDto productoDto){
         if(StringUtils.isBlank(productoDto.getNombre()))
             return new ResponseEntity(new Mensaje("el nombre es obligatorio"), HttpStatus.BAD_REQUEST);
         if(productoService.existsByNombre(productoDto.getNombre()))
             return new ResponseEntity(new Mensaje("ese nombre ya existe"), HttpStatus.BAD_REQUEST);
-        Producto producto = new Producto(productoDto.getNombre(), productoDto.getTipoProducto());
+        if(StringUtils.isBlank(productoDto.getFotoProducto()))
+            return new ResponseEntity(new Mensaje("la foto es obligatoria"), HttpStatus.BAD_REQUEST);
+        Producto producto = new Producto(productoDto.getNombre(), productoDto.getFotoProducto());
         productoService.save(producto);
         return new ResponseEntity(new Mensaje("producto creado"), HttpStatus.OK);
     }
 
-    
-    @PreAuthorize("hasRole('ADMIN')")
+
     @PutMapping("/update/{id}")
     public ResponseEntity<?> update(@PathVariable("id")int id, @RequestBody ProductoDto productoDto){
         if(!productoService.existsById(id))
@@ -66,14 +66,15 @@ public class ProductoController {
             return new ResponseEntity(new Mensaje("ese nombre ya existe"), HttpStatus.BAD_REQUEST);
         if(StringUtils.isBlank(productoDto.getNombre()))
             return new ResponseEntity(new Mensaje("el nombre es obligatorio"), HttpStatus.BAD_REQUEST);
-
+        if(StringUtils.isBlank(productoDto.getFotoProducto()))
+            return new ResponseEntity(new Mensaje("la foto es obligatoria"), HttpStatus.BAD_REQUEST);
         Producto producto = productoService.getOne(id).get();
         producto.setNombre(productoDto.getNombre());
         productoService.save(producto);
         return new ResponseEntity(new Mensaje("producto actualizado"), HttpStatus.OK);
     }
 
-    @PreAuthorize("hasRole('ADMIN')")
+
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<?> delete(@PathVariable("id")int id){
         if(!productoService.existsById(id))
