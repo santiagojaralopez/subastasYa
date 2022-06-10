@@ -20,4 +20,8 @@ export class AnuncioService {
     );
   }
 
+  getAnuncio(id: number): Observable<Anuncio>{
+    return this.http.get<Anuncio>(`${this.anuncioURL}detailAnuncio/${id}`);
+  }
+
 }

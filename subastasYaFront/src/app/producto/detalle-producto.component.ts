@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ProductoService } from '../service/producto.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { Producto } from '../models/producto';
+import { Anuncio } from '../models/anuncio';
+import { AnuncioService } from '../service/anuncio.service';
 
 @Component({
   selector: 'app-detalle-producto',
@@ -10,10 +10,10 @@ import { Producto } from '../models/producto';
 })
 export class DetalleProductoComponent implements OnInit {
 
-  producto: Producto = null;
+  anuncio: Anuncio;
 
   constructor(
-    private productoService: ProductoService,
+    private anuncioService: AnuncioService,
     private activatedRoute: ActivatedRoute,
     private toastr: ToastrService,
     private router: Router
@@ -21,9 +21,9 @@ export class DetalleProductoComponent implements OnInit {
 
   ngOnInit() {
     const id = this.activatedRoute.snapshot.params.id;
-    this.productoService.detail(id).subscribe(
+    this.anuncioService.getAnuncio(id).subscribe(
       data => {
-        this.producto = data;
+        this.anuncio = data;
       },
       err => {
         this.toastr.error(err.error.mensaje, 'Fail', {
