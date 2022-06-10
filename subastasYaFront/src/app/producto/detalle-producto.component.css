@@ -40,3 +40,7 @@
     display: flex;
     justify-content: center;
 }
+
+.backButton {
+    margin-left: 171px;
+}
