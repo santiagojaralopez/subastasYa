@@ -91,4 +91,11 @@
     align-items: center;
 }
 
-.anouncementImg {}
+.anouncementPicture {
+    width: 150px;
+    height: 150px;
+}
+
+.botones {
+    width: 90%;
+}
