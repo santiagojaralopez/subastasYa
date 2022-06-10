@@ -24,4 +24,10 @@ export class AnuncioService {
     return this.http.get<Anuncio>(`${this.anuncioURL}detailAnuncio/${id}`);
   }
 
+  listaActivos(): Observable<Anuncio[]> {
+    return this.http.get(this.anuncioURL + 'listaAnuncioActivos').pipe(
+      map(response => response as Anuncio[])
+    );
+  }
+
 }
