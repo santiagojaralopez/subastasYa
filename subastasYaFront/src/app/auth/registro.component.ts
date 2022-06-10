@@ -14,15 +14,22 @@ export class RegistroComponent implements OnInit {
 
   isLogged = false;
   nuevoUsuario: NuevoUsuario;
-  nombre: string;
-  nombreUsuario: string;
+  nombres: string;
+  apellidos: string;
+  tipoDocumento: string;
+  numeroDocumento: string;
+  fechaNacimiento: Date;
   email: string;
+  nombreUsuario: string;
   password: string;
+  departamento: string;
+  direccion: string;
   errMsj: string;
-  departaments: string[] = ['Amazonas','Antioquia','Arauca','Atlantico','Bolivar','Boyaca','Caldas',
-'Caqueta','Casanare','Cauca','Cesar','Choco','Cordoba','Cundinamarca','Guainia','Guaviare','Huila',
-'La guajira','Magdalena','Meta','Narino','Norte de Santander','Putumayo','Quindio','Risaralda',
-'San Andres y Providencia','Santander','Sucre','Tolima','Valle del cauca','Vaupes','Vichada'];
+
+  departaments: string[] = ['Amazonas', 'Antioquia', 'Arauca', 'Atlantico', 'Bolivar', 'Boyaca', 'Caldas',
+    'Caqueta', 'Casanare', 'Cauca', 'Cesar', 'Choco', 'Cordoba', 'Cundinamarca', 'Guainia', 'Guaviare', 'Huila',
+    'La guajira', 'Magdalena', 'Meta', 'Nariño', 'Norte de Santander', 'Putumayo', 'Quindio', 'Risaralda',
+    'San Andres y Providencia', 'Santander', 'Sucre', 'Tolima', 'Valle del cauca', 'Vaupes', 'Vichada'];
 
   constructor(
     private tokenService: TokenService,
@@ -38,7 +45,7 @@ export class RegistroComponent implements OnInit {
   }
 
   onRegister(): void {
-    this.nuevoUsuario = new NuevoUsuario(this.nombre, this.nombreUsuario, this.email, this.password);
+    this.nuevoUsuario = new NuevoUsuario(this.nombres, this.apellidos, this.tipoDocumento, this.numeroDocumento, this.fechaNacimiento, this.email, this.nombreUsuario, this.password, this.departamento, this.direccion);
     this.authService.nuevo(this.nuevoUsuario).subscribe(
       data => {
         this.toastr.success('Cuenta Creada', 'OK', {

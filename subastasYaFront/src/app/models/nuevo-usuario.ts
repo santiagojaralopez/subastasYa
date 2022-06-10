@@ -1,13 +1,25 @@
 export class NuevoUsuario {
-    nombre: string;
-    nombreUsuario: string;
+    nombres: string;
+    apellidos: string;
+    tipoDocumento: string;
+    numeroDocumento: string;
+    fechaNacimiento: Date;
     email: string;
+    nombreUsuario: string;
     password: string;
+    departamento: string;
+    direccion: string;
 
-    constructor(nombre: string, nombreUsuario: string, email: string, password: string) {
-        this.nombre = nombre;
-        this.nombreUsuario = nombreUsuario;
+    constructor(nombres: string, apellidos: string, tipoDocumento: string, numeroDocumento: string, fechaNacimiento: Date, email: string, nombreUsuario: string, password: string, departamento: string, direccion: string) {
+        this.nombres = nombres;
+        this.apellidos = apellidos;
+        this.tipoDocumento = tipoDocumento;
+        this.numeroDocumento = numeroDocumento;
+        this.fechaNacimiento = fechaNacimiento;
         this.email = email;
+        this.nombreUsuario = nombreUsuario;
         this.password = password;
+        this.departamento = departamento;
+        this.direccion = direccion;
     }
 }
