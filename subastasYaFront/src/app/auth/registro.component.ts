@@ -11,8 +11,8 @@ import { TokenService } from '../service/token.service';
   styleUrls: ['./login.component.css']
 })
 export class RegistroComponent implements OnInit {
-
   isLogged = false;
+
   nuevoUsuario: NuevoUsuario;
   nombres: string;
   apellidos: string;
@@ -24,9 +24,15 @@ export class RegistroComponent implements OnInit {
   password: string;
   departamento: string;
   direccion: string;
+
+  selectedDocType: any;
+  selectedDepartment: any;
+
   errMsj: string;
 
-  departaments: string[] = ['Amazonas', 'Antioquia', 'Arauca', 'Atlantico', 'Bolivar', 'Boyaca', 'Caldas',
+  docTypes: string[] = ['Cedula de Ciudadania', 'Pasaporte', 'Cedula de Extranjeria'];
+
+  departments: string[] = ['Amazonas', 'Antioquia', 'Arauca', 'Atlantico', 'Bolivar', 'Boyaca', 'Caldas',
     'Caqueta', 'Casanare', 'Cauca', 'Cesar', 'Choco', 'Cordoba', 'Cundinamarca', 'Guainia', 'Guaviare', 'Huila',
     'La guajira', 'Magdalena', 'Meta', 'Nariño', 'Norte de Santander', 'Putumayo', 'Quindio', 'Risaralda',
     'San Andres y Providencia', 'Santander', 'Sucre', 'Tolima', 'Valle del cauca', 'Vaupes', 'Vichada'];
@@ -44,8 +50,22 @@ export class RegistroComponent implements OnInit {
     }
   }
 
+  onSelectDocType(value: any): void {
+    this.tipoDocumento = value;
+  }
+
+  onSelectDepartment(value: any): void {
+    this.departamento = value;
+  }
+
   onRegister(): void {
+    // tslint:disable-next-line: max-line-length
     this.nuevoUsuario = new NuevoUsuario(this.nombres, this.apellidos, this.tipoDocumento, this.numeroDocumento, this.fechaNacimiento, this.email, this.nombreUsuario, this.password, this.departamento, this.direccion);
+
+    console.log(this.nuevoUsuario);
+    console.log(this.selectedDocType);
+    console.log(this.selectedDepartment);
+
     this.authService.nuevo(this.nuevoUsuario).subscribe(
       data => {
         this.toastr.success('Cuenta Creada', 'OK', {
