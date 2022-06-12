@@ -1,9 +1,7 @@
 package co.edu.cue.subastasYa.controller;
 
 import co.edu.cue.subastasYa.dto.Mensaje;
-import co.edu.cue.subastasYa.dto.ProductoDto;
 import co.edu.cue.subastasYa.dto.UsuariosDto;
-import co.edu.cue.subastasYa.entity.Producto;
 import co.edu.cue.subastasYa.security.dto.NuevoUsuario;
 import co.edu.cue.subastasYa.security.entity.Rol;
 import co.edu.cue.subastasYa.security.entity.Usuario;
@@ -26,30 +24,29 @@ import java.util.Set;
 
 
 @RestController
-    @RequestMapping("/usuario")
-    @CrossOrigin(origins = "http://localhost:4200")
-    public class UsuarioController {
+@RequestMapping("/usuario")
+@CrossOrigin(origins = "http://localhost:4200")
+public class UsuarioController {
 
-        @Autowired
-        UsuarioService usuarioService;
+    @Autowired
+    UsuarioService usuarioService;
 
     @Autowired
     RolService rolService;
 
-        @GetMapping("/get-users")
-        public  List<Usuario> list(){
-            List<Usuario> list = usuarioService.list();
-            return list;
-        }
+    @GetMapping("/get-users")
+    public  List<Usuario> list(){
+        List<Usuario> list = usuarioService.list();
+        return list;
+    }
 
-        @GetMapping("/detail-user/{id}")
-        public ResponseEntity getById(@PathVariable("id") int id){
-            if(!usuarioService.existsByIdUser(id))
-                return new ResponseEntity(new Mensaje("no existe"), HttpStatus.NOT_FOUND);
-            Usuario usuario = usuarioService.getOne(id).get();
-            return new ResponseEntity(usuario, HttpStatus.OK);
-        }
-
+    @GetMapping("/detail-user/{id}")
+    public ResponseEntity getById(@PathVariable("id") int id){
+        if(!usuarioService.existsByIdUser(id))
+            return new ResponseEntity(new Mensaje("no existe"), HttpStatus.NOT_FOUND);
+        Usuario usuario = usuarioService.getOne(id).get();
+        return new ResponseEntity(usuario, HttpStatus.OK);
+    }
 
     @PostMapping("/newUser")
     public ResponseEntity<?> nuevoUsuario(@Valid @RequestBody NuevoUsuario nuevoUsuario, BindingResult bindingResult) {
@@ -60,7 +57,7 @@ import java.util.Set;
         if (usuarioService.existsByEmail(nuevoUsuario.getEmail()))
             return new ResponseEntity(new Mensaje("Ese Email ya está registrado"), HttpStatus.BAD_REQUEST);
 
-        Usuario usuario = new Usuario(nuevoUsuario.getNombre(), nuevoUsuario.getApellido(), nuevoUsuario.getNumerodoc(), nuevoUsuario.getFechanacto(),nuevoUsuario.getDireccion(), EstadoUsuario.HABILITADO, nuevoUsuario.getTipoDocumento(), nuevoUsuario.getNombreUsuario(), nuevoUsuario.getEmail(), nuevoUsuario.getPassword());
+        Usuario usuario = new Usuario(nuevoUsuario.getNombres(), nuevoUsuario.getApellidos(), nuevoUsuario.getNumeroDocumento(), nuevoUsuario.getFechaNacimiento(),nuevoUsuario.getDireccion(), EstadoUsuario.HABILITADO, nuevoUsuario.getTipoDocumento(), nuevoUsuario.getNombreUsuario(), nuevoUsuario.getEmail(), nuevoUsuario.getPassword());
 
         Set<Rol> roles = new HashSet<>();
         roles.add(rolService.getByRolNombre(RolNombre.ROLE_USER).get());
@@ -90,7 +87,6 @@ import java.util.Set;
         if(StringUtils.isBlank((CharSequence) usuariodto.getEmail()))
             return new ResponseEntity(new Mensaje("el email es obligatorio"), HttpStatus.BAD_REQUEST);
 
-
         Usuario usuario = usuarioService.getOne(id).get();
         usuario.setNombre(usuariodto.getNombre());
         usuario.setApellido(usuariodto.getApellido());
@@ -98,7 +94,6 @@ import java.util.Set;
         usuario.setDireccion(usuariodto.getDireccion());
         usuario.setNumerodoc(usuariodto.getNumeroDoc());
         usuario.setEmail(usuariodto.getEmail());
-
 
         usuarioService.save(usuario);
         return new ResponseEntity(new Mensaje("usuario actualizado"), HttpStatus.OK);
@@ -124,7 +119,4 @@ import java.util.Set;
         usuarioService.save(usuario1);
         return new ResponseEntity(new Mensaje("Habilitado de nuevo"), HttpStatus.OK);
     }
-
-
-
 }
