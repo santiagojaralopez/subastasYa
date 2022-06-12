@@ -2,48 +2,86 @@ package co.edu.cue.subastasYa.security.dto;
 
 import co.edu.cue.subastasYa.security.enums.EstadoUsuario;
 import co.edu.cue.subastasYa.security.enums.TipoDocumento;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
 public class NuevoUsuario {
     @NotBlank
-    private String nombre;
+    private String nombres;
+
     @NotBlank
-    private String nombreUsuario;
+    private String apellidos;
+
+    @NotNull
+    private String tipoDocumento;
+
+    @NotBlank
+    private String numeroDocumento;
+
+    @NotNull
+    private Date fechaNacimiento;
+
     @Email
     private String email;
+
+    @NotBlank
+    private String nombreUsuario;
+
     @NotBlank
     private String password;
+
     @NotBlank
-    private String apellido;
-    @NotBlank
-    private String numerodoc;
-    @NotBlank
-    private Date fechanacto;
+    private String departamento;
+
     @NotBlank
     private String direccion;
-    @NotBlank
-    private EstadoUsuario estadoUsuario;
-    @NotBlank
-    private TipoDocumento tipoDocumento;
 
     private Set<String> roles = new HashSet<>();
 
-    public String getNombre() {
-        return nombre;
+    public String getNombres() {
+        return nombres;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setNombres(String nombres) {
+        this.nombres = nombres;
     }
 
+    public String getApellidos() {
+        return apellidos;
+    }
 
-    public void setNombre_Usuario(String nombreUsuario) {
-        this.nombreUsuario = nombreUsuario;
+    public void setApellidos(String apellidos) {
+        this.apellidos = apellidos;
+    }
+
+    public String getTipoDocumento() {
+        return tipoDocumento;
+    }
+
+    public void setTipoDocumento(String tipoDocumento) {
+        this.tipoDocumento = tipoDocumento;
+    }
+
+    public String getNumeroDocumento() {
+        return numeroDocumento;
+    }
+
+    public void setNumeroDocumento(String numeroDocumento) {
+        this.numeroDocumento = numeroDocumento;
+    }
+
+    public Date getFechaNacimiento() {
+        return fechaNacimiento;
+    }
+
+    public void setFechaNacimiento(Date fechaNacimiento) {
+        this.fechaNacimiento = fechaNacimiento;
     }
 
     public String getEmail() {
@@ -54,6 +92,14 @@ public class NuevoUsuario {
         this.email = email;
     }
 
+    public String getNombreUsuario() {
+        return nombreUsuario;
+    }
+
+    public void setNombreUsuario(String nombreUsuario) {
+        this.nombreUsuario = nombreUsuario;
+    }
+
     public String getPassword() {
         return password;
     }
@@ -62,40 +108,12 @@ public class NuevoUsuario {
         this.password = password;
     }
 
-    public Set<String> getRoles() {
-        return roles;
+    public String getDepartamento() {
+        return departamento;
     }
 
-    public void setRoles(Set<String> roles) {
-        this.roles = roles;
-    }
-
-    public String getNombreUsuario() {
-        return nombreUsuario;
-    }
-
-    public String getApellido() {
-        return apellido;
-    }
-
-    public void setApellido(String apellido) {
-        this.apellido = apellido;
-    }
-
-    public String getNumerodoc() {
-        return numerodoc;
-    }
-
-    public void setNumerodoc(String numero_doc) {
-        this.numerodoc = numero_doc;
-    }
-
-    public Date getFechanacto() {
-        return fechanacto;
-    }
-
-    public void setFechanacto(Date fecha_nacto) {
-        this.fechanacto = fecha_nacto;
+    public void setDepartamento(String departamento) {
+        this.departamento = departamento;
     }
 
     public String getDireccion() {
@@ -106,19 +124,11 @@ public class NuevoUsuario {
         this.direccion = direccion;
     }
 
-    public EstadoUsuario getEstadoUsuario() {
-        return estadoUsuario;
+    public Set<String> getRoles() {
+        return roles;
     }
 
-    public void setEstadoUsuario(EstadoUsuario estadoUsuario) {
-        this.estadoUsuario = estadoUsuario;
-    }
-
-    public TipoDocumento getTipoDocumento() {
-        return tipoDocumento;
-    }
-
-    public void setTipoDocumento(TipoDocumento tipoDocumento) {
-        this.tipoDocumento = tipoDocumento;
+    public void setRoles(Set<String> roles) {
+        this.roles = roles;
     }
 }
