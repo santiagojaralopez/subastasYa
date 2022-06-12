@@ -6,6 +6,7 @@ import co.edu.cue.subastasYa.security.dto.LoginUsuario;
 import co.edu.cue.subastasYa.security.dto.NuevoUsuario;
 import co.edu.cue.subastasYa.security.entity.Rol;
 import co.edu.cue.subastasYa.security.entity.Usuario;
+import co.edu.cue.subastasYa.security.enums.EstadoUsuario;
 import co.edu.cue.subastasYa.security.enums.RolNombre;
 import co.edu.cue.subastasYa.security.service.RolService;
 import co.edu.cue.subastasYa.security.service.UsuarioService;
@@ -55,8 +56,7 @@ public class AuthController {
         if (usuarioService.existsByEmail(nuevoUsuario.getEmail()))
             return new ResponseEntity(new Mensaje("Ese Email ya está registrado"), HttpStatus.BAD_REQUEST);
 
-        Usuario usuario = new Usuario(nuevoUsuario.getNombre(), nuevoUsuario.getApellido(),nuevoUsuario.getNumerodoc(), nuevoUsuario.getFechanacto(), nuevoUsuario.getDireccion(),nuevoUsuario.getEstadoUsuario(),nuevoUsuario.getTipoDocumento(), nuevoUsuario.getNombreUsuario(), nuevoUsuario.getEmail(),
-                passwordEncoder.encode(nuevoUsuario.getPassword()));
+        Usuario usuario = new Usuario(nuevoUsuario.getNombres(), nuevoUsuario.getApellidos(), nuevoUsuario.getNumeroDocumento(), nuevoUsuario.getFechaNacimiento(), nuevoUsuario.getDireccion(), EstadoUsuario.HABILITADO, nuevoUsuario.getTipoDocumento(), nuevoUsuario.getNombreUsuario(), nuevoUsuario.getEmail(), passwordEncoder.encode(nuevoUsuario.getPassword()));
 
         Set<Rol> roles = new HashSet<>();
         roles.add(rolService.getByRolNombre(RolNombre.ROLE_USER).get());
