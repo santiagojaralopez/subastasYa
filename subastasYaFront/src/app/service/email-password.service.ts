@@ -15,7 +15,7 @@ export class EmailPasswordService {
   constructor(private httpClient: HttpClient) { }
 
   public sendEmail(dto: EmailValuesDTO): Observable<any> {
-    return this.httpClient.post<any>(this.changePasswordURL + 'send-email', dto);
+    return this.httpClient.post<any>(this.changePasswordURL + 'send-password-email', dto);
   }
 
   public changePassword(dto: ChangePasswordDTO): Observable<any> {

@@ -23,28 +23,25 @@
                 <form #f="ngForm" (ngSubmit)="onRegister()">
                     <div class="row row-cols-2">
                         <div class="form-group  col ">
-                            <label for="nombre">Nombre(s)</label>
-                            <input type="text" name="nonbre" id="nombre" class="selectBox form-control" autocomplete="off" [(ngModel)]="nombre" required>
+                            <label for="nombres">Nombre(s)</label>
+                            <input type="text" name="nombres" id="nombres" class="selectBox form-control" autocomplete="off" [(ngModel)]="nombres" required>
                         </div>
                         <div class="form-group  col">
-                            <label for="nombreUsuario">Apellidos</label>
+                            <label for="apellidos">Apellidos</label>
                             <input type="text" name="apellidos" id="apellidos" class="selectBox form-control" autocomplete="off" [(ngModel)]="apellidos" required>
                         </div>
                         <div class="align-items-center form-group  col">
-                            <label for="nombreUsuario">Tipo de Documento</label>
-                            <select class="selectBox form-select border border-opacity-90 rounded" aria-label="select example" [(ngModel)]="tipoDocumentos">
-                                <option selected>Seleccione el tipo de documento</option>
-                                <option value="1">Cedula De ciudadania</option>
-                                <option value="2">Pasaporte</option>
-                                <option value="3">Cedula de Extranjeria</option>
+                            <label for="tipoDocumento">Tipo de Documento</label>
+                            <select class="selectBox form-select border border-opacity-90 rounded" name="tipoDocumento" [(ngModel)]="selectedDocType" (ngModelChange)="onSelectDocType($event)">
+                                <option *ngFor='let docType of docTypes' [value]="docType">{{docType}}</option>
                             </select>
                         </div>
                         <div class="form-group  col">
-                            <label for="email">No. Documento</label>
-                            <input type="text" name="documento" id="documento" class="selectBox form-control" autocomplete="off" [(ngModel)]="documento" required>
+                            <label for="numeroDocumento">No. Documento</label>
+                            <input type="text" name="numeroDocumento" id="numeroDocumento" class="selectBox form-control" autocomplete="off" [(ngModel)]="numeroDocumento" required>
                         </div>
                         <div class="form-group  col">
-                            <label for="nombreUsuario">Fecha de nacimiento</label>
+                            <label for="fechaNacimiento">Fecha de nacimiento</label>
                             <input type="date" name="fechaNacimiento" id="fechaNacimiento" class="selectBox form-control" [(ngModel)]="fechaNacimiento">
                         </div>
                         <div class="form-group  col">
@@ -53,21 +50,20 @@
                         </div>
                         <div class="form-group  col">
                             <label for="nombreUsuario">Nombre de Usuario</label>
-                            <input type="text" name="nonbreUsuario" id="nombreUsuario" class="selectBox form-control" autocomplete="off" [(ngModel)]="nombreUsuario" required>
+                            <input type="text" name="nombreUsuario" id="nombreUsuario" class="selectBox form-control" autocomplete="off" [(ngModel)]="nombreUsuario" required>
                         </div>
                         <div class="form-group  col">
                             <label for="password">Contraseña</label>
                             <input type="password" name="password" id="password" class="selectBox form-control" autocomplete="off" [(ngModel)]="password" required>
                         </div>
                         <div class="form-group  col">
-                            <label for="nombreUsuario">Departamento</label>
-                            <select class="selectBox form-select border border-opacity-90 rounded" aria-label="select example" [(ngModel)]="departamento">
-                                    <option selected>Seleccione su departamento</option>
-                                    <option *ngFor='let departament of departaments'>{{departament}}</option>
-                        </select>
+                            <label for="departamento">Departamento</label>
+                            <select class="selectBox form-select border border-opacity-90 rounded" name="departamento" [(ngModel)]="selectedDepartment" (ngModelChange)="onSelectDepartment($event)">
+                                <option *ngFor='let department of departments' [value]="department">{{department}}</option>
+                            </select>
                         </div>
                         <div class="form-group  col">
-                            <label for="password">Direccion</label>
+                            <label for="direccion">Direccion</label>
                             <input type="text" name="direccion" id="direccion" class="selectBox form-control" autocomplete="off" [(ngModel)]="direccion" required>
                         </div>
                     </div>

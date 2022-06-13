@@ -1,4 +1,4 @@
-package co.edu.cue.subastasYa.emailPassword.config;
+package co.edu.cue.subastasYa.email.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

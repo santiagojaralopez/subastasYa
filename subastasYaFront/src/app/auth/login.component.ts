@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { ToastrService } from 'ngx-toastr';
 import { LoginUsuario } from '../models/login-usuario';
 import { AuthService } from '../service/auth.service';
 import { TokenService } from '../service/token.service';
+
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-login',
@@ -11,7 +12,6 @@ import { TokenService } from '../service/token.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-
   isLogged = false;
   isLoginFail = false;
   loginUsuario: LoginUsuario;
@@ -23,7 +23,6 @@ export class LoginComponent implements OnInit {
   constructor(
     private tokenService: TokenService,
     private authService: AuthService,
-    private toastr: ToastrService,
     private router: Router
   ) { }
 
@@ -46,9 +45,7 @@ export class LoginComponent implements OnInit {
         this.tokenService.setAuthorities(data.authorities);
         this.roles = data.authorities;
 
-        this.toastr.success('Hola ' + data.nombreUsuario, 'OK', {
-          timeOut: 3000, positionClass: 'toast-top-center'
-        });
+        Swal.fire('Has iniciado sesión como ' + data.nombreUsuario);
 
         this.router.navigate(['/']);
       },
@@ -56,9 +53,11 @@ export class LoginComponent implements OnInit {
         this.isLogged = false;
         this.errMsj = err.error.message;
 
-        this.toastr.error(err.error.mensaje, 'Error de autorización', {
-          timeOut: 3000,  positionClass: 'toast-top-center',
-        });
+        Swal.fire(
+          'Error',
+          err.error.mensaje,
+          'error'
+        );
       }
     );
   }

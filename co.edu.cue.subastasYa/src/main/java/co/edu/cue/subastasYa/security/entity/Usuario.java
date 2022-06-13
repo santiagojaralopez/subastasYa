@@ -34,8 +34,7 @@ public class Usuario {
     private EstadoUsuario estadoUsuario;
 
     @NotNull
-    private TipoDocumento tipoDocumento;
-
+    private String tipoDocumento;
 
     @NotNull
     @Column(unique=true)
@@ -60,7 +59,8 @@ public class Usuario {
     public Usuario() {
     }
 
-    public Usuario( String nombre, String apellido, String numerodoc, Date fechanacto, String direccion, EstadoUsuario estadoUsuario, TipoDocumento tipoDocumento, String nombreUsuario, String email, String password) {this.nombre = nombre;
+    public Usuario( String nombre, String apellido, String numerodoc, Date fechanacto, String direccion, EstadoUsuario estadoUsuario, String tipoDocumento, String nombreUsuario, String email, String password) {
+        this.nombre = nombre;
         this.apellido = apellido;
         this.numerodoc = numerodoc;
         this.fechanacto = fechanacto;
@@ -71,8 +71,6 @@ public class Usuario {
         this.email = email;
         this.password = password;
     }
-
-
 
     public int getId() {
         return id;
@@ -162,11 +160,11 @@ public class Usuario {
         this.estadoUsuario = estadoUsuario;
     }
 
-    public TipoDocumento getTipoDocumento() {
+    public String getTipoDocumento() {
         return tipoDocumento;
     }
 
-    public void setTipoDocumento(TipoDocumento tipoDocumento) {
+    public void setTipoDocumento(String tipoDocumento) {
         this.tipoDocumento = tipoDocumento;
     }
 
