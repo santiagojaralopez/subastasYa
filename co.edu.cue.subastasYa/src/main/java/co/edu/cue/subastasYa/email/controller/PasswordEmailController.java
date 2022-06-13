@@ -46,14 +46,13 @@ public class EmailController {
 
         Usuario usuario = usuarioOpt.get();
 
+        UUID uuid = UUID.randomUUID();
+        String tokenPassword = uuid.toString();
+
         dto.setMailFrom(mailFrom);
         dto.setMailTo(usuario.getEmail());
         dto.setSubject(subject);
         dto.setUserName(usuario.getNombre());
-
-        UUID uuid = UUID.randomUUID();
-        String tokenPassword = uuid.toString();
-
         dto.setTokenPassword(tokenPassword);
 
         usuario.setTokenPassword(tokenPassword);

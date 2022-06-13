@@ -1,4 +1,4 @@
-package co.edu.cue.subastasYa.emailPassword.dto;
+package co.edu.cue.subastasYa.email.dto;
 
 public class EmailValuesDTO {
 
