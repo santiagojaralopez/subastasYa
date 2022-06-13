@@ -23,7 +23,7 @@ public class Producto {
 
     public Producto(String nombre, TipoProducto tipoProducto) {
         this.nombre = nombre;
-        // this.tipoProducto= tipoProducto;
+        //this.tipoProducto= tipoProducto;
     }
 
     public int getId() {
