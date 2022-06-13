@@ -36,6 +36,7 @@ public class AnuncioController {
 
 
     //MOSTRAR ANUNCIOS ESTADOS
+    @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/listaAnuncioBloqueados")
     public List<Anuncio> listBloqueados(){
         List<Anuncio> list = anuncioService.listByEstados(Estado.BLOQUEADO);
@@ -48,6 +49,8 @@ public class AnuncioController {
         return list;
     }
 
+    
+    @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/listaAnuncioInactivo")
     public List<Anuncio> listInactivo(){
         List<Anuncio> list = anuncioService.listByEstados(Estado.INACTIVO);
@@ -127,7 +130,7 @@ public class AnuncioController {
         return new ResponseEntity(new Mensaje("anuncio actualizado"), HttpStatus.OK);
     }
 
-    {}
+
     @DeleteMapping("/deleteAnuncio/{id}")
     public ResponseEntity<?> delete(@PathVariable("id")int id){
         if(!anuncioService.existsById(id))

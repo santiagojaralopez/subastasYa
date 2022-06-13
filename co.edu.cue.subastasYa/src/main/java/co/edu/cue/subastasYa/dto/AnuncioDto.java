@@ -31,6 +31,7 @@ public class AnuncioDto {
     private Ciudad ciudad;
 
     private Departamento departamento;
+
     @NotBlank
     private Double valor;
 

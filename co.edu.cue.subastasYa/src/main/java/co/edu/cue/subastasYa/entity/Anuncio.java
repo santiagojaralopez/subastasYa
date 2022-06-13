@@ -11,36 +11,31 @@ public class Anuncio {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @NotBlank
     private int id_anuncio;
 
-
-    @NotBlank
+    
     private String descripcion;
-    //@NotBlank
+    
     private Date fecha_inicio;
-    //@NotBlank
+
     private Date fecha_fin;
 
     @OneToOne
     @JoinColumn(name = "usuario_id")
-    @NotBlank
     private Usuario usuario;
 
 
-    @NotBlank
+
     private Estado estado;
-    @NotBlank
+
     private Ciudad ciudad;
-    @NotBlank
+
     private Departamento departamento;
-    @NotBlank
     private Double valor;
 
 
     @OneToOne
     @JoinColumn(name = "producto_id")
-    @NotBlank
     private Producto producto;
 
 

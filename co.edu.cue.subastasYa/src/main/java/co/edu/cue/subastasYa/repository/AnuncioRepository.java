@@ -18,5 +18,13 @@ public interface AnuncioRepository extends JpaRepository<Anuncio, Integer>{
             @Param("estado") Estado estado);
 
 
+    @Query("SELECT c FROM Configuracion c WHERE c.nombre_configuracion= cantidadAnunciosActivos")
+    int findCantidadAnuncios();
+
+
+    @Query("SELECT c FROM Configuracion c WHERE c.nombre_configuracion=cantidadDiasActivo")
+    int findDiasAnuncioActivo();
+
+
 
 }
