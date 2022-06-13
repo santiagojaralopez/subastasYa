@@ -27,11 +27,10 @@ public class AnuncioService {
     public List<Anuncio> listByEstados(Estado estado) {
 
         if (estado == Estado.BLOQUEADO)
-            return anuncioRepository.findAnuncioByEstado(1);
+            return anuncioRepository.findAnuncioByEstado(Estado.BLOQUEADO);
         if (estado == Estado.ACTIVO)
-            return anuncioRepository.findAnuncioByEstado(2);
-
-        return anuncioRepository.findAnuncioByEstado(3);
+            return anuncioRepository.findAnuncioByEstado(Estado.ACTIVO);
+        return anuncioRepository.findAnuncioByEstado(Estado.INACTIVO);
     }
 
 

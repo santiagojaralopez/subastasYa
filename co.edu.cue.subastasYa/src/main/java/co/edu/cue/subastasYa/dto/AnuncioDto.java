@@ -1,19 +1,17 @@
-package co.edu.cue.subastasYa.entity;
+package co.edu.cue.subastasYa.dto;
 
+import co.edu.cue.subastasYa.entity.Ciudad;
+import co.edu.cue.subastasYa.entity.Departamento;
+import co.edu.cue.subastasYa.entity.Estado;
+import co.edu.cue.subastasYa.entity.Producto;
 import co.edu.cue.subastasYa.security.entity.Usuario;
 
-import javax.persistence.*;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.validation.constraints.NotBlank;
 import java.util.Date;
 
-@Entity
-public class Anuncio {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @NotBlank
-    private int id_anuncio;
-
+public class AnuncioDto {
 
     @NotBlank
     private String descripcion;
@@ -24,30 +22,28 @@ public class Anuncio {
 
     @OneToOne
     @JoinColumn(name = "usuario_id")
-    @NotBlank
     private Usuario usuario;
 
 
-    @NotBlank
+
     private Estado estado;
-    @NotBlank
+
     private Ciudad ciudad;
-    @NotBlank
+
     private Departamento departamento;
     @NotBlank
     private Double valor;
 
-
     @OneToOne
     @JoinColumn(name = "producto_id")
-    @NotBlank
     private Producto producto;
 
 
-    public Anuncio() {
+    public AnuncioDto() {
     }
 
-    public Anuncio(String descripcion, Date fecha_inicio, Date fecha_fin, Usuario usuario, Estado estado, Ciudad ciudad, Departamento departamento, Double valor, Producto producto) {
+
+    public AnuncioDto(@NotBlank String descripcion,Date fecha_inicio,Date fecha_fin,@NotBlank Usuario usuario,@NotBlank Estado estado,@NotBlank Ciudad ciudad,@NotBlank Departamento departamento,@NotBlank Double valor,@NotBlank Producto producto) {
         this.descripcion = descripcion;
         this.fecha_inicio = fecha_inicio;
         this.fecha_fin = fecha_fin;
@@ -59,13 +55,6 @@ public class Anuncio {
         this.producto = producto;
     }
 
-    public int getId_anuncio() {
-        return id_anuncio;
-    }
-
-    public void setId_anuncio(int id_anuncio) {
-        this.id_anuncio = id_anuncio;
-    }
 
     public String getDescripcion() {
         return descripcion;

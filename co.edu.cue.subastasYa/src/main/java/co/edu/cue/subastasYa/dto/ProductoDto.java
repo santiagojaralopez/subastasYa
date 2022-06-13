@@ -7,18 +7,23 @@ import javax.validation.constraints.NotBlank;
 
 public class ProductoDto {
 
+
     @NotBlank
     private String nombre;
-    @NotBlank
-    private TipoProducto tipoProducto;
 
-    
+    //private TipoProducto tipoProducto;
+
+    @NotBlank
+    private String fotoProducto;
+
+
     public ProductoDto() {
     }
 
-    public ProductoDto(@NotBlank String nombre,  @NotBlank TipoProducto tipoProducto) {
+
+    public ProductoDto(@NotBlank String nombre, @NotBlank String fotoProducto) {
         this.nombre = nombre;
-        this.tipoProducto= tipoProducto;
+        this.fotoProducto = fotoProducto;
     }
 
     public String getNombre() {
@@ -29,11 +34,11 @@ public class ProductoDto {
         this.nombre = nombre;
     }
 
-    public TipoProducto getTipoProducto() {
-        return tipoProducto;
+    public String getFotoProducto() {
+        return fotoProducto;
     }
 
-    public void setTipoProducto(TipoProducto tipoProducto) {
-        this.tipoProducto = tipoProducto;
+    public void setFotoProducto(String fotoProducto) {
+        this.fotoProducto = fotoProducto;
     }
 }
