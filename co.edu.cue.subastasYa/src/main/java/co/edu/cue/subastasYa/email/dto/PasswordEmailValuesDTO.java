@@ -1,17 +1,16 @@
 package co.edu.cue.subastasYa.email.dto;
 
-public class EmailValuesDTO {
-
+public class PasswordEmailValuesDTO {
     private String mailFrom;
     private String mailTo;
     private String subject;
     private String userName;
     private String tokenPassword;
 
-    public EmailValuesDTO() {
+    public PasswordEmailValuesDTO() {
     }
 
-    public EmailValuesDTO(String mailFrom, String mailTo, String subject, String userName, String tokenPassword) {
+    public PasswordEmailValuesDTO(String mailFrom, String mailTo, String subject, String userName, String tokenPassword) {
         this.mailFrom = mailFrom;
         this.mailTo = mailTo;
         this.subject = subject;
