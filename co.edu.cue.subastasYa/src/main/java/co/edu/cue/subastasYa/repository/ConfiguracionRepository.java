@@ -12,10 +12,4 @@ import java.util.Optional;
 public interface ConfiguracionRepository extends JpaRepository<Configuracion, Integer> {
 
 
-
-
-
-
-
-
 }

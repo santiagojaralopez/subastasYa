@@ -5,6 +5,8 @@ import co.edu.cue.subastasYa.entity.Producto;
 import co.edu.cue.subastasYa.repository.ConfiguracionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.Optional;
+
 public class ConfiguracionService {
 
     @Autowired
@@ -17,6 +19,9 @@ public class ConfiguracionService {
 
     public boolean existsById(int id) {
         return configuracionRepository.existsById(id);
+    }
+
+    public Optional<Configuracion> getById(int id) {return configuracionRepository.findById(id);
     }
 }
 
