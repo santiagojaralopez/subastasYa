@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+    </head>
+    <body>
+        <h3>
+            Hola <span th:text="${userName}"></span>
+        </h3>
+        <h4>¡Alguien ha ofertado por uno de tus anuncios!</h4>
+        <p>
+            <span th:text="${bidderUserName}"></span> ha ofertado $<span th:text="${offerValue}"></span> por tu anuncio "<span th:text="${publicationName}"></span>"
+        </p>
+        <p>Si esta oferta es de tu agrado, podrás seleccionarla al finalizar el tiempo de publicación de tu anuncio y acordar con el ofertante para realizar el pago y entrega del producto.</p>
+    </body>
+</html>

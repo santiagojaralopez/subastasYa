@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { ToastrService } from 'ngx-toastr';
 import { NuevoUsuario } from '../models/nuevo-usuario';
 import { AuthService } from '../service/auth.service';
 import { TokenService } from '../service/token.service';
+
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-registro',
@@ -28,8 +29,6 @@ export class RegistroComponent implements OnInit {
   selectedDocType: any;
   selectedDepartment: any;
 
-  errMsj: string;
-
   docTypes: string[] = ['Cedula de Ciudadania', 'Pasaporte', 'Cedula de Extranjeria'];
 
   departments: string[] = ['Amazonas', 'Antioquia', 'Arauca', 'Atlantico', 'Bolivar', 'Boyaca', 'Caldas',
@@ -40,8 +39,7 @@ export class RegistroComponent implements OnInit {
   constructor(
     private tokenService: TokenService,
     private authService: AuthService,
-    private router: Router,
-    private toastr: ToastrService
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -68,19 +66,20 @@ export class RegistroComponent implements OnInit {
 
     this.authService.nuevo(this.nuevoUsuario).subscribe(
       data => {
-        this.toastr.success('Cuenta Creada', 'OK', {
-          timeOut: 3000, positionClass: 'toast-top-center'
-        });
+        Swal.fire(
+          'Éxito',
+          'Su cuenta ha sido creada con éxito',
+          'success'
+        );
 
         this.router.navigate(['/login']);
       },
       err => {
-        this.toastr.error(this.errMsj, 'Fail', {
-          timeOut: 3000,  positionClass: 'toast-top-center',
-        });
-
-        this.errMsj = err.error.mensaje;
-        // console.log(err.error.message);
+        Swal.fire(
+          'Error',
+          err.error.mensaje,
+          'error'
+        );
       }
     );
   }

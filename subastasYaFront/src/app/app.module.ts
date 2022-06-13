@@ -14,7 +14,6 @@ import { FormsModule } from '@angular/forms';
 
 // external
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ToastrModule } from 'ngx-toastr';
 import { LoginComponent } from './auth/login.component';
 import { RegistroComponent } from './auth/registro.component';
 import { MenuComponent } from './menu/menu.component';
@@ -52,7 +51,6 @@ import { UserEditProfileComponent } from './users/user-edit-profile.component';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    ToastrModule.forRoot(),
     HttpClientModule,
     FormsModule
   ],
