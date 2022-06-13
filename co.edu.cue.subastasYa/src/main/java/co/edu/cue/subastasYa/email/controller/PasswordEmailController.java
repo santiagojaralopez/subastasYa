@@ -1,9 +1,9 @@
-package co.edu.cue.subastasYa.emailPassword.controller;
+package co.edu.cue.subastasYa.email.controller;
 
 import co.edu.cue.subastasYa.dto.Mensaje;
-import co.edu.cue.subastasYa.emailPassword.dto.ChangePasswordDTO;
-import co.edu.cue.subastasYa.emailPassword.dto.EmailValuesDTO;
-import co.edu.cue.subastasYa.emailPassword.service.EmailService;
+import co.edu.cue.subastasYa.email.dto.ChangePasswordDTO;
+import co.edu.cue.subastasYa.email.dto.PasswordEmailValuesDTO;
+import co.edu.cue.subastasYa.email.service.EmailService;
 import co.edu.cue.subastasYa.security.entity.Usuario;
 import co.edu.cue.subastasYa.security.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +21,7 @@ import java.util.UUID;
 @RestController
 @RequestMapping("/email-password")
 @CrossOrigin
-public class EmailController {
+public class PasswordEmailController {
 
     @Autowired
     EmailService emailService;
@@ -37,8 +37,8 @@ public class EmailController {
 
     private static final String subject = "Restablecimiento de contraseña";
 
-    @PostMapping("/send-email")
-    public ResponseEntity<?> sendEmail(@RequestBody EmailValuesDTO dto) {
+    @PostMapping("/send-password-email")
+    public ResponseEntity<?> sendEmail(@RequestBody PasswordEmailValuesDTO dto) {
         Optional<Usuario> usuarioOpt = usuarioService.getByNombreUsuarioOrEmail(dto.getMailTo());
 
         if (!usuarioOpt.isPresent())
@@ -58,7 +58,7 @@ public class EmailController {
         usuario.setTokenPassword(tokenPassword);
         usuarioService.save(usuario);
 
-        emailService.sendEmail(dto);
+        emailService.sendPasswordEmail(dto);
         return new ResponseEntity(new Mensaje("Hemos enviado un correo"), HttpStatus.OK);
     }
 
