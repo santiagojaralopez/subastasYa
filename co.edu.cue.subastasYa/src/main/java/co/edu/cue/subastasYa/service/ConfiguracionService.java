@@ -4,9 +4,13 @@ import co.edu.cue.subastasYa.entity.Configuracion;
 import co.edu.cue.subastasYa.entity.Producto;
 import co.edu.cue.subastasYa.repository.ConfiguracionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
 
+@Service
+@Transactional
 public class ConfiguracionService {
 
     @Autowired

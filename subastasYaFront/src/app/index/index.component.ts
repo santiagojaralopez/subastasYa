@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TokenService } from '../service/token.service';
 import { AnuncioService } from '../service/anuncio.service';
-import { ToastrService } from 'ngx-toastr';
 import { Anuncio } from '../models/anuncio';
 
 @Component({
@@ -20,7 +19,6 @@ export class IndexComponent implements OnInit {
 
   constructor(
     private anuncioService: AnuncioService,
-    private toastr: ToastrService,
     private tokenService: TokenService
   ) { }
 
