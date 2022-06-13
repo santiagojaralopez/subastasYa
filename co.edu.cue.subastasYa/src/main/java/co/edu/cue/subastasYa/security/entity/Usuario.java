@@ -60,8 +60,7 @@ public class Usuario {
     public Usuario() {
     }
 
-    public Usuario( String nombre, String apellido, String numerodoc, Date fechanacto, String direccion, EstadoUsuario estadoUsuario, TipoDocumento tipoDocumento, String nombreUsuario, String email, String password) {
-        this.nombre = nombre;
+    public Usuario( String nombre, String apellido, String numerodoc, Date fechanacto, String direccion, EstadoUsuario estadoUsuario, TipoDocumento tipoDocumento, String nombreUsuario, String email, String password) {this.nombre = nombre;
         this.apellido = apellido;
         this.numerodoc = numerodoc;
         this.fechanacto = fechanacto;

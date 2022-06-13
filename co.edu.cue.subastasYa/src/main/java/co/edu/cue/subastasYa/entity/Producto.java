@@ -27,6 +27,7 @@ public class Producto {
     public Producto(String nombre, String fotoProducto) {
         this.nombre = nombre;
         this.fotoProducto=fotoProducto;
+        //this.tipoProducto= tipoProducto;
     }
 
     //public Producto(String nombre, TipoProducto tipoProducto) {
@@ -42,7 +43,7 @@ public class Producto {
         this.id = id;
     }
 
-     public String getNombre() {
+    public String getNombre() {
        return nombre;
     }
 
@@ -57,7 +58,6 @@ public class Producto {
     // public void setTipoProducto(TipoProducto tipoProducto) {
     //    this.tipoProducto = tipoProducto;
     // }
-
 
     public String getFotoProducto() {
         return fotoProducto;

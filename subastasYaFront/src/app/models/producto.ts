@@ -1,11 +1,13 @@
-export class Producto {
-    id?: number;
-    nombre: string;
-    precio: number;
+import { TipoProducto } from "./tipoProducto";
 
-    constructor(nombre: string, precio: number) {
+export class Producto {
+    id?: number = 0;
+    nombre: string = '';
+    tipoProdcucto: TipoProducto | undefined;
+
+    constructor(nombre: string, tipoProducto: TipoProducto) {
         this.nombre = nombre;
-        this.precio = precio;
+        this.tipoProdcucto = tipoProducto;
     }
 }
 
