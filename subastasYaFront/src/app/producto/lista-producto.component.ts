@@ -17,7 +17,6 @@ export class ListaProductoComponent implements OnInit {
 
   constructor(
     private anuncioService: AnuncioService,
-    private toastr: ToastrService,
     private tokenService: TokenService
   ) { }
 

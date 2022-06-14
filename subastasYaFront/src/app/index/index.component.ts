@@ -19,20 +19,14 @@ export class IndexComponent implements OnInit {
 
   constructor(
     private anuncioService: AnuncioService,
-    private tokenService: TokenService
   ) { }
 
   ngOnInit() {
     this.anuncioService.listaActivos().subscribe(
       data => this.anuncios = data
     )
-    if (this.tokenService.getToken()) {
-      this.isLogged = true;
-      this.nombreUsuario = this.tokenService.getUserName();
-    } else {
-      this.isLogged = false;
-      this.nombreUsuario = '';
-    }
+    console.log(this.anuncios)
+    
   }
 
 }

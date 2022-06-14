@@ -16,7 +16,6 @@ export class DetalleProductoComponent implements OnInit {
   constructor(
     private anuncioService: AnuncioService,
     private activatedRoute: ActivatedRoute,
-    private toastr: ToastrService,
     private router: Router
   ) { }
 
@@ -27,9 +26,6 @@ export class DetalleProductoComponent implements OnInit {
         this.anuncio = data;
       },
       err => {
-        this.toastr.error(err.error.mensaje, 'Fail', {
-          timeOut: 3000,  positionClass: 'toast-top-center',
-        });
         this.volver();
       }
     );

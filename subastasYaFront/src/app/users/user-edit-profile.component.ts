@@ -16,7 +16,6 @@ export class UserEditProfileComponent implements OnInit {
   constructor(
     private usuarioService: UsuarioService,
     private activatedRoute: ActivatedRoute,
-    private toastr: ToastrService,
     private router: Router
   ) { }
 
@@ -27,9 +26,6 @@ export class UserEditProfileComponent implements OnInit {
         this.usuario = data;
       },
       err => {
-        this.toastr.error(err.error.mensaje, 'Fail', {
-          timeOut: 3000,  positionClass: 'toast-top-center',
-        });
       }
     );
   }
