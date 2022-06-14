@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ToastrService } from 'ngx-toastr';
+import Swal from 'sweetalert2';
 import { Anuncio } from '../models/anuncio';
 import { AnuncioService } from '../service/anuncio.service';
 
@@ -16,7 +16,6 @@ export class DetalleProductoComponent implements OnInit {
   constructor(
     private anuncioService: AnuncioService,
     private activatedRoute: ActivatedRoute,
-    private toastr: ToastrService,
     private router: Router
   ) { }
 
@@ -27,9 +26,11 @@ export class DetalleProductoComponent implements OnInit {
         this.anuncio = data;
       },
       err => {
-        this.toastr.error(err.error.mensaje, 'Fail', {
-          timeOut: 3000,  positionClass: 'toast-top-center',
-        });
+        Swal.fire(
+          'Error',
+          err.error.mensaje,
+          'error'
+        );
         this.volver();
       }
     );
