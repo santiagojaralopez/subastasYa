@@ -1,9 +1,9 @@
-package co.edu.cue.subastasYa.emailPassword.controller;
+package co.edu.cue.subastasYa.email.controller;
 
 import co.edu.cue.subastasYa.dto.Mensaje;
-import co.edu.cue.subastasYa.emailPassword.dto.ChangePasswordDTO;
-import co.edu.cue.subastasYa.emailPassword.dto.EmailValuesDTO;
-import co.edu.cue.subastasYa.emailPassword.service.EmailService;
+import co.edu.cue.subastasYa.email.dto.ChangePasswordDTO;
+import co.edu.cue.subastasYa.email.dto.PasswordEmailValuesDTO;
+import co.edu.cue.subastasYa.email.service.EmailService;
 import co.edu.cue.subastasYa.security.entity.Usuario;
 import co.edu.cue.subastasYa.security.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +21,7 @@ import java.util.UUID;
 @RestController
 @RequestMapping("/email-password")
 @CrossOrigin
-public class EmailController {
+public class PasswordEmailController {
 
     @Autowired
     EmailService emailService;
@@ -37,8 +37,8 @@ public class EmailController {
 
     private static final String subject = "Restablecimiento de contraseña";
 
-    @PostMapping("/send-email")
-    public ResponseEntity<?> sendEmail(@RequestBody EmailValuesDTO dto) {
+    @PostMapping("/send-password-email")
+    public ResponseEntity<?> sendEmail(@RequestBody PasswordEmailValuesDTO dto) {
         Optional<Usuario> usuarioOpt = usuarioService.getByNombreUsuarioOrEmail(dto.getMailTo());
 
         if (!usuarioOpt.isPresent())
@@ -46,34 +46,33 @@ public class EmailController {
 
         Usuario usuario = usuarioOpt.get();
 
+        UUID uuid = UUID.randomUUID();
+        String tokenPassword = uuid.toString();
+
         dto.setMailFrom(mailFrom);
         dto.setMailTo(usuario.getEmail());
         dto.setSubject(subject);
         dto.setUserName(usuario.getNombre());
-
-        UUID uuid = UUID.randomUUID();
-        String tokenPassword = uuid.toString();
-
         dto.setTokenPassword(tokenPassword);
 
         usuario.setTokenPassword(tokenPassword);
         usuarioService.save(usuario);
 
-        emailService.sendEmail(dto);
+        emailService.sendPasswordEmail(dto);
         return new ResponseEntity(new Mensaje("Hemos enviado un correo"), HttpStatus.OK);
     }
 
     @PostMapping("/change-password")
     public ResponseEntity<?> changePassword(@Valid @RequestBody ChangePasswordDTO dto, BindingResult bindingResult) {
         if (bindingResult.hasErrors())
-            return new ResponseEntity(new Mensaje("Campos mal puestos"), HttpStatus.BAD_REQUEST);
+            return new ResponseEntity(new Mensaje("Campos mal diligenciados"), HttpStatus.BAD_REQUEST);
         if (!dto.getPassword().equals(dto.getConfirmPassword()))
             return new ResponseEntity(new Mensaje("Las contraseñas no coinciden"), HttpStatus.BAD_REQUEST);
 
         Optional<Usuario> usuarioOpt = usuarioService.getByTokenPassword(dto.getTokenPassword());
 
         if (!usuarioOpt.isPresent())
-            return new ResponseEntity(new Mensaje("No existe ningún usuario con esas credenciales"), HttpStatus.NOT_FOUND);
+            return new ResponseEntity(new Mensaje("Parece que esta sesión ha expirado, intenta de nuevo"), HttpStatus.NOT_FOUND);
 
         Usuario usuario = usuarioOpt.get();
         String newPassword = passwordEncoder.encode(dto.getPassword());

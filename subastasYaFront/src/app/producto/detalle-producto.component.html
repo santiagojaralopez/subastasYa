@@ -1,22 +1,37 @@
 <app-menu></app-menu>
 
-<div class="container">
-  <div class="row mt-5" *ngIf="producto">
-    <div class="col-md-4 mx-auto">
-        <div class="card" style="width: 18rem;">
-            <div class="card-header text-center">
-              Detalle
-            </div>
-            <ul class="list-group list-group-flush">
-              <li class="list-group-item"><b>ID: </b>{{producto.id}}</li>
-              <li class="list-group-item"><b>NOMBRE: </b>{{producto.nombre}}</li>
-              <li class="list-group-item"><b>PRECIO: </b>{{producto.precio}}€</li>
-            </ul>
-            <div class="card-footer">
-                <button class="btn btn-outline-primary btn-block" (click)="volver()"><i class="fas fa-arrow-alt-circle-left"></i> Volver</button>
-            </div>
-          </div>
-          
+<div class="">
+    <div class="backButton mb-3">
+        <button type="button" class="btn btn-outline-primary" routerLink="/lista">
+            <i class=" ">Volver</i>
+        </button>
     </div>
-</div>
+    <div class="tarjeta">
+        <div class="card mb-6 anouncementCards float-md-start shadow p-3 mb-5 bg-body rounded ">
+            <div class="row ">
+                <div class="col ">
+                    <img src="assets/images/product.png " class="pictureP img-fluid rounded-start " alt="... ">
+                </div>
+                <div class="col-md-8 ">
+                    <div class="card-body ">
+                        <div class="mb-4 ">
+                            <button type="button " class="estadoP btn btn-outline-success ">{{anuncio.estado}}</button>
+                        </div>
+                        <h5 class="card-title ">Valor: {{anuncio.valor}}</h5>
+                        <p class="card-text ">Producto {{anuncio.producto.nombre}}</p>
+                        <p class="card-text ">Descripcion: {{anuncio.descripcion}}</p>
+                        <p class="card-text ">Fecha de inicio: {{anuncio.fecha_inicio}} </p>
+                        <p class="card-text ">Fecha de Fin: {{anuncio.fecha_fin}}</p>
+                        <div class="row mb-3 ">
+                            <div class="col mb-3 ">
+                                <p class="card-text ">Anunciante: {{anuncio.usuario.nombre}}</p>
+                            </div>
+                        </div>
+
+                        <button type="button " class="btn btn-outline-info ">Ver Ofertas</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

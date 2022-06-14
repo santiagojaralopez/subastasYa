@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TokenService } from '../service/token.service';
+import { AnuncioService } from '../service/anuncio.service';
+import { Anuncio } from '../models/anuncio';
 
 @Component({
   selector: 'app-index',
@@ -8,12 +10,22 @@ import { TokenService } from '../service/token.service';
 })
 export class IndexComponent implements OnInit {
 
+  anuncios: Anuncio[] = [];
+  roles: string[] = [];
+  isAdmin = false;
+
   isLogged = false;
   nombreUsuario = '';
 
-  constructor(private tokenService: TokenService) { }
+  constructor(
+    private anuncioService: AnuncioService,
+    private tokenService: TokenService
+  ) { }
 
   ngOnInit() {
+    this.anuncioService.listaActivos().subscribe(
+      data => this.anuncios = data
+    )
     if (this.tokenService.getToken()) {
       this.isLogged = true;
       this.nombreUsuario = this.tokenService.getUserName();

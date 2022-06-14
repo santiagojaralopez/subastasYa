@@ -47,7 +47,7 @@ export class ChangePasswordComponent implements OnInit {
       },
       err => {
         Swal.fire(
-          'Error',
+          'Ups!',
           err.error.mensaje,
           'error'
         );
