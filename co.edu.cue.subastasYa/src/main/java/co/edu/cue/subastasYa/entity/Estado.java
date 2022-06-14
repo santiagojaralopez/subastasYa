@@ -1,6 +1,6 @@
 package co.edu.cue.subastasYa.entity;
 
 public enum Estado {
-    BLOQUEADO, ACTIVO, INACTIVO
+    NINGUNO,ACTIVO, INACTIVO, BLOQUEADO
 }
 

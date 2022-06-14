@@ -13,8 +13,8 @@ public class Producto {
     @NotBlank
     private String nombre;
 
-    //@NotBlank
-    //private TipoProducto tipoProducto;
+
+    // private TipoProducto tipoProducto;
 
 
     @NotBlank
@@ -30,10 +30,7 @@ public class Producto {
         //this.tipoProducto= tipoProducto;
     }
 
-    //public Producto(String nombre, TipoProducto tipoProducto) {
-      //  this.nombre = nombre;
-        // this.tipoProducto= tipoProducto;
-    //}
+
 
     public int getId() {
         return id;
@@ -51,13 +48,13 @@ public class Producto {
         this.nombre = nombre;
     }
 
-    //public TipoProducto getTipoProducto() {
-    //   return tipoProducto;
-    //}
-
-    // public void setTipoProducto(TipoProducto tipoProducto) {
-    //    this.tipoProducto = tipoProducto;
+    // public TipoProducto getTipoProducto() {
+    //    return tipoProducto;
     // }
+
+    //public void setTipoProducto(TipoProducto tipoProducto) {
+    //   this.tipoProducto = tipoProducto;
+    //}
 
     public String getFotoProducto() {
         return fotoProducto;

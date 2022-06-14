@@ -30,6 +30,7 @@ public class AnuncioService {
         return anuncioRepository.findAnuncioByEstado(Estado.INACTIVO);
     }
 
+
     public Optional<Anuncio> getOne(int id){
         return anuncioRepository.findById(id);
     }
@@ -49,5 +50,22 @@ public class AnuncioService {
     public Optional<Anuncio> findAnuncioByUsuario(Usuario usuario) {
         return anuncioRepository.findAnuncioByUsuario(usuario);
     }
+
+    public List<Anuncio> findAnunciosByUsuario(Usuario usuario){
+        return anuncioRepository.findListaAnunciosByUsuario(usuario);
+    }
+
+
+
+    public int cantidadAnuncios(){
+       return anuncioRepository.cantidadAnuncios();
+    }
+
+
+    public int diasAnuncioActivo(){
+        return anuncioRepository.diasAnuncioActivo();
+    }
+
+
 
 }

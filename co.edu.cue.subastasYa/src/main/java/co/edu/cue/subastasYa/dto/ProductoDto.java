@@ -24,6 +24,7 @@ public class ProductoDto {
     public ProductoDto(@NotBlank String nombre, @NotBlank String fotoProducto) {
         this.nombre = nombre;
         this.fotoProducto = fotoProducto;
+        //this.tipoProducto= tipoProducto;
     }
 
     public String getNombre() {
@@ -41,4 +42,12 @@ public class ProductoDto {
     public void setFotoProducto(String fotoProducto) {
         this.fotoProducto = fotoProducto;
     }
+
+    //public TipoProducto getTipoProducto() {
+    //    return tipoProducto;
+    //}
+
+    //public void setTipoProducto(TipoProducto tipoProducto) {
+    //   this.tipoProducto = tipoProducto;
+    //}
 }
