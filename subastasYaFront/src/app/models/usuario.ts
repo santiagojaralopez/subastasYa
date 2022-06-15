@@ -3,7 +3,7 @@ import { RoleNombre } from "./RolNombre";
 import { TipoDocumento } from "./tipoDocumento";
 
 export class Usuario{
-    id?: number = 0;
+    id?: number;
     nombre: string = '';
     apellido: string = '';
     numerodoc: string = '';

@@ -1,1 +1,49 @@
 <app-menu></app-menu>
+
+<div class="all">
+    <div style="width: 45%;" class="card text-center center shadow-sm p-3 mb-5 bg-body rounded">
+        <div class="card-body">
+            <div class="mb-4">
+                <h3>Crear anuncio</h3>
+            </div>
+            <div class="mb-4">
+                <a>A continuacion puede crear un anuncio y publicarlo</a>
+            </div>
+            <div class="container-fluid">
+                <form #f="ngForm" (ngSubmit)="onCreate()">
+                    <div class="row row-cols-2">
+                        <div class="form-group  col ">
+                            <label for="nombre">Nombre del Producto</label>
+                            <input type="text" name="nombre" id="nombre" class="selectBox form-control" autocomplete="off" [(ngModel)]="nombreProducto" required>
+                        </div>
+                        <div class="form-group  col">
+                            <label for="descripcion">Descripcion</label>
+                            <input type="text" name="descripcion" id="descripcion" class="selectBox form-control" autocomplete="off" [(ngModel)]="descripcion" required>
+                        </div>
+                        <div class="form-group  col">
+                            <label for="departamento">Tipo de Producto:</label>
+                            <select class="selectBox form-select border border-opacity-90 rounded" name="tipoProducto" [(ngModel)]="tipoProducto">
+                                <option *ngFor='let tipo of tiposProducto' [value]="tipoProducto">{{tipo}}</option>
+                            </select>
+                        </div>
+                        <div class="align-items-center form-group  col">
+                            <label for="ciudad">Ciudad</label>
+                            <select class="selectBox form-select border border-opacity-90 rounded" name="ciudad" [(ngModel)]="ciudad" (ngModelChange)="onSelectCity($event)">
+                                <option *ngFor='let city of ciudades' [value]="ciudad">{{city}}</option>
+                            </select>
+                        </div>
+                        <div class="form-group  col">
+                            <label for="numeroDocumento">Precio inicial:</label>
+                            <input type="text" name="numeroDocumento" id="numeroDocumento" class="selectBox form-control" autocomplete="off" [(ngModel)]="valor" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <button class="botonDinamico btn btn-outline-success btn-block" [disabled]="!f.valid">
+                            <i class="fas fa-sign-in-alt"></i> Crear Cuenta
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

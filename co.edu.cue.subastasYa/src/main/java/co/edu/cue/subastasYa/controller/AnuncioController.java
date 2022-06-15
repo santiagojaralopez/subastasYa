@@ -5,6 +5,7 @@ import co.edu.cue.subastasYa.dto.AnuncioDto;
 import co.edu.cue.subastasYa.dto.Mensaje;
 import co.edu.cue.subastasYa.dto.ProductoDto;
 import co.edu.cue.subastasYa.entity.Anuncio;
+import co.edu.cue.subastasYa.entity.Departamento;
 import co.edu.cue.subastasYa.entity.Estado;
 import co.edu.cue.subastasYa.entity.Producto;
 import co.edu.cue.subastasYa.service.AnuncioService;
@@ -16,6 +17,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -82,8 +89,14 @@ public class AnuncioController {
             return new ResponseEntity(new Mensaje("el departamento es obligatorio"), HttpStatus.BAD_REQUEST);
         if (anuncioDto.getProducto()==null)
             return new ResponseEntity(new Mensaje("el producto es obligatorio"), HttpStatus.BAD_REQUEST);
+        ;
 
-        Anuncio anuncio = new Anuncio(anuncioDto.getDescripcion(), anuncioDto.getFecha_inicio(), anuncioDto.getFecha_fin(), anuncioDto.getUsuario(), anuncioDto.getEstado(), anuncioDto.getCiudad(), anuncioDto.getDepartamento(), anuncioDto.getValor(), anuncioDto.getProducto());
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        Date date = new Date();
+        dateFormat.format(date);
+
+
+        Anuncio anuncio = new Anuncio(anuncioDto.getDescripcion(), date, anuncioDto.getFecha_fin(), anuncioDto.getUsuario(), Estado.ACTIVO, anuncioDto.getCiudad(), Departamento.AMAZONAS, anuncioDto.getValor(), anuncioDto.getProducto());
         anuncioService.save(anuncio);
         System.out.println("se creo wepaaaa");
         return new ResponseEntity(new Mensaje("anuncio creado"), HttpStatus.OK);

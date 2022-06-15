@@ -31,6 +31,6 @@ export class AnuncioService {
   }
 
   createAnuncio(anuncio: Anuncio): Observable<any> {
-    return this.http.post<any>(this.anuncioURL + '/createAnuncio', anuncio);
+    return this.http.post<any>(this.anuncioURL + 'createAnuncio', anuncio);
   }
 }

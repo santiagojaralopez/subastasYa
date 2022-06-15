@@ -52,8 +52,8 @@ public class ProductoController {
             return new ResponseEntity(new Mensaje("ese nombre ya existe"), HttpStatus.BAD_REQUEST);
         if(StringUtils.isBlank(productoDto.getFotoProducto()))
             return new ResponseEntity(new Mensaje("la foto es obligatoria"), HttpStatus.BAD_REQUEST);
-        Producto producto = new Producto(productoDto.getNombre(), productoDto.getFotoProducto());
-        productoService.save(producto);
+        //Producto producto = new Producto(productoDto.getNombre(), productoDto.getTipo,productoDto.getFotoProducto());
+        //productoService.save(producto);
         return new ResponseEntity(new Mensaje("producto creado"), HttpStatus.OK);
     }
 
