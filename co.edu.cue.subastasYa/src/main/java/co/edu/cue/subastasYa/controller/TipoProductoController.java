@@ -43,13 +43,10 @@ public class TipoProductoController {
 
     @PostMapping("/createTipoProducto")
     public ResponseEntity<?> create(@RequestBody TipoProducto tipoProducto){
-        if(StringUtils.isBlank(tipoProducto.getId(int id);
-            return new ResponseEntity(new Mensaje("escriba el id"), HttpStatus.BAD_REQUEST);
-
         if (tipoProducto.getNombreTipo()==null)
             return new ResponseEntity(new Mensaje("escriba el nombre"), HttpStatus.BAD_REQUEST);
 
-        TipoProducto tipoProducto = new TipoProducto(tipoProducto.getId(), tipoProducto.getNombreTipo());
+        TipoProducto tipoProductoo = new TipoProducto(tipoProducto.getNombreTipo(), tipoProducto.getDescripcion());
         tipoProductoService.save(tipoProducto);
         System.out.println("se creo el tipoProducto");
         return new ResponseEntity(new Mensaje("tipoProducto creado"), HttpStatus.OK);
@@ -66,9 +63,7 @@ public class TipoProductoController {
 
         TipoProducto tipoProducto1 = tipoProductoService.getOne(id).get();
 
-        tipoProducto.setId(int id);
-
-        tipoProducto.setNombreTipo(String nombre);
+        tipoProducto1.setNombreTipo(tipoProducto.getNombreTipo());
 
 
         tipoProductoService.save(tipoProducto);

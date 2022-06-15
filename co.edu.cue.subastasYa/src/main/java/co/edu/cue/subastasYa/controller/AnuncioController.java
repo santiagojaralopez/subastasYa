@@ -4,15 +4,11 @@ package co.edu.cue.subastasYa.controller;
 import co.edu.cue.subastasYa.dto.AnuncioDto;
 import co.edu.cue.subastasYa.dto.Mensaje;
 import co.edu.cue.subastasYa.entity.Anuncio;
-<<<<<<< HEAD
 import co.edu.cue.subastasYa.enums.Estado;
 import co.edu.cue.subastasYa.entity.TipoProducto;
-=======
-import co.edu.cue.subastasYa.entity.Departamento;
-import co.edu.cue.subastasYa.entity.Estado;
 import co.edu.cue.subastasYa.entity.Producto;
->>>>>>> santiago-gallego
 import co.edu.cue.subastasYa.service.AnuncioService;
+import co.edu.cue.subastasYa.service.ProductoService;
 import co.edu.cue.subastasYa.service.TipoProductoService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,13 +17,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
-<<<<<<< HEAD
-=======
+
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
->>>>>>> santiago-gallego
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -42,11 +34,10 @@ public class AnuncioController {
     AnuncioService anuncioService;
 
     @Autowired
-<<<<<<< HEAD
     TipoProductoService tipoProductoService;
-=======
+
+    @Autowired
     ProductoService productoService;
->>>>>>> santiago-gallego
 
     @GetMapping("/listaAnuncio")
     public List<Anuncio> list(){
@@ -108,7 +99,6 @@ public class AnuncioController {
 
     @PostMapping("/createAnuncio")
     public ResponseEntity<?> create(@RequestBody AnuncioDto anuncioDto){
-<<<<<<< HEAD
 
         if (listAnuncioUser(anuncioDto).size() < anuncioService.cantidadAnuncios()) {
             System.out.println(anuncioDto.getUsuario().toString());
@@ -137,10 +127,10 @@ public class AnuncioController {
 
 
             //TIPOS DE PRODUCTO
-            TipoProducto existeTipoProducto= tipoProducto(anuncioDto);
+            TipoProducto existeTipoProducto = tipoProducto(anuncioDto);
 
             if (existeTipoProducto!=null){
-                Anuncio anuncio = new Anuncio(anuncioDto.getDescripcion(), anuncioDto.getFecha_inicio(), dt, anuncioDto.getUsuario(),Estado.ACTIVO, anuncioDto.getCiudad(), anuncioDto.getDepartamento(), anuncioDto.getValor(), anuncioDto.getProducto());
+                Anuncio anuncio = new Anuncio(anuncioDto.getDescripcion(), anuncioDto.getFecha_inicio(), dt, anuncioDto.getUsuario(),Estado.ACTIVO, anuncioDto.getCiudad(), anuncioDto.getValor(), anuncioDto.getProducto());
                 anuncioService.save(anuncio);
                 return new ResponseEntity(new Mensaje("anuncio creado"), HttpStatus.OK);
               } else
@@ -149,10 +139,12 @@ public class AnuncioController {
             return new ResponseEntity(new Mensaje("La cantidad maxima de anuncios fue alcanzada, no puede crear mas"), HttpStatus.BAD_REQUEST);
     }
 
-
     public TipoProducto tipoProducto(AnuncioDto anuncioDto){
         return tipoProductoService.showTypeExist(anuncioDto.getProducto().getTipoProducto().getNombreTipo());
-=======
+    }
+
+    /*public ResponseEntity tipoProducto(AnuncioDto anuncioDto){
+        tipoProductoService.showTypeExist(anuncioDto.getProducto().getTipoProducto().getNombreTipo());
         System.out.println(anuncioDto +""+ anuncioDto.getProducto());
 
         if(StringUtils.isBlank(anuncioDto.getDescripcion()))
@@ -165,12 +157,8 @@ public class AnuncioController {
             return new ResponseEntity(new Mensaje("el estado es obligatorio"), HttpStatus.BAD_REQUEST);
         if (anuncioDto.getCiudad()==null)
             return new ResponseEntity(new Mensaje("la ciudad es obligatorio"), HttpStatus.BAD_REQUEST);
-        if (anuncioDto.getDepartamento()==null)
-            return new ResponseEntity(new Mensaje("el departamento es obligatorio"), HttpStatus.BAD_REQUEST);
         if (anuncioDto.getProducto()==null)
             return new ResponseEntity(new Mensaje("el producto es obligatorio"), HttpStatus.BAD_REQUEST);
-        ;
-        
 
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         Date date = new Date();
@@ -189,8 +177,7 @@ public class AnuncioController {
         anuncioService.save(anuncio);
         System.out.println("se creo wepaaaa");
         return new ResponseEntity(new Mensaje("anuncio creado"), HttpStatus.OK);
->>>>>>> santiago-gallego
-    }
+    }*/
 
 
     @PutMapping("/updateAnuncio/{id}")
@@ -228,7 +215,6 @@ public class AnuncioController {
         return new ResponseEntity(new Mensaje("anuncio actualizado"), HttpStatus.OK);
     }
 
-
     @DeleteMapping("/deleteAnuncio/{id}")
     public ResponseEntity<?> delete(@PathVariable("id")int id){
         if(!anuncioService.existsById(id))
@@ -236,7 +222,6 @@ public class AnuncioController {
         anuncioService.delete(id);
         return new ResponseEntity(new Mensaje("anuncio eliminado"), HttpStatus.OK);
     }
-
 
     @PreAuthorize("hasRole('ADMIN')")
     @PutMapping("/updateAnuncioBloqueo/{id}")
@@ -260,7 +245,6 @@ public class AnuncioController {
             Anuncio anuncio = anuncioService.getOne(id).get();
             anuncio.setEstado(Estado.ACTIVO);
             anuncioService.save(anuncio);
-            System.out.println("estado ACTIVO jiji");
             return new ResponseEntity(new Mensaje("estado del anuncio actualizado"), HttpStatus.OK);
         } else return new ResponseEntity(new Mensaje("el estado es obligatorio"), HttpStatus.BAD_REQUEST);
 
@@ -275,7 +259,6 @@ public class AnuncioController {
             Anuncio anuncio = anuncioService.getOne(id).get();
             anuncio.setEstado(Estado.INACTIVO);
             anuncioService.save(anuncio);
-            System.out.println("estado INACTIVO jiji");
             return new ResponseEntity(new Mensaje("estado del anuncio actualizado"), HttpStatus.OK);
         } else return new ResponseEntity(new Mensaje("el estado es obligatorio"), HttpStatus.BAD_REQUEST);
     }

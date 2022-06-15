@@ -64,16 +64,10 @@ public class MainSecurity extends WebSecurityConfigurerAdapter {
                         "/email-password/**",
                         "/usuario/detail-user/**",
                         "/email-offer/**",
-<<<<<<< HEAD
                         "/anuncio/listaAnuncioActivos/",
                         "/anuncio/createAnuncio/",
-                        "/producto/create/"
-=======
-                        "/anuncio/listaAnuncioActivos",
-                        "anuncio/createAnuncio",
-                        "/producto/create",
+                        "/producto/create/",
                         "/ciudad/listaCiudades"
->>>>>>> santiago-gallego
                 ).permitAll()
                 .anyRequest().authenticated()
                 .and()

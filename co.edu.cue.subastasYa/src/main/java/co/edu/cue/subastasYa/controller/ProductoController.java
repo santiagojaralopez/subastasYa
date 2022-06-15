@@ -53,12 +53,10 @@ public class ProductoController {
             return new ResponseEntity(new Mensaje("ese nombre ya existe"), HttpStatus.BAD_REQUEST);
         if(StringUtils.isBlank(productoDto.getFotoProducto()))
             return new ResponseEntity(new Mensaje("la foto es obligatoria"), HttpStatus.BAD_REQUEST);
-<<<<<<< HEAD
-        Producto producto = new Producto(productoDto.getNombre(), productoDto.getFotoProducto(), productoDto.getTipoProducto());
-=======
+
         Producto producto = new Producto(productoDto.getNombre(),productoDto.getFotoProducto());
         System.out.println("AAAAAAAAAAAAA "+producto.getId());
->>>>>>> santiago-gallego
+
         productoService.save(producto);
         return new ResponseEntity(new Mensaje("producto creado"), HttpStatus.OK);
     }

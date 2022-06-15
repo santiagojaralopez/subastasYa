@@ -16,13 +16,9 @@ public class Producto {
     @NotNull
     private String nombre;
 
-<<<<<<< HEAD
-=======
     //@NotNull
     //private TipoProducto tipoProducto;
 
-
->>>>>>> santiago-gallego
     @NotBlank
     private String foto_Producto;
 
@@ -38,55 +34,26 @@ public class Producto {
     public Producto() {
     }
 
-    public Producto(String nombre, String fotoProducto, TipoProducto tipoProducto) {
+    public Producto(String nombre, String fotoProducto) {
         this.nombre = nombre;
-<<<<<<< HEAD
-        this.fotoProducto=fotoProducto;
-        this.tipoProducto= tipoProducto;
-=======
         this.foto_Producto=fotoProducto;
         //this.tipoProducto= tipoProducto;
->>>>>>> santiago-gallego
-    }
-
-
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getNombre() {
-       return nombre;
+        return nombre;
     }
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
 
-<<<<<<< HEAD
-    public String getFotoProducto() {
-        return fotoProducto;
+    public String getFoto_Producto() {
+        return foto_Producto;
     }
-=======
-    //public TipoProducto getTipoProducto() {
-    //   return tipoProducto;
-    //}
 
-    // public void setTipoProducto(TipoProducto tipoProducto) {
-    //    this.tipoProducto = tipoProducto;
-    // }
-
-    //public String getFotoProducto() {
-       // return fotoProducto;
-    //}
->>>>>>> santiago-gallego
-
-    public void setFotoProducto(String fotoProducto) {
-      this.foto_Producto = fotoProducto;
+    public void setFoto_Producto(String foto_Producto) {
+        this.foto_Producto = foto_Producto;
     }
 
     public TipoProducto getTipoProducto() {

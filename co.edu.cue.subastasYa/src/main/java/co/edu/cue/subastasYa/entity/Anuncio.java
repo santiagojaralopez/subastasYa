@@ -1,53 +1,31 @@
 package co.edu.cue.subastasYa.entity;
 
 import co.edu.cue.subastasYa.enums.Ciudad;
-import co.edu.cue.subastasYa.enums.Departamento;
 import co.edu.cue.subastasYa.enums.Estado;
 import co.edu.cue.subastasYa.security.entity.Usuario;
 
 import javax.persistence.*;
-<<<<<<< HEAD
-=======
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
->>>>>>> santiago-gallego
 import java.util.Date;
 
 @Entity
 public class Anuncio {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id_anuncio;
 
-<<<<<<< HEAD
-    
-    private String descripcion;
-    
-    private Date fecha_inicio;
-
-=======
-
     @NotNull
     private String descripcion;
+
     //@NotNull
     private Date fecha_inicio;
+
     //@NotNull
->>>>>>> santiago-gallego
     private Date fecha_fin;
 
     @OneToOne
     @JoinColumn(name = "usuario_id")
-<<<<<<< HEAD
-    private Usuario usuario;
 
-
-    private Estado estado;
-
-    private Ciudad ciudad;
-
-    private Departamento departamento;
-=======
     @NotNull
     private Usuario usuario;
 
@@ -61,7 +39,6 @@ public class Anuncio {
     private Ciudad ciudad;
 
     @NotNull
->>>>>>> santiago-gallego
     private Double valor;
 
 

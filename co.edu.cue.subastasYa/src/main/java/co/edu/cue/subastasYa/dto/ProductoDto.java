@@ -29,15 +29,11 @@ public class ProductoDto {
     public ProductoDto() {
     }
 
-
-<<<<<<< HEAD
-    public ProductoDto(@NotBlank String nombre, @NotBlank String fotoProducto, @NotBlank TipoProducto tipoProducto) {
-=======
     public ProductoDto(@NotNull String nombre, @NotNull String fotoProducto) {
->>>>>>> santiago-gallego
+
         this.nombre = nombre;
         this.fotoProducto = fotoProducto;
-        this.tipoProducto= tipoProducto;
+        //this.tipoProducto= tipoProducto;
     }
 
 
