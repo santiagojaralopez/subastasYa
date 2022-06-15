@@ -51,7 +51,6 @@ export class LoginComponent implements OnInit {
       },
       err => {
         this.isLogged = false;
-        this.errMsj = err.error.message;
 
         Swal.fire(
           'Error',

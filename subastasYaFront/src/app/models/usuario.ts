@@ -1,16 +1,15 @@
-import { EstadoUsuario } from "./estadoUsuario";
-import { RoleNombre } from "./RolNombre";
-import { TipoDocumento } from "./tipoDocumento";
+import { EstadoUsuario } from './estadoUsuario';
+import { RoleNombre } from './RolNombre';
 
-export class Usuario{
-    id?: number = 0;
+export class Usuario {
+    id: number;
     nombre: string = '';
     apellido: string = '';
     numerodoc: string = '';
     fechanacto: Date | undefined;
     direccion: string = '';
     estadoUsuario: EstadoUsuario | undefined;
-    tipoDocumento: TipoDocumento | undefined;
+    tipoDocumento: string | undefined;
     nombreUsuario: string = '';
     email: string = '';
     password: string = '';
@@ -32,5 +31,4 @@ export class Usuario{
             this.password = password;
             this.roles = roles;
         }
-    
 }
