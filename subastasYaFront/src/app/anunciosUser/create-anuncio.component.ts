@@ -10,6 +10,7 @@ import { Producto } from '../models/producto';
 import { UsuarioService } from '../service/usuario.service';
 import { TipoProducto } from '../models/tipoProducto';
 import { ProductoService } from '../service/producto.service';
+import { CiudadService } from '../service/ciudad.service';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -21,9 +22,14 @@ export class CreateAnuncioComponent implements OnInit {
 
   nuevoAnuncio: Anuncio;
   nuevoProducto: Producto;
+
+
+  ciudades: Ciudad[] = [];
   productos: Producto[] = [];
   anuncios: Anuncio[] = [];
   usuarios: Usuario[] = [];
+
+
   //atributos anuncio
   descripcion: string;
   fecha_inicio: Date;
@@ -38,14 +44,13 @@ export class CreateAnuncioComponent implements OnInit {
 
 
   //enums
-  tiposProducto: string[] = ["Electronica","Autos"];
-  ciudades: string[] = ["BOGOTA","MEDELLIN"];
   
 
   constructor(
     private usuarioService: UsuarioService,
     private productoService: ProductoService,
     private anuncioService: AnuncioService,
+    private ciudadService: CiudadService,
     private tokenService: TokenService
   ) { }
 
@@ -53,16 +58,11 @@ export class CreateAnuncioComponent implements OnInit {
     this.usuarioService.lista().subscribe(
       data => this.usuarios = data
     )
+    this.ciudadService.lista().subscribe(
+      data => this.ciudades = data
+    )
     
   }
-
-  onSelectCity(value: any): void {  
-    console.log("Holaaa") 
-    this.ciudad = Ciudad.APARTADO;
-    console.log(this.ciudad)
-    this.departamento = Departamento.QUINDÍO;
-  }
-
 
   findUserByUserName(userName: string) {
     let user = null;

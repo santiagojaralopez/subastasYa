@@ -8,7 +8,7 @@ public class Ciudad {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private int id_ciudad;
 
     @NotNull
     private String nombre;
@@ -21,17 +21,17 @@ public class Ciudad {
     }
 
     public Ciudad(int id, String nombre, Departamento departamento) {
-        this.id = id;
+        this.id_ciudad = id;
         this.nombre = nombre;
         this.departamento = departamento;
     }
 
     public int getId() {
-        return id;
+        return id_ciudad;
     }
 
     public void setId(int id) {
-        this.id = id;
+        this.id_ciudad = id;
     }
 
     public String getNombre() {

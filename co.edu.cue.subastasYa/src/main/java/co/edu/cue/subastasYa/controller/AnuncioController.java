@@ -81,7 +81,6 @@ public class AnuncioController {
     public ResponseEntity<?> create(@RequestBody AnuncioDto anuncioDto){
         System.out.println(anuncioDto +""+ anuncioDto.getProducto());
 
-        /*
         if(StringUtils.isBlank(anuncioDto.getDescripcion()))
             return new ResponseEntity(new Mensaje("el nombre es obligatorio"), HttpStatus.BAD_REQUEST);
         if (anuncioDto.getValor()==0)
@@ -97,8 +96,7 @@ public class AnuncioController {
         if (anuncioDto.getProducto()==null)
             return new ResponseEntity(new Mensaje("el producto es obligatorio"), HttpStatus.BAD_REQUEST);
         ;
-
-         */
+        
 
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         Date date = new Date();
