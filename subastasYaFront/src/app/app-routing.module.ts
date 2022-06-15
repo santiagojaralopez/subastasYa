@@ -23,7 +23,7 @@ const routes: Routes = [
   { path: 'send-email', component: SendEmailComponent },
   { path: 'change-password/:tokenPassword', component: ChangePasswordComponent },
   { path: 'lista', component: ListaProductoComponent, canActivate: [guard], data: {expectedRole: ['admin', 'user']} },
-  { path: 'user/edit/:id', component: UserEditProfileComponent, canActivate: [guard], data: {expectedRole: ['admin', 'user']} },
+  { path: 'user/edit', component: UserEditProfileComponent, canActivate: [guard], data: {expectedRole: ['admin', 'user']} },
   { path: 'anuncio/:id', component: DetalleProductoComponent, canActivate: [guard], data: {expectedRole: ['admin', 'user']} },
   { path: 'nuevo', component: NuevoProductoComponent, canActivate: [guard], data: {expectedRole: ['admin']} },
   { path: 'config', component: ConfigurationComponent, canActivate: [guard], data: {expectedRole: ['admin']} },
