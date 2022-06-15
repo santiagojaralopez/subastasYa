@@ -1,10 +1,10 @@
 CREATE DATABASE  IF NOT EXISTS `subastasya` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
 USE `subastasya`;
--- MySQL dump 10.13  Distrib 8.0.27, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.28, for macos11 (x86_64)
 --
 -- Host: localhost    Database: subastasya
 -- ------------------------------------------------------
--- Server version	8.0.27
+-- Server version	8.0.28
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -25,7 +25,7 @@ DROP TABLE IF EXISTS `anuncio`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `anuncio` (
-  `id_anuncio` int NOT NULL,
+  `id_anuncio` int NOT NULL AUTO_INCREMENT,
   `descripcion` varchar(45) NOT NULL,
   `fecha_inicio` date NOT NULL,
   `fecha_fin` date NOT NULL,
@@ -40,13 +40,11 @@ CREATE TABLE `anuncio` (
   KEY `estadoid_idx` (`estado`),
   KEY `productoid_idx` (`producto_id`),
   KEY `ciudadid_idx` (`ciudad`),
-  KEY `departamentoid_idx` (`departamento`),
   CONSTRAINT `ciudadid` FOREIGN KEY (`ciudad`) REFERENCES `ciudad` (`id_ciudad`),
-  CONSTRAINT `departamentoid` FOREIGN KEY (`departamento`) REFERENCES `departamento` (`id_departamento`),
   CONSTRAINT `estadoid` FOREIGN KEY (`estado`) REFERENCES `estado` (`id_estado`),
   CONSTRAINT `productoid` FOREIGN KEY (`producto_id`) REFERENCES `producto` (`id`),
   CONSTRAINT `usuarioid` FOREIGN KEY (`usuario_id`) REFERENCES `usuario` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -55,7 +53,7 @@ CREATE TABLE `anuncio` (
 
 LOCK TABLES `anuncio` WRITE;
 /*!40000 ALTER TABLE `anuncio` DISABLE KEYS */;
-INSERT INTO `anuncio` VALUES (1,'carro ultimo modelo','2001-10-22','2006-10-22',2,1,14,2,20000000,1),(2,'gran celular samsung zflip','2002-10-22','2007-10-22',3,2,2,2,3800000,2);
+INSERT INTO `anuncio` VALUES (1,'carro ultimo modelo','2001-10-22','2006-10-22',2,1,14,1,20000000,1),(2,'gran celular samsung zflip','2002-10-22','2007-10-22',3,2,2,1,3800000,2),(4,'ropaaaaaa','2022-06-15','2006-10-22',2,1,2,1,20000000,1),(5,'weqwe','2022-06-15','2022-06-15',9,30,0,1,12,10),(6,'3445235','2022-06-15','2022-06-15',9,30,0,1,122222,41);
 /*!40000 ALTER TABLE `anuncio` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -69,7 +67,10 @@ DROP TABLE IF EXISTS `ciudad`;
 CREATE TABLE `ciudad` (
   `id_ciudad` int NOT NULL AUTO_INCREMENT,
   `nombre` varchar(255) NOT NULL,
-  PRIMARY KEY (`id_ciudad`)
+  `departamentoid` int DEFAULT NULL,
+  PRIMARY KEY (`id_ciudad`),
+  KEY `departamentoid_idx` (`departamentoid`),
+  CONSTRAINT `departamentoid` FOREIGN KEY (`departamentoid`) REFERENCES `departamento` (`id_departamento`)
 ) ENGINE=InnoDB AUTO_INCREMENT=41 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -79,8 +80,32 @@ CREATE TABLE `ciudad` (
 
 LOCK TABLES `ciudad` WRITE;
 /*!40000 ALTER TABLE `ciudad` DISABLE KEYS */;
-INSERT INTO `ciudad` VALUES (1,'BOGOTA'),(2,'MEDELLIN'),(3,'CALI'),(4,'BARRANQUILLA'),(5,'CARTAGENA'),(6,'SOLEDAD'),(7,'CUCUTA'),(8,'IBAGUE'),(9,'SOACHA'),(10,'VILLAVICENCIO'),(11,'BUCARAMANGA'),(12,'SANTA_MARTA'),(13,'VALLEDUPAR'),(14,'BELLO'),(15,'PEREIRA'),(16,'MONTERIA'),(17,'PASTO'),(18,'BUENAVENTURA'),(19,'MANIZALES'),(20,'NEIVA'),(21,'PALMIRA'),(22,'RIOHACHA'),(23,'SINCELEJO'),(24,'POPAYAN'),(25,'ITAGÜI'),(26,'FLORIDABLANCA'),(27,'ENVIGADO'),(28,'TULUA'),(29,'SAN_ANDRES_DE_TUMACO'),(30,'DOSQUEBRADAS'),(31,'APARTADO'),(32,'TUNJA'),(33,'GIRON'),(34,'URIBIA'),(35,'BARRANCABERMEJA'),(36,'FLORENCIA'),(37,'TURBO'),(38,'MAICAO'),(39,'PIEDECUESTA'),(40,'YOPAL');
+INSERT INTO `ciudad` VALUES (1,'BOGOTA',NULL),(2,'MEDELLIN',NULL),(3,'CALI',NULL),(4,'BARRANQUILLA',NULL),(5,'CARTAGENA',NULL),(6,'SOLEDAD',NULL),(7,'CUCUTA',NULL),(8,'IBAGUE',NULL),(9,'SOACHA',NULL),(10,'VILLAVICENCIO',NULL),(11,'BUCARAMANGA',NULL),(12,'SANTA_MARTA',NULL),(13,'VALLEDUPAR',NULL),(14,'BELLO',NULL),(15,'PEREIRA',NULL),(16,'MONTERIA',NULL),(17,'PASTO',NULL),(18,'BUENAVENTURA',NULL),(19,'MANIZALES',NULL),(20,'NEIVA',NULL),(21,'PALMIRA',NULL),(22,'RIOHACHA',NULL),(23,'SINCELEJO',NULL),(24,'POPAYAN',NULL),(25,'ITAGÜI',NULL),(26,'FLORIDABLANCA',NULL),(27,'ENVIGADO',NULL),(28,'TULUA',NULL),(29,'SAN_ANDRES_DE_TUMACO',NULL),(30,'DOSQUEBRADAS',NULL),(31,'APARTADO',NULL),(32,'TUNJA',NULL),(33,'GIRON',NULL),(34,'URIBIA',NULL),(35,'BARRANCABERMEJA',NULL),(36,'FLORENCIA',NULL),(37,'TURBO',NULL),(38,'MAICAO',NULL),(39,'PIEDECUESTA',NULL),(40,'YOPAL',NULL);
 /*!40000 ALTER TABLE `ciudad` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `configuracion`
+--
+
+DROP TABLE IF EXISTS `configuracion`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `configuracion` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(255) DEFAULT NULL,
+  `valor` int NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `configuracion`
+--
+
+LOCK TABLES `configuracion` WRITE;
+/*!40000 ALTER TABLE `configuracion` DISABLE KEYS */;
+/*!40000 ALTER TABLE `configuracion` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -93,6 +118,7 @@ DROP TABLE IF EXISTS `departamento`;
 CREATE TABLE `departamento` (
   `id_departamento` int NOT NULL AUTO_INCREMENT,
   `nombre` varchar(255) NOT NULL,
+  `id` int NOT NULL,
   PRIMARY KEY (`id_departamento`)
 ) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -103,7 +129,7 @@ CREATE TABLE `departamento` (
 
 LOCK TABLES `departamento` WRITE;
 /*!40000 ALTER TABLE `departamento` DISABLE KEYS */;
-INSERT INTO `departamento` VALUES (1,'AMAZONAS'),(2,'ANTIOQUÍA'),(3,'ARAUCA'),(4,'ATLÁNTICO'),(5,'BOLÍVAR'),(6,'BOYACÁ'),(7,'CALDAS'),(8,'CAQUETÁ'),(9,'CASANARE'),(10,'CAUCA'),(11,'CESAR'),(12,'CHOCÓ'),(13,'CÓRDOBA'),(14,'CUNDINAMARCA'),(15,'GUAINÍA'),(16,'GUAVIARE'),(17,'HUILA'),(18,'LA_GUAJIRA'),(19,'MAGDALENA'),(20,'META'),(21,'NARIÑO'),(22,'NORTE_DE_SANTANDER'),(23,'PUTUMAYO'),(24,'QUINDÍO'),(25,'RISARALDA'),(26,'SAN_ANDRÉS_Y_PROVIDENCIA'),(27,'SANTANDER'),(28,'SUCRE'),(29,'TOLIMA'),(30,'VALLE_DEL_CAUCA'),(31,'VAUPÉS'),(32,'VICHADA');
+INSERT INTO `departamento` VALUES (1,'AMAZONAS',0),(2,'ANTIOQUÍA',0),(3,'ARAUCA',0),(4,'ATLÁNTICO',0),(5,'BOLÍVAR',0),(6,'BOYACÁ',0),(7,'CALDAS',0),(8,'CAQUETÁ',0),(9,'CASANARE',0),(10,'CAUCA',0),(11,'CESAR',0),(12,'CHOCÓ',0),(13,'CÓRDOBA',0),(14,'CUNDINAMARCA',0),(15,'GUAINÍA',0),(16,'GUAVIARE',0),(17,'HUILA',0),(18,'LA_GUAJIRA',0),(19,'MAGDALENA',0),(20,'META',0),(21,'NARIÑO',0),(22,'NORTE_DE_SANTANDER',0),(23,'PUTUMAYO',0),(24,'QUINDÍO',0),(25,'RISARALDA',0),(26,'SAN_ANDRÉS_Y_PROVIDENCIA',0),(27,'SANTANDER',0),(28,'SUCRE',0),(29,'TOLIMA',0),(30,'VALLE_DEL_CAUCA',0),(31,'VAUPÉS',0),(32,'VICHADA',0);
 /*!40000 ALTER TABLE `departamento` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -141,8 +167,9 @@ DROP TABLE IF EXISTS `producto`;
 CREATE TABLE `producto` (
   `id` int NOT NULL AUTO_INCREMENT,
   `nombre` varchar(255) DEFAULT NULL,
+  `foto_producto` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=42 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -151,7 +178,7 @@ CREATE TABLE `producto` (
 
 LOCK TABLES `producto` WRITE;
 /*!40000 ALTER TABLE `producto` DISABLE KEYS */;
-INSERT INTO `producto` VALUES (1,'carro'),(2,'celular'),(3,'tennis'),(4,'ipad');
+INSERT INTO `producto` VALUES (1,'carro',NULL),(2,'celular',NULL),(3,'tennis',NULL),(4,'ipad',NULL),(6,'zapato','fewfwef'),(10,'qweqw','hola'),(29,'zzz','hola'),(30,'hhh','hola'),(31,'zxzxzxzx','hola'),(32,'zxzxzxzxh','hola'),(33,'bvvbvbv','hola'),(34,'jujuju','hola'),(35,'jujujuttytyty','hola'),(36,'lololo','hola'),(37,'popopopop','hola'),(38,'uyuyuy','hola'),(39,'tytytyty','hola'),(40,'234234234','hola'),(41,'test 400','hola');
 /*!40000 ALTER TABLE `producto` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -200,6 +227,7 @@ CREATE TABLE `tipo_producto` (
 
 LOCK TABLES `tipo_producto` WRITE;
 /*!40000 ALTER TABLE `tipo_producto` DISABLE KEYS */;
+INSERT INTO `tipo_producto` VALUES (1,'Tecnologia','Productos tecnologicos'),(2,'Bines Raices','Propiedades e inmuebles');
 /*!40000 ALTER TABLE `tipo_producto` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -217,8 +245,14 @@ CREATE TABLE `usuario` (
   `nombre_usuario` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
   `token_password` varchar(255) DEFAULT NULL,
+  `apellido` varchar(255) NOT NULL,
+  `direccion` varchar(255) NOT NULL,
+  `estado_usuario` int NOT NULL,
+  `numerodoc` varchar(255) NOT NULL,
+  `tipo_documento` varchar(255) NOT NULL,
+  `fechanacto` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -227,7 +261,7 @@ CREATE TABLE `usuario` (
 
 LOCK TABLES `usuario` WRITE;
 /*!40000 ALTER TABLE `usuario` DISABLE KEYS */;
-INSERT INTO `usuario` VALUES (1,'admin@correo.com','admin','admin','$2a$10$ncL694rv15ZlNalh2anNhuBDc2oknCZnfaoJGSplFSxb/HiHrc4om',NULL),(2,'sjaramillo1027@cue.edu.co','Santiago','sjaramillo','$2a$10$ClphykSqH.rw6uT7KjMeWesqMc6z6HMEILMoRDb/fT1PXhEkfa.86',NULL),(3,'amorales18@mail.com','Arle Morales','amorales','$2a$10$lqWU4jCFINykny6VS5yqnedEMltRpnFbvmLqVByZ.HsEiZDYrOS3W',NULL),(4,'fjaramillo@gmail.co','Felipe','fjaramillo','$2a$10$dyWW5keMQ6iO5m9YvR2aTO6O97wX8bhX0R1Jds4K2x0GXw.QzM476',NULL),(5,'sarhachica@gmail.com','Sarha Chica','sarha chica','$2a$10$Zpbv2OWLgOM7i4GFmKExDOPAEcguKeK1sWhg6jslVCtnx63wgpUrG',NULL),(6,'arleth64@hotmail.com','Arle','arleth','$2a$10$XPe4EgSfI2pa3EWFAi69dO1Pc9W.GJehTYDIE.FTJkQ.aza3PpudK',NULL),(7,'mlopez705@cue.edu.co','mafe','mafe','$2a$10$g4p5kJjVpZU1gbeihCmQPOKx9T5Xmpnk1I6RSBXnWDCS4ISNVknP2',NULL);
+INSERT INTO `usuario` VALUES (1,'admin@correo.com','admin','admin','$2a$10$ncL694rv15ZlNalh2anNhuBDc2oknCZnfaoJGSplFSxb/HiHrc4om',NULL,'','',0,'','','2003-10-10 10:10:10'),(2,'sjaramillo1027@cue.edu.co','Santiago','sjaramillo','$2a$10$ClphykSqH.rw6uT7KjMeWesqMc6z6HMEILMoRDb/fT1PXhEkfa.86',NULL,'','',0,'','','2003-10-10 10:10:10'),(3,'amorales18@mail.com','Arle Morales','amorales','$2a$10$lqWU4jCFINykny6VS5yqnedEMltRpnFbvmLqVByZ.HsEiZDYrOS3W',NULL,'','',0,'','','2003-10-10 10:10:10'),(4,'fjaramillo@gmail.co','Felipe','fjaramillo','$2a$10$dyWW5keMQ6iO5m9YvR2aTO6O97wX8bhX0R1Jds4K2x0GXw.QzM476',NULL,'','',0,'','','2003-10-10 10:10:10'),(5,'sarhachica@gmail.com','Sarha Chica','sarha chica','$2a$10$Zpbv2OWLgOM7i4GFmKExDOPAEcguKeK1sWhg6jslVCtnx63wgpUrG',NULL,'','',0,'','','2003-10-10 10:10:10'),(6,'arleth64@hotmail.com','Arle','arleth','$2a$10$XPe4EgSfI2pa3EWFAi69dO1Pc9W.GJehTYDIE.FTJkQ.aza3PpudK',NULL,'','',0,'','','2003-10-10 10:10:10'),(7,'mlopez705@cue.edu.co','mafe','mafe','$2a$10$g4p5kJjVpZU1gbeihCmQPOKx9T5Xmpnk1I6RSBXnWDCS4ISNVknP2',NULL,'','',0,'','','2003-10-10 10:10:10'),(8,'sgallego1022@cue.edu.co','Santiago','santigg','$2a$10$TrCe8TDiyiz3A4q91rQsbOHlS8.Wa449ii3fv/reYqoVzCRJTaiTe',NULL,'Gallego Gil','cra 17 calle 10N',0,'1004961630','Cedula de Ciudadania','2003-02-10 00:00:00'),(9,'betty@gmail.com','Beatriz','bettylafea','$2a$10$RYcyHcTI6UBUoTy6K0VvEun4..WythwgHptFUDiRQUyQDq4nTnD32',NULL,'Pinzon Solano','cra 123',0,'1028492','Pasaporte','2003-02-10 00:00:00');
 /*!40000 ALTER TABLE `usuario` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -252,7 +286,7 @@ CREATE TABLE `usuario_rol` (
 
 LOCK TABLES `usuario_rol` WRITE;
 /*!40000 ALTER TABLE `usuario_rol` DISABLE KEYS */;
-INSERT INTO `usuario_rol` VALUES (1,1),(1,2),(2,2),(3,1),(3,2),(4,2),(5,2),(6,2),(7,2);
+INSERT INTO `usuario_rol` VALUES (1,1),(1,2),(2,2),(3,1),(3,2),(4,2),(5,2),(6,2),(7,2),(8,2),(9,2);
 /*!40000 ALTER TABLE `usuario_rol` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -265,4 +299,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-06-09 11:25:10
+-- Dump completed on 2022-06-15 17:25:36

@@ -19,6 +19,7 @@ export class EditarProductoComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+<<<<<<< HEAD
     const id = this.activatedRoute.snapshot.params.id;
     this.productoService.detail(id).subscribe(
       data => {
@@ -33,10 +34,14 @@ export class EditarProductoComponent implements OnInit {
         this.router.navigate(['/lista']);
       }
     );
+=======
+    
+>>>>>>> santiago-gallego
   }
 
   onUpdate(): void {
     const id = this.activatedRoute.snapshot.params.id;
+<<<<<<< HEAD
     this.productoService.update(id, this.producto).subscribe(
       data => {
         Swal.fire(
@@ -54,6 +59,9 @@ export class EditarProductoComponent implements OnInit {
         );
       }
     );
+=======
+    
+>>>>>>> santiago-gallego
   }
 
 }

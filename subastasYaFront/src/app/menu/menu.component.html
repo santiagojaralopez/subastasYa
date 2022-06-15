@@ -11,21 +11,26 @@
                 </a>
             </li>
             <li class="ido nav-item">
-                <a class="txNav nav-link" *ngIf="isLogged" routerLink="/config">
+                <a class="txNav nav-link" routerLink="/create/anuncio">
+                    <i class="txNav fas fa-home"></i> Mis Anuncios
+                </a>
+            </li>
+            <li class="ido nav-item">
+                <a class="txNav nav-link" *ngIf="isAdmin" routerLink="/config">
                     <i class="txNav fas fa-list-alt"></i> Configuracion
                 </a>
             </li>
             <li class="ido nav-item">
-                <a class="txNav nav-link" *ngIf="isLogged" routerLink="/category/list">
+                <a class="txNav nav-link" *ngIf="isAdmin" routerLink="/category/list">
                     <i class="txNav fas fa-list-alt"></i> Categorias
                 </a>
             </li>
-            <li class="ido nav-item" *ngIf="isLogged">
+            <li class="ido nav-item" *ngIf="isAdmin">
                 <a class="txNav nav-link" routerLink="/lista">
                     <i class="txNav far fa-list-alt"></i> Anuncios
                 </a>
             </li>
-            <li class="ido nav-item" *ngIf="isLogged">
+            <li class="ido nav-item" *ngIf="isAdmin">
                 <a class="txNav nav-link" routerLink="/users/list">
                     <i class="txNav far fa-list-alt"></i> Usuarios
                 </a>

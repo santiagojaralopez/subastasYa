@@ -121,12 +121,24 @@
 }
 
 .prueba {
+<<<<<<< HEAD
     width: 100%;
+=======
+    width: 75%;
+}
+
+.containerLista {
+    justify-content: center;
+    margin-right: 20%;
+>>>>>>> santiago-gallego
 }
 
 .anouncementTxt {
     display: flex;
+<<<<<<< HEAD
     align-items: center;
+=======
+>>>>>>> santiago-gallego
 }
 
 .anouncementPicture {

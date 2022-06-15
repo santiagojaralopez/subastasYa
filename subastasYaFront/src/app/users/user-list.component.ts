@@ -18,7 +18,6 @@ export class UserListComponent implements OnInit {
 
   constructor(
     private usuarioService: UsuarioService,
-    private toastr: ToastrService,
     private tokenService: TokenService
   ) { }
 

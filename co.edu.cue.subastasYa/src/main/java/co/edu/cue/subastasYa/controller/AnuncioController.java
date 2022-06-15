@@ -4,8 +4,14 @@ package co.edu.cue.subastasYa.controller;
 import co.edu.cue.subastasYa.dto.AnuncioDto;
 import co.edu.cue.subastasYa.dto.Mensaje;
 import co.edu.cue.subastasYa.entity.Anuncio;
+<<<<<<< HEAD
 import co.edu.cue.subastasYa.enums.Estado;
 import co.edu.cue.subastasYa.entity.TipoProducto;
+=======
+import co.edu.cue.subastasYa.entity.Departamento;
+import co.edu.cue.subastasYa.entity.Estado;
+import co.edu.cue.subastasYa.entity.Producto;
+>>>>>>> santiago-gallego
 import co.edu.cue.subastasYa.service.AnuncioService;
 import co.edu.cue.subastasYa.service.TipoProductoService;
 import org.apache.commons.lang3.StringUtils;
@@ -15,9 +21,17 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+<<<<<<< HEAD
+=======
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+>>>>>>> santiago-gallego
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
@@ -28,7 +42,11 @@ public class AnuncioController {
     AnuncioService anuncioService;
 
     @Autowired
+<<<<<<< HEAD
     TipoProductoService tipoProductoService;
+=======
+    ProductoService productoService;
+>>>>>>> santiago-gallego
 
     @GetMapping("/listaAnuncio")
     public List<Anuncio> list(){
@@ -90,6 +108,7 @@ public class AnuncioController {
 
     @PostMapping("/createAnuncio")
     public ResponseEntity<?> create(@RequestBody AnuncioDto anuncioDto){
+<<<<<<< HEAD
 
         if (listAnuncioUser(anuncioDto).size() < anuncioService.cantidadAnuncios()) {
             System.out.println(anuncioDto.getUsuario().toString());
@@ -133,6 +152,44 @@ public class AnuncioController {
 
     public TipoProducto tipoProducto(AnuncioDto anuncioDto){
         return tipoProductoService.showTypeExist(anuncioDto.getProducto().getTipoProducto().getNombreTipo());
+=======
+        System.out.println(anuncioDto +""+ anuncioDto.getProducto());
+
+        if(StringUtils.isBlank(anuncioDto.getDescripcion()))
+            return new ResponseEntity(new Mensaje("el nombre es obligatorio"), HttpStatus.BAD_REQUEST);
+        if (anuncioDto.getValor()==0)
+            return new ResponseEntity(new Mensaje("el precio es obligatorio y debe ser mayor a 0"), HttpStatus.BAD_REQUEST);
+        if (anuncioDto.getUsuario()==null)
+            return new ResponseEntity(new Mensaje("el usuario es obligatorio"), HttpStatus.BAD_REQUEST);
+        if (anuncioDto.getEstado()==null)
+            return new ResponseEntity(new Mensaje("el estado es obligatorio"), HttpStatus.BAD_REQUEST);
+        if (anuncioDto.getCiudad()==null)
+            return new ResponseEntity(new Mensaje("la ciudad es obligatorio"), HttpStatus.BAD_REQUEST);
+        if (anuncioDto.getDepartamento()==null)
+            return new ResponseEntity(new Mensaje("el departamento es obligatorio"), HttpStatus.BAD_REQUEST);
+        if (anuncioDto.getProducto()==null)
+            return new ResponseEntity(new Mensaje("el producto es obligatorio"), HttpStatus.BAD_REQUEST);
+        ;
+        
+
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        Date date = new Date();
+        dateFormat.format(date);
+
+        try{
+            productoService.save(anuncioDto.getProducto());
+        }catch (Exception e){
+            System.out.println("erroooooooooor saveeeeeee: "+e.getMessage());
+        }
+        Optional<Producto> p = productoService.getByNombre(anuncioDto.getProducto().getNombre());
+        System.out.println("id "+p.get().getId());
+
+        System.out.println("IDDDDD PRODUCTOOOO"+anuncioDto.getProducto());
+        Anuncio anuncio = new Anuncio(anuncioDto.getDescripcion(), date, date, anuncioDto.getUsuario(), Estado.ACTIVO, anuncioDto.getCiudad(), anuncioDto.getValor(), p.get());
+        anuncioService.save(anuncio);
+        System.out.println("se creo wepaaaa");
+        return new ResponseEntity(new Mensaje("anuncio creado"), HttpStatus.OK);
+>>>>>>> santiago-gallego
     }
 
 
@@ -153,8 +210,7 @@ public class AnuncioController {
             return new ResponseEntity(new Mensaje("la ciudad es obligatorio"), HttpStatus.BAD_REQUEST);
         if (anuncioDto.getDepartamento()==null)
             return new ResponseEntity(new Mensaje("el departamento es obligatorio"), HttpStatus.BAD_REQUEST);
-        if (anuncioDto.getProducto()==null)
-            return new ResponseEntity(new Mensaje("el producto es obligatorio"), HttpStatus.BAD_REQUEST);
+
 
         Anuncio anuncio = anuncioService.getOne(id).get();
 
@@ -164,7 +220,6 @@ public class AnuncioController {
         anuncio.setUsuario(anuncioDto.getUsuario());
         anuncio.setEstado(anuncioDto.getEstado());
         anuncio.setCiudad(anuncioDto.getCiudad());
-        anuncio.setDepartamento(anuncioDto.getDepartamento());
         anuncio.setValor(anuncioDto.getValor());
         anuncio.setProducto(anuncioDto.getProducto());
 

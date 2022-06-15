@@ -7,11 +7,12 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 public class ProductoDto {
 
 
-    @NotBlank
+    @NotNull
     private String nombre;
 
     @OneToOne
@@ -29,11 +30,17 @@ public class ProductoDto {
     }
 
 
+<<<<<<< HEAD
     public ProductoDto(@NotBlank String nombre, @NotBlank String fotoProducto, @NotBlank TipoProducto tipoProducto) {
+=======
+    public ProductoDto(@NotNull String nombre, @NotNull String fotoProducto) {
+>>>>>>> santiago-gallego
         this.nombre = nombre;
         this.fotoProducto = fotoProducto;
         this.tipoProducto= tipoProducto;
     }
+
+
 
     public String getNombre() {
        return nombre;

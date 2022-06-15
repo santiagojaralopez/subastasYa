@@ -14,6 +14,7 @@ import { ChangePasswordComponent } from './changepassword/change-password.compon
 import { CategoriasProductoComponent } from './categorias/categorias-producto.component';
 import { UserListComponent } from './users/user-list.component';
 import { UserEditProfileComponent } from './users/user-edit-profile.component';
+import { CreateAnuncioComponent } from './anunciosUser/create-anuncio.component';
 
 
 const routes: Routes = [
@@ -25,6 +26,7 @@ const routes: Routes = [
   { path: 'lista', component: ListaProductoComponent, canActivate: [guard], data: {expectedRole: ['admin', 'user']} },
   { path: 'user/edit', component: UserEditProfileComponent, canActivate: [guard], data: {expectedRole: ['admin', 'user']} },
   { path: 'anuncio/:id', component: DetalleProductoComponent, canActivate: [guard], data: {expectedRole: ['admin', 'user']} },
+  { path: 'create/anuncio', component: CreateAnuncioComponent, canActivate: [guard], data: {expectedRole: ['admin', 'user']} },
   { path: 'nuevo', component: NuevoProductoComponent, canActivate: [guard], data: {expectedRole: ['admin']} },
   { path: 'config', component: ConfigurationComponent, canActivate: [guard], data: {expectedRole: ['admin']} },
   { path: 'category/list', component: CategoriasProductoComponent, canActivate: [guard], data: {expectedRole: ['admin']} },

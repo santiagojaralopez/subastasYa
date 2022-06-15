@@ -2,23 +2,23 @@ import { EstadoUsuario } from './estadoUsuario';
 import { RoleNombre } from './RolNombre';
 
 export class Usuario {
-    id: number;
-    nombre: string = '';
-    apellido: string = '';
-    numerodoc: string = '';
+    id?: number;
+    nombre: string;
+    apellido = '';
+    numerodoc = '';
     fechanacto: Date | undefined;
-    direccion: string = '';
+    direccion = '';
     estadoUsuario: EstadoUsuario | undefined;
     tipoDocumento: string | undefined;
-    nombreUsuario: string = '';
-    email: string = '';
-    password: string = '';
+    nombreUsuario = '';
+    email = '';
+    password = '';
     roles: RoleNombre[] = [];
 
-    constructor(nombre: string,apellido: string,numerodoc: string,
-        fechanacto: Date,direccion: string,estadoUsuario: EstadoUsuario,
-        tipoDocumento: TipoDocumento,nombreUsuario: string,email: string,
-        password: string, roles: RoleNombre[]){
+    constructor(nombre: string, apellido: string, numerodoc: string,
+                fechanacto: Date, direccion: string, estadoUsuario: EstadoUsuario,
+                tipoDocumento: string, nombreUsuario: string, email: string,
+                password: string, roles: RoleNombre[]) {
             this.nombre = nombre;
             this.apellido = apellido;
             this.numerodoc = numerodoc;

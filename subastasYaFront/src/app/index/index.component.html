@@ -13,8 +13,9 @@
     </div>
 </div>
 <div class="headerDestacados mt-3 mb-3">
-    <a>Anuncios destacados</a>
+    <a class="headerDestacados" href>Anuncios</a>
 </div>
+<<<<<<< HEAD
 
 <div *ngFor="let anuncio of anuncios" class="prueba card float-right shadow p-3 mb-3 bg-body rounded">
     <div class="row">
@@ -33,12 +34,29 @@
         <div class="col">
             <div class="row">
                 <button [routerLink]="['/anuncio',anuncio.id_anuncio]" type="button" class="botones mb-3 btn btn-outline-info">Ver Anuncio</button>
+=======
+<div class="containerLista">
+    <div *ngFor="let anuncio of anuncios" class="prueba card float-right shadow p-3 mb-3 bg-body rounded">
+        <div class="row">
+            <div class="col-2">
+                <img class="anouncementPicture img-responsive" src="assets/images/product.png">
+>>>>>>> santiago-gallego
             </div>
-            <div class="row">
-                <button type="button" class="botones mb-3 btn btn-outline-info">Ver ofertas</button>
+            <div class="col-6">
+                <h5>{{anuncio.producto.nombre}}</h5>
+                <a class="">Descripcion: {{anuncio.descripcion}}<br></a>
+                <a>Precio actual: {{anuncio.valor}}<br></a>
+                <a>Anunciado por: {{anuncio.usuario.nombre}}<br></a>
+                <a>Fecha de publicación: {{anuncio.fecha_inicio}}<br></a>
+                <a>Fecha de finalizacion: {{anuncio.fecha_fin}}</a>
             </div>
-            <div class="row">
-                <button type="button" class="botones mb-3 btn btn-outline-danger">Bloquear</button>
+            <div class="col">
+                <div class="row">
+                    <button [routerLink]="['/anuncio',anuncio.id_anuncio]" type="button" class="botones mb-3 btn btn-outline-info">Ver Anuncio</button>
+                </div>
+                <div class="row">
+                    <button type="button" class="botones mb-3 btn btn-outline-info">Inicia sesion para ofertar</button>
+                </div>
             </div>
         </div>
     </div>

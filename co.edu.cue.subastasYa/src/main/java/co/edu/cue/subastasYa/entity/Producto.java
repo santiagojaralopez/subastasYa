@@ -4,6 +4,7 @@ import co.edu.cue.subastasYa.security.entity.Usuario;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 @Entity
 public class Producto {
@@ -12,11 +13,18 @@ public class Producto {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @NotBlank
+    @NotNull
     private String nombre;
 
+<<<<<<< HEAD
+=======
+    //@NotNull
+    //private TipoProducto tipoProducto;
+
+
+>>>>>>> santiago-gallego
     @NotBlank
-    private String fotoProducto;
+    private String foto_Producto;
 
 
     @OneToOne
@@ -32,8 +40,13 @@ public class Producto {
 
     public Producto(String nombre, String fotoProducto, TipoProducto tipoProducto) {
         this.nombre = nombre;
+<<<<<<< HEAD
         this.fotoProducto=fotoProducto;
         this.tipoProducto= tipoProducto;
+=======
+        this.foto_Producto=fotoProducto;
+        //this.tipoProducto= tipoProducto;
+>>>>>>> santiago-gallego
     }
 
 
@@ -54,12 +67,26 @@ public class Producto {
         this.nombre = nombre;
     }
 
+<<<<<<< HEAD
     public String getFotoProducto() {
         return fotoProducto;
     }
+=======
+    //public TipoProducto getTipoProducto() {
+    //   return tipoProducto;
+    //}
+
+    // public void setTipoProducto(TipoProducto tipoProducto) {
+    //    this.tipoProducto = tipoProducto;
+    // }
+
+    //public String getFotoProducto() {
+       // return fotoProducto;
+    //}
+>>>>>>> santiago-gallego
 
     public void setFotoProducto(String fotoProducto) {
-        this.fotoProducto = fotoProducto;
+      this.foto_Producto = fotoProducto;
     }
 
     public TipoProducto getTipoProducto() {
