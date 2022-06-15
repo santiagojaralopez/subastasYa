@@ -1,4 +1,4 @@
-package co.edu.cue.subastasYa.entity;
+package co.edu.cue.subastasYa.enums;
 
 public enum Departamento {
     AMAZONAS, ANTIOQUÍA, ARAUCA, ATLÁNTICO, BOLÍVAR, BOYACÁ, CALDAS, CAQUETÁ, CASANARE, CAUCA, CESAR, CHOCÓ,

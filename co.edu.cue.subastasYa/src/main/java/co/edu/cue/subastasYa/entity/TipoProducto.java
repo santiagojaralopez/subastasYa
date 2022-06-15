@@ -3,6 +3,7 @@ package co.edu.cue.subastasYa.entity;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 
+@Entity
 public class TipoProducto {
 
     @Id

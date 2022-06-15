@@ -1,7 +1,10 @@
 package co.edu.cue.subastasYa.dto;
 
 import co.edu.cue.subastasYa.entity.TipoProducto;
+import co.edu.cue.subastasYa.security.entity.Usuario;
 
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 
@@ -11,20 +14,25 @@ public class ProductoDto {
     @NotBlank
     private String nombre;
 
-    //private TipoProducto tipoProducto;
+    @OneToOne
+    @JoinColumn(name = "tipoProducto_id")
+    private TipoProducto tipoProducto;
+
 
     @NotBlank
     private String fotoProducto;
+
+
 
 
     public ProductoDto() {
     }
 
 
-    public ProductoDto(@NotBlank String nombre, @NotBlank String fotoProducto) {
+    public ProductoDto(@NotBlank String nombre, @NotBlank String fotoProducto, TipoProducto tipoProducto) {
         this.nombre = nombre;
         this.fotoProducto = fotoProducto;
-        //this.tipoProducto= tipoProducto;
+        this.tipoProducto= tipoProducto;
     }
 
     public String getNombre() {
@@ -43,11 +51,11 @@ public class ProductoDto {
         this.fotoProducto = fotoProducto;
     }
 
-    //public TipoProducto getTipoProducto() {
-    //    return tipoProducto;
-    //}
+    public TipoProducto getTipoProducto() {
+        return tipoProducto;
+    }
 
-    //public void setTipoProducto(TipoProducto tipoProducto) {
-    //   this.tipoProducto = tipoProducto;
-    //}
+    public void setTipoProducto(TipoProducto tipoProducto) {
+       this.tipoProducto = tipoProducto;
+    }
 }

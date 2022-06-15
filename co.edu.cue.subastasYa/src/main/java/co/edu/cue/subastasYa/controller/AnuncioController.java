@@ -3,14 +3,12 @@ package co.edu.cue.subastasYa.controller;
 
 import co.edu.cue.subastasYa.dto.AnuncioDto;
 import co.edu.cue.subastasYa.dto.Mensaje;
-import co.edu.cue.subastasYa.dto.ProductoDto;
 import co.edu.cue.subastasYa.entity.Anuncio;
-import co.edu.cue.subastasYa.entity.Estado;
-import co.edu.cue.subastasYa.entity.Producto;
-import co.edu.cue.subastasYa.security.entity.Usuario;
+import co.edu.cue.subastasYa.enums.Estado;
+import co.edu.cue.subastasYa.entity.TipoProducto;
 import co.edu.cue.subastasYa.service.AnuncioService;
-import co.edu.cue.subastasYa.service.ProductoService;
 import org.apache.commons.lang3.StringUtils;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -48,23 +46,32 @@ public class AnuncioController {
     @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/listaAnuncioBloqueados")
     public List<Anuncio> listBloqueados(){
-        List<Anuncio> list = anuncioService.listByEstados(Estado.BLOQUEADO);
-        return list;
+        List<Anuncio> list = anuncioService.listByEstadosBloqueado();
+        if (list!=null){
+            return list;
+        } else
+            return null;
     }
 
 
     @GetMapping("/listaAnuncioActivos")
     public List<Anuncio> listActivos(){
-        List<Anuncio> list = anuncioService.listByEstados(Estado.ACTIVO);
-        return list;
+        List<Anuncio> list = anuncioService.listByEstadosActivo();
+        if (list!=null){
+            return list;
+        } else
+            return null;
     }
 
 
     @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/listaAnuncioInactivo")
-    public List<Anuncio> listInactivo(){
-        List<Anuncio> list = anuncioService.listByEstados(Estado.INACTIVO);
-        return list;
+    public List<Anuncio> listInactivos(){
+        List<Anuncio> list = anuncioService.listByEstadosInactivo();
+        if (list!=null){
+            return list;
+        } else
+            return null;
     }
 
 
@@ -78,7 +85,6 @@ public class AnuncioController {
     }
 
 
-    @PreAuthorize("hasRole('USER')")
     @PostMapping("/createAnuncio")
     public ResponseEntity<?> create(@RequestBody AnuncioDto anuncioDto){
 
@@ -99,8 +105,8 @@ public class AnuncioController {
             if (anuncioDto.getProducto()==null)
                 return new ResponseEntity(new Mensaje("el producto es obligatorio"), HttpStatus.BAD_REQUEST);
 
-             int dias= anuncioService.diasAnuncioActivo();
-
+            //CALCULO DE FECHA FIN
+            int dias= anuncioService.diasAnuncioActivo();
             Date dt = anuncioDto.getFecha_inicio();
             Calendar c = Calendar.getInstance();
             c.setTime(dt);
@@ -108,14 +114,31 @@ public class AnuncioController {
             dt = c.getTime();
 
 
-            Anuncio anuncio = new Anuncio(anuncioDto.getDescripcion(), anuncioDto.getFecha_inicio(), dt, anuncioDto.getUsuario(), anuncioDto.getEstado(), anuncioDto.getCiudad(), anuncioDto.getDepartamento(), anuncioDto.getValor(), anuncioDto.getProducto());
-            anuncioService.save(anuncio);
-            return new ResponseEntity(new Mensaje("anuncio creado"), HttpStatus.OK);
+            //TIPOS DE PRODUCTO
+            boolean existeTipoProducto= tipoProducto(anuncioDto);
+
+            if (existeTipoProducto==true){
+                Anuncio anuncio = new Anuncio(anuncioDto.getDescripcion(), anuncioDto.getFecha_inicio(), dt, anuncioDto.getUsuario(),Estado.ACTIVO, anuncioDto.getCiudad(), anuncioDto.getDepartamento(), anuncioDto.getValor(), anuncioDto.getProducto());
+                anuncioService.save(anuncio);
+                return new ResponseEntity(new Mensaje("anuncio creado"), HttpStatus.OK);
+            } else
+                return new ResponseEntity(new Mensaje("El tipo de producto ingresado no existe"), HttpStatus.BAD_REQUEST);
          } else
           return new ResponseEntity(new Mensaje("La cantidad maxima de anuncios fue alcanzada, no puede crear mas"), HttpStatus.BAD_REQUEST);
     }
 
 
+    public boolean tipoProducto( @NotNull   AnuncioDto anuncioDto){
+        TipoProducto tipoProducto= anuncioDto.getProducto().getTipoProducto();
+
+        for (TipoProducto tipoProducto1: anuncioService.listaTipoProductos()) {
+            if (tipoProducto==tipoProducto1){
+               return true;
+            } else
+                return false;
+        }
+        return false;
+    }
 
 
     @PutMapping("/updateAnuncio/{id}")

@@ -1,9 +1,11 @@
 package co.edu.cue.subastasYa.entity;
 
+import co.edu.cue.subastasYa.enums.Ciudad;
+import co.edu.cue.subastasYa.enums.Departamento;
+import co.edu.cue.subastasYa.enums.Estado;
 import co.edu.cue.subastasYa.security.entity.Usuario;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
 import java.util.Date;
 
 @Entity
@@ -23,7 +25,6 @@ public class Anuncio {
     @OneToOne
     @JoinColumn(name = "usuario_id")
     private Usuario usuario;
-
 
 
     private Estado estado;
