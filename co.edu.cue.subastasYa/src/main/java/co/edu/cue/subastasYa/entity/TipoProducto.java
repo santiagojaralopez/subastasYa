@@ -15,13 +15,10 @@ public class TipoProducto {
     @NotBlank
     private String descripcion;
 
-
-
     public TipoProducto() {
     }
 
-    public TipoProducto(int id, String nombreTipo, String descripcion) {
-        this.id = id;
+    public TipoProducto(String nombreTipo, String descripcion) {
         this.nombreTipo = nombreTipo;
         this.descripcion = descripcion;
     }

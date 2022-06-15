@@ -29,7 +29,7 @@ public class ProductoDto {
     }
 
 
-    public ProductoDto(@NotBlank String nombre, @NotBlank String fotoProducto, TipoProducto tipoProducto) {
+    public ProductoDto(@NotBlank String nombre, @NotBlank String fotoProducto, @NotBlank TipoProducto tipoProducto) {
         this.nombre = nombre;
         this.fotoProducto = fotoProducto;
         this.tipoProducto= tipoProducto;
