@@ -2,6 +2,7 @@ package co.edu.cue.subastasYa.entity;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 @Entity
 public class Producto {
@@ -10,14 +11,14 @@ public class Producto {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @NotBlank
+    @NotNull
     private String nombre;
 
-    //@NotBlank
+    //@NotNull
     //private TipoProducto tipoProducto;
 
 
-    @NotBlank
+    @NotNull
     private String fotoProducto;
 
 
@@ -59,11 +60,11 @@ public class Producto {
     //    this.tipoProducto = tipoProducto;
     // }
 
-    public String getFotoProducto() {
-        return fotoProducto;
-    }
+    //public String getFotoProducto() {
+       // return fotoProducto;
+    //}
 
-    public void setFotoProducto(String fotoProducto) {
-        this.fotoProducto = fotoProducto;
-    }
+    //public void setFotoProducto(String fotoProducto) {
+      //  this.fotoProducto = fotoProducto;
+    //}
 }

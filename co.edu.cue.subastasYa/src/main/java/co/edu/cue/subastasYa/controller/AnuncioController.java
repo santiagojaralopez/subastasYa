@@ -96,7 +96,7 @@ public class AnuncioController {
         dateFormat.format(date);
 
 
-        Anuncio anuncio = new Anuncio(anuncioDto.getDescripcion(), date, anuncioDto.getFecha_fin(), anuncioDto.getUsuario(), Estado.ACTIVO, anuncioDto.getCiudad(), Departamento.AMAZONAS, anuncioDto.getValor(), anuncioDto.getProducto());
+        Anuncio anuncio = new Anuncio(anuncioDto.getDescripcion(), date, date, anuncioDto.getUsuario(), Estado.ACTIVO, anuncioDto.getCiudad(), Departamento.AMAZONAS, anuncioDto.getValor(), anuncioDto.getProducto());
         anuncioService.save(anuncio);
         System.out.println("se creo wepaaaa");
         return new ResponseEntity(new Mensaje("anuncio creado"), HttpStatus.OK);

@@ -4,16 +4,17 @@ import co.edu.cue.subastasYa.entity.TipoProducto;
 
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 public class ProductoDto {
 
 
-    @NotBlank
+    @NotNull
     private String nombre;
 
     //private TipoProducto tipoProducto;
 
-    @NotBlank
+    @NotNull
     private String fotoProducto;
 
 
@@ -21,7 +22,7 @@ public class ProductoDto {
     }
 
 
-    public ProductoDto(@NotBlank String nombre, @NotBlank String fotoProducto) {
+    public ProductoDto(@NotNull String nombre, @NotNull String fotoProducto) {
         this.nombre = nombre;
         this.fotoProducto = fotoProducto;
     }

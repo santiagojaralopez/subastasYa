@@ -9,6 +9,7 @@ import { EstadoAnuncio } from '../models/estadoAnuncio';
 import { Producto } from '../models/producto';
 import { UsuarioService } from '../service/usuario.service';
 import { TipoProducto } from '../models/tipoProducto';
+import { ProductoService } from '../service/producto.service';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -42,6 +43,7 @@ export class CreateAnuncioComponent implements OnInit {
 
   constructor(
     private usuarioService: UsuarioService,
+    private productoService: ProductoService,
     private anuncioService: AnuncioService,
     private tokenService: TokenService
   ) { }
@@ -50,7 +52,6 @@ export class CreateAnuncioComponent implements OnInit {
     this.usuarioService.lista().subscribe(
       data => this.usuarios = data
     )
-    this.tipoProducto = new TipoProducto("Autos","Autos para vender");
   }
 
   onSelectCity(value: any): void {  
@@ -75,9 +76,20 @@ export class CreateAnuncioComponent implements OnInit {
   onCreate(){
     let user = this.findUserByUserName(this.tokenService.getUserName());
     this.usuario = user;
-    this.nuevoProducto = new Producto(this.nombreProducto,"fotooo");
+    this.nuevoProducto = new Producto(this.nombreProducto,'hola');
+    this.productoService.createProducto(this.nuevoProducto).subscribe(
+      data => {
+      },
+      err => {
+        Swal.fire(
+          'Error',
+          err.error.mensaje,
+          'error'
+        );
+      }
+    );
     this.nuevoAnuncio = new Anuncio(this.descripcion,this.fecha_inicio,this.fecha_fin,this.usuario,this.estado,this.ciudad,this.departamento,this.nuevoProducto,this.valor);
-    console.log(this.nuevoProducto);
+    
     this.anuncioService.createAnuncio(this.nuevoAnuncio).subscribe(
       data => {
         Swal.fire(
@@ -94,6 +106,6 @@ export class CreateAnuncioComponent implements OnInit {
         );
       }
     );
-  }
 
+  }
 }

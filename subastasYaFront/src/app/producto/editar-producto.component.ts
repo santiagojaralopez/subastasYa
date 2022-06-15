@@ -20,26 +20,12 @@ export class EditarProductoComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    const id = this.activatedRoute.snapshot.params.id;
-    this.productoService.detail(id).subscribe(
-      data => {
-        this.producto = data;
-      },
-      err => {
-        this.router.navigate(['/lista']);
-      }
-    );
+    
   }
 
   onUpdate(): void {
     const id = this.activatedRoute.snapshot.params.id;
-    this.productoService.update(id, this.producto).subscribe(
-      data => {
-        this.router.navigate(['/lista']);
-      },
-      err => {
-      }
-    );
+    
   }
 
 }

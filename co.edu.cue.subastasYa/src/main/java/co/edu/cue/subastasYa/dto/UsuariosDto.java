@@ -3,6 +3,7 @@ package co.edu.cue.subastasYa.dto;
 import co.edu.cue.subastasYa.security.enums.EstadoUsuario;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 public class UsuariosDto {
@@ -22,7 +23,7 @@ public class UsuariosDto {
     @NotBlank
     private String direccion;
 
-    @NotBlank
+    @NotNull
     private String email;
 
     @NotBlank

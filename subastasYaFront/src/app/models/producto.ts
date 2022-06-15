@@ -1,8 +1,8 @@
 import { TipoProducto } from "./tipoProducto";
 
 export class Producto {
-    id?: number = 0;
-    nombre: string = '';
+    id?: number;
+    nombre: string;
     fotoProducto: string;
 
     constructor(nombre: string, fotoProducto: string) {

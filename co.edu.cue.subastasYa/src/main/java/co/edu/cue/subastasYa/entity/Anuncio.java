@@ -4,6 +4,7 @@ import co.edu.cue.subastasYa.security.entity.Usuario;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 @Entity
@@ -11,36 +12,34 @@ public class Anuncio {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @NotBlank
     private int id_anuncio;
 
 
-    @NotBlank
+    @NotNull
     private String descripcion;
-    //@NotBlank
+    //@NotNull
     private Date fecha_inicio;
-    //@NotBlank
+    //@NotNull
     private Date fecha_fin;
 
     @OneToOne
     @JoinColumn(name = "usuario_id")
-    @NotBlank
+    @NotNull
     private Usuario usuario;
 
 
-    @NotBlank
+    @NotNull
     private Estado estado;
-    @NotBlank
+    @NotNull
     private Ciudad ciudad;
-    @NotBlank
+    @NotNull
     private Departamento departamento;
-    @NotBlank
+    @NotNull
     private Double valor;
 
 
     @OneToOne
     @JoinColumn(name = "producto_id")
-    @NotBlank
     private Producto producto;
 
 

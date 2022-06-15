@@ -5,7 +5,7 @@ import { Producto } from "./producto";
 import { Usuario } from "./usuario";
 
 export class Anuncio {
-    id_anuncio?: number = 0;
+    id_anuncio?: number;
     descripcion: string = '';
     fecha_inicio: Date | undefined;
     fecha_fin: Date | undefined;

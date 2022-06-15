@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -46,14 +47,15 @@ public class ProductoController {
 
     @PostMapping("/create")
     public ResponseEntity<?> create(@RequestBody ProductoDto productoDto){
+        System.out.println("AAAAAAAAAAAAA "+productoDto);
         if(StringUtils.isBlank(productoDto.getNombre()))
             return new ResponseEntity(new Mensaje("el nombre es obligatorio"), HttpStatus.BAD_REQUEST);
         if(productoService.existsByNombre(productoDto.getNombre()))
             return new ResponseEntity(new Mensaje("ese nombre ya existe"), HttpStatus.BAD_REQUEST);
         if(StringUtils.isBlank(productoDto.getFotoProducto()))
             return new ResponseEntity(new Mensaje("la foto es obligatoria"), HttpStatus.BAD_REQUEST);
-        //Producto producto = new Producto(productoDto.getNombre(), productoDto.getTipo,productoDto.getFotoProducto());
-        //productoService.save(producto);
+        Producto producto = new Producto(productoDto.getNombre(),productoDto.getFotoProducto());
+        productoService.save(producto);
         return new ResponseEntity(new Mensaje("producto creado"), HttpStatus.OK);
     }
 
