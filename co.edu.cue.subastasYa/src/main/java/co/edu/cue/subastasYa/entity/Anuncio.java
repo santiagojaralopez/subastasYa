@@ -32,8 +32,7 @@ public class Anuncio {
     private Estado estado;
     @NotNull
     private Ciudad ciudad;
-    @NotNull
-    private Departamento departamento;
+
     @NotNull
     private Double valor;
 
@@ -46,14 +45,13 @@ public class Anuncio {
     public Anuncio() {
     }
 
-    public Anuncio(String descripcion, Date fecha_inicio, Date fecha_fin, Usuario usuario, Estado estado, Ciudad ciudad, Departamento departamento, Double valor, Producto producto) {
+    public Anuncio(String descripcion, Date fecha_inicio, Date fecha_fin, Usuario usuario, Estado estado, Ciudad ciudad, Double valor, Producto producto) {
         this.descripcion = descripcion;
         this.fecha_inicio = fecha_inicio;
         this.fecha_fin = fecha_fin;
         this.usuario = usuario;
         this.estado = estado;
         this.ciudad = ciudad;
-        this.departamento = departamento;
         this.valor = valor;
         this.producto = producto;
     }
@@ -112,14 +110,6 @@ public class Anuncio {
 
     public void setCiudad(Ciudad ciudad) {
         this.ciudad = ciudad;
-    }
-
-    public Departamento getDepartamento() {
-        return departamento;
-    }
-
-    public void setDepartamento(Departamento departamento) {
-        this.departamento = departamento;
     }
 
     public Double getValor() {

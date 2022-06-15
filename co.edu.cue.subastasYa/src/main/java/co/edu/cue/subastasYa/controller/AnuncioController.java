@@ -113,7 +113,7 @@ public class AnuncioController {
         System.out.println("id "+p.get().getId());
 
         System.out.println("IDDDDD PRODUCTOOOO"+anuncioDto.getProducto());
-        Anuncio anuncio = new Anuncio(anuncioDto.getDescripcion(), date, date, anuncioDto.getUsuario(), Estado.ACTIVO, anuncioDto.getCiudad(), Departamento.AMAZONAS, anuncioDto.getValor(), p.get());
+        Anuncio anuncio = new Anuncio(anuncioDto.getDescripcion(), date, date, anuncioDto.getUsuario(), Estado.ACTIVO, anuncioDto.getCiudad(), anuncioDto.getValor(), p.get());
         anuncioService.save(anuncio);
         System.out.println("se creo wepaaaa");
         return new ResponseEntity(new Mensaje("anuncio creado"), HttpStatus.OK);
@@ -147,7 +147,6 @@ public class AnuncioController {
         anuncio.setUsuario(anuncioDto.getUsuario());
         anuncio.setEstado(anuncioDto.getEstado());
         anuncio.setCiudad(anuncioDto.getCiudad());
-        anuncio.setDepartamento(anuncioDto.getDepartamento());
         anuncio.setValor(anuncioDto.getValor());
         anuncio.setProducto(anuncioDto.getProducto());
 
