@@ -4,7 +4,7 @@ import { TipoDocumento } from "./tipoDocumento";
 
 export class Usuario{
     id?: number;
-    nombre: string = '';
+    nombre: string;
     apellido: string = '';
     numerodoc: string = '';
     fechanacto: Date | undefined;

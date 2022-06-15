@@ -5,3 +5,8 @@
 .cardT {
     width: 50%;
 }
+
+.cardProfile {
+    margin-left: 150px;
+    margin-right: 150px;
+}
