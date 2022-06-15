@@ -1,6 +1,9 @@
 package co.edu.cue.subastasYa.security.service;
 
+import co.edu.cue.subastasYa.entity.Anuncio;
+import co.edu.cue.subastasYa.entity.Estado;
 import co.edu.cue.subastasYa.security.entity.Usuario;
+import co.edu.cue.subastasYa.security.enums.EstadoUsuario;
 import co.edu.cue.subastasYa.security.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -58,4 +61,14 @@ public class UsuarioService {
     public Optional<Usuario> getByNombre(String nombre){
         return usuarioRepository.findByNombreUsuario(nombre);
     }
+
+    public List<Usuario> listByEstados(EstadoUsuario estadoUsuario) {
+        if (estadoUsuario == EstadoUsuario.BLOQUEADO)
+            return usuarioRepository.findUsuarioByEstado(EstadoUsuario.BLOQUEADO);
+        if (estadoUsuario == EstadoUsuario.HABILITADO)
+            return usuarioRepository.findUsuarioByEstado(EstadoUsuario.HABILITADO);
+        return usuarioRepository.findUsuarioByEstado(EstadoUsuario.DESHABILITADO);
+    }
+
+
 }
