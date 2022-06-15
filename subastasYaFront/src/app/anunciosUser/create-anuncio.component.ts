@@ -12,6 +12,7 @@ import { TipoProducto } from '../models/tipoProducto';
 import { ProductoService } from '../service/producto.service';
 import { CiudadService } from '../service/ciudad.service';
 import Swal from 'sweetalert2';
+import { TipoProductoService } from '../service/tipoProducto.service';
 
 @Component({
   selector: 'app-create-anuncio',
@@ -28,6 +29,7 @@ export class CreateAnuncioComponent implements OnInit {
   productos: Producto[] = [];
   anuncios: Anuncio[] = [];
   usuarios: Usuario[] = [];
+  tipos: TipoProducto[] = [];
 
 
   //atributos anuncio
@@ -51,7 +53,8 @@ export class CreateAnuncioComponent implements OnInit {
     private productoService: ProductoService,
     private anuncioService: AnuncioService,
     private ciudadService: CiudadService,
-    private tokenService: TokenService
+    private tokenService: TokenService,
+    private tipoProductoService: TipoProductoService
   ) { }
 
   ngOnInit() {
