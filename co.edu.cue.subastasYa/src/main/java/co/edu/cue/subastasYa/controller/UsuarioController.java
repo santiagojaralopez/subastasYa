@@ -2,6 +2,8 @@ package co.edu.cue.subastasYa.controller;
 
 import co.edu.cue.subastasYa.dto.Mensaje;
 import co.edu.cue.subastasYa.dto.UsuariosDto;
+import co.edu.cue.subastasYa.entity.Anuncio;
+import co.edu.cue.subastasYa.entity.Estado;
 import co.edu.cue.subastasYa.security.dto.NuevoUsuario;
 import co.edu.cue.subastasYa.security.entity.Rol;
 import co.edu.cue.subastasYa.security.entity.Usuario;
@@ -40,6 +42,24 @@ public class UsuarioController {
         return list;
     }
 
+    @GetMapping("/listOfBlockedUsers")
+    public List<Usuario> listBlockedUsers(){
+        List<Usuario> list = usuarioService.listByEstados(EstadoUsuario.BLOQUEADO);
+        return list;
+    }
+
+    @GetMapping("/listOfHUsers")
+    public List<Usuario> listHabilitado(){
+        List<Usuario> list = usuarioService.listByEstados(EstadoUsuario.HABILITADO);
+        return list;
+    }
+
+    @GetMapping("/listOfInHUsers")
+    public List<Usuario> listDeshabilitado(){
+        List<Usuario> list = usuarioService.listByEstados(EstadoUsuario.DESHABILITADO);
+        return list;
+    }
+
     @GetMapping("/detail-user/{id}")
     public ResponseEntity getById(@PathVariable("id") int id){
         if(!usuarioService.existsByIdUser(id))
@@ -69,7 +89,7 @@ public class UsuarioController {
         return new ResponseEntity(new Mensaje("Usuario guardado"), HttpStatus.CREATED);
     }
 
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('USER')")
     @PutMapping("/updateUser/{id}")
     public ResponseEntity<?> update(@PathVariable("id")int id, @RequestBody UsuariosDto usuariodto){
         if(!usuarioService.existsById(id))
@@ -118,5 +138,15 @@ public class UsuarioController {
         usuario1.setEstadoUsuario(EstadoUsuario.HABILITADO);
         usuarioService.save(usuario1);
         return new ResponseEntity(new Mensaje("Habilitado de nuevo"), HttpStatus.OK);
+    }
+
+    @PutMapping("/DeshabilitarUser/{id}")
+    public ResponseEntity<?> updateDeshabilitarUserFromUser(@PathVariable("id")int id) {
+        if (!usuarioService.existsById(id))
+            return new ResponseEntity(new Mensaje("no existe"), HttpStatus.NOT_FOUND);
+        Usuario usuario1 = usuarioService.getOne(id).get();
+        usuario1.setEstadoUsuario(EstadoUsuario.DESHABILITADO);
+        usuarioService.save(usuario1);
+        return new ResponseEntity(new Mensaje("El usuario se ha dado de baja"), HttpStatus.OK);
     }
 }
