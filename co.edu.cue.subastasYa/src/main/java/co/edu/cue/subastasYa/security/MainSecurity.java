@@ -63,7 +63,10 @@ public class MainSecurity extends WebSecurityConfigurerAdapter {
                         "/auth/**",
                         "/email-password/**",
                         "/usuario/detail-user/**",
-                        "/email-offer/**"
+                        "/email-offer/**",
+                        "/anuncio/listaAnuncioActivos/",
+                        "/anuncio/createAnuncio/",
+                        "/producto/create/"
                 ).permitAll()
                 .anyRequest().authenticated()
                 .and()
