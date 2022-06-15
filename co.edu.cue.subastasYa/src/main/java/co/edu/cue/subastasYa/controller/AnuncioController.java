@@ -7,8 +7,8 @@ import co.edu.cue.subastasYa.entity.Anuncio;
 import co.edu.cue.subastasYa.enums.Estado;
 import co.edu.cue.subastasYa.entity.TipoProducto;
 import co.edu.cue.subastasYa.service.AnuncioService;
+import co.edu.cue.subastasYa.service.TipoProductoService;
 import org.apache.commons.lang3.StringUtils;
-import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -26,6 +26,9 @@ public class AnuncioController {
 
     @Autowired
     AnuncioService anuncioService;
+
+    @Autowired
+    TipoProductoService tipoProductoService;
 
     @GetMapping("/listaAnuncio")
     public List<Anuncio> list(){
@@ -115,29 +118,21 @@ public class AnuncioController {
 
 
             //TIPOS DE PRODUCTO
-            boolean existeTipoProducto= tipoProducto(anuncioDto);
+            TipoProducto existeTipoProducto= tipoProducto(anuncioDto);
 
-            if (existeTipoProducto==true){
+            if (existeTipoProducto!=null){
                 Anuncio anuncio = new Anuncio(anuncioDto.getDescripcion(), anuncioDto.getFecha_inicio(), dt, anuncioDto.getUsuario(),Estado.ACTIVO, anuncioDto.getCiudad(), anuncioDto.getDepartamento(), anuncioDto.getValor(), anuncioDto.getProducto());
                 anuncioService.save(anuncio);
                 return new ResponseEntity(new Mensaje("anuncio creado"), HttpStatus.OK);
-             } else
-               return new ResponseEntity(new Mensaje("El tipo de producto ingresado no existe"), HttpStatus.BAD_REQUEST);
-         } else
-          return new ResponseEntity(new Mensaje("La cantidad maxima de anuncios fue alcanzada, no puede crear mas"), HttpStatus.BAD_REQUEST);
+              } else
+                  return new ResponseEntity(new Mensaje("El tipo de producto ingresado no existe"), HttpStatus.BAD_REQUEST);
+        } else
+            return new ResponseEntity(new Mensaje("La cantidad maxima de anuncios fue alcanzada, no puede crear mas"), HttpStatus.BAD_REQUEST);
     }
 
 
-    public boolean tipoProducto(AnuncioDto anuncioDto){
-        TipoProducto tipoProducto= anuncioDto.getProducto().getTipoProducto();
-
-        for (TipoProducto tipoProducto1: anuncioService.listaTipoProductos()) {
-            if (tipoProducto==tipoProducto1){
-               return true;
-            } else
-                return false;
-        }
-        return false;
+    public TipoProducto tipoProducto(AnuncioDto anuncioDto){
+        return tipoProductoService.showTypeExist(anuncioDto.getProducto().getTipoProducto().getNombreTipo());
     }
 
 

@@ -46,4 +46,13 @@ public class TipoProducto {
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
+
+    @Override
+    public String toString() {
+        return "TipoProducto{" +
+                "id=" + id +
+                ", nombreTipo='" + nombreTipo + '\'' +
+                ", descripcion='" + descripcion + '\'' +
+                '}';
+    }
 }

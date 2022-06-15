@@ -21,8 +21,6 @@ public class AnuncioService {
         return anuncioRepository.findAll();
     }
 
-
-
     public List<Anuncio> listByEstadosBloqueado() {
             return anuncioRepository.findAnunciosByBloqueado();
     }
@@ -70,9 +68,5 @@ public class AnuncioService {
         return anuncioRepository.diasAnuncioActivo();
     }
 
-
-    public List<TipoProducto> listaTipoProductos(){
-       return anuncioRepository.findListaTypesProduct();
-     }
 
 }

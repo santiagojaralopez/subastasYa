@@ -16,10 +16,6 @@ import java.util.Optional;
 public interface AnuncioRepository extends JpaRepository<Anuncio, Integer>{
 
 
-    //@Query("SELECT a FROM Anuncio a WHERE a.estado= :estado")
-    //List<Anuncio> findAnuncioByEstado(
-     //      @Param("estado") Estado estado);
-
     //1 BLOQUEADO
     //2 ACTIVO
     //3 INACTIVO
@@ -55,11 +51,6 @@ public interface AnuncioRepository extends JpaRepository<Anuncio, Integer>{
     List<Anuncio> findListaAnunciosByUsuario(
             @Param("usuario") Usuario usuario);
 
-
-
-
-    @Query("SELECT t.nombreTipo FROM TipoProducto t")
-    List<TipoProducto> findListaTypesProduct();
 
 
 }
