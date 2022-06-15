@@ -30,6 +30,9 @@ public class Anuncio {
 
     @NotNull
     private Estado estado;
+
+    @ManyToOne
+    @JoinColumn(name = "ciudad")
     @NotNull
     private Ciudad ciudad;
 

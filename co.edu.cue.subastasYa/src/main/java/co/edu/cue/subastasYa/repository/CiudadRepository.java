@@ -11,8 +11,11 @@ import java.util.Optional;
 
 public interface CiudadRepository extends JpaRepository<Ciudad, Integer> {
 
+    /*
     @Query("SELECT a FROM Ciudad a WHERE a.usuario= :usuario")
     Optional<Anuncio> findAnuncioByUsuario(
             @Param("usuario") Usuario usuario
     );
+
+     */
 }
