@@ -18,8 +18,8 @@ public class Producto {
     //private TipoProducto tipoProducto;
 
 
-    @NotNull
-    private String fotoProducto;
+    @NotBlank
+    private String foto_Producto;
 
 
     public Producto() {
@@ -27,7 +27,7 @@ public class Producto {
 
     public Producto(String nombre, String fotoProducto) {
         this.nombre = nombre;
-        this.fotoProducto=fotoProducto;
+        this.foto_Producto=fotoProducto;
         //this.tipoProducto= tipoProducto;
     }
 
@@ -64,7 +64,7 @@ public class Producto {
        // return fotoProducto;
     //}
 
-    //public void setFotoProducto(String fotoProducto) {
-      //  this.fotoProducto = fotoProducto;
-    //}
+    public void setFotoProducto(String fotoProducto) {
+      this.foto_Producto = fotoProducto;
+    }
 }

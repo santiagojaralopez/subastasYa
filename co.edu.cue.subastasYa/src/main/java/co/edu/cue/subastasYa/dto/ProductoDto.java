@@ -14,7 +14,7 @@ public class ProductoDto {
 
     //private TipoProducto tipoProducto;
 
-    @NotNull
+    @NotBlank
     private String fotoProducto;
 
 
@@ -26,6 +26,8 @@ public class ProductoDto {
         this.nombre = nombre;
         this.fotoProducto = fotoProducto;
     }
+
+
 
     public String getNombre() {
        return nombre;

@@ -21,6 +21,7 @@ export class CreateAnuncioComponent implements OnInit {
 
   nuevoAnuncio: Anuncio;
   nuevoProducto: Producto;
+  productos: Producto[] = [];
   anuncios: Anuncio[] = [];
   usuarios: Usuario[] = [];
   //atributos anuncio
@@ -52,6 +53,7 @@ export class CreateAnuncioComponent implements OnInit {
     this.usuarioService.lista().subscribe(
       data => this.usuarios = data
     )
+    
   }
 
   onSelectCity(value: any): void {  
@@ -73,21 +75,11 @@ export class CreateAnuncioComponent implements OnInit {
     return user;
   }
 
-  onCreate(){
+  async onCreate(){
     let user = this.findUserByUserName(this.tokenService.getUserName());
     this.usuario = user;
-    this.nuevoProducto = new Producto(this.nombreProducto,'hola');
-    this.productoService.createProducto(this.nuevoProducto).subscribe(
-      data => {
-      },
-      err => {
-        Swal.fire(
-          'Error',
-          err.error.mensaje,
-          'error'
-        );
-      }
-    );
+    this.nuevoProducto = new Producto(this.nombreProducto,'foto');
+    
     this.nuevoAnuncio = new Anuncio(this.descripcion,this.fecha_inicio,this.fecha_fin,this.usuario,this.estado,this.ciudad,this.departamento,this.nuevoProducto,this.valor);
     
     this.anuncioService.createAnuncio(this.nuevoAnuncio).subscribe(
@@ -109,3 +101,9 @@ export class CreateAnuncioComponent implements OnInit {
 
   }
 }
+
+function delay(ms: number) {
+  return new Promise( resolve => setTimeout(resolve, ms) );
+}
+
+

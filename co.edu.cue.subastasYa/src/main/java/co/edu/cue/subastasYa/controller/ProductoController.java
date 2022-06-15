@@ -47,7 +47,6 @@ public class ProductoController {
 
     @PostMapping("/create")
     public ResponseEntity<?> create(@RequestBody ProductoDto productoDto){
-        System.out.println("AAAAAAAAAAAAA "+productoDto);
         if(StringUtils.isBlank(productoDto.getNombre()))
             return new ResponseEntity(new Mensaje("el nombre es obligatorio"), HttpStatus.BAD_REQUEST);
         if(productoService.existsByNombre(productoDto.getNombre()))
@@ -55,6 +54,7 @@ public class ProductoController {
         if(StringUtils.isBlank(productoDto.getFotoProducto()))
             return new ResponseEntity(new Mensaje("la foto es obligatoria"), HttpStatus.BAD_REQUEST);
         Producto producto = new Producto(productoDto.getNombre(),productoDto.getFotoProducto());
+        System.out.println("AAAAAAAAAAAAA "+producto.getId());
         productoService.save(producto);
         return new ResponseEntity(new Mensaje("producto creado"), HttpStatus.OK);
     }

@@ -24,6 +24,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
@@ -32,6 +33,9 @@ public class AnuncioController {
 
     @Autowired
     AnuncioService anuncioService;
+
+    @Autowired
+    ProductoService productoService;
 
     @GetMapping("/listaAnuncio")
     public List<Anuncio> list(){
@@ -75,6 +79,9 @@ public class AnuncioController {
 
     @PostMapping("/createAnuncio")
     public ResponseEntity<?> create(@RequestBody AnuncioDto anuncioDto){
+        System.out.println(anuncioDto +""+ anuncioDto.getProducto());
+
+        /*
         if(StringUtils.isBlank(anuncioDto.getDescripcion()))
             return new ResponseEntity(new Mensaje("el nombre es obligatorio"), HttpStatus.BAD_REQUEST);
         if (anuncioDto.getValor()==0)
@@ -91,12 +98,22 @@ public class AnuncioController {
             return new ResponseEntity(new Mensaje("el producto es obligatorio"), HttpStatus.BAD_REQUEST);
         ;
 
+         */
+
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         Date date = new Date();
         dateFormat.format(date);
 
+        try{
+            productoService.save(anuncioDto.getProducto());
+        }catch (Exception e){
+            System.out.println("erroooooooooor saveeeeeee: "+e.getMessage());
+        }
+        Optional<Producto> p = productoService.getByNombre(anuncioDto.getProducto().getNombre());
+        System.out.println("id "+p.get().getId());
 
-        Anuncio anuncio = new Anuncio(anuncioDto.getDescripcion(), date, date, anuncioDto.getUsuario(), Estado.ACTIVO, anuncioDto.getCiudad(), Departamento.AMAZONAS, anuncioDto.getValor(), anuncioDto.getProducto());
+        System.out.println("IDDDDD PRODUCTOOOO"+anuncioDto.getProducto());
+        Anuncio anuncio = new Anuncio(anuncioDto.getDescripcion(), date, date, anuncioDto.getUsuario(), Estado.ACTIVO, anuncioDto.getCiudad(), Departamento.AMAZONAS, anuncioDto.getValor(), p.get());
         anuncioService.save(anuncio);
         System.out.println("se creo wepaaaa");
         return new ResponseEntity(new Mensaje("anuncio creado"), HttpStatus.OK);
@@ -120,8 +137,7 @@ public class AnuncioController {
             return new ResponseEntity(new Mensaje("la ciudad es obligatorio"), HttpStatus.BAD_REQUEST);
         if (anuncioDto.getDepartamento()==null)
             return new ResponseEntity(new Mensaje("el departamento es obligatorio"), HttpStatus.BAD_REQUEST);
-        if (anuncioDto.getProducto()==null)
-            return new ResponseEntity(new Mensaje("el producto es obligatorio"), HttpStatus.BAD_REQUEST);
+
 
         Anuncio anuncio = anuncioService.getOne(id).get();
 

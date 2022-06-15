@@ -28,7 +28,7 @@
                         </div>
                         <div class="align-items-center form-group  col">
                             <label for="ciudad">Ciudad</label>
-                            <select class="selectBox form-select border border-opacity-90 rounded" name="ciudad" [(ngModel)]="ciudad" (ngModelChange)="onSelectCity($event)">
+                            <select class="selectBox form-select border border-opacity-90 rounded" name="ciudad" [(ngModel)]="ciudadSeleccionada" (ngModelChange)="onSelectCity($event)">
                                 <option *ngFor='let city of ciudades' [value]="ciudad">{{city}}</option>
                             </select>
                         </div>
