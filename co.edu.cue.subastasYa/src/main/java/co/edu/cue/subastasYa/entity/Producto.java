@@ -1,5 +1,7 @@
 package co.edu.cue.subastasYa.entity;
 
+import co.edu.cue.subastasYa.security.entity.Usuario;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 
@@ -13,27 +15,28 @@ public class Producto {
     @NotBlank
     private String nombre;
 
-    //@NotBlank
-    //private TipoProducto tipoProducto;
-
-
     @NotBlank
     private String fotoProducto;
+
+
+    @OneToOne
+    @JoinColumn(name = "tipoproducto")
+    private TipoProducto tipoProducto;
+
+
+
 
 
     public Producto() {
     }
 
-    public Producto(String nombre, String fotoProducto) {
+    public Producto(String nombre, String fotoProducto, TipoProducto tipoProducto) {
         this.nombre = nombre;
         this.fotoProducto=fotoProducto;
-        //this.tipoProducto= tipoProducto;
+        this.tipoProducto= tipoProducto;
     }
 
-    //public Producto(String nombre, TipoProducto tipoProducto) {
-      //  this.nombre = nombre;
-        // this.tipoProducto= tipoProducto;
-    //}
+
 
     public int getId() {
         return id;
@@ -51,19 +54,19 @@ public class Producto {
         this.nombre = nombre;
     }
 
-    //public TipoProducto getTipoProducto() {
-    //   return tipoProducto;
-    //}
-
-    // public void setTipoProducto(TipoProducto tipoProducto) {
-    //    this.tipoProducto = tipoProducto;
-    // }
-
     public String getFotoProducto() {
         return fotoProducto;
     }
 
     public void setFotoProducto(String fotoProducto) {
         this.fotoProducto = fotoProducto;
+    }
+
+    public TipoProducto getTipoProducto() {
+        return tipoProducto;
+    }
+
+    public void setTipoProducto(TipoProducto tipoProducto) {
+        this.tipoProducto = tipoProducto;
     }
 }

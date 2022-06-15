@@ -1,8 +1,8 @@
 package co.edu.cue.subastasYa.dto;
 
-import co.edu.cue.subastasYa.entity.Ciudad;
-import co.edu.cue.subastasYa.entity.Departamento;
-import co.edu.cue.subastasYa.entity.Estado;
+import co.edu.cue.subastasYa.enums.Ciudad;
+import co.edu.cue.subastasYa.enums.Departamento;
+import co.edu.cue.subastasYa.enums.Estado;
 import co.edu.cue.subastasYa.entity.Producto;
 import co.edu.cue.subastasYa.security.entity.Usuario;
 
@@ -15,9 +15,7 @@ public class AnuncioDto {
 
     @NotBlank
     private String descripcion;
-    //@NotBlank
     private Date fecha_inicio;
-    //@NotBlank
     private Date fecha_fin;
 
     @OneToOne
@@ -25,12 +23,12 @@ public class AnuncioDto {
     private Usuario usuario;
 
 
-
     private Estado estado;
 
     private Ciudad ciudad;
 
     private Departamento departamento;
+
     @NotBlank
     private Double valor;
 

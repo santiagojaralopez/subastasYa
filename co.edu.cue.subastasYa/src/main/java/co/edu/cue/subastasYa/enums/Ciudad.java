@@ -1,4 +1,4 @@
-package co.edu.cue.subastasYa.entity;
+package co.edu.cue.subastasYa.enums;
 
 public enum Ciudad {
     BOGOTA, MEDELLIN, CALI, BARRANQUILLA, CARTAGENA, SOLEDAD, CUCUTA, IBAGUE, SOACHA, VILLAVICENCIO,
