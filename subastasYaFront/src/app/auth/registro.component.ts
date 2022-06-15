@@ -58,7 +58,7 @@ export class RegistroComponent implements OnInit {
 
   onRegister(): void {
     // tslint:disable-next-line: max-line-length
-    
+  
     this.nuevoUsuario = new NuevoUsuario(this.nombres, this.apellidos, this.tipoDocumento, this.numeroDocumento, this.fechaNacimiento, this.email, this.nombreUsuario, this.password, this.departamento, this.direccion);
 
     console.log(this.nuevoUsuario);

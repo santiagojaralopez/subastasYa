@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Producto } from '../models/producto';
 import { AnuncioService } from '../service/anuncio.service';
-import { ToastrService } from 'ngx-toastr';
 import { TokenService } from '../service/token.service';
 import { Anuncio } from '../models/anuncio';
 
