@@ -64,6 +64,9 @@ export class CreateAnuncioComponent implements OnInit {
     this.ciudadService.lista().subscribe(
       data => this.ciudades = data
     )
+    this.tipoProductoService.lista().subscribe(
+      data => this.tipos = data
+    )
     
   }
 
