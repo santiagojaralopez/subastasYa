@@ -77,6 +77,7 @@ public class UsuarioController {
         if (usuarioService.existsByEmail(nuevoUsuario.getEmail()))
             return new ResponseEntity(new Mensaje("Ese Email ya está registrado"), HttpStatus.BAD_REQUEST);
 
+
         Usuario usuario = new Usuario(nuevoUsuario.getNombres(), nuevoUsuario.getApellidos(), nuevoUsuario.getNumeroDocumento(), nuevoUsuario.getFechaNacimiento(),nuevoUsuario.getDireccion(), EstadoUsuario.HABILITADO, nuevoUsuario.getTipoDocumento(), nuevoUsuario.getNombreUsuario(), nuevoUsuario.getEmail(), nuevoUsuario.getPassword());
 
         Set<Rol> roles = new HashSet<>();
@@ -149,4 +150,6 @@ public class UsuarioController {
         usuarioService.save(usuario1);
         return new ResponseEntity(new Mensaje("El usuario se ha dado de baja"), HttpStatus.OK);
     }
+
+
 }

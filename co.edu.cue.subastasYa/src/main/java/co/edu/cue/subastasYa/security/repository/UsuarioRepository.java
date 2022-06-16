@@ -25,6 +25,7 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Integer> {
             @Param("estadoUsuario") EstadoUsuario estadoUsuario
     );
 
-
+    @Query("SELECT c.valor FROM Configuracion c WHERE c.nombre= 'edad'")
+    int buscar();
 
 }
