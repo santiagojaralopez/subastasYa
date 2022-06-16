@@ -1,25 +1,24 @@
-import { EstadoUsuario } from "./estadoUsuario";
-import { RoleNombre } from "./RolNombre";
-import { TipoDocumento } from "./tipoDocumento";
+import { EstadoUsuario } from './estadoUsuario';
+import { RoleNombre } from './RolNombre';
 
-export class Usuario{
-    id?: number = 0;
-    nombre: string = '';
-    apellido: string = '';
-    numerodoc: string = '';
+export class Usuario {
+    id?: number;
+    nombre: string;
+    apellido = '';
+    numerodoc = '';
     fechanacto: Date | undefined;
-    direccion: string = '';
+    direccion = '';
     estadoUsuario: EstadoUsuario | undefined;
-    tipoDocumento: TipoDocumento | undefined;
-    nombreUsuario: string = '';
-    email: string = '';
-    password: string = '';
+    tipoDocumento: string | undefined;
+    nombreUsuario = '';
+    email = '';
+    password = '';
     roles: RoleNombre[] = [];
 
-    constructor(nombre: string,apellido: string,numerodoc: string,
-        fechanacto: Date,direccion: string,estadoUsuario: EstadoUsuario,
-        tipoDocumento: TipoDocumento,nombreUsuario: string,email: string,
-        password: string, roles: RoleNombre[]){
+    constructor(nombre: string, apellido: string, numerodoc: string,
+                fechanacto: Date, direccion: string, estadoUsuario: EstadoUsuario,
+                tipoDocumento: string, nombreUsuario: string, email: string,
+                password: string, roles: RoleNombre[]) {
             this.nombre = nombre;
             this.apellido = apellido;
             this.numerodoc = numerodoc;
@@ -32,5 +31,4 @@ export class Usuario{
             this.password = password;
             this.roles = roles;
         }
-    
 }

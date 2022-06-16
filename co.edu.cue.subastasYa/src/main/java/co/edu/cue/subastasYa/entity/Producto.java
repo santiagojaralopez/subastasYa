@@ -1,7 +1,10 @@
 package co.edu.cue.subastasYa.entity;
 
+import co.edu.cue.subastasYa.security.entity.Usuario;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 @Entity
 public class Producto {
@@ -10,15 +13,22 @@ public class Producto {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @NotBlank
+    @NotNull
     private String nombre;
 
-    //@NotBlank
+    //@NotNull
     //private TipoProducto tipoProducto;
 
-
     @NotBlank
-    private String fotoProducto;
+    private String foto_Producto;
+
+
+    @OneToOne
+    @JoinColumn(name = "tipoproducto")
+    private TipoProducto tipoProducto;
+
+
+
 
 
     public Producto() {
@@ -26,14 +36,9 @@ public class Producto {
 
     public Producto(String nombre, String fotoProducto) {
         this.nombre = nombre;
-        this.fotoProducto=fotoProducto;
+        this.foto_Producto=fotoProducto;
         //this.tipoProducto= tipoProducto;
     }
-
-    //public Producto(String nombre, TipoProducto tipoProducto) {
-      //  this.nombre = nombre;
-        // this.tipoProducto= tipoProducto;
-    //}
 
     public int getId() {
         return id;
@@ -44,26 +49,26 @@ public class Producto {
     }
 
     public String getNombre() {
-       return nombre;
+        return nombre;
     }
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
 
-    //public TipoProducto getTipoProducto() {
-    //   return tipoProducto;
-    //}
-
-    // public void setTipoProducto(TipoProducto tipoProducto) {
-    //    this.tipoProducto = tipoProducto;
-    // }
-
-    public String getFotoProducto() {
-        return fotoProducto;
+    public String getFoto_Producto() {
+        return foto_Producto;
     }
 
-    public void setFotoProducto(String fotoProducto) {
-        this.fotoProducto = fotoProducto;
+    public void setFoto_Producto(String foto_Producto) {
+        this.foto_Producto = foto_Producto;
+    }
+
+    public TipoProducto getTipoProducto() {
+        return tipoProducto;
+    }
+
+    public void setTipoProducto(TipoProducto tipoProducto) {
+        this.tipoProducto = tipoProducto;
     }
 }

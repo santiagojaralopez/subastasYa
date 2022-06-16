@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Producto } from '../models/producto';
 import { AnuncioService } from '../service/anuncio.service';
-import { ToastrService } from 'ngx-toastr';
 import { TokenService } from '../service/token.service';
 import { Anuncio } from '../models/anuncio';
 
@@ -17,14 +15,13 @@ export class ListaProductoComponent implements OnInit {
 
   constructor(
     private anuncioService: AnuncioService,
-    private toastr: ToastrService,
     private tokenService: TokenService
   ) { }
 
   ngOnInit() {
     this.anuncioService.lista().subscribe(
       data => this.anuncios = data
-    )
+    );
     console.log(this.anuncios);
     this.roles = this.tokenService.getAuthorities();
     this.roles.forEach((rol) => {

@@ -15,7 +15,6 @@ export class NuevoProductoComponent implements OnInit {
 
   constructor(
     private productoService: ProductoService,
-    private toastr: ToastrService,
     private router: Router
     ) { }
 

@@ -3,7 +3,6 @@ package co.edu.cue.subastasYa.controller;
 import co.edu.cue.subastasYa.dto.Mensaje;
 import co.edu.cue.subastasYa.dto.UsuariosDto;
 import co.edu.cue.subastasYa.entity.Anuncio;
-import co.edu.cue.subastasYa.entity.Estado;
 import co.edu.cue.subastasYa.security.dto.NuevoUsuario;
 import co.edu.cue.subastasYa.security.entity.Rol;
 import co.edu.cue.subastasYa.security.entity.Usuario;

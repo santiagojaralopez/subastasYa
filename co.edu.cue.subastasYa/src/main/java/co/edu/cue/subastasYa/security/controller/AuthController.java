@@ -31,6 +31,7 @@ import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 
 @RestController
@@ -84,7 +85,12 @@ public class AuthController {
     @PostMapping("/login")
     public ResponseEntity<JwtDto> login(@Valid @RequestBody LoginUsuario loginUsuario, BindingResult bindingResult) {
         if (bindingResult.hasErrors())
-            return new ResponseEntity(new Mensaje("Campos mal puestos"), HttpStatus.BAD_REQUEST);
+            return new ResponseEntity(new Mensaje("Campos mal diligenciados"), HttpStatus.BAD_REQUEST);
+
+        Optional<Usuario> usuario = usuarioService.getByNombreUsuario(loginUsuario.getNombreUsuario());
+
+        if (usuario.get().getEstadoUsuario() == EstadoUsuario.BLOQUEADO)
+            return new ResponseEntity(new Mensaje("No puede iniciar sesión, este usuario se encuentra bloqueado"), HttpStatus.BAD_REQUEST);
 
         Authentication authentication =
                 authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(

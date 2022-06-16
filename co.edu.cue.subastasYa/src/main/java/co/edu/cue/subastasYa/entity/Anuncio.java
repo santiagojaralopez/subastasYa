@@ -1,60 +1,62 @@
 package co.edu.cue.subastasYa.entity;
 
+import co.edu.cue.subastasYa.enums.Ciudad;
+import co.edu.cue.subastasYa.enums.Estado;
 import co.edu.cue.subastasYa.security.entity.Usuario;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 @Entity
 public class Anuncio {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @NotBlank
     private int id_anuncio;
 
-
-    @NotBlank
+    @NotNull
     private String descripcion;
-    //@NotBlank
+
+    //@NotNull
     private Date fecha_inicio;
-    //@NotBlank
+
+    //@NotNull
     private Date fecha_fin;
 
     @OneToOne
     @JoinColumn(name = "usuario_id")
-    @NotBlank
+
+    @NotNull
     private Usuario usuario;
 
 
-    @NotBlank
+    @NotNull
     private Estado estado;
-    @NotBlank
+
+    @ManyToOne
+    @JoinColumn(name = "ciudad")
+    @NotNull
     private Ciudad ciudad;
-    @NotBlank
-    private Departamento departamento;
-    @NotBlank
+
+    @NotNull
     private Double valor;
 
 
     @OneToOne
     @JoinColumn(name = "producto_id")
-    @NotBlank
     private Producto producto;
 
 
     public Anuncio() {
     }
 
-    public Anuncio(String descripcion, Date fecha_inicio, Date fecha_fin, Usuario usuario, Estado estado, Ciudad ciudad, Departamento departamento, Double valor, Producto producto) {
+    public Anuncio(String descripcion, Date fecha_inicio, Date fecha_fin, Usuario usuario, Estado estado, Ciudad ciudad, Double valor, Producto producto) {
         this.descripcion = descripcion;
         this.fecha_inicio = fecha_inicio;
         this.fecha_fin = fecha_fin;
         this.usuario = usuario;
         this.estado = estado;
         this.ciudad = ciudad;
-        this.departamento = departamento;
         this.valor = valor;
         this.producto = producto;
     }
@@ -113,14 +115,6 @@ public class Anuncio {
 
     public void setCiudad(Ciudad ciudad) {
         this.ciudad = ciudad;
-    }
-
-    public Departamento getDepartamento() {
-        return departamento;
-    }
-
-    public void setDepartamento(Departamento departamento) {
-        this.departamento = departamento;
     }
 
     public Double getValor() {
