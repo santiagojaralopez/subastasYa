@@ -1,7 +1,7 @@
 package co.edu.cue.subastasYa.controller;
 
 import co.edu.cue.subastasYa.entity.Anuncio;
-import co.edu.cue.subastasYa.entity.Ciudad;
+import co.edu.cue.subastasYa.enums.Ciudad;
 import co.edu.cue.subastasYa.service.CiudadService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;

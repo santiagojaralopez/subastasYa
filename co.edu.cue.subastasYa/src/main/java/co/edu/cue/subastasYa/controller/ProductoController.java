@@ -55,7 +55,6 @@ public class ProductoController {
             return new ResponseEntity(new Mensaje("la foto es obligatoria"), HttpStatus.BAD_REQUEST);
 
         Producto producto = new Producto(productoDto.getNombre(),productoDto.getFotoProducto());
-        System.out.println("AAAAAAAAAAAAA "+producto.getId());
 
         productoService.save(producto);
         return new ResponseEntity(new Mensaje("producto creado"), HttpStatus.OK);
@@ -78,7 +77,6 @@ public class ProductoController {
         return new ResponseEntity(new Mensaje("producto actualizado"), HttpStatus.OK);
     }
 
-
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<?> delete(@PathVariable("id")int id){
         if(!productoService.existsById(id))
@@ -86,6 +84,4 @@ public class ProductoController {
         productoService.delete(id);
         return new ResponseEntity(new Mensaje("producto eliminado"), HttpStatus.OK);
     }
-
-
 }

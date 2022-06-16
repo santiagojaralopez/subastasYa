@@ -1,7 +1,7 @@
 package co.edu.cue.subastasYa.service;
 
 import co.edu.cue.subastasYa.entity.Anuncio;
-import co.edu.cue.subastasYa.entity.Ciudad;
+import co.edu.cue.subastasYa.enums.Ciudad;
 import co.edu.cue.subastasYa.repository.CiudadRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

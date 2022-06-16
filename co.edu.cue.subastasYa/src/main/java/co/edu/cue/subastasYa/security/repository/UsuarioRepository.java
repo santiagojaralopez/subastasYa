@@ -1,7 +1,6 @@
 package co.edu.cue.subastasYa.security.repository;
 
 import co.edu.cue.subastasYa.entity.Anuncio;
-import co.edu.cue.subastasYa.entity.Estado;
 import co.edu.cue.subastasYa.security.entity.Usuario;
 import co.edu.cue.subastasYa.security.enums.EstadoUsuario;
 import org.springframework.data.jpa.repository.JpaRepository;

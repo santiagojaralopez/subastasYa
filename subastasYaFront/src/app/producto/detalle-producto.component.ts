@@ -26,14 +26,6 @@ export class DetalleProductoComponent implements OnInit {
         this.anuncio = data;
       },
       err => {
-<<<<<<< HEAD
-        Swal.fire(
-          'Error',
-          err.error.mensaje,
-          'error'
-        );
-=======
->>>>>>> santiago-gallego
         this.volver();
       }
     );
