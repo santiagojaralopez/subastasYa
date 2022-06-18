@@ -106,10 +106,6 @@ public class AnuncioController {
                 return new ResponseEntity(new Mensaje("el nombre es obligatorio"), HttpStatus.BAD_REQUEST);
             if (anuncioDto.getValor()==0)
                 return new ResponseEntity(new Mensaje("el precio es obligatorio y debe ser mayor a 0"), HttpStatus.BAD_REQUEST);
-            if (anuncioDto.getUsuario()==null)
-                return new ResponseEntity(new Mensaje("el usuario es obligatorio"), HttpStatus.BAD_REQUEST);
-            if (anuncioDto.getEstado()==null)
-                return new ResponseEntity(new Mensaje("el estado es obligatorio"), HttpStatus.BAD_REQUEST);
             if (anuncioDto.getCiudad()==null)
                 return new ResponseEntity(new Mensaje("la ciudad es obligatorio"), HttpStatus.BAD_REQUEST);
             if (anuncioDto.getDepartamento()==null)
