@@ -1,6 +1,5 @@
 package co.edu.cue.subastasYa.security.service;
 
-import co.edu.cue.subastasYa.entity.Anuncio;
 import co.edu.cue.subastasYa.security.entity.Usuario;
 import co.edu.cue.subastasYa.security.enums.EstadoUsuario;
 import co.edu.cue.subastasYa.security.repository.UsuarioRepository;

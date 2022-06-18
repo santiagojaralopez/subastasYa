@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import Swal from 'sweetalert2';
-import { NuevoUsuario } from '../models/nuevo-usuario';
 import { UpdateUsuarioDTO } from '../models/update-user-dto';
 import { Usuario } from '../models/usuario';
 import { AuthService } from '../service/auth.service';
 import { TokenService } from '../service/token.service';
 import { UsuarioService } from '../service/usuario.service';
+
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-user-edit-profile',
@@ -14,23 +14,12 @@ import { UsuarioService } from '../service/usuario.service';
   styleUrls: ['./user-edit-profile.component.css']
 })
 export class UserEditProfileComponent implements OnInit {
-  updateUsuario: UpdateUsuarioDTO;
+  updateUsuario: UpdateUsuarioDTO = new UpdateUsuarioDTO();
 
-  nombres: string;
-  apellidos: string;
-  nombreUsuario: string;
-  email: string;
-  tipoDocumento: string;
-  numeroDocumento: string;
-  fechaNacimiento: Date;
-  departamento: string;
-  direccion: string;
+  userName: string;
 
   selectedDocType: any;
   selectedDepartment: any;
-
-  usuario: Usuario;
-  usuarios: Usuario[] = [];
 
   docTypes: string[] = ['Cedula de Ciudadania', 'Pasaporte', 'Cedula de Extranjeria'];
 
@@ -47,25 +36,7 @@ export class UserEditProfileComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.usuarioService.lista().subscribe(
-      data => {
-        this.usuarios = data;
-      }
-    );
-    setTimeout(() => {
-      this.cargarUsuario();
-      }, 100);
-  }
-
-  findUserByUserName(userName: string) {
-    let user: Usuario = null;
-
-    this.usuarios.forEach(element => {
-      if (element.nombreUsuario === userName) {
-        user = element;
-      }
-    });
-    return user;
+    this.cargarUsuario();
   }
 
   volver(): void {
@@ -73,26 +44,41 @@ export class UserEditProfileComponent implements OnInit {
   }
 
   cargarUsuario() {
-    let user = this.findUserByUserName(this.tokenService.getUserName());
-    this.usuario = user;
-    console.log(this.usuario);
+    this.userName = this.tokenService.getUserName();
+
+    this.usuarioService.getUsuarioByUserName(this.userName).subscribe(res => {
+      this.updateUsuario = res;
+    });
   }
 
   onSelectDocType(value: any): void {
-    this.tipoDocumento = value;
+    this.updateUsuario.tipoDocumento = value;
   }
 
   onSelectDepartment(value: any): void {
-    this.departamento = value;
+    this.updateUsuario.departamento = value;
   }
 
   onUpdate(): void {
-    // tslint:disable-next-line: max-line-length
-    this.updateUsuario = new UpdateUsuarioDTO(this.nombres, this.apellidos, this.numeroDocumento, this.fechaNacimiento, this.direccion, this.numeroDocumento, this.nombreUsuario, this.email);
-
     console.log(this.updateUsuario);
-
-    
+    this.usuarioService.updateUser(this.userName, this.updateUsuario).subscribe(
+      data => {
+        Swal.fire(
+          'Éxito',
+          'Su información ha sido actualizada con éxito',
+          'success'
+        );
+        this.tokenService.setUserName(this.updateUsuario.nombreUsuario);
+        window.location.reload();
+      },
+      err => {
+        Swal.fire(
+          'Error',
+          err.error.mensaje,
+          'error'
+        );
+      }
+    );
   }
 
 }

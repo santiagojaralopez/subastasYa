@@ -57,7 +57,18 @@ public class AuthController {
         if (usuarioService.existsByEmail(nuevoUsuario.getEmail()))
             return new ResponseEntity(new Mensaje("Ese Email ya está registrado"), HttpStatus.BAD_REQUEST);
 
-        Usuario usuario = new Usuario(nuevoUsuario.getNombres(), nuevoUsuario.getApellidos(), nuevoUsuario.getNumeroDocumento(), nuevoUsuario.getFechaNacimiento(), nuevoUsuario.getDireccion(), EstadoUsuario.HABILITADO, nuevoUsuario.getTipoDocumento(), nuevoUsuario.getNombreUsuario(), nuevoUsuario.getEmail(), passwordEncoder.encode(nuevoUsuario.getPassword()));
+        Usuario usuario = new Usuario();
+        usuario.setNombre(nuevoUsuario.getNombres());
+        usuario.setApellido(nuevoUsuario.getApellidos());
+        usuario.setNombreUsuario(nuevoUsuario.getNombreUsuario());
+        usuario.setEmail(nuevoUsuario.getEmail());
+        usuario.setTipoDocumento(nuevoUsuario.getTipoDocumento());
+        usuario.setNumerodoc(nuevoUsuario.getNumeroDocumento());
+        usuario.setFechanacto(nuevoUsuario.getFechaNacimiento());
+        usuario.setDepartamento(nuevoUsuario.getDepartamento());
+        usuario.setDireccion(nuevoUsuario.getDireccion());
+        usuario.setEstadoUsuario(EstadoUsuario.HABILITADO);
+        usuario.setPassword(passwordEncoder.encode(nuevoUsuario.getPassword()));
 
         Set<Rol> roles = new HashSet<>();
         roles.add(rolService.getByRolNombre(RolNombre.ROLE_USER).get());
@@ -79,7 +90,10 @@ public class AuthController {
         Optional<Usuario> usuario = usuarioService.getByNombreUsuario(loginUsuario.getNombreUsuario());
 
         if (usuario.get().getEstadoUsuario() == EstadoUsuario.BLOQUEADO)
-            return new ResponseEntity(new Mensaje("No puede iniciar sesión, este usuario se encuentra bloqueado"), HttpStatus.BAD_REQUEST);
+            return new ResponseEntity(new Mensaje("No puedes iniciar sesión, tu cuenta se encuentra bloqueada. Por favor comunícate a subastasya@gmail.com para solucionar este inconveniente."), HttpStatus.BAD_REQUEST);
+
+        if (usuario.get().getEstadoUsuario() == EstadoUsuario.DESHABILITADO)
+            return new ResponseEntity(new Mensaje("Hemos notado que te diste de baja. Por favor comunícate a subastasya@gmail.com para recuperar tu usuario."), HttpStatus.BAD_REQUEST);
 
         Authentication authentication =
                 authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(

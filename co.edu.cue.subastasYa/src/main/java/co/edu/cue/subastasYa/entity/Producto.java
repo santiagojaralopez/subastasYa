@@ -22,14 +22,9 @@ public class Producto {
     @NotBlank
     private String foto_Producto;
 
-
     @OneToOne
     @JoinColumn(name = "tipoproducto")
     private TipoProducto tipoProducto;
-
-
-
-
 
     public Producto() {
     }
