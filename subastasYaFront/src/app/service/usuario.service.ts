@@ -11,7 +11,7 @@ import { UpdateUsuarioDTO } from '../models/update-user-dto';
 })
 export class UsuarioService {
 
-  private usuarioURL = 'http://localhost:8080/usuario';
+  private usuarioURL = 'http://localhost:8080/usuario/';
   private httpHeaders = new HttpHeaders({'Content-Type': 'application/json'});
 
   constructor(private http: HttpClient){}

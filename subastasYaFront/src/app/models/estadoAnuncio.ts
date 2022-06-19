@@ -1,3 +1,10 @@
-export enum EstadoAnuncio{
-    BLOQUEADO, ACTIVO, INACTIVO
+export class EstadoAnuncio{
+
+    id?: number;
+    nombre: string;
+
+    constructor(nombre: string){
+        this.nombre = nombre;
+    }
+    //BLOQUEADO, ACTIVO, INACTIVO
 }

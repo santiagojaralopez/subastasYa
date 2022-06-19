@@ -16,49 +16,49 @@ public class ProductoDto {
     private String nombre;
 
     @OneToOne
-    @JoinColumn(name = "tipoProducto_id")
-    private TipoProducto tipoProducto;
+    @JoinColumn(name = "tipoproducto")
+    private TipoProducto tipoproducto;
 
 
     @NotBlank
-    private String fotoProducto;
-
-
+    private String fotoproducto;
 
 
     public ProductoDto() {
     }
 
-    public ProductoDto(@NotNull String nombre, @NotNull String fotoProducto) {
+    public ProductoDto(@NotNull String nombre, @NotNull String fotoProducto, TipoProducto tipoProducto) {
 
         this.nombre = nombre;
-        this.fotoProducto = fotoProducto;
-        //this.tipoProducto= tipoProducto;
+        this.fotoproducto = fotoProducto;
+        this.tipoproducto = tipoProducto;
     }
 
-
-
     public String getNombre() {
-       return nombre;
+        return nombre;
     }
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
 
-    public String getFotoProducto() {
-        return fotoProducto;
+    public TipoProducto getTipoproducto() {
+        return tipoproducto;
     }
 
-    public void setFotoProducto(String fotoProducto) {
-        this.fotoProducto = fotoProducto;
+    public void setTipoproducto(TipoProducto tipoproducto) {
+        this.tipoproducto = tipoproducto;
     }
 
-    public TipoProducto getTipoProducto() {
-        return tipoProducto;
+    public String getFotoproducto() {
+        return fotoproducto;
     }
 
-    public void setTipoProducto(TipoProducto tipoProducto) {
-       this.tipoProducto = tipoProducto;
+    public void setFotoproducto(String fotoproducto) {
+        this.fotoproducto = fotoproducto;
     }
 }
+
+
+
+

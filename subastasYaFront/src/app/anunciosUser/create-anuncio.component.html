@@ -28,8 +28,8 @@
                         </div>
                         <div class="align-items-center form-group  col">
                             <label for="ciudad">Ciudad</label>
-                            <select class="selectBox form-select border border-opacity-90 rounded" name="ciudad">
-                                <option *ngFor='let city of ciudades' [value]="ciudad">{{city.nombre}}</option>
+                            <select class="selectBox form-select border border-opacity-90 rounded" name="ciudad" [(ngModel)]="selectedCity" (ngModelChange)="onSelectCity($event)">
+                                <option *ngFor='let city of ciudades' [ngValue]="city">{{city.nombre}}</option>
                             </select>
                         </div>
                         <div class="form-group  col">

@@ -19,8 +19,8 @@ public class Producto {
     //@NotNull
     //private TipoProducto tipoProducto;
 
-    @NotBlank
-    private String foto_Producto;
+    @NotNull
+    private String foto_producto;
 
     @OneToOne
     @JoinColumn(name = "tipoproducto")
@@ -31,7 +31,7 @@ public class Producto {
 
     public Producto(String nombre, String fotoProducto, TipoProducto tipoProducto) {
         this.nombre = nombre;
-        this.foto_Producto=fotoProducto;
+        this.foto_producto=fotoProducto;
         this.tipoproducto= tipoProducto;
     }
 
@@ -51,12 +51,12 @@ public class Producto {
         this.nombre = nombre;
     }
 
-    public String getFoto_Producto() {
-        return foto_Producto;
+    public String getFoto_producto() {
+        return foto_producto;
     }
 
-    public void setFoto_Producto(String foto_Producto) {
-        this.foto_Producto = foto_Producto;
+    public void setFoto_producto(String foto_producto) {
+        this.foto_producto = foto_producto;
     }
 
     public TipoProducto getTipoproducto() {

@@ -29,6 +29,8 @@ public class Anuncio {
     private Usuario usuario;
 
 
+    @ManyToOne
+    @JoinColumn(name = "estado")
     @NotNull
     private Estado estado;
 

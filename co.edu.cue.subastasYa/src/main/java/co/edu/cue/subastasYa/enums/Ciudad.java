@@ -15,7 +15,7 @@ public class Ciudad {
 
     @ManyToOne
     @JoinColumn(name = "departamentoid")
-    private Departamento departamento;
+    private Departamento departamentoid;
 
     public Ciudad() {
     }
@@ -23,7 +23,7 @@ public class Ciudad {
     public Ciudad(int id, String nombre, Departamento departamento) {
         this.id_ciudad = id;
         this.nombre = nombre;
-        this.departamento = departamento;
+        this.departamentoid = departamento;
     }
 
     public int getId() {
@@ -42,12 +42,20 @@ public class Ciudad {
         this.nombre = nombre;
     }
 
-    public Departamento getDepartamento() {
-        return departamento;
+    public int getId_ciudad() {
+        return id_ciudad;
     }
 
-    public void setDepartamento(Departamento departamento) {
-        this.departamento = departamento;
+    public void setId_ciudad(int id_ciudad) {
+        this.id_ciudad = id_ciudad;
+    }
+
+    public Departamento getDepartamentoid() {
+        return departamentoid;
+    }
+
+    public void setDepartamentoid(Departamento departamentoid) {
+        this.departamentoid = departamentoid;
     }
 
     /*

@@ -27,8 +27,6 @@ public class AnuncioDto {
 
     private Ciudad ciudad;
 
-    private Departamento departamento;
-
     @NotBlank
     private Double valor;
 
@@ -41,14 +39,13 @@ public class AnuncioDto {
     }
 
 
-    public AnuncioDto(@NotBlank String descripcion,Date fecha_inicio,Date fecha_fin,@NotBlank Usuario usuario,@NotBlank Estado estado,@NotBlank Ciudad ciudad,@NotBlank Departamento departamento,@NotBlank Double valor,@NotBlank Producto producto) {
+    public AnuncioDto(@NotBlank String descripcion,Date fecha_inicio,Date fecha_fin,@NotBlank Usuario usuario,@NotBlank Estado estado,@NotBlank Ciudad ciudad,@NotBlank Double valor,@NotBlank Producto producto) {
         this.descripcion = descripcion;
         this.fecha_inicio = fecha_inicio;
         this.fecha_fin = fecha_fin;
         this.usuario = usuario;
         this.estado = estado;
         this.ciudad = ciudad;
-        this.departamento = departamento;
         this.valor = valor;
         this.producto = producto;
     }
@@ -100,14 +97,6 @@ public class AnuncioDto {
 
     public void setCiudad(Ciudad ciudad) {
         this.ciudad = ciudad;
-    }
-
-    public Departamento getDepartamento() {
-        return departamento;
-    }
-
-    public void setDepartamento(Departamento departamento) {
-        this.departamento = departamento;
     }
 
     public Double getValor() {
