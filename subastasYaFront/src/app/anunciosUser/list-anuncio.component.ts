@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Anuncio } from '../models/anuncio';
+import { AnuncioService } from '../service/anuncio.service';
+import { TokenService } from '../service/token.service';
 
 @Component({
   selector: 'app-list-anuncio',
@@ -7,9 +10,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListAnuncioComponent implements OnInit {
 
-  constructor() { }
+  anuncios: Anuncio[] = [];
+
+  constructor(
+    private anuncioService: AnuncioService,
+    private tokenService: TokenService
+  ) { }
 
   ngOnInit() {
+    let username = this.tokenService.getUserName();
+    this.anuncioService.listByUser(username).subscribe(
+      data => this.anuncios = data
+    );
   }
 
 }

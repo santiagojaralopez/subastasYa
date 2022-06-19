@@ -7,6 +7,7 @@ import co.edu.cue.subastasYa.entity.Anuncio;
 import co.edu.cue.subastasYa.enums.Estado;
 import co.edu.cue.subastasYa.entity.TipoProducto;
 import co.edu.cue.subastasYa.entity.Producto;
+import co.edu.cue.subastasYa.security.entity.Usuario;
 import co.edu.cue.subastasYa.service.AnuncioService;
 import co.edu.cue.subastasYa.service.EstadoAnuncioService;
 import co.edu.cue.subastasYa.service.ProductoService;
@@ -52,9 +53,10 @@ public class AnuncioController {
     }
 
 
-    @GetMapping("/listaAnunciosUser")
-    public List<Anuncio> listAnuncioUser(@RequestBody AnuncioDto anuncioDto){
-        List<Anuncio> list = anuncioService.findAnunciosByUsuario(anuncioDto.getUsuario());
+    @GetMapping("/listaAnunciosUser/{username}")
+    public List<Anuncio> listAnuncioUser(@PathVariable("username") String username){
+        System.out.println("Usuariooooooo: "+username);
+        List<Anuncio> list = anuncioService.findAnunciosByUsuario(username);
         System.out.println("mirame, soy los anuncios del usuario");
         return list;
     }
@@ -109,7 +111,7 @@ public class AnuncioController {
         Producto producto = new Producto(anuncioDto.getProducto().getNombre(),anuncioDto.getProducto().getFoto_producto(),anuncioDto.getProducto().getTipoproducto());
         productoService.save(producto);
 
-        if (listAnuncioUser(anuncioDto).size() < anuncioService.cantidadAnuncios()) {
+        if (listAnuncioUser(anuncioDto.getUsuario().getNombreUsuario()).size() < anuncioService.cantidadAnuncios()) {
             System.out.println(anuncioDto.getUsuario().toString());
 
             if(StringUtils.isBlank(anuncioDto.getDescripcion()))

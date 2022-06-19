@@ -54,8 +54,8 @@ public class AnuncioService {
         return anuncioRepository.findAnuncioByUsuario(usuario);
     }
 
-    public List<Anuncio> findAnunciosByUsuario(Usuario usuario){
-        return anuncioRepository.findListaAnunciosByUsuario(usuario);
+    public List<Anuncio> findAnunciosByUsuario(String username){
+        return anuncioRepository.findListaAnunciosByUsuario(username);
     }
 
 
