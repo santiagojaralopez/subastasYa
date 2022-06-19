@@ -143,7 +143,7 @@ public class AnuncioController {
 
 
             if (existeTipoProducto!=null){
-                Anuncio anuncio = new Anuncio(anuncioDto.getDescripcion(), date, date, anuncioDto.getUsuario(),anuncioDto.getEstado(), anuncioDto.getCiudad(), anuncioDto.getValor(), producto);
+                Anuncio anuncio = new Anuncio(anuncioDto.getDescripcion(), date, date, anuncioDto.getUsuario(),estadoAnuncioService.getEstadoActivo(), anuncioDto.getCiudad(), anuncioDto.getValor(), producto);
                 anuncioService.save(anuncio);
                 return new ResponseEntity(new Mensaje("anuncio creado"), HttpStatus.OK);
               } else
