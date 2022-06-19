@@ -24,7 +24,7 @@ const routes: Routes = [
   { path: 'registro', component: RegistroComponent },
   { path: 'send-email', component: SendEmailComponent },
   { path: 'change-password/:tokenPassword', component: ChangePasswordComponent },
-  { path: 'lista', component: ListaProductoComponent, canActivate: [guard], data: {expectedRole: ['admin', 'user']} },
+  { path: 'lista', component: ListaProductoComponent, canActivate: [guard], data: {expectedRole: ['admin']} },
   { path: 'user/edit', component: UserEditProfileComponent, canActivate: [guard], data: {expectedRole: ['admin', 'user']} },
   { path: 'anuncio/:id', component: DetalleProductoComponent, canActivate: [guard], data: {expectedRole: ['admin', 'user']} },
   { path: 'list/anuncio', component: ListAnuncioComponent, canActivate: [guard], data: {expectedRole: ['admin', 'user']} },
