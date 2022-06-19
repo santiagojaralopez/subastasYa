@@ -72,6 +72,7 @@ export class CreateAnuncioComponent implements OnInit {
       data => this.tipos = data
     );
     
+    
   }
 
   onSelectType(value: any): void {
