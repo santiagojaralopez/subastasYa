@@ -14,7 +14,7 @@ export class TipoProductoService {
   constructor(private http: HttpClient){}
 
   lista(): Observable<TipoProducto[]> {
-    return this.http.get(this.tipoProductoURL + 'lista').pipe(
+    return this.http.get(this.tipoProductoURL + 'TipoProducto').pipe(
       map(response => response as TipoProducto[])
     );
   }

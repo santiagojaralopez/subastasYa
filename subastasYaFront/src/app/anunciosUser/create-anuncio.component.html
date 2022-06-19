@@ -21,6 +21,12 @@
                             <input type="text" name="descripcion" id="descripcion" class="selectBox form-control" autocomplete="off" [(ngModel)]="descripcion" required>
                         </div>
                         <div class="align-items-center form-group  col">
+                            <label for="ciudad">Tipo de producto:</label>
+                            <select class="selectBox form-select border border-opacity-90 rounded" name="tipoproducto" [(ngModel)]="selectedTipo" (ngModelChange)="onSelectType($event)">
+                                <option *ngFor='let tipo of tipos' [ngValue]="tipo">{{tipo.nombre_tipo}}</option>
+                            </select>
+                        </div>
+                        <div class="align-items-center form-group  col">
                             <label for="ciudad">Ciudad</label>
                             <select class="selectBox form-select border border-opacity-90 rounded" name="ciudad">
                                 <option *ngFor='let city of ciudades' [value]="ciudad">{{city.nombre}}</option>

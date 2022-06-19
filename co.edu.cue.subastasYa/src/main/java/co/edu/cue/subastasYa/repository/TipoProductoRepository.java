@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface TipoProductoRepository extends JpaRepository<TipoProducto, Integer> {
-    @Query("SELECT t FROM TipoProducto t WHERE t.nombreTipo= :nombreTipo")
+    @Query("SELECT t FROM TipoProducto t WHERE t.nombre_tipo= :nombreTipo")
     TipoProducto findListaTypesProduct(
             @Param("nombreTipo") String nombreTipo);
 }

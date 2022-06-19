@@ -99,6 +99,9 @@ public class AnuncioController {
 
     @PostMapping("/createAnuncio")
     public ResponseEntity<?> create(@RequestBody AnuncioDto anuncioDto){
+        System.out.println("TIPO PRODUCTOOOOOOOOOOOOOOO: "+anuncioDto.getProducto().getTipoproducto());
+        Producto producto = new Producto(anuncioDto.getProducto().getNombre(),anuncioDto.getProducto().getFoto_Producto(),anuncioDto.getProducto().getTipoproducto());
+        productoService.save(producto);
 
         if (listAnuncioUser(anuncioDto).size() < anuncioService.cantidadAnuncios()) {
             System.out.println(anuncioDto.getUsuario().toString());
@@ -125,6 +128,7 @@ public class AnuncioController {
             //TIPOS DE PRODUCTO
             TipoProducto existeTipoProducto = tipoProducto(anuncioDto);
 
+
             if (existeTipoProducto!=null){
                 Anuncio anuncio = new Anuncio(anuncioDto.getDescripcion(), anuncioDto.getFecha_inicio(), dt, anuncioDto.getUsuario(),Estado.ACTIVO, anuncioDto.getCiudad(), anuncioDto.getValor(), anuncioDto.getProducto());
                 anuncioService.save(anuncio);
@@ -136,7 +140,7 @@ public class AnuncioController {
     }
 
     public TipoProducto tipoProducto(AnuncioDto anuncioDto){
-        return tipoProductoService.showTypeExist(anuncioDto.getProducto().getTipoProducto().getNombreTipo());
+        return tipoProductoService.showTypeExist(anuncioDto.getProducto().getTipoproducto().getNombre_tipo());
     }
 
     /*public ResponseEntity tipoProducto(AnuncioDto anuncioDto){

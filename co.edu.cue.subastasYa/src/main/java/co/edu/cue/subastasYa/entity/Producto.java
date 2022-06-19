@@ -24,15 +24,15 @@ public class Producto {
 
     @OneToOne
     @JoinColumn(name = "tipoproducto")
-    private TipoProducto tipoProducto;
+    private TipoProducto tipoproducto;
 
     public Producto() {
     }
 
-    public Producto(String nombre, String fotoProducto) {
+    public Producto(String nombre, String fotoProducto, TipoProducto tipoProducto) {
         this.nombre = nombre;
         this.foto_Producto=fotoProducto;
-        //this.tipoProducto= tipoProducto;
+        this.tipoproducto= tipoProducto;
     }
 
     public int getId() {
@@ -59,11 +59,11 @@ public class Producto {
         this.foto_Producto = foto_Producto;
     }
 
-    public TipoProducto getTipoProducto() {
-        return tipoProducto;
+    public TipoProducto getTipoproducto() {
+        return tipoproducto;
     }
 
-    public void setTipoProducto(TipoProducto tipoProducto) {
-        this.tipoProducto = tipoProducto;
+    public void setTipoproducto(TipoProducto tipoproducto) {
+        this.tipoproducto = tipoproducto;
     }
 }

@@ -25,7 +25,6 @@ public class Anuncio {
 
     @OneToOne
     @JoinColumn(name = "usuario_id")
-
     @NotNull
     private Usuario usuario;
 

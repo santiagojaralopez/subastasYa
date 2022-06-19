@@ -32,6 +32,9 @@ export class CreateAnuncioComponent implements OnInit {
   tipos: TipoProducto[] = [];
 
 
+  selectedTipo: TipoProducto;
+
+
   //atributos anuncio
   descripcion: string;
   fecha_inicio: Date;
@@ -70,6 +73,10 @@ export class CreateAnuncioComponent implements OnInit {
     
   }
 
+  onSelectType(value: any): void {
+    this.tipoProducto = value;
+  }
+
   findUserByUserName(userName: string) {
     let user = null;
     this.usuarios.forEach(element => {
@@ -82,9 +89,13 @@ export class CreateAnuncioComponent implements OnInit {
   }
 
   async onCreate(){
+
+    console.log(this.tipoProducto)
+
+    this.nuevoProducto = new Producto(this.nombreProducto,'foto',this.tipoProducto);
+    
     let user = this.findUserByUserName(this.tokenService.getUserName());
     this.usuario = user;
-    this.nuevoProducto = new Producto(this.nombreProducto,'foto');
     
     this.nuevoAnuncio = new Anuncio(this.descripcion,this.fecha_inicio,this.fecha_fin,this.usuario,this.estado,this.ciudad,this.departamento,this.nuevoProducto,this.valor);
     
@@ -104,7 +115,7 @@ export class CreateAnuncioComponent implements OnInit {
         );
       }
     );
-
+  
   }
 }
 
