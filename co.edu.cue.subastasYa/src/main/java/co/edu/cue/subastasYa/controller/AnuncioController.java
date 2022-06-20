@@ -4,10 +4,8 @@ package co.edu.cue.subastasYa.controller;
 import co.edu.cue.subastasYa.dto.AnuncioDto;
 import co.edu.cue.subastasYa.dto.Mensaje;
 import co.edu.cue.subastasYa.entity.Anuncio;
-import co.edu.cue.subastasYa.enums.Estado;
 import co.edu.cue.subastasYa.entity.TipoProducto;
 import co.edu.cue.subastasYa.entity.Producto;
-import co.edu.cue.subastasYa.security.entity.Usuario;
 import co.edu.cue.subastasYa.service.AnuncioService;
 import co.edu.cue.subastasYa.service.EstadoAnuncioService;
 import co.edu.cue.subastasYa.service.ProductoService;
@@ -19,15 +17,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
-
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
@@ -52,15 +44,13 @@ public class AnuncioController {
         return list;
     }
 
-
     @GetMapping("/listaAnunciosUser/{username}")
-    public List<Anuncio> listAnuncioUser(@PathVariable("username") String username){
-        System.out.println("Usuariooooooo: "+username);
+    public List<Anuncio> listAnuncioUser(@PathVariable("username") String username) {
+        System.out.println("Usuariooooooo: " + username);
         List<Anuncio> list = anuncioService.findAnunciosByUsuario(username);
         System.out.println("mirame, soy los anuncios del usuario");
         return list;
     }
-
 
     //MOSTRAR ANUNCIOS ESTADOS
     @PreAuthorize("hasRole('ADMIN')")
@@ -73,7 +63,6 @@ public class AnuncioController {
             return null;
     }
 
-
     @GetMapping("/listaAnuncioActivos")
     public List<Anuncio> listActivos(){
         List<Anuncio> list = anuncioService.listByEstadosActivo();
@@ -82,7 +71,6 @@ public class AnuncioController {
         } else
             return null;
     }
-
 
     @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/listaAnuncioInactivo")
@@ -94,8 +82,6 @@ public class AnuncioController {
             return null;
     }
 
-
-
     @GetMapping("/detailAnuncio/{id}")
     public Anuncio getById(@PathVariable("id") int id){
         if(!anuncioService.existsById(id))
@@ -103,7 +89,6 @@ public class AnuncioController {
         Anuncio anuncio = anuncioService.getOne(id).get();
         return anuncio;
     }
-
 
     @PostMapping("/createAnuncio")
     public ResponseEntity<?> create(@RequestBody AnuncioDto anuncioDto){
@@ -119,10 +104,9 @@ public class AnuncioController {
             if (anuncioDto.getValor()==0)
                 return new ResponseEntity(new Mensaje("el precio es obligatorio y debe ser mayor a 0"), HttpStatus.BAD_REQUEST);
             if (anuncioDto.getCiudad()==null)
-                return new ResponseEntity(new Mensaje("la ciudad es obligatorio"), HttpStatus.BAD_REQUEST);
+                return new ResponseEntity(new Mensaje("la ciudad es obligatoria"), HttpStatus.BAD_REQUEST);
             if (anuncioDto.getProducto()==null)
                 return new ResponseEntity(new Mensaje("el producto es obligatorio"), HttpStatus.BAD_REQUEST);
-
 
             //calculo de fecha actual
             SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
@@ -136,13 +120,10 @@ public class AnuncioController {
             c.setTime(dt);
             c.add(Calendar.DATE, dias);
             dt = c.getTime();
-
              */
-
 
             //TIPOS DE PRODUCTO
             TipoProducto existeTipoProducto = tipoProducto(anuncioDto);
-
 
             if (existeTipoProducto!=null){
                 Anuncio anuncio = new Anuncio(anuncioDto.getDescripcion(), date, date, anuncioDto.getUsuario(),estadoAnuncioService.getEstadoActivo(), anuncioDto.getCiudad(), anuncioDto.getValor(), producto);
@@ -194,7 +175,6 @@ public class AnuncioController {
         return new ResponseEntity(new Mensaje("anuncio creado"), HttpStatus.OK);
     }*/
 
-
     @PutMapping("/updateAnuncio/{id}")
     public ResponseEntity<?> update(@PathVariable("id")int id, @RequestBody AnuncioDto anuncioDto){
         if(!anuncioService.existsById(id))
@@ -212,7 +192,6 @@ public class AnuncioController {
             return new ResponseEntity(new Mensaje("la ciudad es obligatorio"), HttpStatus.BAD_REQUEST);
 
 
-
         Anuncio anuncio = anuncioService.getOne(id).get();
 
         anuncio.setDescripcion(anuncioDto.getDescripcion());
@@ -225,7 +204,6 @@ public class AnuncioController {
         anuncio.setProducto(anuncioDto.getProducto());
 
         anuncioService.save(anuncio);
-        System.out.println("se actualizo yeiii");
         return new ResponseEntity(new Mensaje("anuncio actualizado"), HttpStatus.OK);
     }
 
@@ -264,7 +242,6 @@ public class AnuncioController {
 
     }
 
-
     @PutMapping("/updateAnuncioInactivo/{id}")
     public ResponseEntity<?> updateInactivoUser(@PathVariable("id")int id, @RequestBody AnuncioDto anuncioDto) {
         if (!anuncioService.existsById(id))
@@ -276,8 +253,5 @@ public class AnuncioController {
             return new ResponseEntity(new Mensaje("estado del anuncio actualizado"), HttpStatus.OK);
         } else return new ResponseEntity(new Mensaje("el estado es obligatorio"), HttpStatus.BAD_REQUEST);
     }
-
-
     //TIPO DE PRODUCTOS SOLO DE LA LISTA
-
 }
