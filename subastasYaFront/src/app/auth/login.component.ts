@@ -45,8 +45,6 @@ export class LoginComponent implements OnInit {
         this.tokenService.setAuthorities(data.authorities);
         this.roles = data.authorities;
 
-        Swal.fire('Has iniciado sesión como ' + data.nombreUsuario);
-
         this.router.navigate(['/']);
       },
       err => {

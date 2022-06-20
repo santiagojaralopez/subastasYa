@@ -11,7 +11,7 @@
                 </a>
             </li>
             <li class="ido nav-item">
-                <a class="txNav nav-link" routerLink="/create/anuncio">
+                <a class="txNav nav-link" *ngIf="!isAdmin" routerLink="/list/anuncio">
                     <i class="txNav fas fa-home"></i> Mis Anuncios
                 </a>
             </li>

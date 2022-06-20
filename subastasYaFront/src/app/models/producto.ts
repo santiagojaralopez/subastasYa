@@ -1,12 +1,15 @@
+import { TipoProducto } from "./tipoProducto";
 
 export class Producto {
     id?: number;
     nombre: string;
-    fotoProducto: string;
+    foto_producto: string;
+    tipoproducto: TipoProducto;
 
-    constructor(nombre: string, fotoProducto: string) {
+    constructor(nombre: string, fotoProducto: string,tipoproducto: TipoProducto) {
         this.nombre = nombre;
-        this.fotoProducto = fotoProducto;
+        this.foto_producto = fotoProducto;
+        this.tipoproducto = tipoproducto;
     }
 }
 

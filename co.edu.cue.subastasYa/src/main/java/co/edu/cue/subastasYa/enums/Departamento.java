@@ -11,7 +11,7 @@ public class Departamento {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private int id_departamento;
 
     @NotNull
     private String nombre;
@@ -20,16 +20,16 @@ public class Departamento {
     }
 
     public Departamento(int id, String nombre) {
-        this.id = id;
+        this.id_departamento = id;
         this.nombre = nombre;
     }
 
-    public int getId() {
-        return id;
+    public int getId_departamento() {
+        return id_departamento;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setId_departamento(int id_departamento) {
+        this.id_departamento = id_departamento;
     }
 
     public String getNombre() {

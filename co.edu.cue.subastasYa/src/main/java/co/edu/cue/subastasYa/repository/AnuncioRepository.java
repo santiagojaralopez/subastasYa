@@ -47,9 +47,9 @@ public interface AnuncioRepository extends JpaRepository<Anuncio, Integer>{
 
 
 
-    @Query("SELECT a FROM Anuncio a WHERE a.usuario= :usuario")
+    @Query("SELECT a FROM Anuncio a WHERE a.usuario.nombreUsuario= :usuario")
     List<Anuncio> findListaAnunciosByUsuario(
-            @Param("usuario") Usuario usuario);
+            @Param("usuario") String username);
 
 
 

@@ -51,10 +51,10 @@ public class ProductoController {
             return new ResponseEntity(new Mensaje("el nombre es obligatorio"), HttpStatus.BAD_REQUEST);
         if(productoService.existsByNombre(productoDto.getNombre()))
             return new ResponseEntity(new Mensaje("ese nombre ya existe"), HttpStatus.BAD_REQUEST);
-        if(StringUtils.isBlank(productoDto.getFotoProducto()))
+        if(StringUtils.isBlank(productoDto.getFotoproducto()))
             return new ResponseEntity(new Mensaje("la foto es obligatoria"), HttpStatus.BAD_REQUEST);
 
-        Producto producto = new Producto(productoDto.getNombre(),productoDto.getFotoProducto());
+        Producto producto = new Producto(productoDto.getNombre(),productoDto.getFotoproducto(),productoDto.getTipoproducto());
 
         productoService.save(producto);
         return new ResponseEntity(new Mensaje("producto creado"), HttpStatus.OK);
@@ -69,7 +69,7 @@ public class ProductoController {
             return new ResponseEntity(new Mensaje("ese nombre ya existe"), HttpStatus.BAD_REQUEST);
         if(StringUtils.isBlank(productoDto.getNombre()))
             return new ResponseEntity(new Mensaje("el nombre es obligatorio"), HttpStatus.BAD_REQUEST);
-        if(StringUtils.isBlank(productoDto.getFotoProducto()))
+        if(StringUtils.isBlank(productoDto.getFotoproducto()))
             return new ResponseEntity(new Mensaje("la foto es obligatoria"), HttpStatus.BAD_REQUEST);
         Producto producto = productoService.getOne(id).get();
         producto.setNombre(productoDto.getNombre());

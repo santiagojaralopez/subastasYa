@@ -32,14 +32,18 @@ export class CreateAnuncioComponent implements OnInit {
   tipos: TipoProducto[] = [];
 
 
+  selectedTipo: TipoProducto;
+  selectedCity: Ciudad;
+
+
   //atributos anuncio
   descripcion: string;
   fecha_inicio: Date;
   fecha_fin: Date;
-  ciudad: any;
+  ciudad: Ciudad;
   departamento: any;
   usuario: Usuario;
-  estado:EstadoAnuncio = EstadoAnuncio.ACTIVO;
+  estado:EstadoAnuncio;
   valor: number;
   nombreProducto:string;
   tipoProducto: TipoProducto;
@@ -60,19 +64,30 @@ export class CreateAnuncioComponent implements OnInit {
   ngOnInit() {
     this.usuarioService.lista().subscribe(
       data => this.usuarios = data
-    )
+    );
     this.ciudadService.lista().subscribe(
       data => this.ciudades = data
-    )
+    );
     this.tipoProductoService.lista().subscribe(
       data => this.tipos = data
-    )
+    );
+    
     
   }
 
+  onSelectType(value: any): void {
+    this.tipoProducto = value;
+  }
+
+  onSelectCity(value: any): void {
+    this.ciudad = value;
+  }
+
   findUserByUserName(userName: string) {
+    console.log('entre')
+
     let user = null;
-    this.usuarios.forEach(element => {
+    this.usuarios.forEach(element=>{
       if(element.nombreUsuario == userName){
         user = element;
         console.log(user)
@@ -82,12 +97,19 @@ export class CreateAnuncioComponent implements OnInit {
   }
 
   async onCreate(){
+    this.nuevoProducto = new Producto(this.nombreProducto,"foto",this.tipoProducto);
+
+    console.log(this.nuevoProducto)
+    
     let user = this.findUserByUserName(this.tokenService.getUserName());
     this.usuario = user;
-    this.nuevoProducto = new Producto(this.nombreProducto,'foto');
+
     
-    this.nuevoAnuncio = new Anuncio(this.descripcion,this.fecha_inicio,this.fecha_fin,this.usuario,this.estado,this.ciudad,this.departamento,this.nuevoProducto,this.valor);
+    this.nuevoAnuncio = new Anuncio(this.descripcion,this.usuario,this.ciudad,this.nuevoProducto,this.valor);
     
+    console.log(this.nuevoAnuncio)
+
+
     this.anuncioService.createAnuncio(this.nuevoAnuncio).subscribe(
       data => {
         Swal.fire(
@@ -104,7 +126,7 @@ export class CreateAnuncioComponent implements OnInit {
         );
       }
     );
-
+  
   }
 }
 

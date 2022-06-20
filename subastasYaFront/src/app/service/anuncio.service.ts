@@ -20,6 +20,12 @@ export class AnuncioService {
     );
   }
 
+  listByUser(username: string): Observable<Anuncio[]> {
+    return this.http.get(this.anuncioURL + 'listaAnunciosUser/'+username).pipe(
+      map(response => response as Anuncio[])
+    )
+  }
+
   getAnuncio(id: number): Observable<Anuncio>{
     return this.http.get<Anuncio>(`${this.anuncioURL}detailAnuncio/${id}`);
   }

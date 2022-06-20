@@ -22,26 +22,29 @@ public class Usuario {
     private String apellido;
 
     @NotNull
+    @Column(unique=true)
+    private String nombreUsuario;
+
+    @NotNull
+    private String email;
+
+    @NotNull
+    private String tipoDocumento;
+
+    @NotNull
     private String numerodoc;
 
     @NotNull
     private Date fechanacto;
 
     @NotNull
+    private String departamento;
+
+    @NotNull
     private String direccion;
 
     @NotNull
     private EstadoUsuario estadoUsuario;
-
-    @NotNull
-    private String tipoDocumento;
-
-    @NotNull
-    @Column(unique=true)
-    private String nombreUsuario;
-
-    @NotNull
-    private String email;
 
     @NotNull
     private String password;
@@ -59,16 +62,18 @@ public class Usuario {
     public Usuario() {
     }
 
-    public Usuario( String nombre, String apellido, String numerodoc, Date fechanacto, String direccion, EstadoUsuario estadoUsuario, String tipoDocumento, String nombreUsuario, String email, String password) {
+    public Usuario(int id, String nombre, String apellido, String nombreUsuario, String email, String tipoDocumento, String numerodoc, Date fechanacto, String departamento, String direccion, EstadoUsuario estadoUsuario, String password) {
+        this.id = id;
         this.nombre = nombre;
         this.apellido = apellido;
-        this.numerodoc = numerodoc;
-        this.fechanacto = fechanacto;
-        this.direccion = direccion;
-        this.estadoUsuario = estadoUsuario;
-        this.tipoDocumento = tipoDocumento;
         this.nombreUsuario = nombreUsuario;
         this.email = email;
+        this.tipoDocumento = tipoDocumento;
+        this.numerodoc = numerodoc;
+        this.fechanacto = fechanacto;
+        this.departamento = departamento;
+        this.direccion = direccion;
+        this.estadoUsuario = estadoUsuario;
         this.password = password;
     }
 
@@ -88,12 +93,76 @@ public class Usuario {
         this.nombre = nombre;
     }
 
+    public String getApellido() {
+        return apellido;
+    }
+
+    public void setApellido(String apellido) {
+        this.apellido = apellido;
+    }
+
+    public String getNombreUsuario() {
+        return nombreUsuario;
+    }
+
+    public void setNombreUsuario(String nombreUsuario) {
+        this.nombreUsuario = nombreUsuario;
+    }
+
     public String getEmail() {
         return email;
     }
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getTipoDocumento() {
+        return tipoDocumento;
+    }
+
+    public void setTipoDocumento(String tipoDocumento) {
+        this.tipoDocumento = tipoDocumento;
+    }
+
+    public String getNumerodoc() {
+        return numerodoc;
+    }
+
+    public void setNumerodoc(String numerodoc) {
+        this.numerodoc = numerodoc;
+    }
+
+    public Date getFechanacto() {
+        return fechanacto;
+    }
+
+    public void setFechanacto(Date fechanacto) {
+        this.fechanacto = fechanacto;
+    }
+
+    public String getDepartamento() {
+        return departamento;
+    }
+
+    public void setDepartamento(String departamento) {
+        this.departamento = departamento;
+    }
+
+    public String getDireccion() {
+        return direccion;
+    }
+
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
+    }
+
+    public EstadoUsuario getEstadoUsuario() {
+        return estadoUsuario;
+    }
+
+    public void setEstadoUsuario(EstadoUsuario estadoUsuario) {
+        this.estadoUsuario = estadoUsuario;
     }
 
     public String getPassword() {
@@ -118,61 +187,5 @@ public class Usuario {
 
     public void setRoles(Set<Rol> roles) {
         this.roles = roles;
-    }
-
-    public String getApellido() {
-        return apellido;
-    }
-
-    public void setApellido(String apellido) {
-        this.apellido = apellido;
-    }
-
-    public String getNumerodoc() {
-        return numerodoc;
-    }
-
-    public void setNumerodoc(String numerodoc) {
-        this.numerodoc = numerodoc;
-    }
-
-    public Date getFechanacto() {
-        return fechanacto;
-    }
-
-    public void setFechanacto(Date fechanacto) {
-        this.fechanacto = fechanacto;
-    }
-
-    public String getDireccion() {
-        return direccion;
-    }
-
-    public void setDireccion(String direccion) {
-        this.direccion = direccion;
-    }
-
-    public EstadoUsuario getEstadoUsuario() {
-        return estadoUsuario;
-    }
-
-    public void setEstadoUsuario(EstadoUsuario estadoUsuario) {
-        this.estadoUsuario = estadoUsuario;
-    }
-
-    public String getTipoDocumento() {
-        return tipoDocumento;
-    }
-
-    public void setTipoDocumento(String tipoDocumento) {
-        this.tipoDocumento = tipoDocumento;
-    }
-
-    public String getNombreUsuario() {
-        return nombreUsuario;
-    }
-
-    public void setNombreUsuario(String nombreUsuario) {
-        this.nombreUsuario = nombreUsuario;
     }
 }

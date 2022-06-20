@@ -14,10 +14,6 @@ export class ProductoService {
   constructor(private http: HttpClient) { }
 
   createProducto(producto: Producto): Observable<any> {
-    console.log("llegue a service")
-    console.log(
-      'llegooooo un ',producto
-    )
     return this.http.post<any>(this.productoURL + 'create', producto);
   }
 

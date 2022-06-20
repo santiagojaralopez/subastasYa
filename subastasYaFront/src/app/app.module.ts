@@ -26,6 +26,7 @@ import { FooterComponent } from './footer/footer.component';
 import { UserListComponent } from './users/user-list.component';
 import { UserEditProfileComponent } from './users/user-edit-profile.component';
 import { CreateAnuncioComponent } from './anunciosUser/create-anuncio.component';
+import { ListAnuncioComponent } from './anunciosUser/list-anuncio.component';
 
 
 
@@ -47,7 +48,8 @@ import { CreateAnuncioComponent } from './anunciosUser/create-anuncio.component'
     FooterComponent,
     UserListComponent,
     UserEditProfileComponent,
-    CreateAnuncioComponent
+    CreateAnuncioComponent,
+    ListAnuncioComponent
   ],
   imports: [
     BrowserModule,

@@ -8,10 +8,10 @@ public class TipoProducto {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private int idtipo_producto;
 
     @NotBlank
-    private String nombreTipo;
+    private String nombre_tipo;
     @NotBlank
     private String descripcion;
 
@@ -19,24 +19,24 @@ public class TipoProducto {
     }
 
     public TipoProducto(String nombreTipo, String descripcion) {
-        this.nombreTipo = nombreTipo;
+        this.nombre_tipo = nombreTipo;
         this.descripcion = descripcion;
     }
 
-    public int getId() {
-        return id;
+    public int getIdtipo_producto() {
+        return idtipo_producto;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setIdtipo_producto(int idtipo_producto) {
+        this.idtipo_producto = idtipo_producto;
     }
 
-    public String getNombreTipo() {
-        return nombreTipo;
+    public String getNombre_tipo() {
+        return nombre_tipo;
     }
 
-    public void setNombreTipo(String nombreTipo) {
-        this.nombreTipo = nombreTipo;
+    public void setNombre_tipo(String nombre_tipo) {
+        this.nombre_tipo = nombre_tipo;
     }
 
     public String getDescripcion() {
@@ -50,8 +50,8 @@ public class TipoProducto {
     @Override
     public String toString() {
         return "TipoProducto{" +
-                "id=" + id +
-                ", nombreTipo='" + nombreTipo + '\'' +
+                "id=" + idtipo_producto+
+                ", nombreTipo='" + nombre_tipo + '\'' +
                 ", descripcion='" + descripcion + '\'' +
                 '}';
     }

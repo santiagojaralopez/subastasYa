@@ -7,7 +7,9 @@ import co.edu.cue.subastasYa.entity.Anuncio;
 import co.edu.cue.subastasYa.enums.Estado;
 import co.edu.cue.subastasYa.entity.TipoProducto;
 import co.edu.cue.subastasYa.entity.Producto;
+import co.edu.cue.subastasYa.security.entity.Usuario;
 import co.edu.cue.subastasYa.service.AnuncioService;
+import co.edu.cue.subastasYa.service.EstadoAnuncioService;
 import co.edu.cue.subastasYa.service.ProductoService;
 import co.edu.cue.subastasYa.service.TipoProductoService;
 import org.apache.commons.lang3.StringUtils;
@@ -20,6 +22,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -39,6 +43,9 @@ public class AnuncioController {
     @Autowired
     ProductoService productoService;
 
+    @Autowired
+    EstadoAnuncioService estadoAnuncioService;
+
     @GetMapping("/listaAnuncio")
     public List<Anuncio> list(){
         List<Anuncio> list = anuncioService.list();
@@ -46,9 +53,10 @@ public class AnuncioController {
     }
 
 
-    @GetMapping("/listaAnunciosUser")
-    public List<Anuncio> listAnuncioUser(@RequestBody AnuncioDto anuncioDto){
-        List<Anuncio> list = anuncioService.findAnunciosByUsuario(anuncioDto.getUsuario());
+    @GetMapping("/listaAnunciosUser/{username}")
+    public List<Anuncio> listAnuncioUser(@PathVariable("username") String username){
+        System.out.println("Usuariooooooo: "+username);
+        List<Anuncio> list = anuncioService.findAnunciosByUsuario(username);
         System.out.println("mirame, soy los anuncios del usuario");
         return list;
     }
@@ -99,38 +107,45 @@ public class AnuncioController {
 
     @PostMapping("/createAnuncio")
     public ResponseEntity<?> create(@RequestBody AnuncioDto anuncioDto){
+        System.out.println("TIPO PRODUCTOOOOOOOOOOOOOOO: "+anuncioDto.getProducto().getFoto_producto());
+        Producto producto = new Producto(anuncioDto.getProducto().getNombre(),anuncioDto.getProducto().getFoto_producto(),anuncioDto.getProducto().getTipoproducto());
+        productoService.save(producto);
 
-        if (listAnuncioUser(anuncioDto).size() < anuncioService.cantidadAnuncios()) {
+        if (listAnuncioUser(anuncioDto.getUsuario().getNombreUsuario()).size() < anuncioService.cantidadAnuncios()) {
             System.out.println(anuncioDto.getUsuario().toString());
+
             if(StringUtils.isBlank(anuncioDto.getDescripcion()))
                 return new ResponseEntity(new Mensaje("el nombre es obligatorio"), HttpStatus.BAD_REQUEST);
             if (anuncioDto.getValor()==0)
                 return new ResponseEntity(new Mensaje("el precio es obligatorio y debe ser mayor a 0"), HttpStatus.BAD_REQUEST);
-            if (anuncioDto.getUsuario()==null)
-                return new ResponseEntity(new Mensaje("el usuario es obligatorio"), HttpStatus.BAD_REQUEST);
-            if (anuncioDto.getEstado()==null)
-                return new ResponseEntity(new Mensaje("el estado es obligatorio"), HttpStatus.BAD_REQUEST);
             if (anuncioDto.getCiudad()==null)
                 return new ResponseEntity(new Mensaje("la ciudad es obligatorio"), HttpStatus.BAD_REQUEST);
-            if (anuncioDto.getDepartamento()==null)
-                return new ResponseEntity(new Mensaje("el departamento es obligatorio"), HttpStatus.BAD_REQUEST);
             if (anuncioDto.getProducto()==null)
                 return new ResponseEntity(new Mensaje("el producto es obligatorio"), HttpStatus.BAD_REQUEST);
 
+
+            //calculo de fecha actual
+            SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+            Date date = new Date();
+
             //CALCULO DE FECHA FIN
+            /*
             int dias= anuncioService.diasAnuncioActivo();
-            Date dt = anuncioDto.getFecha_inicio();
+            Date dt = date;
             Calendar c = Calendar.getInstance();
             c.setTime(dt);
             c.add(Calendar.DATE, dias);
             dt = c.getTime();
 
+             */
+
 
             //TIPOS DE PRODUCTO
             TipoProducto existeTipoProducto = tipoProducto(anuncioDto);
 
+
             if (existeTipoProducto!=null){
-                Anuncio anuncio = new Anuncio(anuncioDto.getDescripcion(), anuncioDto.getFecha_inicio(), dt, anuncioDto.getUsuario(),Estado.ACTIVO, anuncioDto.getCiudad(), anuncioDto.getValor(), anuncioDto.getProducto());
+                Anuncio anuncio = new Anuncio(anuncioDto.getDescripcion(), date, date, anuncioDto.getUsuario(),estadoAnuncioService.getEstadoActivo(), anuncioDto.getCiudad(), anuncioDto.getValor(), producto);
                 anuncioService.save(anuncio);
                 return new ResponseEntity(new Mensaje("anuncio creado"), HttpStatus.OK);
               } else
@@ -140,7 +155,7 @@ public class AnuncioController {
     }
 
     public TipoProducto tipoProducto(AnuncioDto anuncioDto){
-        return tipoProductoService.showTypeExist(anuncioDto.getProducto().getTipoProducto().getNombreTipo());
+        return tipoProductoService.showTypeExist(anuncioDto.getProducto().getTipoproducto().getNombre_tipo());
     }
 
     /*public ResponseEntity tipoProducto(AnuncioDto anuncioDto){
@@ -195,8 +210,7 @@ public class AnuncioController {
             return new ResponseEntity(new Mensaje("el estado es obligatorio"), HttpStatus.BAD_REQUEST);
         if (anuncioDto.getCiudad()==null)
             return new ResponseEntity(new Mensaje("la ciudad es obligatorio"), HttpStatus.BAD_REQUEST);
-        if (anuncioDto.getDepartamento()==null)
-            return new ResponseEntity(new Mensaje("el departamento es obligatorio"), HttpStatus.BAD_REQUEST);
+
 
 
         Anuncio anuncio = anuncioService.getOne(id).get();
@@ -228,9 +242,9 @@ public class AnuncioController {
     public ResponseEntity<?> updateBloqueoAdmin(@PathVariable("id")int id, @RequestBody AnuncioDto anuncioDto) {
         if (!anuncioService.existsById(id))
             return new ResponseEntity(new Mensaje("no existe"), HttpStatus.NOT_FOUND);
-        if (anuncioDto.getEstado()==Estado.ACTIVO || anuncioDto.getEstado()==Estado.INACTIVO) {
+        if (anuncioDto.getEstado().getNombre()=="ACTIVO" || anuncioDto.getEstado().getNombre()=="INACTIVO") {
             Anuncio anuncio = anuncioService.getOne(id).get();
-            anuncio.setEstado(Estado.BLOQUEADO);
+            anuncio.setEstado(estadoAnuncioService.getEstadoBloqueado());
             anuncioService.save(anuncio);
             System.out.println("estado BLOQUEADO jiji");
             return new ResponseEntity(new Mensaje("estado del anuncio actualizado"), HttpStatus.OK);
@@ -241,9 +255,9 @@ public class AnuncioController {
     public ResponseEntity<?> updateActivarAdmiUser(@PathVariable("id")int id, @RequestBody AnuncioDto anuncioDto) {
         if (!anuncioService.existsById(id))
             return new ResponseEntity(new Mensaje("no existe"), HttpStatus.NOT_FOUND);
-        if (anuncioDto.getEstado()==Estado.BLOQUEADO || anuncioDto.getEstado()==Estado.INACTIVO) {
+        if (anuncioDto.getEstado().getNombre()=="BLOQUEADO" || anuncioDto.getEstado().getNombre()=="INACTIVO") {
             Anuncio anuncio = anuncioService.getOne(id).get();
-            anuncio.setEstado(Estado.ACTIVO);
+            anuncio.setEstado(estadoAnuncioService.getEstadoActivo());
             anuncioService.save(anuncio);
             return new ResponseEntity(new Mensaje("estado del anuncio actualizado"), HttpStatus.OK);
         } else return new ResponseEntity(new Mensaje("el estado es obligatorio"), HttpStatus.BAD_REQUEST);
@@ -255,9 +269,9 @@ public class AnuncioController {
     public ResponseEntity<?> updateInactivoUser(@PathVariable("id")int id, @RequestBody AnuncioDto anuncioDto) {
         if (!anuncioService.existsById(id))
             return new ResponseEntity(new Mensaje("no existe"), HttpStatus.NOT_FOUND);
-        if (anuncioDto.getEstado()==Estado.ACTIVO || anuncioDto.getEstado()==Estado.BLOQUEADO) {
+        if (anuncioDto.getEstado().getNombre()=="ACTIVO" || anuncioDto.getEstado().getNombre()=="BLOQUEADO") {
             Anuncio anuncio = anuncioService.getOne(id).get();
-            anuncio.setEstado(Estado.INACTIVO);
+            anuncio.setEstado(estadoAnuncioService.getEstadoInactivo());
             anuncioService.save(anuncio);
             return new ResponseEntity(new Mensaje("estado del anuncio actualizado"), HttpStatus.OK);
         } else return new ResponseEntity(new Mensaje("el estado es obligatorio"), HttpStatus.BAD_REQUEST);
