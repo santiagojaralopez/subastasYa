@@ -141,7 +141,6 @@ public class UsuarioController {
         } catch (Exception e) {
             return new ResponseEntity(new Mensaje("Por favor no deje campos vacíos"), HttpStatus.BAD_REQUEST);
         }
-
         return new ResponseEntity(new Mensaje("usuario actualizado"), HttpStatus.OK);
     }
 

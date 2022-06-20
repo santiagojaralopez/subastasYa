@@ -1,4 +1,4 @@
-<nav class="navB backG navbar navbar-expand-lg navbar-dark mb-4">
+<nav class="navB backG navbar navbar-expand-lg navbar-dark">
     <a class="navbar-brand" href="#">SubastasYa</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -11,7 +11,7 @@
                 </a>
             </li>
             <li class="ido nav-item">
-                <a class="txNav nav-link" routerLink="/create/anuncio">
+                <a class="txNav nav-link" *ngIf="isLogged" routerLink="/create/anuncio">
                     <i class="txNav fas fa-home"></i> Mis Anuncios
                 </a>
             </li>

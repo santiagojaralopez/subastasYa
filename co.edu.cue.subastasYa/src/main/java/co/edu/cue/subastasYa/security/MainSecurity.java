@@ -65,7 +65,7 @@ public class MainSecurity extends WebSecurityConfigurerAdapter {
                         "/email-password/**",
                         "/usuario/detail-user/**",
                         "/email-offer/**",
-                        "/anuncio/listaAnuncioActivos/",
+                        "/anuncio/listaAnuncioActivos/**",
                         "/anuncio/createAnuncio/",
                         "/producto/create/",
                         "/ciudad/listaCiudades"
