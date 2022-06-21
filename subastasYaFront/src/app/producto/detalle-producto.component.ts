@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import Swal from 'sweetalert2';
 import { Anuncio } from '../models/anuncio';
 import { AnuncioService } from '../service/anuncio.service';
 

@@ -1,7 +1,7 @@
 <app-menu></app-menu>
 <div class="xd">
     <div class="backButton mb-3">
-        <button type="button" class="btn btn-outline-primary" routerLink="/">
+        <button type="button" class="btn btn-outline-primary" routerLink="/users/list">
           <i class=" ">Volver</i>
       </button>
     </div>
@@ -11,15 +11,10 @@
                 <a class="headerConfig">Mis anuncios</a>
             </div>
             <div class="bodyConfig">
-                <a>A continuacion puede gestionar la información de sus anuncios</a>
+                <a>A continuacion puede ver los anuncios de {{usuario.nombreUsuario}}</a>
             </div>
         </div>
         <div class="containerParams card-body ">
-            <div>
-                <button type="button" class="btn btn-outline-primary mb-3" routerLink="/create/anuncio">
-                    <i class=" ">Publicar nuevo anuncio</i>
-                </button>
-            </div>
             <!--tabla aqui-->
             <div class="card">
                 <div class="card-header">
