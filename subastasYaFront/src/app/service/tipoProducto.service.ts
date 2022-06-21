@@ -19,6 +19,10 @@ export class TipoProductoService {
     );
   }
 
+  createTipo(tipo: TipoProducto): Observable<any> {
+    return this.http.post<any>(this.tipoProductoURL + 'createTipoProducto', tipo);
+  }
+
   /*
   getAnuncio(id: number): Observable<Anuncio>{
     return this.http.get<Anuncio>(`${this.anuncioURL}detailAnuncio/${id}`);

@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
+import { TipoProducto } from '../models/tipoProducto';
+import { TipoProductoService } from '../service/tipoProducto.service';
 import { TokenService } from '../service/token.service';
 
 @Component({
@@ -9,15 +12,24 @@ import { TokenService } from '../service/token.service';
 })
 export class CategoriasProductoComponent implements OnInit {
 
+  tipos: TipoProducto[] = [];
+  nuevoTipo: TipoProducto;
+
+  nuevoNombre: string;
+  nuevaDescripcion: string;
   isLogged = false;
   nombreUsuario = '';
 
   constructor(
     private tokenService: TokenService,
-    private router: Router
+    private router: Router,
+    private tipoProductoService: TipoProductoService
   ) { }
 
   ngOnInit() {
+    this.tipoProductoService.lista().subscribe(
+      data => this.tipos = data
+    );
     if (this.tokenService.getToken()) {
       this.isLogged = true;
       this.nombreUsuario = this.tokenService.getUserName();
@@ -32,5 +44,28 @@ export class CategoriasProductoComponent implements OnInit {
     window.location.reload();
     this.router.navigate(['/']);
   }
+
+  onCreate(){
+    this.nuevoTipo = new TipoProducto(this.nuevoNombre,this.nuevaDescripcion);
+
+    this.tipoProductoService.createTipo(this.nuevoTipo).subscribe(
+      data => {
+        Swal.fire(
+          'Exito',
+          'Su anuncio ha sido creado con exito',
+          'success'
+        )
+      },
+      err => {
+        Swal.fire(
+          'Error',
+          err.error.mensaje,
+          'error'
+        );
+      }
+    );
+  
+  }
+  
 
 }

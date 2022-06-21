@@ -20,10 +20,10 @@
             <div class="card-body">
                 <div class="input-group">
                     <span class="inputS4 input-group-text">Nombre:</span>
-                    <input type="text" aria-label="First name" class="mr-3 inputS3 form-control">
+                    <input type="text" aria-label="nombre" [(ngModel)]="nuevoNombre" class="mr-3 inputS3 form-control">
                     <span class="inputS4 input-group-text">Descripcion:</span>
-                    <input type="text" aria-label="Last name" class="inputS3 form-control">
-                    <button type="button " class="ml-2 btn btn-outline-success ">Agregar</button>
+                    <input type="text" aria-label="Last name" [(ngModel)]="nuevaDescripcion" class="inputS3 form-control">
+                    <button type="button " class="ml-2 btn btn-outline-success " (click)="onCreate()">Agregar</button>
 
                 </div>
 
@@ -43,10 +43,10 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>nombreCategoria</td>
-                            <td>descripcionCategoria</td>
+                        <tr *ngFor="let tipo of tipos">
+                            <th scope="row">{{tipo.id}}</th>
+                            <td>{{tipo.nombre_tipo}}</td>
+                            <td>{{tipo.descripcion}}</td>
                             <td>
                                 <button class="buttonEdit" type="button">Editar</button>
                             </td>
