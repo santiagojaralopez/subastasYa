@@ -36,6 +36,13 @@ export class IndexComponent implements OnInit {
     if (this.tokenService.getToken()) {
       this.isLogged = true;
     }
+
+    this.roles = this.tokenService.getAuthorities();
+    this.roles.forEach((rol) => {
+      if (rol === 'ROLE_ADMIN') {
+        this.isAdmin = true;
+      }
+    });
   }
 
   onOffer() {
@@ -45,6 +52,7 @@ export class IndexComponent implements OnInit {
       Swal.fire({
         title: '<strong>Pujar por este producto</strong>',
         input: 'number',
+        inputAttributes: { autocomplete: 'off' },
         inputLabel: '¿Cuánto quieres pujar por este anuncio?',
         inputValue: this.offerDto.offerValue,
         showCloseButton: true,

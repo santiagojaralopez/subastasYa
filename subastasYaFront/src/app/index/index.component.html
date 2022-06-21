@@ -37,12 +37,18 @@
             </div>
             <div class="col">
                 <div class="row">
-                    <button [routerLink]="['/anuncio',anuncio.id_anuncio]" type="button" class="botones mb-3 btn btn-outline-info">Ver Anuncio</button>
+                    <button [routerLink]="['/anuncio',anuncio.id_anuncio]" type="button" class="botones mb-3 btn btn-outline-info">
+                        Ver Anuncio
+                    </button>
                 </div>
                 <div class="row">
-                    <button type="button" class="botones mb-3 btn btn-outline-info" (click)="onOffer()" *ngIf="!isLogged else offer">Inicia sesión para ofertar</button>
+                    <button type="button" class="botones mb-3 btn btn-outline-info" (click)="onOffer()" *ngIf="!isLogged; else offer">
+                        Inicia sesión para pujar
+                    </button>
                     <ng-template #offer>
-                        <button type="button" class="botones mb-3 btn btn-outline-info" (click)="onOffer()">Ofertar</button>
+                        <button type="button" class="botones mb-3 btn btn-outline-info" *ngIf="!isAdmin" (click)="onOffer()">
+                            Pujar
+                        </button>
                     </ng-template>
                 </div>
             </div>
