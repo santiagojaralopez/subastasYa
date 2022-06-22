@@ -23,6 +23,12 @@ export class TipoProductoService {
     return this.http.post<any>(this.tipoProductoURL + 'createTipoProducto', tipo);
   }
 
+  updateTipo(id: number, tipo: TipoProducto): Observable<TipoProducto> {
+    // tslint:disable-next-line: max-line-length
+    return this.http.put<TipoProducto>(`${this.tipoProductoURL}/updateTipoProducto/${id}`, tipo);
+  }
+
+
   /*
   getAnuncio(id: number): Observable<Anuncio>{
     return this.http.get<Anuncio>(`${this.anuncioURL}detailAnuncio/${id}`);

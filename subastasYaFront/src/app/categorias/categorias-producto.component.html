@@ -44,11 +44,11 @@
                     </thead>
                     <tbody>
                         <tr *ngFor="let tipo of tipos">
-                            <th scope="row">{{tipo.id}}</th>
+                            <th scope="row">{{tipo.idtipo_producto}}</th>
                             <td>{{tipo.nombre_tipo}}</td>
                             <td>{{tipo.descripcion}}</td>
                             <td>
-                                <button class="buttonEdit" type="button">Editar</button>
+                                <button class="buttonEdit" type="button" (click)="onSelectUpdate()">Editar</button>
                             </td>
                             <td>
                                 <button class="buttonDelete" type="button">Eliminar</button>

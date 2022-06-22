@@ -14,6 +14,8 @@ export class CategoriasProductoComponent implements OnInit {
 
   tipos: TipoProducto[] = [];
   nuevoTipo: TipoProducto;
+  idUpdate: number;
+  tipoUpdate: TipoProducto;
 
   nuevoNombre: string;
   nuevaDescripcion: string;
@@ -43,6 +45,47 @@ export class CategoriasProductoComponent implements OnInit {
     this.tokenService.logOut();
     window.location.reload();
     this.router.navigate(['/']);
+  }
+
+  onDelete(){
+
+  }
+
+  onSelectUpdate(nombre: string, descripcion: string){
+    Swal.fire({
+        title: "Editar",
+        text: "Ingrese el nuevo nombre para la categoria: "+nombre,
+        input: "text",
+        showCancelButton: true,
+        confirmButtonText: "Guardar",
+        cancelButtonText: "Cancelar",
+    })
+    .then(resultado => {
+        if (resultado.value) {
+            let nombre = resultado.value;
+            console.log("Hola, " + nombre);
+        }
+    });
+  }
+
+  onUpdate(){
+    this.tipoProductoService.updateTipo(this.idUpdate, this.tipoUpdate).subscribe(
+      data => {
+        Swal.fire(
+          'Éxito',
+          'La informacion ha sido actualizada con éxito',
+          'success'
+        );
+        window.location.reload();
+      },
+      err => {
+        Swal.fire(
+          'Error',
+          err.error.mensaje,
+          'error'
+        );
+      }
+    );
   }
 
   onCreate(){
