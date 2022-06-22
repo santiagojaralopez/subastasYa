@@ -1,11 +1,10 @@
 import { Ciudad } from "./ciudad";
-import { Departamento } from "./departamento";
 import { EstadoAnuncio } from "./estadoAnuncio";
 import { Producto } from "./producto";
 import { Usuario } from "./usuario";
 
 export class Anuncio {
-    id_anuncio?: number;
+    id_anuncio: number;
     descripcion: string = '';
     fecha_inicio: Date | undefined;
     fecha_fin: Date | undefined;

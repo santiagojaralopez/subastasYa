@@ -1,0 +1,40 @@
+<app-menu></app-menu>
+<div class="xd mt-5">
+    <div class="backButton mb-3">
+        <button type="button" class="btn btn-outline-primary" routerLink="/">
+          <i >Volver</i>
+      </button>
+    </div>
+    <div class="containerConfig card shadow rounded mb-5">
+        <div class="cardHeader card-header ">
+            <div>
+                <a class="headerConfig">Ofertas del Anuncio</a>
+            </div>
+            <div class="bodyConfig">
+                <a>A continuacion puede ver la información de las ofertas de su anuncio</a>
+            </div>
+        </div>
+        <div *ngFor="let offer of ofertas" class="containerParams card-body">
+            <div class="prueba card float-right shadow p-3 mb-3 bg-body rounded">
+                <div class="row">
+                    <div class="col">
+                        <h4>Usuario ofertante</h4>
+                        <p>{{offer.bidderUserName}}</p>
+                    </div>
+                    <div class="col">
+                        <h4>Valor de la oferta</h4>
+                        <p>{{offer.offerValue}}</p>
+                    </div>
+                    <div class="col">
+                        <div class="row">
+                            <button type="button" class="botones mb-3 btn btn-outline-primary">
+                                Selccionar oferta
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<app-footer></app-footer>

@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { ListaProductoComponent } from './producto/lista-producto.component';
 import { DetalleProductoComponent } from './producto/detalle-producto.component';
-import { EditarProductoComponent } from './producto/editar-producto.component';
 import { IndexComponent } from './index/index.component';
 import { LoginComponent } from './auth/login.component';
 import { RegistroComponent } from './auth/registro.component';
@@ -15,8 +14,9 @@ import { UserListComponent } from './users/user-list.component';
 import { UserEditProfileComponent } from './users/user-edit-profile.component';
 import { CreateAnuncioComponent } from './anunciosUser/create-anuncio.component';
 import { ListAnuncioComponent } from './anunciosUser/list-anuncio.component';
-import { ListaAnunciosUserComponent } from './producto/lista-anuncios-user.component';
+import { OffersComponent } from './offers/offers.component';
 import { UserEditProfileAdminComponent } from './edit-users-admin/user-edit-profile.component';
+import { ListaAnunciosUserComponent } from './producto/lista-anuncios-user.component';
 
 
 const routes: Routes = [
@@ -35,7 +35,7 @@ const routes: Routes = [
   { path: 'lista-anuncios-usuario/:id', component: ListaAnunciosUserComponent, canActivate: [guard], data: {expectedRole: ['admin']} },
   { path: 'category/list', component: CategoriasProductoComponent, canActivate: [guard], data: {expectedRole: ['admin',]} },
   { path: 'users/list', component: UserListComponent, canActivate: [guard], data: {expectedRole: ['admin']} },
-  { path: 'editar/:id', component: EditarProductoComponent, canActivate: [guard], data: {expectedRole: ['admin']} },
+  { path: 'offers/:id', component: OffersComponent, canActivate: [guard], data: {expectedRole: ['admin', 'user']} },
   { path: '**', redirectTo: '', pathMatch: 'full' },
 ];
 

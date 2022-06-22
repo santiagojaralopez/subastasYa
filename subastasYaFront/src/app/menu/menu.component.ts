@@ -7,7 +7,7 @@ import { TokenService } from '../service/token.service';
 @Component({
   selector: 'app-menu',
   templateUrl: './menu.component.html',
-  styleUrls:['./menu.component.css']
+  styleUrls: ['./menu.component.css']
 })
 export class MenuComponent implements OnInit {
 
@@ -26,7 +26,7 @@ export class MenuComponent implements OnInit {
   ngOnInit() {
     this.anuncioService.listaActivos().subscribe(
       data => this.anuncios = data
-    )
+    );
     if (this.tokenService.getToken()) {
       this.isLogged = true;
       this.nombreUsuario = this.tokenService.getUserName();

@@ -2,8 +2,6 @@ package co.edu.cue.subastasYa.controller;
 
 import co.edu.cue.subastasYa.dto.Mensaje;
 import co.edu.cue.subastasYa.dto.UpdateUsuarioDTO;
-import co.edu.cue.subastasYa.dto.UsuariosDto;
-import co.edu.cue.subastasYa.entity.Anuncio;
 import co.edu.cue.subastasYa.security.dto.NuevoUsuario;
 import co.edu.cue.subastasYa.security.entity.Rol;
 import co.edu.cue.subastasYa.security.entity.Usuario;
@@ -11,7 +9,6 @@ import co.edu.cue.subastasYa.security.enums.EstadoUsuario;
 import co.edu.cue.subastasYa.security.enums.RolNombre;
 import co.edu.cue.subastasYa.security.service.RolService;
 import co.edu.cue.subastasYa.security.service.UsuarioService;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,7 +17,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.ConstraintViolationException;
 import javax.validation.Valid;
 import java.util.HashSet;
 import java.util.List;

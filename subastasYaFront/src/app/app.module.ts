@@ -5,7 +5,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ListaProductoComponent } from './producto/lista-producto.component';
 import { DetalleProductoComponent } from './producto/detalle-producto.component';
-import { EditarProductoComponent } from './producto/editar-producto.component';
 import { interceptorProvider } from './interceptors/prod-interceptor.service';
 
 import { HttpClientModule } from '@angular/common/http';
@@ -26,8 +25,7 @@ import { UserListComponent } from './users/user-list.component';
 import { UserEditProfileComponent } from './users/user-edit-profile.component';
 import { CreateAnuncioComponent } from './anunciosUser/create-anuncio.component';
 import { ListAnuncioComponent } from './anunciosUser/list-anuncio.component';
-import { ListaAnunciosUserComponent } from './producto/lista-anuncios-user.component';
-import { UserEditProfileAdminComponent } from './edit-users-admin/user-edit-profile.component';
+import { OffersComponent } from './offers/offers.component';
 
 
 
@@ -36,7 +34,6 @@ import { UserEditProfileAdminComponent } from './edit-users-admin/user-edit-prof
     AppComponent,
     ListaProductoComponent,
     DetalleProductoComponent,
-    EditarProductoComponent,
     LoginComponent,
     RegistroComponent,
     MenuComponent,
@@ -50,8 +47,7 @@ import { UserEditProfileAdminComponent } from './edit-users-admin/user-edit-prof
     UserEditProfileComponent,
     CreateAnuncioComponent,
     ListAnuncioComponent,
-    ListaAnunciosUserComponent,
-    UserEditProfileAdminComponent
+    OffersComponent
   ],
   imports: [
     BrowserModule,

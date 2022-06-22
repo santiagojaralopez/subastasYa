@@ -28,7 +28,6 @@ public class Anuncio {
     @NotNull
     private Usuario usuario;
 
-
     @ManyToOne
     @JoinColumn(name = "estado")
     @NotNull
@@ -42,11 +41,9 @@ public class Anuncio {
     @NotNull
     private Double valor;
 
-
     @OneToOne
     @JoinColumn(name = "producto_id")
     private Producto producto;
-
 
     public Anuncio() {
     }
