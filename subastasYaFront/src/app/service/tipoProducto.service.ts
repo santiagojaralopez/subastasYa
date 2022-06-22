@@ -30,6 +30,10 @@ export class TipoProductoService {
     return this.http.put<TipoProducto>(`${this.tipoProductoURL}updateTipoProducto/${id}`, tipo,{headers: this.httpHeaders});
   }
 
+  deleteTipo(id: number): Observable<TipoProducto> {
+    return this.http.delete<TipoProducto>(`${this.tipoProductoURL}deleteTipoProducto/${id}`, {headers: this.httpHeaders})
+  }
+
 
   /*
   getAnuncio(id: number): Observable<Anuncio>{

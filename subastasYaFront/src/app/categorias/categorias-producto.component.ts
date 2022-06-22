@@ -17,6 +17,7 @@ export class CategoriasProductoComponent implements OnInit {
   nuevoTipo: TipoProducto;
   idUpdate: number;
   tipoUpdate: TipoProducto;
+  idDelete: number;
 
   nuevoNombre: string;
   nuevaDescripcion: string;
@@ -48,8 +49,33 @@ export class CategoriasProductoComponent implements OnInit {
     this.router.navigate(['/']);
   }
 
-  onDelete(){
-
+  onDelete(nombreTipo:string){
+    console.log('a borrar',nombreTipo);
+    this.findIdByNombre(nombreTipo);
+    console.log(this.idDelete);
+    Swal.fire({
+      title: 'Está seguro??',
+      text: `¿Seguro que desea eliminar la categoria: `+nombreTipo,
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Si, eliminar!',
+      cancelButtonText: 'No, cancelar!'
+     
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.tipoProductoService.deleteTipo(this.idDelete).subscribe(
+          response => {
+            Swal.fire(
+              'Categoria Eliminada!',
+              `Categoria eliminada con éxito.`,
+              'success'
+            )
+          }
+        )
+      }
+    })
   }
 
   onSelectUpdate(nombre: string, descripcion: string){
@@ -72,10 +98,11 @@ export class CategoriasProductoComponent implements OnInit {
     });
   }
 
-  findIdByNombre(nuevoNombre: string) {
+  findIdByNombre(nuevoNombre: string){
     this.tipos.forEach(element=>{
       if(element.nombre_tipo == nuevoNombre) {
         this.idUpdate = element.idtipo_producto
+        this.idDelete = element.idtipo_producto;
       }
     })
   }
