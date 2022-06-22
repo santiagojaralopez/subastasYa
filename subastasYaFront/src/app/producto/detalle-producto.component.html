@@ -15,8 +15,9 @@
                 <div class="col-md-8 ">
                     <div class="card-body ">
                         <div class="mb-4 ">
-                            <button type="button " class="estadoP btn btn-outline-success ">{{anuncio.estado}}</button>
+                            <button type="button " class="estadoP btn btn-outline-success " id="botonEstado">{{anuncio.estado.nombre}}</button>
                         </div>
+
                         <h5 class="card-title ">Valor: {{anuncio.valor}}</h5>
                         <p class="card-text ">Producto {{anuncio.producto.nombre}}</p>
                         <p class="card-text ">Descripcion: {{anuncio.descripcion}}</p>
@@ -27,8 +28,14 @@
                                 <p class="card-text ">Anunciante: {{anuncio.usuario.nombre}}</p>
                             </div>
                         </div>
-
                         <button type="button " class="btn btn-outline-info ">Ver Ofertas</button>
+                    </div>
+
+                    <div class="mb-4" align="center">
+                        <button (click)="cambiarEstadoActivo()" type="button" class="estadoP btn btn-outline-danger mr-3">ACTIVAR</button>
+                        <button (click)="cambiarEstadoInactivo()" type="button" class="estadoP btn btn-outline-danger mr-3">DESACTIVAR</button>
+                        <button (click)="cambiarEstadoBloqueado()" type="button" class="estadoP btn btn-outline-danger mr-3">BLOQUEAR</button>
+                        <button (click)="cambiarEstadoVendido()" type="button" class="estadoP btn btn-outline-danger mr-3">VENDIDO</button>
                     </div>
                 </div>
             </div>

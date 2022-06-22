@@ -39,4 +39,28 @@ export class AnuncioService {
   createAnuncio(anuncio: Anuncio): Observable<any> {
     return this.http.post<any>(this.anuncioURL + 'createAnuncio', anuncio);
   }
+
+
+  updateAnuncioBloqueo(anuncio: Anuncio): Observable<Anuncio>{
+    return this.http.put<Anuncio>(`${this.anuncioURL}updateAnuncioBloqueo/${anuncio.id_anuncio}`, anuncio);
+  }
+
+  updateAnuncioActivar(anuncio: Anuncio): Observable<Anuncio>{
+    return this.http.put<Anuncio>(`${this.anuncioURL}updateAnuncioActivar/${anuncio.id_anuncio}`, anuncio);
+  }
+
+  updateAnuncioInactivo(anuncio: Anuncio): Observable<Anuncio>{
+    return this.http.put<Anuncio>(`${this.anuncioURL}updateAnuncioInactivo/${anuncio.id_anuncio}`, anuncio);
+  }
+
+  updateAnuncioVendido(anuncio: Anuncio): Observable<Anuncio>{
+    return this.http.put<Anuncio>(`${this.anuncioURL}updateAnuncioVendido/${anuncio.id_anuncio}`, anuncio);
+  }
+  
+
+  
+
+
+
+
 }

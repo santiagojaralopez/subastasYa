@@ -14,6 +14,13 @@ import { CiudadService } from '../service/ciudad.service';
 import Swal from 'sweetalert2';
 import { TipoProductoService } from '../service/tipoProducto.service';
 
+
+//JAVASCRIPT
+declare function myMethod(): any;
+declare function boton(): any;
+declare function fotoVariable():any;
+
+
 @Component({
   selector: 'app-create-anuncio',
   templateUrl: './create-anuncio.component.html',
@@ -21,8 +28,13 @@ import { TipoProductoService } from '../service/tipoProducto.service';
 })
 export class CreateAnuncioComponent implements OnInit {
 
+  
   nuevoAnuncio: Anuncio;
   nuevoProducto: Producto;
+  urlImagen= fotoVariable();
+
+  
+  imgUrl= "assets/images/user-placeholder.png";
 
 
   ciudades: Ciudad[] = [];
@@ -59,9 +71,13 @@ export class CreateAnuncioComponent implements OnInit {
     private ciudadService: CiudadService,
     private tokenService: TokenService,
     private tipoProductoService: TipoProductoService
-  ) { }
+  ) {
+    
+   }
 
   ngOnInit() {
+    
+    
     this.usuarioService.lista().subscribe(
       data => this.usuarios = data
     );
@@ -71,7 +87,6 @@ export class CreateAnuncioComponent implements OnInit {
     this.tipoProductoService.lista().subscribe(
       data => this.tipos = data
     );
-    
     
   }
 
@@ -100,15 +115,16 @@ export class CreateAnuncioComponent implements OnInit {
   async onCreate(){
     this.nuevoProducto = new Producto(this.nombreProducto,"foto",this.tipoProducto);
 
+    myMethod();
+    
     console.log(this.nuevoProducto)
     
     let user = this.findUserByUserName(this.tokenService.getUserName());
     this.usuario = user;
-
     
-    this.nuevoAnuncio = new Anuncio(this.descripcion,this.usuario,this.ciudad,this.nuevoProducto,this.valor);
+    this.nuevoAnuncio = new Anuncio(this.descripcion,this.usuario,this.ciudad,this.nuevoProducto,this.valor, this.urlImagen);
     
-    console.log(this.nuevoAnuncio)
+    console.log(this.nuevoAnuncio);
 
 
     this.anuncioService.createAnuncio(this.nuevoAnuncio).subscribe(
@@ -129,7 +145,21 @@ export class CreateAnuncioComponent implements OnInit {
     );
   
   }
+
+
+   buttonPhoto(){
+    boton();
+  }
+
+
+
+
 }
+
+
+
+
+
 
 function delay(ms: number) {
   return new Promise( resolve => setTimeout(resolve, ms) );

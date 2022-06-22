@@ -8,6 +8,7 @@ import { TokenService } from '../service/token.service';
   templateUrl: './list-anuncio.component.html',
   styleUrls: ['./list-anuncio.component.css']
 })
+
 export class ListAnuncioComponent implements OnInit {
 
   anuncios: Anuncio[] = [];
