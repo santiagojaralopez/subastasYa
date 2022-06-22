@@ -96,6 +96,7 @@ export class CreateAnuncioComponent implements OnInit {
     return user;
   }
 
+
   async onCreate(){
     this.nuevoProducto = new Producto(this.nombreProducto,"foto",this.tipoProducto);
 

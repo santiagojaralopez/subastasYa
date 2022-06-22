@@ -26,6 +26,8 @@ import { UserListComponent } from './users/user-list.component';
 import { UserEditProfileComponent } from './users/user-edit-profile.component';
 import { CreateAnuncioComponent } from './anunciosUser/create-anuncio.component';
 import { ListAnuncioComponent } from './anunciosUser/list-anuncio.component';
+import { ListaAnunciosUserComponent } from './producto/lista-anuncios-user.component';
+import { UserEditProfileAdminComponent } from './edit-users-admin/user-edit-profile.component';
 
 
 
@@ -47,7 +49,9 @@ import { ListAnuncioComponent } from './anunciosUser/list-anuncio.component';
     UserListComponent,
     UserEditProfileComponent,
     CreateAnuncioComponent,
-    ListAnuncioComponent
+    ListAnuncioComponent,
+    ListaAnunciosUserComponent,
+    UserEditProfileAdminComponent
   ],
   imports: [
     BrowserModule,

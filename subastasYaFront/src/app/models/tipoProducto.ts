@@ -1,5 +1,5 @@
 export class TipoProducto{
-    id?: number = 0;
+    idtipo_producto?: number;
     nombre_tipo: string = '';
     descripcion: string = '';
 

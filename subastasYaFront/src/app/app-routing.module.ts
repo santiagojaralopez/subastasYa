@@ -15,6 +15,8 @@ import { UserListComponent } from './users/user-list.component';
 import { UserEditProfileComponent } from './users/user-edit-profile.component';
 import { CreateAnuncioComponent } from './anunciosUser/create-anuncio.component';
 import { ListAnuncioComponent } from './anunciosUser/list-anuncio.component';
+import { ListaAnunciosUserComponent } from './producto/lista-anuncios-user.component';
+import { UserEditProfileAdminComponent } from './edit-users-admin/user-edit-profile.component';
 
 
 const routes: Routes = [
@@ -25,11 +27,13 @@ const routes: Routes = [
   { path: 'change-password/:tokenPassword', component: ChangePasswordComponent },
   { path: 'lista', component: ListaProductoComponent, canActivate: [guard], data: {expectedRole: ['admin']} },
   { path: 'user/edit', component: UserEditProfileComponent, canActivate: [guard], data: {expectedRole: ['admin', 'user']} },
+  { path: 'admin/user/edit/:username', component: UserEditProfileAdminComponent, canActivate: [guard], data: {expectedRole: ['admin']} },
   { path: 'anuncio/:id', component: DetalleProductoComponent, canActivate: [guard], data: {expectedRole: ['admin', 'user']} },
   { path: 'list/anuncio', component: ListAnuncioComponent, canActivate: [guard], data: {expectedRole: ['admin', 'user']} },
   { path: 'create/anuncio', component: CreateAnuncioComponent, canActivate: [guard], data: {expectedRole: ['admin', 'user']} },
   { path: 'config', component: ConfigurationComponent, canActivate: [guard], data: {expectedRole: ['admin']} },
-  { path: 'category/list', component: CategoriasProductoComponent, canActivate: [guard], data: {expectedRole: ['admin']} },
+  { path: 'lista-anuncios-usuario/:id', component: ListaAnunciosUserComponent, canActivate: [guard], data: {expectedRole: ['admin']} },
+  { path: 'category/list', component: CategoriasProductoComponent, canActivate: [guard], data: {expectedRole: ['admin',]} },
   { path: 'users/list', component: UserListComponent, canActivate: [guard], data: {expectedRole: ['admin']} },
   { path: 'editar/:id', component: EditarProductoComponent, canActivate: [guard], data: {expectedRole: ['admin']} },
   { path: '**', redirectTo: '', pathMatch: 'full' },

@@ -32,10 +32,10 @@
                     </div>
                     <div class="col">
                         <div class="row">
-                            <button [routerLink]="" type="button" class="botones mb-3 btn btn-outline-info">Editar</button>
+                            <button [routerLink]="['/admin/user/edit',usuario.nombreUsuario]" type="button" class="botones mb-3 btn btn-outline-info">Editar</button>
                         </div>
                         <div class="row">
-                            <button type="button" class="botones mb-3 btn btn-outline-info">Ver anuncios</button>
+                            <button type="button" class="botones mb-3 btn btn-outline-info" routerLink="/lista-anuncios-usuario/{{usuario.id}}">Ver anuncios</button>
                         </div>
                         <div class="row">
                             <button type="button" class="botones mb-3 btn btn-outline-danger">Bloquear</button>
@@ -43,8 +43,6 @@
                     </div>
                 </div>
             </div>
-
-
         </div>
     </div>
 </div>
