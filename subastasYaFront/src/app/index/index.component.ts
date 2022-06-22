@@ -5,6 +5,7 @@ import { Anuncio } from '../models/anuncio';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import { OfferDTO } from '../models/offer-dto';
+import { OfertaService } from '../service/oferta.service';
 
 @Component({
   selector: 'app-index',
@@ -20,11 +21,13 @@ export class IndexComponent implements OnInit {
   isLogged = false;
   nombreUsuario = '';
 
-  offerDto: OfferDTO = new OfferDTO();
+  offerDto: OfferDTO;
+  offerValue: number;
 
   constructor(
     private anuncioService: AnuncioService,
     private tokenService: TokenService,
+    private offerService: OfertaService,
     private router: Router
   ) { }
 
@@ -35,6 +38,7 @@ export class IndexComponent implements OnInit {
 
     if (this.tokenService.getToken()) {
       this.isLogged = true;
+      this.nombreUsuario = this.tokenService.getUserName();
     }
 
     this.roles = this.tokenService.getAuthorities();
@@ -45,16 +49,19 @@ export class IndexComponent implements OnInit {
     });
   }
 
-  onOffer() {
+  onOffer(announcementId: number) {
     if (!this.isLogged) {
       this.router.navigate(['/login']);
     } else {
       Swal.fire({
         title: '<strong>Pujar por este producto</strong>',
         input: 'number',
-        inputAttributes: { autocomplete: 'off' },
+        inputAttributes: {
+          autocomplete: 'off',
+          placeholder: 'Ingrese el valor en Pesos Colombianos'
+        },
         inputLabel: '¿Cuánto quieres pujar por este anuncio?',
-        inputValue: this.offerDto.offerValue,
+        inputValue: this.offerValue,
         showCloseButton: true,
         showDenyButton: true,
         focusConfirm: false,
@@ -64,21 +71,20 @@ export class IndexComponent implements OnInit {
           if (!value) {
             return 'Debes asignar un valor a tu puja!';
           } else {
-            this.offerDto.offerValue = parseFloat(value);
+            this.offerValue = parseFloat(value);
           }
         }
       }).then((result) => {
         if (result.isConfirmed) {
-          this.sureAboutOffering();
+          this.sureAboutOffering(announcementId);
         } else if (result.isDenied) {
-          Swal.fire('Se ha cancelado tu proceso de puja', '', 'info');
-          this.offerDto.offerValue = undefined;
+          this.offerValue = undefined;
         }
       });
     }
   }
 
-  sureAboutOffering() {
+  sureAboutOffering(announcementId: number) {
     Swal.fire({
       title: 'Confirmar puja',
       showDenyButton: true,
@@ -86,12 +92,21 @@ export class IndexComponent implements OnInit {
       denyButtonText: `Cancelar`,
     }).then((result) => {
       if (result.isConfirmed) {
-        Swal.fire('Puja realizada!', 'Has pujado por un valor de ' + this.offerDto.offerValue, 'success');
-        console.log(this.offerDto.offerValue);
+        this.offerDto = new OfferDTO(this.nombreUsuario, announcementId, this.offerValue);
+        this.offerService.newOffer(this.offerDto).subscribe(
+          data => {
+            Swal.fire('Puja realizada!', 'Has pujado por un valor de COP$' + this.offerValue, 'success');
+            this.offerValue = undefined;
+          },
+          err => {
+            Swal.fire('Ups!', 'Parece que ha ocurrido un error. Intenta de nuevo más tarde', 'error');
+          }
+        );
       } else if (result.isDenied) {
         Swal.fire('Se ha cancelado tu proceso de puja', '', 'info');
-        this.offerDto.offerValue = undefined;
+        this.offerValue = undefined;
       }
     });
   }
+
 }

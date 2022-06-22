@@ -42,11 +42,11 @@
                     </button>
                 </div>
                 <div class="row">
-                    <button type="button" class="botones mb-3 btn btn-outline-info" (click)="onOffer()" *ngIf="!isLogged; else offer">
+                    <button type="button" class="botones mb-3 btn btn-outline-info" (click)="onOffer(anuncio.id_anuncio)" *ngIf="!isLogged; else offer">
                         Inicia sesión para pujar
                     </button>
                     <ng-template #offer>
-                        <button type="button" class="botones mb-3 btn btn-outline-info" *ngIf="!isAdmin" (click)="onOffer()">
+                        <button type="button" class="botones mb-3 btn btn-outline-info" *ngIf="!isAdmin" (click)="onOffer(anuncio.id_anuncio)">
                             Pujar
                         </button>
                     </ng-template>
