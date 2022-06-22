@@ -24,7 +24,7 @@ export class UserListComponent implements OnInit {
   ngOnInit() {
     this.usuarioService.lista().subscribe(
       data => this.usuarios = data
-    )
+    );
     this.roles = this.tokenService.getAuthorities();
     this.roles.forEach((rol) => {
       if (rol === 'ROLE_ADMIN') {

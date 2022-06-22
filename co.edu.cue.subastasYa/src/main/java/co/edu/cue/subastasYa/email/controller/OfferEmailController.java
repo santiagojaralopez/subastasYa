@@ -2,10 +2,7 @@ package co.edu.cue.subastasYa.email.controller;
 
 import co.edu.cue.subastasYa.dto.Mensaje;
 import co.edu.cue.subastasYa.email.dto.OfferEmailValueDTO;
-import co.edu.cue.subastasYa.email.dto.PasswordEmailValuesDTO;
 import co.edu.cue.subastasYa.email.service.EmailService;
-import co.edu.cue.subastasYa.entity.Anuncio;
-import co.edu.cue.subastasYa.security.entity.Usuario;
 import co.edu.cue.subastasYa.security.service.UsuarioService;
 import co.edu.cue.subastasYa.service.AnuncioService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,11 +11,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Optional;
-
-@RestController
-@RequestMapping("/email-offer")
-@CrossOrigin
 public class OfferEmailController {
 
     @Autowired
@@ -35,7 +27,6 @@ public class OfferEmailController {
 
     private static final String subject = "¡Han ofertado por tu anuncio!";
 
-    @PostMapping("/send-offer-email")
     public ResponseEntity<?> sendEmail(@RequestBody OfferEmailValueDTO dto) {
         /**Optional<Usuario> usuarioAnuncianteOpt = usuarioService.getByNombreUsuarioOrEmail(dto.getMailTo());
         Optional<Usuario> usuarioOfertanteOpt = usuarioService.getByNombreUsuarioOrEmail(dto.getBidderUserName());

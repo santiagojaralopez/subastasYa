@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { OfferDTO } from '../models/offer-dto';
 
 @Injectable({
@@ -14,9 +15,12 @@ export class OfertaService {
   constructor(private httpClient: HttpClient) { }
 
   public newOffer(offerDto: OfferDTO): Observable<OfferDTO> {
-    console.log(offerDto.announcementId);
-    console.log(offerDto.bidderUserName);
-    console.log(offerDto.offerValue);
     return this.httpClient.post<OfferDTO>(`${this.urlEndpoint}/new`, offerDto, {headers: this.httpHeaders});
+  }
+
+  public listOffersByAnnouncement(announcementId: number): Observable<OfferDTO[]> {
+    return this.httpClient.get(`${this.urlEndpoint}/announcement-offers/${announcementId}`).pipe(
+      map(response => response as OfferDTO[])
+    );
   }
 }

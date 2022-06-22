@@ -36,7 +36,7 @@
                             </div>
                             <div class="col-6">
                                 <h5>{{anuncio.producto.nombre}}</h5>
-                                <a class="">Descripcion: {{anuncio.descripcion}}<br></a>
+                                <a>Descripcion: {{anuncio.descripcion}}<br></a>
                                 <a>Precio actual: {{anuncio.valor}}<br></a>
                                 <a>Anunciado por: {{anuncio.usuario.nombre}}<br></a>
                                 <a>Fecha de publicación: {{anuncio.fecha_inicio}}<br></a>
@@ -44,13 +44,19 @@
                             </div>
                             <div class="col">
                                 <div class="row">
-                                    <button [routerLink]="['/anuncio',anuncio.id_anuncio]" type="button" class="botones mb-3 btn btn-outline-info">Ver Anuncio</button>
+                                    <button [routerLink]="['/anuncio',anuncio.id_anuncio]" type="button" class="botones mb-3 btn btn-outline-info">
+                                        Ver Anuncio
+                                    </button>
                                 </div>
                                 <div class="row">
-                                    <button type="button" class="botones mb-3 btn btn-outline-info">Ver ofertas</button>
+                                    <button type="button" class="botones mb-3 btn btn-outline-info" [routerLink]="['/anuncio',anuncio.id_anuncio]">
+                                        Ver ofertas
+                                    </button>
                                 </div>
                                 <div class="row">
-                                    <button type="button" class="botones mb-3 btn btn-outline-danger">Bloquear</button>
+                                    <button type="button" class="botones mb-3 btn btn-outline-danger">
+                                        Bloquear
+                                    </button>
                                 </div>
                             </div>
                         </div>
@@ -60,3 +66,4 @@
         </div>
     </div>
 </div>
+<app-footer></app-footer>

@@ -11,6 +11,7 @@ import co.edu.cue.subastasYa.security.enums.RolNombre;
 import co.edu.cue.subastasYa.security.service.RolService;
 import co.edu.cue.subastasYa.security.service.UsuarioService;
 import co.edu.cue.subastasYa.security.jwt.JwtProvider;
+import co.edu.cue.subastasYa.service.ConfiguracionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -47,6 +48,9 @@ public class AuthController {
 
     @Autowired
     JwtProvider jwtProvider;
+
+    @Autowired
+    ConfiguracionService configService;
 
     @PostMapping("/nuevo")
     public ResponseEntity<?> nuevo(@Valid @RequestBody NuevoUsuario nuevoUsuario, BindingResult bindingResult) {
