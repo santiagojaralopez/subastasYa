@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { ListaProductoComponent } from './producto/lista-producto.component';
 import { DetalleProductoComponent } from './producto/detalle-producto.component';
-import { NuevoProductoComponent } from './producto/nuevo-producto.component';
 import { EditarProductoComponent } from './producto/editar-producto.component';
 import { IndexComponent } from './index/index.component';
 import { LoginComponent } from './auth/login.component';
@@ -30,7 +29,6 @@ const routes: Routes = [
   { path: 'anuncio/:id', component: DetalleProductoComponent, canActivate: [guard], data: {expectedRole: ['admin', 'user']} },
   { path: 'list/anuncio', component: ListAnuncioComponent, canActivate: [guard], data: {expectedRole: ['admin', 'user']} },
   { path: 'create/anuncio', component: CreateAnuncioComponent, canActivate: [guard], data: {expectedRole: ['admin', 'user']} },
-  { path: 'nuevo', component: NuevoProductoComponent, canActivate: [guard], data: {expectedRole: ['admin']} },
   { path: 'config', component: ConfigurationComponent, canActivate: [guard], data: {expectedRole: ['admin']} },
   { path: 'lista-anuncios-usuario/:id', component: ListaAnunciosUserComponent, canActivate: [guard], data: {expectedRole: ['admin']} },
   { path: 'category/list', component: CategoriasProductoComponent, canActivate: [guard], data: {expectedRole: ['admin',]} },
