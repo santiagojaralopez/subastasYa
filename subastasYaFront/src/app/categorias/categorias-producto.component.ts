@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { element } from 'protractor';
 import Swal from 'sweetalert2';
 import { TipoProducto } from '../models/tipoProducto';
 import { TipoProductoService } from '../service/tipoProducto.service';
@@ -57,18 +58,49 @@ export class CategoriasProductoComponent implements OnInit {
         text: "Ingrese el nuevo nombre para la categoria: "+nombre,
         input: "text",
         showCancelButton: true,
-        confirmButtonText: "Guardar",
+        confirmButtonText: "Aceptar",
         cancelButtonText: "Cancelar",
     })
-    .then(resultado => {
+    .then(async resultado => {
         if (resultado.value) {
-            let nombre = resultado.value;
-            console.log("Hola, " + nombre);
+            let nombre2 = resultado.value;
+            this.nuevoNombre = nombre2;
+            this.findIdByNombre(nombre);
+            await new Promise(f => setTimeout(f, 100));
+            this.onUpdate1(descripcion)
         }
     });
   }
 
-  onUpdate(){
+  findIdByNombre(nuevoNombre: string) {
+    this.tipos.forEach(element=>{
+      if(element.nombre_tipo == nuevoNombre) {
+        this.idUpdate = element.idtipo_producto
+      }
+    })
+  }
+
+  onUpdate1(descripcion: string){
+    Swal.fire({
+      title: "Editar",
+      text: "Ingrese la nueva descripcion, la actual es: "+descripcion,
+      input: "text",
+      showCancelButton: true,
+      confirmButtonText: "Aceptar",
+      cancelButtonText: "Cancelar",
+  })
+  .then(async resultado => {
+      if (resultado.value) {
+          let descripcion  = resultado.value;
+          this.nuevaDescripcion = descripcion;
+          await new Promise(f => setTimeout(f, 100));
+          this.onUpdate2();
+      }
+  });
+  }
+
+  onUpdate2(){
+    this.tipoUpdate = new TipoProducto(this.nuevoNombre, this.nuevaDescripcion)
     this.tipoProductoService.updateTipo(this.idUpdate, this.tipoUpdate).subscribe(
       data => {
         Swal.fire(
@@ -76,7 +108,6 @@ export class CategoriasProductoComponent implements OnInit {
           'La informacion ha sido actualizada con éxito',
           'success'
         );
-        window.location.reload();
       },
       err => {
         Swal.fire(

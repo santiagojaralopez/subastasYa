@@ -13,6 +13,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -53,7 +54,7 @@ public class TipoProductoController {
     }
 
     @PutMapping("/updateTipoProducto/{id}")
-    public ResponseEntity<?> update(@PathVariable("id")int id, @RequestBody TipoProducto tipoProducto){
+    public ResponseEntity<?> update(@PathVariable int id, @Valid @RequestBody TipoProducto tipoProducto){
         if(!tipoProductoService.existsById(id))
             return new ResponseEntity(new Mensaje("no existe"), HttpStatus.NOT_FOUND);
 
@@ -64,9 +65,10 @@ public class TipoProductoController {
         TipoProducto tipoProducto1 = tipoProductoService.getOne(id).get();
 
         tipoProducto1.setNombre_tipo(tipoProducto.getNombre_tipo());
+        tipoProducto1.setDescripcion(tipoProducto.getDescripcion());
 
 
-        tipoProductoService.save(tipoProducto);
+        tipoProductoService.save(tipoProducto1);
         System.out.println("se actualizo yeiii");
         return new ResponseEntity(new Mensaje("tipoProducto actualizado"), HttpStatus.OK);
     }
