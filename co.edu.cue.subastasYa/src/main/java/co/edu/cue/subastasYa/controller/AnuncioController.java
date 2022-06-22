@@ -220,25 +220,26 @@ public class AnuncioController {
     public ResponseEntity<?> updateBloqueoAdmin(@PathVariable("id")int id, @RequestBody AnuncioDto anuncioDto) {
         if (!anuncioService.existsById(id))
             return new ResponseEntity(new Mensaje("no existe"), HttpStatus.NOT_FOUND);
-        if (anuncioDto.getEstado().getNombre()=="ACTIVO" || anuncioDto.getEstado().getNombre()=="INACTIVO") {
+        if (anuncioDto.getEstado().getId_estado()==2 || anuncioDto.getEstado().getId_estado()==3) {
             Anuncio anuncio = anuncioService.getOne(id).get();
             anuncio.setEstado(estadoAnuncioService.getEstadoBloqueado());
             anuncioService.save(anuncio);
             System.out.println("estado BLOQUEADO jiji");
             return new ResponseEntity(new Mensaje("estado del anuncio actualizado"), HttpStatus.OK);
-        } else return new ResponseEntity(new Mensaje("el estado es obligatorio"), HttpStatus.BAD_REQUEST);
+        } else return new ResponseEntity(new Mensaje("el anuncio no se puede bloquear"), HttpStatus.BAD_REQUEST);
     }
+
 
     @PutMapping("/updateAnuncioActivar/{id}")
     public ResponseEntity<?> updateActivarAdmiUser(@PathVariable("id")int id, @RequestBody AnuncioDto anuncioDto) {
         if (!anuncioService.existsById(id))
             return new ResponseEntity(new Mensaje("no existe"), HttpStatus.NOT_FOUND);
-        if (anuncioDto.getEstado().getNombre()=="BLOQUEADO" || anuncioDto.getEstado().getNombre()=="INACTIVO") {
+        if (anuncioDto.getEstado().getId_estado()==1  || anuncioDto.getEstado().getId_estado()==3) {
             Anuncio anuncio = anuncioService.getOne(id).get();
             anuncio.setEstado(estadoAnuncioService.getEstadoActivo());
             anuncioService.save(anuncio);
             return new ResponseEntity(new Mensaje("estado del anuncio actualizado"), HttpStatus.OK);
-        } else return new ResponseEntity(new Mensaje("el estado es obligatorio"), HttpStatus.BAD_REQUEST);
+        } else return new ResponseEntity(new Mensaje("el anuncio no se puede activar"), HttpStatus.BAD_REQUEST);
 
     }
 
@@ -246,12 +247,12 @@ public class AnuncioController {
     public ResponseEntity<?> updateInactivoUser(@PathVariable("id")int id, @RequestBody AnuncioDto anuncioDto) {
         if (!anuncioService.existsById(id))
             return new ResponseEntity(new Mensaje("no existe"), HttpStatus.NOT_FOUND);
-        if (anuncioDto.getEstado().getNombre()=="ACTIVO" || anuncioDto.getEstado().getNombre()=="BLOQUEADO") {
+        if (anuncioDto.getEstado().getId_estado()==2 || anuncioDto.getEstado().getId_estado()==1) {
             Anuncio anuncio = anuncioService.getOne(id).get();
             anuncio.setEstado(estadoAnuncioService.getEstadoInactivo());
             anuncioService.save(anuncio);
             return new ResponseEntity(new Mensaje("estado del anuncio actualizado"), HttpStatus.OK);
-        } else return new ResponseEntity(new Mensaje("el estado es obligatorio"), HttpStatus.BAD_REQUEST);
+        } else return new ResponseEntity(new Mensaje("el anuncio no se puede desactivar"), HttpStatus.BAD_REQUEST);
     }
     //TIPO DE PRODUCTOS SOLO DE LA LISTA
 }

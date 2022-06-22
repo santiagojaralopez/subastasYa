@@ -14,6 +14,13 @@ import { CiudadService } from '../service/ciudad.service';
 import Swal from 'sweetalert2';
 import { TipoProductoService } from '../service/tipoProducto.service';
 
+
+//JAVASCRIPT
+declare function myMethod(): any;
+
+declare function myfunction(): any;
+
+
 @Component({
   selector: 'app-create-anuncio',
   templateUrl: './create-anuncio.component.html',
@@ -62,6 +69,8 @@ export class CreateAnuncioComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    myMethod();
+
     this.usuarioService.lista().subscribe(
       data => this.usuarios = data
     );
@@ -71,7 +80,6 @@ export class CreateAnuncioComponent implements OnInit {
     this.tipoProductoService.lista().subscribe(
       data => this.tipos = data
     );
-    
     
   }
 
@@ -99,11 +107,13 @@ export class CreateAnuncioComponent implements OnInit {
   async onCreate(){
     this.nuevoProducto = new Producto(this.nombreProducto,"foto",this.tipoProducto);
 
+    myMethod();
+
+    
     console.log(this.nuevoProducto)
     
     let user = this.findUserByUserName(this.tokenService.getUserName());
     this.usuario = user;
-
     
     this.nuevoAnuncio = new Anuncio(this.descripcion,this.usuario,this.ciudad,this.nuevoProducto,this.valor);
     
