@@ -3,6 +3,7 @@ package co.edu.cue.subastasYa.controller;
 
 import co.edu.cue.subastasYa.dto.Mensaje;
 import co.edu.cue.subastasYa.dto.ProductoDto;
+import co.edu.cue.subastasYa.entity.Anuncio;
 import co.edu.cue.subastasYa.entity.Configuracion;
 import co.edu.cue.subastasYa.entity.Producto;
 import co.edu.cue.subastasYa.repository.ConfiguracionRepository;
@@ -25,10 +26,10 @@ public class ConfiguracionController {
     @Autowired
     ConfiguracionService configuracionService;
 
-
     @PreAuthorize("hasRole('ADMIN')")
     @PutMapping("/update-config/{id}")
-    public ResponseEntity<?> update(@PathVariable("id")int id, @RequestBody Configuracion configuracion){
+    public ResponseEntity<?> update(@PathVariable int id, @RequestBody Configuracion configuracion){
+        System.out.println("aaaaaaaaaaaaa"+id);
         if(!configuracionService.existsById(id))
             return new ResponseEntity(new Mensaje("no existe"), HttpStatus.NOT_FOUND);
         if(StringUtils.isBlank(configuracion.getNombre()))
@@ -38,9 +39,17 @@ public class ConfiguracionController {
 
         Configuracion configuracion1 = configuracionService.getById(id).get();
         configuracion1.setNombre(configuracion.getNombre());
-        configuracion1.setId(configuracion.getValor());
-        configuracionService.save(configuracion);
+        configuracion1.setValor(configuracion.getValor());
+        configuracionService.save(configuracion1);
         return new ResponseEntity(new Mensaje("la configuracion esta actualizada"), HttpStatus.OK);
+    }
+
+    @GetMapping("/detailConfig/{id}")
+    public Configuracion getById(@PathVariable("id") int id){
+        if(!configuracionService.existsById(id))
+            return null;
+        Configuracion configuracion = configuracionService.getById(id).get();
+        return configuracion;
     }
 
 
