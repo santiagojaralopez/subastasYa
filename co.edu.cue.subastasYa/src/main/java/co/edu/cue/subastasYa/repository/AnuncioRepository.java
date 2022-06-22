@@ -11,15 +11,11 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 import java.util.Optional;
 
-
 @Repository
-public interface AnuncioRepository extends JpaRepository<Anuncio, Integer>{
-
-
+public interface AnuncioRepository extends JpaRepository<Anuncio, Integer> {
     //1 BLOQUEADO
     //2 ACTIVO
     //3 INACTIVO
-
 
     @Query("SELECT a FROM Anuncio a WHERE a.estado=1" )
     List<Anuncio> findAnunciosByBloqueado();
@@ -30,27 +26,17 @@ public interface AnuncioRepository extends JpaRepository<Anuncio, Integer>{
     @Query("SELECT a FROM Anuncio a WHERE a.estado=3")
      List<Anuncio> findAnunciosByInactivo();
 
-
-
     @Query("SELECT c.valor FROM Configuracion c WHERE c.nombre= 'cantidadAnunciosActivos'")
     int cantidadAnuncios();
 
-
     @Query("SELECT c.valor FROM Configuracion c WHERE c.nombre= 'diasAnunciosActivos'")
     int diasAnuncioActivo();
-
-
 
     @Query("SELECT a FROM Anuncio a WHERE a.usuario= :usuario")
     Optional<Anuncio> findAnuncioByUsuario(
             @Param("usuario") Usuario usuario);
 
-
-
     @Query("SELECT a FROM Anuncio a WHERE a.usuario.nombreUsuario= :usuario")
     List<Anuncio> findListaAnunciosByUsuario(
             @Param("usuario") String username);
-
-
-
 }

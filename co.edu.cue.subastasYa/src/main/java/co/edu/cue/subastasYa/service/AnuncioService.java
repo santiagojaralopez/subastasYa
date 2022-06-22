@@ -1,7 +1,6 @@
 package co.edu.cue.subastasYa.service;
 
 import co.edu.cue.subastasYa.entity.Anuncio;
-import co.edu.cue.subastasYa.entity.TipoProducto;
 import co.edu.cue.subastasYa.repository.AnuncioRepository;
 import co.edu.cue.subastasYa.security.entity.Usuario;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,7 +48,6 @@ public class AnuncioService {
         return anuncioRepository.existsById(id);
     }
 
-
     public Optional<Anuncio> findAnuncioByUsuario(Usuario usuario) {
         return anuncioRepository.findAnuncioByUsuario(usuario);
     }
@@ -58,15 +56,11 @@ public class AnuncioService {
         return anuncioRepository.findListaAnunciosByUsuario(username);
     }
 
-
     public int cantidadAnuncios(){
        return anuncioRepository.cantidadAnuncios();
     }
 
-
     public int diasAnuncioActivo(){
         return anuncioRepository.diasAnuncioActivo();
     }
-
-
 }

@@ -1,9 +1,6 @@
 package co.edu.cue.subastasYa.entity;
 
-import co.edu.cue.subastasYa.security.entity.Usuario;
-
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 @Entity
@@ -15,9 +12,6 @@ public class Producto {
 
     @NotNull
     private String nombre;
-
-    //@NotNull
-    //private TipoProducto tipoProducto;
 
     @NotNull
     private String foto_producto;

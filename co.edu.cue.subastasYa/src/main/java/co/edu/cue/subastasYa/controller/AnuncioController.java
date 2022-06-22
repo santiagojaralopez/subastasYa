@@ -92,7 +92,6 @@ public class AnuncioController {
 
     @PostMapping("/createAnuncio")
     public ResponseEntity<?> create(@RequestBody AnuncioDto anuncioDto){
-        System.out.println("TIPO PRODUCTOOOOOOOOOOOOOOO: "+anuncioDto.getProducto().getFoto_producto());
         Producto producto = new Producto(anuncioDto.getProducto().getNombre(),anuncioDto.getProducto().getFoto_producto(),anuncioDto.getProducto().getTipoproducto());
         productoService.save(producto);
 
