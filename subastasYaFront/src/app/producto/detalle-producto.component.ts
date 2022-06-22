@@ -4,6 +4,7 @@ import Swal from 'sweetalert2';
 import { Anuncio } from '../models/anuncio';
 import { EstadoAnuncio } from '../models/estadoAnuncio';
 import { AnuncioService } from '../service/anuncio.service';
+import { TokenService } from '../service/token.service';
 
 
 @Component({
@@ -15,14 +16,16 @@ import { AnuncioService } from '../service/anuncio.service';
 
 export class DetalleProductoComponent implements OnInit {
 
-  //estado: boolean;
+  estado=true;
   anuncio: Anuncio;
+
 
   
   constructor(
     private anuncioService: AnuncioService,
     private activatedRoute: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private tokenService: TokenService
   ) { }
 
   ngOnInit() {
@@ -42,13 +45,11 @@ export class DetalleProductoComponent implements OnInit {
   }
 
   
-  //estadoAnuncio(){
-    //if(this.anuncio.estado.id==1 || this.anuncio.estado.id==2){
-    //  this.estado=true;
-   // } else{
-    //  this.estado=false;
-    //}
- // }
+  estadoAnuncio(){
+    if(this.anuncio.estado.id==1 || this.anuncio.estado.id==3){
+      this.estado=false;
+    }
+  }
 
 
 
@@ -97,6 +98,7 @@ export class DetalleProductoComponent implements OnInit {
 
   
   cambiarEstadoInactivo(){
+
     this.anuncioService.updateAnuncioInactivo(this.anuncio).subscribe(
       data => {
         Swal.fire(
@@ -115,6 +117,29 @@ export class DetalleProductoComponent implements OnInit {
     );
     // document.getElementById("botonEstado").innerText= "INACTIVO";
   }
+
+
+  cambiarEstadoVendido(){
+    this.anuncioService.updateAnuncioVendido(this.anuncio).subscribe(
+      data => {
+        Swal.fire(
+          'Exito',
+          'Su anuncio ahora esta VENDIDO',
+          'success'
+        )
+      },
+      err => {
+        Swal.fire(
+          'Error',
+          err.error.mensaje,
+          'error'
+        );
+      }
+      
+    );
+    // document.getElementById("botonEstado").innerText= "VENDIDO";
+  }
+
 
 
 

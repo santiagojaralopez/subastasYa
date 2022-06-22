@@ -29,4 +29,8 @@ public class EstadoAnuncioService {
         return estadoAnuncioRepository.getEstadoBloqueado();
     }
 
+    public Estado getEstadoVendido(){
+        return estadoAnuncioRepository.getEstadoVendido();
+    }
+
 }

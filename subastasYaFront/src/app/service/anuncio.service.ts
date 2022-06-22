@@ -52,6 +52,10 @@ export class AnuncioService {
   updateAnuncioInactivo(anuncio: Anuncio): Observable<Anuncio>{
     return this.http.put<Anuncio>(`${this.anuncioURL}updateAnuncioInactivo/${anuncio.id_anuncio}`, anuncio);
   }
+
+  updateAnuncioVendido(anuncio: Anuncio): Observable<Anuncio>{
+    return this.http.put<Anuncio>(`${this.anuncioURL}updateAnuncioVendido/${anuncio.id_anuncio}`, anuncio);
+  }
   
 
   

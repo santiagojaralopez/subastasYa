@@ -17,8 +17,8 @@ import { TipoProductoService } from '../service/tipoProducto.service';
 
 //JAVASCRIPT
 declare function myMethod(): any;
-
-declare function myfunction(): any;
+declare function boton(): any;
+declare function fotoVariable():any;
 
 
 @Component({
@@ -28,8 +28,13 @@ declare function myfunction(): any;
 })
 export class CreateAnuncioComponent implements OnInit {
 
+  
   nuevoAnuncio: Anuncio;
   nuevoProducto: Producto;
+  urlImagen= fotoVariable();
+
+  
+  imgUrl= "assets/images/user-placeholder.png";
 
 
   ciudades: Ciudad[] = [];
@@ -66,11 +71,13 @@ export class CreateAnuncioComponent implements OnInit {
     private ciudadService: CiudadService,
     private tokenService: TokenService,
     private tipoProductoService: TipoProductoService
-  ) { }
+  ) {
+    
+   }
 
   ngOnInit() {
-    myMethod();
-
+    
+    
     this.usuarioService.lista().subscribe(
       data => this.usuarios = data
     );
@@ -108,16 +115,15 @@ export class CreateAnuncioComponent implements OnInit {
     this.nuevoProducto = new Producto(this.nombreProducto,"foto",this.tipoProducto);
 
     myMethod();
-
     
     console.log(this.nuevoProducto)
     
     let user = this.findUserByUserName(this.tokenService.getUserName());
     this.usuario = user;
     
-    this.nuevoAnuncio = new Anuncio(this.descripcion,this.usuario,this.ciudad,this.nuevoProducto,this.valor);
+    this.nuevoAnuncio = new Anuncio(this.descripcion,this.usuario,this.ciudad,this.nuevoProducto,this.valor, this.urlImagen);
     
-    console.log(this.nuevoAnuncio)
+    console.log(this.nuevoAnuncio);
 
 
     this.anuncioService.createAnuncio(this.nuevoAnuncio).subscribe(
@@ -138,7 +144,21 @@ export class CreateAnuncioComponent implements OnInit {
     );
   
   }
+
+
+   buttonPhoto(){
+    boton();
+  }
+
+
+
+
 }
+
+
+
+
+
 
 function delay(ms: number) {
   return new Promise( resolve => setTimeout(resolve, ms) );

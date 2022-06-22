@@ -18,6 +18,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -112,21 +113,19 @@ public class AnuncioController {
             SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
             Date date = new Date();
 
-            //CALCULO DE FECHA FIN
-            /*
+
             int dias= anuncioService.diasAnuncioActivo();
             Date dt = date;
             Calendar c = Calendar.getInstance();
             c.setTime(dt);
             c.add(Calendar.DATE, dias);
             dt = c.getTime();
-             */
 
             //TIPOS DE PRODUCTO
             TipoProducto existeTipoProducto = tipoProducto(anuncioDto);
 
             if (existeTipoProducto!=null){
-                Anuncio anuncio = new Anuncio(anuncioDto.getDescripcion(), date, date, anuncioDto.getUsuario(),estadoAnuncioService.getEstadoActivo(), anuncioDto.getCiudad(), anuncioDto.getValor(), producto);
+                Anuncio anuncio = new Anuncio(anuncioDto.getDescripcion(), date, dt, anuncioDto.getUsuario(),estadoAnuncioService.getEstadoActivo(), anuncioDto.getCiudad(), anuncioDto.getValor(), producto);
                 anuncioService.save(anuncio);
                 return new ResponseEntity(new Mensaje("anuncio creado"), HttpStatus.OK);
               } else
@@ -254,5 +253,19 @@ public class AnuncioController {
             return new ResponseEntity(new Mensaje("estado del anuncio actualizado"), HttpStatus.OK);
         } else return new ResponseEntity(new Mensaje("el anuncio no se puede desactivar"), HttpStatus.BAD_REQUEST);
     }
-    //TIPO DE PRODUCTOS SOLO DE LA LISTA
+
+
+    @PutMapping("/updateAnuncioVendido/{id}")
+    public ResponseEntity<?> updateVendidoUser(@PathVariable("id")int id, @RequestBody AnuncioDto anuncioDto) {
+        if (!anuncioService.existsById(id))
+            return new ResponseEntity(new Mensaje("no existe"), HttpStatus.NOT_FOUND);
+        if (anuncioDto.getEstado().getId_estado()==2) {
+            Anuncio anuncio = anuncioService.getOne(id).get();
+            anuncio.setEstado(estadoAnuncioService.getEstadoVendido());
+            anuncioService.save(anuncio);
+            return new ResponseEntity(new Mensaje("estado del anuncio actualizado"), HttpStatus.OK);
+        } else return new ResponseEntity(new Mensaje("el anuncio no se puede vender"), HttpStatus.BAD_REQUEST);
+    }
+
+
 }

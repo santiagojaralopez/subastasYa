@@ -14,4 +14,7 @@ public interface EstadoAnuncioRepository extends JpaRepository<Estado, Integer> 
 
     @Query("SELECT a FROM Estado a WHERE a.nombre='BLOQUEADO'")
     Estado getEstadoBloqueado();
+
+    @Query("SELECT a FROM Estado a WHERE a.nombre='VENDIDO'")
+    Estado getEstadoVendido();
 }
