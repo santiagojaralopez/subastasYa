@@ -141,37 +141,40 @@ public class UsuarioController {
         } catch (Exception e) {
             return new ResponseEntity(new Mensaje("Por favor no deje campos vacíos"), HttpStatus.BAD_REQUEST);
         }
+
         return new ResponseEntity(new Mensaje("usuario actualizado"), HttpStatus.OK);
     }
 
-    @PutMapping("/blockedUser/{id}")
-    public ResponseEntity<?> updateBloqueoAdmin(@PathVariable("id")int id){
-        if(!usuarioService.existsById(id))
+    @PutMapping("/blockedUser/{userName}")
+    public ResponseEntity<?> updateBloqueoAdmin(@PathVariable("userName")String userName){
+        if(!usuarioService.existsByNombreUsuario(userName))
             return new ResponseEntity(new Mensaje("no existe"), HttpStatus.NOT_FOUND);
 
-        Usuario usuario1= usuarioService.getOne(id).get();
+        Usuario usuario1= usuarioService.getByNombreUsuario(userName).get();
         usuario1.setEstadoUsuario(EstadoUsuario.BLOQUEADO);
         usuarioService.save(usuario1);
         return new ResponseEntity(new Mensaje("Usuario bloqueado exitosamente"), HttpStatus.OK);
     }
 
-    @PutMapping("/ActiveUser/{id}")
-    public ResponseEntity<?> updateActivarAdmiUser(@PathVariable("id")int id) {
-        if (!usuarioService.existsById(id))
+    @PutMapping("/ActiveUser/{userName}")
+    public ResponseEntity<?> updateActivarAdmiUser(@PathVariable("userName") String userName) {
+        if (!usuarioService.existsByNombreUsuario(userName))
             return new ResponseEntity(new Mensaje("no existe"), HttpStatus.NOT_FOUND);
-        Usuario usuario1 = usuarioService.getOne(id).get();
+        Usuario usuario1 = usuarioService.getByNombreUsuario(userName).get();
         usuario1.setEstadoUsuario(EstadoUsuario.HABILITADO);
         usuarioService.save(usuario1);
         return new ResponseEntity(new Mensaje("Habilitado de nuevo"), HttpStatus.OK);
     }
 
-    @PutMapping("/DeshabilitarUser/{id}")
-    public ResponseEntity<?> updateDeshabilitarUserFromUser(@PathVariable("id")int id) {
-        if (!usuarioService.existsById(id))
+    @PutMapping("/DeshabilitarUser/{userName}")
+    public ResponseEntity<?> updateDeshabilitarUserFromUser(@PathVariable("userName")String userName) {
+        if (!usuarioService.existsByNombreUsuario(userName))
             return new ResponseEntity(new Mensaje("no existe"), HttpStatus.NOT_FOUND);
-        Usuario usuario1 = usuarioService.getOne(id).get();
+        Usuario usuario1 = usuarioService.getByNombreUsuario(userName).get();
         usuario1.setEstadoUsuario(EstadoUsuario.DESHABILITADO);
         usuarioService.save(usuario1);
         return new ResponseEntity(new Mensaje("El usuario se ha dado de baja"), HttpStatus.OK);
     }
+
+
 }

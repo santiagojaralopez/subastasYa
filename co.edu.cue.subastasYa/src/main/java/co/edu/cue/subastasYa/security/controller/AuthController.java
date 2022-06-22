@@ -24,6 +24,12 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.time.LocalDate;
+import java.time.Period;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
@@ -50,12 +56,17 @@ public class AuthController {
 
     @PostMapping("/nuevo")
     public ResponseEntity<?> nuevo(@Valid @RequestBody NuevoUsuario nuevoUsuario, BindingResult bindingResult) {
+        Date input = nuevoUsuario.getFechaNacimiento();
+        LocalDate fechaNacimiento = input.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
         if (bindingResult.hasErrors())
             return new ResponseEntity(new Mensaje("Campos mal diligenciados o email inválido"), HttpStatus.BAD_REQUEST);
         if (usuarioService.existsByNombreUsuario(nuevoUsuario.getNombreUsuario()))
             return new ResponseEntity(new Mensaje("Ese nombre de usuario ya existe"), HttpStatus.BAD_REQUEST);
         if (usuarioService.existsByEmail(nuevoUsuario.getEmail()))
             return new ResponseEntity(new Mensaje("Ese Email ya está registrado"), HttpStatus.BAD_REQUEST);
+        if(validarFecha(fechaNacimiento)){
+            return new ResponseEntity(new Mensaje("El usuario es menor de edad"), HttpStatus.BAD_REQUEST);
+        }
 
         Usuario usuario = new Usuario();
         usuario.setNombre(nuevoUsuario.getNombres());
@@ -109,4 +120,18 @@ public class AuthController {
 
         return new ResponseEntity(jwtDto, HttpStatus.OK);
     }
+
+    public Boolean validarFecha(LocalDate fechanacto ) {
+        DateTimeFormatter fmt = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        LocalDate ahora = LocalDate.now();
+
+        long periodo2 = ChronoUnit.DAYS.between(fechanacto, ahora);
+
+        if (periodo2 >= 18*365) {
+            return false;
+        }else{
+            return true;
+        }
+    }
+
 }
