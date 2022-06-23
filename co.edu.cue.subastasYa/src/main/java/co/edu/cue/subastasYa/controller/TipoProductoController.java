@@ -21,7 +21,6 @@ import java.util.List;
 @RequestMapping("/tipoProducto")
 public class TipoProductoController {
 
-
     @Autowired
     TipoProductoService tipoProductoService;
 
@@ -109,9 +108,4 @@ public class TipoProductoController {
         tipoProductoService.delete(id);
         return new ResponseEntity(new Mensaje("TipoProducto eliminado"), HttpStatus.OK);
     }
-
-
-
-
-
 }

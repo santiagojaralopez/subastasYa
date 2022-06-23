@@ -3,6 +3,7 @@
 const boton_foto = document.querySelector('#btn-foto');
 const imagen = document.querySelector('#user-photo');
 const input_foto = document.querySelector('#user-photo');
+let imagenUrl;
 
 
 let widget_cloudinary = cloudinary.createUploadWidget({
@@ -11,18 +12,18 @@ let widget_cloudinary = cloudinary.createUploadWidget({
 }, (err, result) => {
     if (!err && result && result.event === 'success') {
         console.log('Imagen subida con exito', result.info);
-        imagen.src = result.info.secure_url;
-        console.log("hola");
+        imagenUrl = result.info.secure_url;
+        console.log("almacenado imagen: " + imagenUrl);
+        miFuncion(result);
     }
 });
 
 
-function fotoVariable() {
-    return imagen;
+function miFuncion(result) {
+    return result.info.secure_url;
 }
 
 
 function boton() {
-    console.log("si entre en el boton")
     widget_cloudinary.open();
 }
