@@ -131,7 +131,7 @@ public class AuthController {
 
         long periodo2 = ChronoUnit.DAYS.between(fechanacto, ahora);
 
-        if (periodo2 >= 18*365) {
+        if (periodo2 >= configService.edadMinimaRegistro()) {
             return false;
         }else{
             return true;
