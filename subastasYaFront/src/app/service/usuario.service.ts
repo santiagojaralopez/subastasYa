@@ -34,4 +34,8 @@ export class UsuarioService {
     // tslint:disable-next-line: max-line-length
     return this.http.put<UpdateUsuarioDTO>(`${this.usuarioURL}/updateUser/${nombreUsuario}`, updateUserDTO, {headers: this.httpHeaders});
   }
+
+  blockUser(username: string): Observable<Usuario> {
+    return this.http.put<Usuario>(`${this.usuarioURL}/blockedUser/${username}`, {headers: this.httpHeaders})
+  }
 }
