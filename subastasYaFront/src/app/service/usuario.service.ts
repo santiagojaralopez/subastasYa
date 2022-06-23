@@ -43,4 +43,8 @@ export class UsuarioService {
   createAnuncio(usuario: NuevoUsuario): Observable<any> {
     return this.http.post<any>(this.usuarioURL + '/newUser', usuario);
   }
+
+  deshabilitarUser(username: string): Observable<Usuario> {
+    return this.http.put<Usuario>(`${this.usuarioURL}/DeshabilitarUser/${username}`, {headers: this.httpHeaders})
+  }
 }
