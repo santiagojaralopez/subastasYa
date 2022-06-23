@@ -1,0 +1,13 @@
+.containerParams {
+    display: flex;
+    justify-content: center;
+}
+
+.prueba {
+    width: 70%;
+}
+
+.xd {
+    margin: 30px;
+    height: 100vh;
+}

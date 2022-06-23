@@ -74,4 +74,13 @@ public class OfferController {
         Optional<Anuncio> anuncio = anuncioService.getOne(announcementId);
         return offerService.getOffersByAnnouncementId(anuncio.get());
     }
+
+    /**
+     * Deletes all the other offers that are not the winner one
+     * @param offerId: int
+     */
+    @DeleteMapping("/delete-offers/{offerId}")
+    public void deleteOffers(@PathVariable("offerId") int offerId) {
+        offerService.deleteOffers(offerId);
+    }
 }

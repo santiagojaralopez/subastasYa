@@ -70,7 +70,8 @@ public class MainSecurity extends WebSecurityConfigurerAdapter {
                         "/anuncio/createAnuncio/**",
                         "/producto/create/**",
                         "/ciudad/listaCiudades/**",
-                        "/offer/new/**"
+                        "/offer/new/**",
+                        "/offer/delete-offers/**"
                 ).permitAll()
                 .anyRequest().authenticated()
                 .and()

@@ -1,10 +1,10 @@
 CREATE DATABASE  IF NOT EXISTS `subastasya` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
 USE `subastasya`;
--- MySQL dump 10.13  Distrib 8.0.28, for macos11 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.27, for Win64 (x86_64)
 --
 -- Host: localhost    Database: subastasya
 -- ------------------------------------------------------
--- Server version	8.0.28
+-- Server version	8.0.27
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -52,7 +52,7 @@ CREATE TABLE `anuncio` (
 
 LOCK TABLES `anuncio` WRITE;
 /*!40000 ALTER TABLE `anuncio` DISABLE KEYS */;
-INSERT INTO `anuncio` VALUES (12,'trigger','2022-06-23','2022-06-26',8,2,2,123333,60);
+INSERT INTO `anuncio` VALUES (12,'sdfsfdsdf','2022-06-23','2022-06-28',2,2,2,23333,61);
 /*!40000 ALTER TABLE `anuncio` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -104,7 +104,7 @@ CREATE TABLE `configuracion` (
 
 LOCK TABLES `configuracion` WRITE;
 /*!40000 ALTER TABLE `configuracion` DISABLE KEYS */;
-INSERT INTO `configuracion` VALUES (1,'edad_registro',18),(2,'duracion_dias_anuncio',3),(3,'maximo_ofertas',5),(4,'maximo_anuncios',3);
+INSERT INTO `configuracion` VALUES (1,'edad_registro',18),(2,'duracion_dias_anuncio',5),(3,'maximo_ofertas',3),(4,'maximo_anuncios',3);
 /*!40000 ALTER TABLE `configuracion` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -171,7 +171,7 @@ CREATE TABLE `offer` (
   PRIMARY KEY (`id_oferta`),
   KEY `FKeelh8una8vbchuyw61mulehm8` (`id_anuncio`),
   KEY `FKjj95yvm5li060hquq2x9h4o1m` (`usuario_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -180,7 +180,7 @@ CREATE TABLE `offer` (
 
 LOCK TABLES `offer` WRITE;
 /*!40000 ALTER TABLE `offer` DISABLE KEYS */;
-INSERT INTO `offer` VALUES (1,50000,12,2);
+INSERT INTO `offer` VALUES (6,500000,12,2),(7,871505,12,2),(4,95000,12,2);
 /*!40000 ALTER TABLE `offer` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -199,7 +199,7 @@ CREATE TABLE `producto` (
   PRIMARY KEY (`id`),
   KEY `tipoproducto_idx` (`tipoproducto`),
   CONSTRAINT `tipoproducto` FOREIGN KEY (`tipoproducto`) REFERENCES `tipo_producto` (`idtipo_producto`)
-) ENGINE=InnoDB AUTO_INCREMENT=61 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=62 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -272,7 +272,7 @@ CREATE TABLE `tipo_producto` (
   `nombre_tipo` varchar(255) NOT NULL,
   `descripcion` varchar(255) NOT NULL,
   PRIMARY KEY (`idtipo_producto`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -281,7 +281,7 @@ CREATE TABLE `tipo_producto` (
 
 LOCK TABLES `tipo_producto` WRITE;
 /*!40000 ALTER TABLE `tipo_producto` DISABLE KEYS */;
-INSERT INTO `tipo_producto` VALUES (1,'yytytytyty','tytytytytyt'),(2,'Bines Raices','Propiedades e inmuebles'),(3,'Prueba','Prueba'),(4,'22222','222222'),(5,'ewfwefwe','ewfwefwef'),(6,'qeqwwqqw','qweqweqwqqqqqq'),(7,'12312312','3123123123'),(9,'test 400','sdgsg'),(11,'00000`','0000');
+INSERT INTO `tipo_producto` VALUES (1,'yytytytyty','tytytytytyt'),(2,'Bines Raices','Propiedades e inmuebles'),(3,'Prueba','Prueba'),(4,'22222','222222'),(5,'ewfwefwe','ewfwefwef'),(6,'qeqwwqqw','qweqweqwqqqqqq'),(7,'12312312','3123123123'),(11,'00000`','0000'),(12,'kjhg','kjhvjhgf');
 /*!40000 ALTER TABLE `tipo_producto` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -354,4 +354,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-06-23  1:45:07
+-- Dump completed on 2022-06-23  2:45:31

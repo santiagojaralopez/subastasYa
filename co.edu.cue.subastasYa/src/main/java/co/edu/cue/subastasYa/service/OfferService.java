@@ -37,4 +37,8 @@ public class OfferService {
     public List<Offer> getOffersByAnnouncementAndBidderUser(Anuncio anuncio, Usuario bidderUser) {
         return offerRepository.getOffersByAnnouncementAndBidderUser(anuncio, bidderUser);
     }
+
+    public void deleteOffers(int offerId) {
+        offerRepository.deleteOffers(offerId);
+    }
 }
