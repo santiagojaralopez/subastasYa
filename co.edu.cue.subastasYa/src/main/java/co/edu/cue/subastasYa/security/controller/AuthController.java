@@ -58,6 +58,14 @@ public class AuthController {
     @Autowired
     ConfiguracionService configService;
 
+    /**
+     * Este metodo permite crear un nuevo usuario y registrarlo en la base de datos;
+     * recibe como parametro un objeto de tipo NuevoUsuario, el cual trae toda la informacion
+     * necesaria para la creacion de el nuevo user
+     * @param nuevoUsuario
+     * @param bindingResult
+     * @return
+     */
     @PostMapping("/nuevo")
     public ResponseEntity<?> nuevo(@Valid @RequestBody NuevoUsuario nuevoUsuario, BindingResult bindingResult) {
         Date input = nuevoUsuario.getFechaNacimiento();
@@ -97,6 +105,13 @@ public class AuthController {
         return new ResponseEntity(new Mensaje("Usuario guardado"), HttpStatus.CREATED);
     }
 
+    /**
+     * Este metodo permite iniciar sesion en el sistema, recibe como parameto un objeto de tipo
+     * LoginUsuario, el cual contiene la informacion del Username y la contrasena
+     * @param loginUsuario
+     * @param bindingResult
+     * @return
+     */
     @PostMapping("/login")
     public ResponseEntity<JwtDto> login(@Valid @RequestBody LoginUsuario loginUsuario, BindingResult bindingResult) {
         if (bindingResult.hasErrors())
@@ -125,6 +140,12 @@ public class AuthController {
         return new ResponseEntity(jwtDto, HttpStatus.OK);
     }
 
+    /**
+     * Este metodo permite validar la edad de el usuario para confirmar que este cumpla
+     * con la edad requerida para el registro. Este recibe como parametro la fecha de nacimiento del usuario
+     * @param fechanacto
+     * @return
+     */
     public Boolean validarFecha(LocalDate fechanacto ) {
         DateTimeFormatter fmt = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         LocalDate ahora = LocalDate.now();
