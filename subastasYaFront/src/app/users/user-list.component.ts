@@ -34,6 +34,33 @@ export class UserListComponent implements OnInit {
     });
   }
 
+  onUnblock(username: string) {
+    Swal.fire({
+      title: 'Está seguro?',
+      text: `¿Seguro que desea desbloquear al usuario: `+username,
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Si, desbloquear!',
+      cancelButtonText: 'No, cancelar!'
+     
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.usuarioService.unBlockUser(username).subscribe(
+          response => {
+            Swal.fire(
+              'Usuario debloqueado!',
+              `El usuario fue bloqueao con exito`,
+              'success'
+            )
+          }
+        )
+      }
+    })
+
+  }
+
   onBlock(username: string){
     Swal.fire({
       title: 'Está seguro?',
@@ -42,7 +69,7 @@ export class UserListComponent implements OnInit {
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
-      confirmButtonText: 'Si, eliminar!',
+      confirmButtonText: 'Si, bloquear!',
       cancelButtonText: 'No, cancelar!'
      
     }).then((result) => {

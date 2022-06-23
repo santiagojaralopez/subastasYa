@@ -40,6 +40,10 @@ export class UsuarioService {
     return this.http.put<Usuario>(`${this.usuarioURL}/blockedUser/${username}`, {headers: this.httpHeaders})
   }
 
+  unBlockUser(username: string): Observable<Usuario> {
+    return this.http.put<Usuario>(`${this.usuarioURL}/ActiveUser/${username}`, {headers: this.httpHeaders})
+  }
+
   createAnuncio(usuario: NuevoUsuario): Observable<any> {
     return this.http.post<any>(this.usuarioURL + '/newUser', usuario);
   }
