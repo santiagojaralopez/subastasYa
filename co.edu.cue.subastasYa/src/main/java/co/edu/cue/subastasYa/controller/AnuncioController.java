@@ -39,12 +39,23 @@ public class AnuncioController {
     @Autowired
     EstadoAnuncioService estadoAnuncioService;
 
+    /**
+     * Descripcion: Este metodo retorna la lista de todos los anuncios sin importar
+     * el estaoo en el que se encuentren
+     * @return
+     */
     @GetMapping("/listaAnuncio")
     public List<Anuncio> list(){
         List<Anuncio> list = anuncioService.list();
         return list;
     }
 
+    /**
+     * Descripcion: Este metodo retorna la lista de anuncios de un usuario especifico,
+     * recibe el nombre de usuario de quien se desee consultar
+     * @param username
+     * @return
+     */
     @GetMapping("/listaAnunciosUser/{username}")
     public List<Anuncio> listAnuncioUser(@PathVariable("username") String username) {
         System.out.println("Usuariooooooo: " + username);
@@ -53,6 +64,10 @@ public class AnuncioController {
         return list;
     }
 
+    /**
+     * Este metodo retorna la lista de anuncios que tengan el estado bloqueado
+     * @return
+     */
     //MOSTRAR ANUNCIOS ESTADOS
     @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/listaAnuncioBloqueados")
@@ -64,6 +79,10 @@ public class AnuncioController {
             return null;
     }
 
+    /**
+     * Este metodo retorna la lista de anuncios que tengan el estado activo
+     * @return
+     */
     @GetMapping("/listaAnuncioActivos")
     public List<Anuncio> listActivos(){
         List<Anuncio> list = anuncioService.listByEstadosActivo();
@@ -73,6 +92,10 @@ public class AnuncioController {
             return null;
     }
 
+    /**
+     * Este metodo retorna la lista de anuncios que tengan el estado inactivo
+     * @return
+     */
     @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/listaAnuncioInactivo")
     public List<Anuncio> listInactivos(){
@@ -83,6 +106,11 @@ public class AnuncioController {
             return null;
     }
 
+    /**
+     * Este metodo retorna un solo anuncio, haciendo la busquedad por su id
+     * @param id //parametro para realizar consulta
+     * @return
+     */
     @GetMapping("/detailAnuncio/{id}")
     public Anuncio getById(@PathVariable("id") int id){
         if(!anuncioService.existsById(id))
@@ -90,6 +118,7 @@ public class AnuncioController {
         Anuncio anuncio = anuncioService.getOne(id).get();
         return anuncio;
     }
+
 
     @PostMapping("/createAnuncio")
     public ResponseEntity<?> create(@RequestBody AnuncioDto anuncioDto){

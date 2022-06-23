@@ -25,6 +25,10 @@ public class TipoProductoController {
     @Autowired
     TipoProductoService tipoProductoService;
 
+    /**
+     * Este metodo retorna todas las categorias de productos que se encuentren registraaas
+     * @return
+     */
     @GetMapping("/TipoProducto")
     public List<TipoProducto> list(){
         List<TipoProducto> list = tipoProductoService.list();
@@ -32,6 +36,12 @@ public class TipoProductoController {
         return list;
     }
 
+    /**
+     * Este metodo retorna una categoria de produco especifica
+     * usando el id que recibe como parametro para realizar la consulta
+     * @param id
+     * @return
+     */
     @GetMapping("/TipoProducto/{id}")
     public TipoProducto getById(@PathVariable("id") int id){
         if(!tipoProductoService.existsById(id))
@@ -41,7 +51,12 @@ public class TipoProductoController {
         return tipoProducto;
     }
 
-
+    /**
+     * Este metodo crea nuevas categorias en la base de datos, recibe como parametro un objeto
+     * (TipoProducto) el cual es guardado
+     * @param tipoProducto
+     * @return
+     */
     @PostMapping("/createTipoProducto")
     public ResponseEntity<?> create(@RequestBody TipoProducto tipoProducto){
         if (tipoProducto.getNombre_tipo()==null)
@@ -53,6 +68,14 @@ public class TipoProductoController {
         return new ResponseEntity(new Mensaje("tipoProducto creado"), HttpStatus.OK);
     }
 
+    /**
+     * Este metodo se encarga de modificar el nombre y la descripcion de una categoria en especifico
+     * mediante el parametro id se indica cual sera la categoria a modificar y mediante el parametro
+     * tipoProducto se indican los nuevos valores que tomara
+     * @param id
+     * @param tipoProducto
+     * @return
+     */
     @PutMapping("/updateTipoProducto/{id}")
     public ResponseEntity<?> update(@PathVariable int id, @Valid @RequestBody TipoProducto tipoProducto){
         if(!tipoProductoService.existsById(id))
@@ -73,6 +96,12 @@ public class TipoProductoController {
         return new ResponseEntity(new Mensaje("tipoProducto actualizado"), HttpStatus.OK);
     }
 
+    /**
+     * Este metodo se encarga de eliminar una categoria especifica,
+     * recibe como parametro el id de la categoria que se desea borrar
+     * @param id
+     * @return
+     */
     @DeleteMapping("/deleteTipoProducto/{id}")
     public ResponseEntity<?> delete(@PathVariable("id")int id){
         if(!tipoProductoService.existsById(id))

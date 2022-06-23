@@ -26,10 +26,16 @@ public class ConfiguracionController {
     @Autowired
     ConfiguracionService configuracionService;
 
+    /**
+     * Este metodo actualiza el valor de una de las configuraciones parametrizables, indicando
+     * cual sera la modificada mediante el id que recibe como parametro
+     * @param id
+     * @param configuracion
+     * @return
+     */
     @PreAuthorize("hasRole('ADMIN')")
     @PutMapping("/update-config/{id}")
     public ResponseEntity<?> update(@PathVariable int id, @RequestBody Configuracion configuracion){
-        System.out.println("aaaaaaaaaaaaa"+id);
         if(!configuracionService.existsById(id))
             return new ResponseEntity(new Mensaje("no existe"), HttpStatus.NOT_FOUND);
         if(StringUtils.isBlank(configuracion.getNombre()))
@@ -44,6 +50,12 @@ public class ConfiguracionController {
         return new ResponseEntity(new Mensaje("la configuracion esta actualizada"), HttpStatus.OK);
     }
 
+    /**
+     * Este metodo retorna una configuracion en especifico, buscandola por su id
+     * el cual recibe como parametro
+     * @param id
+     * @return
+     */
     @GetMapping("/detailConfig/{id}")
     public Configuracion getById(@PathVariable("id") int id){
         if(!configuracionService.existsById(id))
