@@ -17,6 +17,7 @@ import { ListAnuncioComponent } from './anunciosUser/list-anuncio.component';
 import { OffersComponent } from './offers/offers.component';
 import { UserEditProfileAdminComponent } from './edit-users-admin/user-edit-profile.component';
 import { ListaAnunciosUserComponent } from './producto/lista-anuncios-user.component';
+import { UserDetailComponent } from './users/user-detail.component';
 
 
 const routes: Routes = [
@@ -35,6 +36,7 @@ const routes: Routes = [
   { path: 'lista-anuncios-usuario/:id', component: ListaAnunciosUserComponent, canActivate: [guard], data: {expectedRole: ['admin']} },
   { path: 'category/list', component: CategoriasProductoComponent, canActivate: [guard], data: {expectedRole: ['admin',]} },
   { path: 'users/list', component: UserListComponent, canActivate: [guard], data: {expectedRole: ['admin']} },
+  { path: 'user/detail/:username', component: UserDetailComponent, canActivate: [guard], data: {expectedRole: ['admin']} },
   { path: 'offers/:id', component: OffersComponent, canActivate: [guard], data: {expectedRole: ['admin', 'user']} },
   { path: '**', redirectTo: '', pathMatch: 'full' },
 ];

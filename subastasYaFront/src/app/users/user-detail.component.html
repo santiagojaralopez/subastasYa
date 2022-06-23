@@ -1,0 +1,32 @@
+<app-menu></app-menu>
+
+<div class="mt-5">
+    <div class="backButton mb-3">
+        <button type="button" class="btn btn-outline-primary" routerLink="/">
+            <i class=" ">Volver</i>
+        </button>
+    </div>
+    <div class="tarjeta">
+        <div class="card mb-6 anouncementCards float-md-start shadow p-3 mb-5 bg-body rounded ">
+            <div class="row ">
+                <div class="col ">
+                    <img src="assets/images/user.png " class="pictureP img-fluid rounded-start " alt="... ">
+                </div>
+                <div class="col-md-8 ">
+                    <div class="card-body ">
+                        <div class="mb-4 ">
+                            <button type="button " class="estadoP btn btn-outline-success " id="botonEstado">{{usuario.estadoUsuario}}</button>
+                        </div>
+                        <h5 class="card-title ">Nombre: {{usuario.nombre}}</h5>
+                        <p class="card-text ">Apellido: {{usuario.apellido}}</p>
+                        <p class="card-text ">Tipo de documento: {{usuario.tipoDocumento}}</p>
+                        <p class="card-text ">Numero de documento: {{usuario.numerodoc}}</p>
+                        <p class="card-text ">Dirección: {{usuario.direccion}}</p>
+                        <p class="card-text ">Dirección: {{usuario.email}}</p>
+                        <p class="card-text ">Fecha de nacimiento: {{usuario.fechanacto}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,46 @@
+.fit {
+    width: 700px;
+    height: 400px;
+    border: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.containerDestacados {
+    background-color: #82DBD8;
+    width: 1425px;
+    height: 100px;
+}
+
+.headerDestacados {
+    font-size: 40px;
+    color: #2F8F9D;
+    text-align: center;
+}
+
+.anouncementCards {
+    display: flex;
+    align-items: center;
+    width: 1100px;
+}
+
+.sliderS {
+    height: 300px;
+}
+
+.pictureP {
+    height: 100%;
+}
+
+.estadoP {
+    font-size: 12px
+}
+
+.tarjeta {
+    display: flex;
+    justify-content: center;
+}
+
+.backButton {
+    margin-left: 171px;
+}

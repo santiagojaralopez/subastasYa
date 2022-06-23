@@ -1,7 +1,7 @@
 <app-menu></app-menu>
 <div class="xd mt-5">
     <div class="backButton mb-3">
-        <button type="button" class="btn btn-outline-primary" routerLink="/">
+        <button type="button" class="btn btn-outline-primary" routerLink="/users/list">
           <i >Volver</i>
       </button>
     </div>
@@ -31,6 +31,9 @@
                         <a>Direccion: {{usuario.direccion}}<br></a>
                     </div>
                     <div class="col">
+                        <div class="row">
+                            <button [routerLink]="['/user/detail',usuario.nombreUsuario]" type="button" class="botones mb-3 btn btn-outline-info">Ver</button>
+                        </div>
                         <div class="row">
                             <button [routerLink]="['/admin/user/edit',usuario.nombreUsuario]" type="button" class="botones mb-3 btn btn-outline-info">Editar</button>
                         </div>

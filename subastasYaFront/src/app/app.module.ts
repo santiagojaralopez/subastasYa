@@ -28,6 +28,7 @@ import { ListAnuncioComponent } from './anunciosUser/list-anuncio.component';
 import { OffersComponent } from './offers/offers.component';
 import { UserEditProfileAdminComponent } from './edit-users-admin/user-edit-profile.component';
 import { ListaAnunciosUserComponent } from './producto/lista-anuncios-user.component';
+import { UserDetailComponent } from './users/user-detail.component';
 
 
 
@@ -51,7 +52,8 @@ import { ListaAnunciosUserComponent } from './producto/lista-anuncios-user.compo
     ListAnuncioComponent,
     OffersComponent,
     UserEditProfileAdminComponent,
-    ListaAnunciosUserComponent
+    ListaAnunciosUserComponent,
+    UserDetailComponent
   ],
   imports: [
     BrowserModule,

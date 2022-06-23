@@ -22,8 +22,8 @@ export class UsuarioService {
     );
   }
 
-  getUsuario(id: number): Observable<Usuario> {
-    return this.http.get<Usuario>(`${this.usuarioURL}/detail-user/${id}`);
+  getUsuario(nombreUsuario: string): Observable<Usuario> {
+    return this.http.get<Usuario>(`${this.usuarioURL}/detail-user/${nombreUsuario}`);
   }
 
   getUsuarioByUserName(userName: string): Observable<UpdateUsuarioDTO> {
