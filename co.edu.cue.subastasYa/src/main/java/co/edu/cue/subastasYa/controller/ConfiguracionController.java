@@ -27,8 +27,7 @@ public class ConfiguracionController {
     ConfiguracionService configuracionService;
 
     /**
-     * Este metodo actualiza el valor de una de las configuraciones parametrizables, indicando
-     * cual sera la modificada mediante el id que recibe como parametro
+     *Las configuraciones son parametrizadas, estas pueden ser modificadas por el administrador. Lo que se realiza es un update por medio del id de las configuraciones
      * @param id
      * @param configuracion
      * @return
@@ -65,6 +64,6 @@ public class ConfiguracionController {
     }
 
 
-   }
+}
 
 

@@ -38,29 +38,53 @@ public class UsuarioController {
     @Autowired
     PasswordEncoder passwordEncoder;
 
+
+    /**
+     * Descripcion: Aqui se obtiene la lista general de los usuarios, esto sin importar el estado en el que se encuentren.
+     * @return una lista, este caso la lista de usuarios.
+     */
     @GetMapping("/get-users")
     public  List<Usuario> list(){
         List<Usuario> list = usuarioService.list();
         return list;
     }
 
+
+    /**
+     * Descripción: Aquí obtenemos la lista de usuarios bloqueados, esto con un metodo de listar por estados. En este caso es el estado bloaqueado
+     * @return
+     */
     @GetMapping("/listOfBlockedUsers")
     public List<Usuario> listBlockedUsers(){
         List<Usuario> list = usuarioService.listByEstados(EstadoUsuario.BLOQUEADO);
         return list;
     }
 
+    /**
+     * Descripción: Aquí obtenemos la lista de usuarios habilitados, esto con un metodo de listar por estados. En este caso es el estado habilitado
+     * @return
+     */
     @GetMapping("/listOfHUsers")
     public List<Usuario> listHabilitado(){
         List<Usuario> list = usuarioService.listByEstados(EstadoUsuario.HABILITADO);
         return list;
     }
 
+    /**
+     * Descripción: Aquí obtenemos la lista de usuarios inhabilitados, esto con un metodo de listar por estados. En este caso es el estado deshabilitados
+     * @return
+     */
     @GetMapping("/listOfInHUsers")
     public List<Usuario> listDeshabilitado(){
         List<Usuario> list = usuarioService.listByEstados(EstadoUsuario.DESHABILITADO);
         return list;
     }
+
+    /**
+     * Descripción: En este metodo lo que se busca es obtener el usuario por su nombre de usuario y que de esta manera muestre todo lo relacionado a dicho usuario
+     * Por ejemplo toda la información de registro
+     * @return
+     */
 
     @GetMapping("/detail-user/{nombreUsuario}")
     public ResponseEntity getById(@PathVariable("nombreUsuario") String nombreUsuario) {
@@ -81,6 +105,12 @@ public class UsuarioController {
         return new ResponseEntity(updateUsuarioDTO, HttpStatus.OK);
     }
 
+    /**
+     * Descripcion: El administrador debe poder crear nuevos administradores, recordemos que el administrador también es un usuario
+     * @param nuevoUsuario, el usurio de registro
+     * @param bindingResult, verifica que toda la informacion que se envia al front sea adecuada, almacena errores
+     * @return
+     */
     @PostMapping("/newUser")
     public ResponseEntity<?> nuevoUsuario(@Valid @RequestBody NuevoUsuario nuevoUsuario, BindingResult bindingResult) {
         if (bindingResult.hasErrors())
@@ -113,6 +143,12 @@ public class UsuarioController {
         return new ResponseEntity(new Mensaje("Usuario guardado"), HttpStatus.CREATED);
     }
 
+    /**
+     * Descripcion: el administrador y el usuario pueden actualizar su información. Seteamos la informacion del usuario que conseguimos por medio del DTO
+     * @param updateUsuarioDTO, Almacenamos aqui por asi decirlo todas las modificaciones nuevas que se le hagan al usuario
+     * @param userName, Buscamos al usuario por UserName
+     * @return
+     */
     @PreAuthorize("hasRole('USER')")
     @PutMapping("/updateUser/{userName}")
     public ResponseEntity<?> update(@Valid @RequestBody UpdateUsuarioDTO updateUsuarioDTO, @PathVariable String userName) {
@@ -141,6 +177,11 @@ public class UsuarioController {
         return new ResponseEntity(new Mensaje("usuario actualizado"), HttpStatus.OK);
     }
 
+    /**
+     * Descripcion: para el bloqueo de usuarios lo que se realizo fue un update en los estados de la tabla estados de usuario.
+     * @param userName, buscamos al usuario por su nombre de usuario.
+     * @return
+     */
     @PutMapping("/blockedUser/{userName}")
     public ResponseEntity<?> updateBloqueoAdmin(@PathVariable("userName")String userName){
         if(!usuarioService.existsByNombreUsuario(userName))
@@ -152,6 +193,14 @@ public class UsuarioController {
         return new ResponseEntity(new Mensaje("Usuario bloqueado exitosamente"), HttpStatus.OK);
     }
 
+
+
+    /**
+     * Descripcion: para habilitar de nuevo usuarios desde la perspectiva del administrador lo que se realizo fue un update en los estados de la tabla estados de usuario.
+     * @param userName
+     * @return
+     */
+
     @PutMapping("/ActiveUser/{userName}")
     public ResponseEntity<?> updateActivarAdmiUser(@PathVariable("userName") String userName) {
         if (!usuarioService.existsByNombreUsuario(userName))
@@ -162,6 +211,11 @@ public class UsuarioController {
         return new ResponseEntity(new Mensaje("Habilitado de nuevo"), HttpStatus.OK);
     }
 
+    /**
+     * Descripcion: para desahbilitar usuarios desde la perspectiva del usuario lo que se realizo fue un update en los estados de la tabla estados de usuario.
+     * @param userName
+     * @return
+     */
     @PutMapping("/DeshabilitarUser/{userName}")
     public ResponseEntity<?> updateDeshabilitarUserFromUser(@PathVariable("userName")String userName) {
         if (!usuarioService.existsByNombreUsuario(userName))
