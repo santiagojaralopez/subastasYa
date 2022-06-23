@@ -43,7 +43,7 @@ CREATE TABLE `anuncio` (
   CONSTRAINT `estadoid` FOREIGN KEY (`estado`) REFERENCES `estado` (`id_estado`),
   CONSTRAINT `productoid` FOREIGN KEY (`producto_id`) REFERENCES `producto` (`id`),
   CONSTRAINT `usuarioid` FOREIGN KEY (`usuario_id`) REFERENCES `usuario` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -52,6 +52,7 @@ CREATE TABLE `anuncio` (
 
 LOCK TABLES `anuncio` WRITE;
 /*!40000 ALTER TABLE `anuncio` DISABLE KEYS */;
+INSERT INTO `anuncio` VALUES (12,'trigger','2022-06-23','2022-06-26',8,2,2,123333,60);
 /*!40000 ALTER TABLE `anuncio` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -156,6 +157,34 @@ INSERT INTO `estado` VALUES (1,'BLOQUEADO'),(2,'ACTIVO'),(3,'INACTIVO');
 UNLOCK TABLES;
 
 --
+-- Table structure for table `offer`
+--
+
+DROP TABLE IF EXISTS `offer`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `offer` (
+  `id_oferta` int NOT NULL AUTO_INCREMENT,
+  `offer_value` double NOT NULL,
+  `id_anuncio` int NOT NULL,
+  `usuario_id` int NOT NULL,
+  PRIMARY KEY (`id_oferta`),
+  KEY `FKeelh8una8vbchuyw61mulehm8` (`id_anuncio`),
+  KEY `FKjj95yvm5li060hquq2x9h4o1m` (`usuario_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `offer`
+--
+
+LOCK TABLES `offer` WRITE;
+/*!40000 ALTER TABLE `offer` DISABLE KEYS */;
+INSERT INTO `offer` VALUES (1,50000,12,2);
+/*!40000 ALTER TABLE `offer` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `producto`
 --
 
@@ -170,7 +199,7 @@ CREATE TABLE `producto` (
   PRIMARY KEY (`id`),
   KEY `tipoproducto_idx` (`tipoproducto`),
   CONSTRAINT `tipoproducto` FOREIGN KEY (`tipoproducto`) REFERENCES `tipo_producto` (`idtipo_producto`)
-) ENGINE=InnoDB AUTO_INCREMENT=60 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=61 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -179,7 +208,32 @@ CREATE TABLE `producto` (
 
 LOCK TABLES `producto` WRITE;
 /*!40000 ALTER TABLE `producto` DISABLE KEYS */;
+INSERT INTO `producto` VALUES (60,'Test Trigger','foto',3);
 /*!40000 ALTER TABLE `producto` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `registro_ofertas`
+--
+
+DROP TABLE IF EXISTS `registro_ofertas`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `registro_ofertas` (
+  `idregistro_ofertas` int NOT NULL AUTO_INCREMENT,
+  `accion` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`idregistro_ofertas`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `registro_ofertas`
+--
+
+LOCK TABLES `registro_ofertas` WRITE;
+/*!40000 ALTER TABLE `registro_ofertas` DISABLE KEYS */;
+INSERT INTO `registro_ofertas` VALUES (1,'El usuario con id: 2oferto 50000 en el anuncio: 12');
+/*!40000 ALTER TABLE `registro_ofertas` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -253,7 +307,7 @@ CREATE TABLE `usuario` (
   `fechanacto` datetime NOT NULL,
   `departamento` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -262,7 +316,7 @@ CREATE TABLE `usuario` (
 
 LOCK TABLES `usuario` WRITE;
 /*!40000 ALTER TABLE `usuario` DISABLE KEYS */;
-INSERT INTO `usuario` VALUES (1,'admin@correo.com','admin','admin','$2a$10$ncL694rv15ZlNalh2anNhuBDc2oknCZnfaoJGSplFSxb/HiHrc4om',NULL,'','',0,'','','2003-10-10 10:10:10',''),(2,'sjaramillo1027@cue.edu.co','Santiago','sjaramillo','$2a$10$ClphykSqH.rw6uT7KjMeWesqMc6z6HMEILMoRDb/fT1PXhEkfa.86',NULL,'','',0,'','','2003-10-10 10:10:10',''),(3,'amorales18@mail.com','Arle Morales','amorales','$2a$10$lqWU4jCFINykny6VS5yqnedEMltRpnFbvmLqVByZ.HsEiZDYrOS3W',NULL,'','',0,'','','2003-10-10 10:10:10',''),(4,'fjaramillo@gmail.co','Felipe','fjaramillo','$2a$10$dyWW5keMQ6iO5m9YvR2aTO6O97wX8bhX0R1Jds4K2x0GXw.QzM476',NULL,'','',0,'','','2003-10-10 10:10:10',''),(5,'sarhachica@gmail.com','Sarha Chica','sarha chica','$2a$10$Zpbv2OWLgOM7i4GFmKExDOPAEcguKeK1sWhg6jslVCtnx63wgpUrG',NULL,'','',0,'','','2003-10-10 10:10:10',''),(6,'arleth64@hotmail.com','Arle','arleth','$2a$10$XPe4EgSfI2pa3EWFAi69dO1Pc9W.GJehTYDIE.FTJkQ.aza3PpudK',NULL,'','',0,'','','2003-10-10 10:10:10',''),(7,'mlopez705@cue.edu.co','mafe','mafe','$2a$10$g4p5kJjVpZU1gbeihCmQPOKx9T5Xmpnk1I6RSBXnWDCS4ISNVknP2',NULL,'','',0,'','','2003-10-10 10:10:10',''),(8,'sgallego1022@cue.edu.co','Santiago','santigg','$2a$10$TrCe8TDiyiz3A4q91rQsbOHlS8.Wa449ii3fv/reYqoVzCRJTaiTe',NULL,'Gallego Gil','cra 17 calle 10N',0,'1004961630','Cedula de Ciudadania','2003-02-10 00:00:00',''),(9,'betty@gmail.com','Beatriz34','bettylafeaaaaaxxxxxxx','$2a$10$RYcyHcTI6UBUoTy6K0VvEun4..WythwgHptFUDiRQUyQDq4nTnD32',NULL,'Pinzon Solano','cra 123',0,'1028492','Pasaporte','2003-02-10 00:00:00','Arauca');
+INSERT INTO `usuario` VALUES (1,'admin@correo.com','admin','admin','$2a$10$ncL694rv15ZlNalh2anNhuBDc2oknCZnfaoJGSplFSxb/HiHrc4om',NULL,'','',0,'','','2003-10-10 10:10:10',''),(2,'sjaramillo1027@cue.edu.co','Santiago','sjaramillo','$2a$10$ClphykSqH.rw6uT7KjMeWesqMc6z6HMEILMoRDb/fT1PXhEkfa.86',NULL,'','',0,'','','2003-10-10 10:10:10',''),(3,'amorales18@mail.com','Arle Morales','amorales','$2a$10$lqWU4jCFINykny6VS5yqnedEMltRpnFbvmLqVByZ.HsEiZDYrOS3W',NULL,'','',2,'','','2003-10-10 10:10:10',''),(4,'fjaramillo@gmail.co','Felipe','fjaramillo','$2a$10$dyWW5keMQ6iO5m9YvR2aTO6O97wX8bhX0R1Jds4K2x0GXw.QzM476',NULL,'','',0,'','','2003-10-10 10:10:10',''),(5,'sarhachica@gmail.com','Sarha Chica','sarha chica','$2a$10$Zpbv2OWLgOM7i4GFmKExDOPAEcguKeK1sWhg6jslVCtnx63wgpUrG',NULL,'','',2,'','','2003-10-10 10:10:10',''),(6,'arleth64@hotmail.com','Arle','arleth','$2a$10$XPe4EgSfI2pa3EWFAi69dO1Pc9W.GJehTYDIE.FTJkQ.aza3PpudK',NULL,'','',0,'','','2003-10-10 10:10:10',''),(7,'mlopez705@cue.edu.co','mafe','mafe','$2a$10$g4p5kJjVpZU1gbeihCmQPOKx9T5Xmpnk1I6RSBXnWDCS4ISNVknP2',NULL,'','',0,'','','2003-10-10 10:10:10',''),(8,'sgallego1022@cue.edu.co','Santiago','santigg','$2a$10$TrCe8TDiyiz3A4q91rQsbOHlS8.Wa449ii3fv/reYqoVzCRJTaiTe',NULL,'Gallego Gil','cra 17 calle 10N',0,'1004961630','Cedula de Ciudadania','2003-02-10 00:00:00',''),(9,'betty@gmail.com','Beatriz34','bettylafeaaaaaxxxxxxx','$2a$10$RYcyHcTI6UBUoTy6K0VvEun4..WythwgHptFUDiRQUyQDq4nTnD32',NULL,'Pinzon Solano','cra 123',0,'1028492','Pasaporte','2003-02-10 00:00:00','Arauca'),(10,'e@gmail.com','Admin2','admin2','$2a$10$847YESlRmHl9KQze4FVKaeZsrCZ34RYfjNbZfBUXC/Y.Zr9EXl.RS',NULL,'Admin2','cra 45 - 67',0,'12313123','Pasaporte','1998-07-22 00:00:00','Antioquia');
 /*!40000 ALTER TABLE `usuario` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -287,7 +341,7 @@ CREATE TABLE `usuario_rol` (
 
 LOCK TABLES `usuario_rol` WRITE;
 /*!40000 ALTER TABLE `usuario_rol` DISABLE KEYS */;
-INSERT INTO `usuario_rol` VALUES (1,1),(1,2),(2,2),(3,1),(3,2),(4,2),(5,2),(6,2),(7,2),(8,2),(9,2);
+INSERT INTO `usuario_rol` VALUES (1,1),(1,2),(2,2),(3,1),(3,2),(4,2),(5,2),(6,2),(7,2),(8,2),(9,2),(10,1),(10,2);
 /*!40000 ALTER TABLE `usuario_rol` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -300,4 +354,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-06-22 18:20:51
+-- Dump completed on 2022-06-23  1:45:07

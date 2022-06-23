@@ -1,4 +1,12 @@
 .xd {
-    padding-top: 10px;
-    padding-bottom: 0px;
+    height: 55px;
+    width: 100%;
+    background-color: antiquewhite;
+    background-image: none;
+    background-repeat: repeat;
+    background-attachment: scroll;
+    background-position: 0% 0%;
+    position: fixed;
+    bottom: 0pt;
+    left: 0pt;
 }

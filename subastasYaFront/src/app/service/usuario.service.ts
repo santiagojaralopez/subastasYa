@@ -4,6 +4,7 @@ import {map} from 'rxjs/operators';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Usuario } from '../models/usuario';
 import { UpdateUsuarioDTO } from '../models/update-user-dto';
+import { NuevoUsuario } from '../models/nuevo-usuario';
 
 @Injectable({
   providedIn: 'root'
@@ -22,8 +23,8 @@ export class UsuarioService {
     );
   }
 
-  getUsuario(id: number): Observable<Usuario> {
-    return this.http.get<Usuario>(`${this.usuarioURL}/detail-user/${id}`);
+  getUsuario(nombreUsuario: string): Observable<Usuario> {
+    return this.http.get<Usuario>(`${this.usuarioURL}/detail-user/${nombreUsuario}`);
   }
 
   getUsuarioByUserName(userName: string): Observable<UpdateUsuarioDTO> {
@@ -33,5 +34,21 @@ export class UsuarioService {
   updateUser(nombreUsuario: string, updateUserDTO: UpdateUsuarioDTO): Observable<UpdateUsuarioDTO> {
     // tslint:disable-next-line: max-line-length
     return this.http.put<UpdateUsuarioDTO>(`${this.usuarioURL}/updateUser/${nombreUsuario}`, updateUserDTO, {headers: this.httpHeaders});
+  }
+
+  blockUser(username: string): Observable<Usuario> {
+    return this.http.put<Usuario>(`${this.usuarioURL}/blockedUser/${username}`, {headers: this.httpHeaders})
+  }
+
+  unBlockUser(username: string): Observable<Usuario> {
+    return this.http.put<Usuario>(`${this.usuarioURL}/ActiveUser/${username}`, {headers: this.httpHeaders})
+  }
+
+  createAnuncio(usuario: NuevoUsuario): Observable<any> {
+    return this.http.post<any>(this.usuarioURL + '/newUser', usuario);
+  }
+
+  deshabilitarUser(username: string): Observable<Usuario> {
+    return this.http.put<Usuario>(`${this.usuarioURL}/DeshabilitarUser/${username}`, {headers: this.httpHeaders})
   }
 }

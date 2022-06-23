@@ -1,7 +1,7 @@
 <app-menu></app-menu>
 <div class="xd mt-5">
     <div class="backButton mb-3">
-        <button type="button" class="btn btn-outline-primary" routerLink="/">
+        <button type="button" class="btn btn-outline-primary" routerLink="/users/list">
           <i >Volver</i>
       </button>
     </div>
@@ -13,6 +13,11 @@
             <div class="bodyConfig">
                 <a>A continuacion puede gestionar la información de los usuarios de SubastasYa</a>
             </div>
+        </div>
+        <div class="botonPup">
+            <button type="button" class="btn btn-outline-primary mb-3" routerLink="/create/admin">
+                <i class=" ">Crear nuevo administrador</i>
+            </button>
         </div>
         <div *ngFor="let usuario of usuarios" class="containerParams card-body">
             <!--tabla aqui-->
@@ -32,13 +37,19 @@
                     </div>
                     <div class="col">
                         <div class="row">
+                            <button [routerLink]="['/user/detail',usuario.nombreUsuario]" type="button" class="botones mb-3 btn btn-outline-info">Ver</button>
+                        </div>
+                        <div class="row">
                             <button [routerLink]="['/admin/user/edit',usuario.nombreUsuario]" type="button" class="botones mb-3 btn btn-outline-info">Editar</button>
                         </div>
                         <div class="row">
                             <button type="button" class="botones mb-3 btn btn-outline-info" routerLink="/lista-anuncios-usuario/{{usuario.id}}">Ver anuncios</button>
                         </div>
                         <div class="row">
-                            <button type="button" class="botones mb-3 btn btn-outline-danger">Bloquear</button>
+                            <button *ngIf="usuario.estadoUsuario.toString() == 'HABILITADO'" type="button" class="botones mb-3 btn btn-outline-danger" (click)="onBlock(usuario.nombreUsuario)">Bloquear</button>
+                        </div>
+                        <div class="row">
+                            <button *ngIf="usuario.estadoUsuario.toString() == 'BLOQUEADO'" type="button" class="botones mb-3 btn btn-outline-danger" (click)="onUnblock(usuario.nombreUsuario)">Desbloquear</button>
                         </div>
                     </div>
                 </div>

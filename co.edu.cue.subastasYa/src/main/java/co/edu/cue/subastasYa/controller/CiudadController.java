@@ -19,6 +19,10 @@ public class CiudadController {
     @Autowired
     CiudadService ciudadService;
 
+    /**
+     * Este metodo retorna la lista de ciudades
+     * @return
+     */
     @GetMapping("/listaCiudades")
     public List<Ciudad> list(){
         List<Ciudad> list = ciudadService.list();

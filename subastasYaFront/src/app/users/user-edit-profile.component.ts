@@ -39,6 +39,35 @@ export class UserEditProfileComponent implements OnInit {
     this.cargarUsuario();
   }
 
+  onDeleteProfile(){
+    Swal.fire({
+      title: 'Está seguro que desea borrar su cuenta?',
+      text: `Tenga en cuenta que esta decision es irreversible: `,
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Si, eliminar!',
+      cancelButtonText: 'No, cancelar!'
+     
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.usuarioService.deshabilitarUser(this.tokenService.getUserName()).subscribe(
+          response => {
+            Swal.fire(
+              'Cuenta Eliminada!',
+              `Esperamos que vuelva pronto`,
+              'success'
+            )
+            this.tokenService.logOut();
+            window.location.reload();
+            this.router.navigate(['/']);
+          }
+        )
+      }
+    })
+  }
+
   volver(): void {
     this.router.navigate(['/']);
   }
