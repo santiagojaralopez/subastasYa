@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { Offer } from '../models/offer';
 import { OfferDTO } from '../models/offer-dto';
 
 @Injectable({
@@ -18,9 +19,13 @@ export class OfertaService {
     return this.httpClient.post<OfferDTO>(`${this.urlEndpoint}/new`, offerDto, {headers: this.httpHeaders});
   }
 
-  public listOffersByAnnouncement(announcementId: number): Observable<OfferDTO[]> {
+  public listOffersByAnnouncement(announcementId: number): Observable<Offer[]> {
     return this.httpClient.get(`${this.urlEndpoint}/announcement-offers/${announcementId}`).pipe(
-      map(response => response as OfferDTO[])
+      map(response => response as Offer[])
     );
+  }
+
+  public deleteOffers(offerId: number): Observable<Offer> {
+    return this.httpClient.delete<Offer>(`${this.urlEndpoint}/delete-offers/${offerId}`, {headers: this.httpHeaders});
   }
 }

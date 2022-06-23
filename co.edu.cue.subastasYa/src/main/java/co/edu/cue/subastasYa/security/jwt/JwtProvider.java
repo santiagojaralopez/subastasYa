@@ -10,7 +10,9 @@ import org.springframework.stereotype.Component;
 
 import java.util.Date;
 
-/* Genera el token y usa algunos métodos de validación para su consistencia. */
+/**
+ * Genera el token y usa algunos métodos de validación para su consistencia
+ */
 @Component
 public class JwtProvider {
     private final static Logger logger = LoggerFactory.getLogger(JwtProvider.class);

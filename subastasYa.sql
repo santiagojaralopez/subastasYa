@@ -1,10 +1,10 @@
 CREATE DATABASE  IF NOT EXISTS `subastasya` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
 USE `subastasya`;
--- MySQL dump 10.13  Distrib 8.0.28, for macos11 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.27, for Win64 (x86_64)
 --
 -- Host: localhost    Database: subastasya
 -- ------------------------------------------------------
--- Server version	8.0.28
+-- Server version	8.0.27
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -43,7 +43,7 @@ CREATE TABLE `anuncio` (
   CONSTRAINT `estadoid` FOREIGN KEY (`estado`) REFERENCES `estado` (`id_estado`),
   CONSTRAINT `productoid` FOREIGN KEY (`producto_id`) REFERENCES `producto` (`id`),
   CONSTRAINT `usuarioid` FOREIGN KEY (`usuario_id`) REFERENCES `usuario` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -52,6 +52,7 @@ CREATE TABLE `anuncio` (
 
 LOCK TABLES `anuncio` WRITE;
 /*!40000 ALTER TABLE `anuncio` DISABLE KEYS */;
+INSERT INTO `anuncio` VALUES (12,'sdfsfdsdf','2022-06-23','2022-06-28',2,2,2,23333,61);
 /*!40000 ALTER TABLE `anuncio` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -103,7 +104,7 @@ CREATE TABLE `configuracion` (
 
 LOCK TABLES `configuracion` WRITE;
 /*!40000 ALTER TABLE `configuracion` DISABLE KEYS */;
-INSERT INTO `configuracion` VALUES (1,'edad_registro',18),(2,'duracion_dias_anuncio',3),(3,'maximo_ofertas',5),(4,'maximo_anuncios',3);
+INSERT INTO `configuracion` VALUES (1,'edad_registro',18),(2,'duracion_dias_anuncio',5),(3,'maximo_ofertas',3),(4,'maximo_anuncios',3);
 /*!40000 ALTER TABLE `configuracion` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -156,6 +157,34 @@ INSERT INTO `estado` VALUES (1,'BLOQUEADO'),(2,'ACTIVO'),(3,'INACTIVO');
 UNLOCK TABLES;
 
 --
+-- Table structure for table `offer`
+--
+
+DROP TABLE IF EXISTS `offer`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `offer` (
+  `id_oferta` int NOT NULL AUTO_INCREMENT,
+  `offer_value` double NOT NULL,
+  `id_anuncio` int NOT NULL,
+  `usuario_id` int NOT NULL,
+  PRIMARY KEY (`id_oferta`),
+  KEY `FKeelh8una8vbchuyw61mulehm8` (`id_anuncio`),
+  KEY `FKjj95yvm5li060hquq2x9h4o1m` (`usuario_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `offer`
+--
+
+LOCK TABLES `offer` WRITE;
+/*!40000 ALTER TABLE `offer` DISABLE KEYS */;
+INSERT INTO `offer` VALUES (6,500000,12,2),(7,871505,12,2),(4,95000,12,2);
+/*!40000 ALTER TABLE `offer` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `producto`
 --
 
@@ -170,7 +199,7 @@ CREATE TABLE `producto` (
   PRIMARY KEY (`id`),
   KEY `tipoproducto_idx` (`tipoproducto`),
   CONSTRAINT `tipoproducto` FOREIGN KEY (`tipoproducto`) REFERENCES `tipo_producto` (`idtipo_producto`)
-) ENGINE=InnoDB AUTO_INCREMENT=60 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=62 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -179,6 +208,7 @@ CREATE TABLE `producto` (
 
 LOCK TABLES `producto` WRITE;
 /*!40000 ALTER TABLE `producto` DISABLE KEYS */;
+INSERT INTO `producto` VALUES (60,'erwerew','foto',2),(61,'dfddf','foto',2);
 /*!40000 ALTER TABLE `producto` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -218,7 +248,7 @@ CREATE TABLE `tipo_producto` (
   `nombre_tipo` varchar(255) NOT NULL,
   `descripcion` varchar(255) NOT NULL,
   PRIMARY KEY (`idtipo_producto`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -227,7 +257,7 @@ CREATE TABLE `tipo_producto` (
 
 LOCK TABLES `tipo_producto` WRITE;
 /*!40000 ALTER TABLE `tipo_producto` DISABLE KEYS */;
-INSERT INTO `tipo_producto` VALUES (1,'yytytytyty','tytytytytyt'),(2,'Bines Raices','Propiedades e inmuebles'),(3,'Prueba','Prueba'),(4,'22222','222222'),(5,'ewfwefwe','ewfwefwef'),(6,'qeqwwqqw','qweqweqwqqqqqq'),(7,'12312312','3123123123'),(9,'test 400','sdgsg'),(11,'00000`','0000');
+INSERT INTO `tipo_producto` VALUES (1,'yytytytyty','tytytytytyt'),(2,'Bines Raices','Propiedades e inmuebles'),(3,'Prueba','Prueba'),(4,'22222','222222'),(5,'ewfwefwe','ewfwefwef'),(6,'qeqwwqqw','qweqweqwqqqqqq'),(7,'12312312','3123123123'),(11,'00000`','0000'),(12,'kjhg','kjhvjhgf');
 /*!40000 ALTER TABLE `tipo_producto` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -262,7 +292,7 @@ CREATE TABLE `usuario` (
 
 LOCK TABLES `usuario` WRITE;
 /*!40000 ALTER TABLE `usuario` DISABLE KEYS */;
-INSERT INTO `usuario` VALUES (1,'admin@correo.com','admin','admin','$2a$10$ncL694rv15ZlNalh2anNhuBDc2oknCZnfaoJGSplFSxb/HiHrc4om',NULL,'','',0,'','','2003-10-10 10:10:10',''),(2,'sjaramillo1027@cue.edu.co','Santiago','sjaramillo','$2a$10$ClphykSqH.rw6uT7KjMeWesqMc6z6HMEILMoRDb/fT1PXhEkfa.86',NULL,'','',0,'','','2003-10-10 10:10:10',''),(3,'amorales18@mail.com','Arle Morales','amorales','$2a$10$lqWU4jCFINykny6VS5yqnedEMltRpnFbvmLqVByZ.HsEiZDYrOS3W',NULL,'','',0,'','','2003-10-10 10:10:10',''),(4,'fjaramillo@gmail.co','Felipe','fjaramillo','$2a$10$dyWW5keMQ6iO5m9YvR2aTO6O97wX8bhX0R1Jds4K2x0GXw.QzM476',NULL,'','',0,'','','2003-10-10 10:10:10',''),(5,'sarhachica@gmail.com','Sarha Chica','sarha chica','$2a$10$Zpbv2OWLgOM7i4GFmKExDOPAEcguKeK1sWhg6jslVCtnx63wgpUrG',NULL,'','',0,'','','2003-10-10 10:10:10',''),(6,'arleth64@hotmail.com','Arle','arleth','$2a$10$XPe4EgSfI2pa3EWFAi69dO1Pc9W.GJehTYDIE.FTJkQ.aza3PpudK',NULL,'','',0,'','','2003-10-10 10:10:10',''),(7,'mlopez705@cue.edu.co','mafe','mafe','$2a$10$g4p5kJjVpZU1gbeihCmQPOKx9T5Xmpnk1I6RSBXnWDCS4ISNVknP2',NULL,'','',0,'','','2003-10-10 10:10:10',''),(8,'sgallego1022@cue.edu.co','Santiago','santigg','$2a$10$TrCe8TDiyiz3A4q91rQsbOHlS8.Wa449ii3fv/reYqoVzCRJTaiTe',NULL,'Gallego Gil','cra 17 calle 10N',0,'1004961630','Cedula de Ciudadania','2003-02-10 00:00:00',''),(9,'betty@gmail.com','Beatriz34','bettylafeaaaaaxxxxxxx','$2a$10$RYcyHcTI6UBUoTy6K0VvEun4..WythwgHptFUDiRQUyQDq4nTnD32',NULL,'Pinzon Solano','cra 123',0,'1028492','Pasaporte','2003-02-10 00:00:00','Arauca');
+INSERT INTO `usuario` VALUES (1,'admin@correo.com','Andres Mauricio','admin','$2a$10$ncL694rv15ZlNalh2anNhuBDc2oknCZnfaoJGSplFSxb/HiHrc4om',NULL,'Rodriguez','La Patria',0,'987635418','Cedula de Ciudadania','2003-10-10 10:10:10','Quindio'),(2,'sjaramillo1027@cue.edu.co','Santiago','sjaramillo','$2a$10$ClphykSqH.rw6uT7KjMeWesqMc6z6HMEILMoRDb/fT1PXhEkfa.86',NULL,'','',0,'','','2003-10-10 10:10:10',''),(3,'amorales18@mail.com','Arle Morales','amorales','$2a$10$lqWU4jCFINykny6VS5yqnedEMltRpnFbvmLqVByZ.HsEiZDYrOS3W',NULL,'','',0,'','','2003-10-10 10:10:10',''),(4,'fjaramillo@gmail.co','Felipe','fjaramillo','$2a$10$dyWW5keMQ6iO5m9YvR2aTO6O97wX8bhX0R1Jds4K2x0GXw.QzM476',NULL,'','',0,'','','2003-10-10 10:10:10',''),(5,'sarhachica@gmail.com','Sarha Chica','sarha chica','$2a$10$Zpbv2OWLgOM7i4GFmKExDOPAEcguKeK1sWhg6jslVCtnx63wgpUrG',NULL,'','',0,'','','2003-10-10 10:10:10',''),(6,'arleth64@hotmail.com','Arle','arleth','$2a$10$XPe4EgSfI2pa3EWFAi69dO1Pc9W.GJehTYDIE.FTJkQ.aza3PpudK',NULL,'','',0,'','','2003-10-10 10:10:10',''),(7,'mlopez705@cue.edu.co','mafe','mafe','$2a$10$g4p5kJjVpZU1gbeihCmQPOKx9T5Xmpnk1I6RSBXnWDCS4ISNVknP2',NULL,'','',0,'','','2003-10-10 10:10:10',''),(8,'sgallego1022@cue.edu.co','Santiago','santigg','$2a$10$TrCe8TDiyiz3A4q91rQsbOHlS8.Wa449ii3fv/reYqoVzCRJTaiTe',NULL,'Gallego Gil','cra 17 calle 10N',0,'1004961630','Cedula de Ciudadania','2003-02-10 00:00:00',''),(9,'betty@gmail.com','Beatriz34','bettylafeaaaaaxxxxxxx','$2a$10$RYcyHcTI6UBUoTy6K0VvEun4..WythwgHptFUDiRQUyQDq4nTnD32',NULL,'Pinzon Solano','cra 123',0,'1028492','Pasaporte','2003-02-10 00:00:00','Arauca');
 /*!40000 ALTER TABLE `usuario` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -300,4 +330,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-06-22 18:20:51
+-- Dump completed on 2022-06-23  2:45:31

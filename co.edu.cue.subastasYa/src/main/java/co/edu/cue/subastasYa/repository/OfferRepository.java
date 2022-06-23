@@ -4,6 +4,7 @@ import co.edu.cue.subastasYa.entity.Anuncio;
 import co.edu.cue.subastasYa.entity.Offer;
 import co.edu.cue.subastasYa.security.entity.Usuario;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
@@ -20,5 +21,11 @@ public interface OfferRepository extends JpaRepository<Offer, Integer> {
     @Query("SELECT o FROM Offer o WHERE o.anuncio= :anuncio AND o.bidderUser= :bidderUser")
     List<Offer> getOffersByAnnouncementAndBidderUser(
             @Param("anuncio") Anuncio anuncio, @Param("bidderUser") Usuario BidderUser
+    );
+
+    @Modifying
+    @Query(value="DELETE FROM Offer WHERE id_oferta != :winnerOfferId", nativeQuery = true)
+    void deleteOffers(
+            @Param("winnerOfferId") int offerId
     );
 }

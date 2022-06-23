@@ -15,7 +15,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-/* Se ejecuta por cada petición. Comprueba que el Token sea válido con el provider. */
+/**
+ * Se ejecuta por cada petición. Comprueba que el Token sea válido con el provider
+ */
 public class JwtTokenFilter extends OncePerRequestFilter {
     private final static Logger logger = LoggerFactory.getLogger(JwtTokenFilter.class);
 

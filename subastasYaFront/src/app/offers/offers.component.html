@@ -19,18 +19,16 @@
                 <div class="row">
                     <div class="col">
                         <h4>Usuario ofertante</h4>
-                        <p>{{offer.bidderUserName}}</p>
+                        <p>{{offer.bidderUser.nombreUsuario}}</p>
                     </div>
                     <div class="col">
                         <h4>Valor de la oferta</h4>
                         <p>{{offer.offerValue}}</p>
                     </div>
                     <div class="col">
-                        <div class="row">
-                            <button type="button" class="botones mb-3 btn btn-outline-primary">
-                                Selccionar oferta
-                            </button>
-                        </div>
+                        <button type="button" class="botones mb-3 btn btn-outline-primary" (click)="onSelectOffer(offer.id_oferta)">
+                            Selccionar oferta
+                        </button>
                     </div>
                 </div>
             </div>
