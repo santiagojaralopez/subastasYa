@@ -26,6 +26,12 @@ public class ConfiguracionController {
     @Autowired
     ConfiguracionService configuracionService;
 
+    /**
+     *Las configuraciones son parametrizadas, estas pueden ser modificadas por el administrador. Lo que se realiza es un update por medio del id de las configuraciones
+     * @param id
+     * @param configuracion
+     * @return
+     */
     @PreAuthorize("hasRole('ADMIN')")
     @PutMapping("/update-config/{id}")
     public ResponseEntity<?> update(@PathVariable int id, @RequestBody Configuracion configuracion){
@@ -44,6 +50,11 @@ public class ConfiguracionController {
         return new ResponseEntity(new Mensaje("la configuracion esta actualizada"), HttpStatus.OK);
     }
 
+    /**
+     *
+     * @param id
+     * @return
+     */
     @GetMapping("/detailConfig/{id}")
     public Configuracion getById(@PathVariable("id") int id){
         if(!configuracionService.existsById(id))
