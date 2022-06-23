@@ -14,11 +14,11 @@ import { CiudadService } from '../service/ciudad.service';
 import Swal from 'sweetalert2';
 import { TipoProductoService } from '../service/tipoProducto.service';
 
-
 //JAVASCRIPT
-declare function myMethod(): any;
 declare function boton(): any;
-declare function fotoVariable():any;
+declare function mandarUrl():any;
+declare let imagenUrl;
+declare function miFuncion(result):any;
 
 
 @Component({
@@ -31,11 +31,11 @@ export class CreateAnuncioComponent implements OnInit {
   
   nuevoAnuncio: Anuncio;
   nuevoProducto: Producto;
-  urlImagen= fotoVariable();
-
   
-  //imgUrl= "assets/images/user-placeholder.png";
-
+  
+  imgUrl="assets/images/user-placeholder.png";
+  //imgUrl="https://res.cloudinary.com/subastasya/image/upload/v1655968196/n4p9ehyclyvhy39y654j.jpg";
+  //imgUrl=miFuncion(result);
 
   ciudades: Ciudad[] = [];
   productos: Producto[] = [];
@@ -120,10 +120,10 @@ export class CreateAnuncioComponent implements OnInit {
     let user = this.findUserByUserName(this.tokenService.getUserName());
     this.usuario = user;
     
-    this.nuevoAnuncio = new Anuncio(this.descripcion,this.usuario,this.ciudad,this.nuevoProducto,this.valor, this.urlImagen);
+    console.log("holaaa url imagen: "+this.imgUrl)
+    this.nuevoAnuncio = new Anuncio(this.descripcion,this.usuario,this.ciudad,this.nuevoProducto,this.valor, this.imgUrl);
     
     console.log(this.nuevoAnuncio);
-
 
     this.anuncioService.createAnuncio(this.nuevoAnuncio).subscribe(
       data => {
@@ -141,11 +141,11 @@ export class CreateAnuncioComponent implements OnInit {
         );
       }
     );
-  
-  
-
-
-
-
 }
+
+
+botonFoto(){
+  boton();
+}
+
 }

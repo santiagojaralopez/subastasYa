@@ -25,6 +25,12 @@ public class TipoProductoController {
     @Autowired
     TipoProductoService tipoProductoService;
 
+
+    /**
+     * Descripcion: Este método lista todos los tipos de productos
+     * @return list
+     */
+
     @GetMapping("/TipoProducto")
     public List<TipoProducto> list(){
         List<TipoProducto> list = tipoProductoService.list();
@@ -32,6 +38,11 @@ public class TipoProductoController {
         return list;
     }
 
+    /**
+     * Descripcion: este método busca en la lista de tipos de productos segun el id dado
+     * @param id
+     * @return tipoProducto
+     */
     @GetMapping("/TipoProducto/{id}")
     public TipoProducto getById(@PathVariable("id") int id){
         if(!tipoProductoService.existsById(id))
@@ -42,6 +53,12 @@ public class TipoProductoController {
     }
 
 
+    /**
+     * Descripcion: etse método crea nuevos tipos de productos y verifica que el campo del nombre
+     *  no este vacio
+     * @param tipoProducto
+     * @return ResponseEntity con HttpStatus
+     */
     @PostMapping("/createTipoProducto")
     public ResponseEntity<?> create(@RequestBody TipoProducto tipoProducto){
         if (tipoProducto.getNombre_tipo()==null)
@@ -53,6 +70,12 @@ public class TipoProductoController {
         return new ResponseEntity(new Mensaje("tipoProducto creado"), HttpStatus.OK);
     }
 
+    /**
+     * Descripcion: este método actualiza los campos del tipo de producto seleccionado por el id
+     * @param id
+     * @param tipoProducto
+     * @return ResponseEntity con HttpStatus
+     */
     @PutMapping("/updateTipoProducto/{id}")
     public ResponseEntity<?> update(@PathVariable int id, @Valid @RequestBody TipoProducto tipoProducto){
         if(!tipoProductoService.existsById(id))
@@ -73,6 +96,11 @@ public class TipoProductoController {
         return new ResponseEntity(new Mensaje("tipoProducto actualizado"), HttpStatus.OK);
     }
 
+    /**
+     * Descripcion: este método elimina el tipo de producto seleccionado
+     * @param id
+     * @return ResponseEntity con HttpStatus
+     */
     @DeleteMapping("/deleteTipoProducto/{id}")
     public ResponseEntity<?> delete(@PathVariable("id")int id){
         if(!tipoProductoService.existsById(id))

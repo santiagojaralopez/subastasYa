@@ -91,6 +91,12 @@ public class AnuncioController {
         return anuncio;
     }
 
+    /**
+     *Descripcion: este metodo crea un nuevo anuncio, validando que los campos esten completos, creando un nuevo producto,
+     * buscando si el tipo de producto existe, y validando que la fecha de fin de el anuncio cumpla con la cantidad de dias estipulados
+     * @param anuncioDto
+     * @return ResponseEntity con HttpStatus
+     */
     @PostMapping("/createAnuncio")
     public ResponseEntity<?> create(@RequestBody AnuncioDto anuncioDto){
         Producto producto = new Producto(anuncioDto.getProducto().getNombre(),anuncioDto.getProducto().getFoto_producto(),anuncioDto.getProducto().getTipoproducto());
@@ -112,7 +118,6 @@ public class AnuncioController {
             SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
             Date date = new Date();
 
-
             int dias= anuncioService.diasAnuncioActivo();
             Date dt = date;
             Calendar c = Calendar.getInstance();
@@ -133,50 +138,23 @@ public class AnuncioController {
             return new ResponseEntity(new Mensaje("La cantidad maxima de anuncios fue alcanzada, no puede crear mas"), HttpStatus.BAD_REQUEST);
     }
 
+
     public TipoProducto tipoProducto(AnuncioDto anuncioDto){
         return tipoProductoService.showTypeExist(anuncioDto.getProducto().getTipoproducto().getNombre_tipo());
     }
 
-    /*public ResponseEntity tipoProducto(AnuncioDto anuncioDto){
-        tipoProductoService.showTypeExist(anuncioDto.getProducto().getTipoProducto().getNombreTipo());
-        System.out.println(anuncioDto +""+ anuncioDto.getProducto());
 
-        if(StringUtils.isBlank(anuncioDto.getDescripcion()))
-            return new ResponseEntity(new Mensaje("el nombre es obligatorio"), HttpStatus.BAD_REQUEST);
-        if (anuncioDto.getValor()==0)
-            return new ResponseEntity(new Mensaje("el precio es obligatorio y debe ser mayor a 0"), HttpStatus.BAD_REQUEST);
-        if (anuncioDto.getUsuario()==null)
-            return new ResponseEntity(new Mensaje("el usuario es obligatorio"), HttpStatus.BAD_REQUEST);
-        if (anuncioDto.getEstado()==null)
-            return new ResponseEntity(new Mensaje("el estado es obligatorio"), HttpStatus.BAD_REQUEST);
-        if (anuncioDto.getCiudad()==null)
-            return new ResponseEntity(new Mensaje("la ciudad es obligatorio"), HttpStatus.BAD_REQUEST);
-        if (anuncioDto.getProducto()==null)
-            return new ResponseEntity(new Mensaje("el producto es obligatorio"), HttpStatus.BAD_REQUEST);
-
-        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        Date date = new Date();
-        dateFormat.format(date);
-
-        try{
-            productoService.save(anuncioDto.getProducto());
-        }catch (Exception e){
-            System.out.println("erroooooooooor saveeeeeee: "+e.getMessage());
-        }
-        Optional<Producto> p = productoService.getByNombre(anuncioDto.getProducto().getNombre());
-        System.out.println("id "+p.get().getId());
-
-        System.out.println("IDDDDD PRODUCTOOOO"+anuncioDto.getProducto());
-        Anuncio anuncio = new Anuncio(anuncioDto.getDescripcion(), date, date, anuncioDto.getUsuario(), Estado.ACTIVO, anuncioDto.getCiudad(), anuncioDto.getValor(), p.get());
-        anuncioService.save(anuncio);
-        System.out.println("se creo wepaaaa");
-        return new ResponseEntity(new Mensaje("anuncio creado"), HttpStatus.OK);
-    }*/
-
+    /**
+     * Descripcion: este metodo recibe un anuncio y id. Busca el anuncio con ese id y lo actualiza comprobando que los campos estén completos
+     * @param id
+     * @param anuncioDto
+     * @return ResponseEntity con HttpStatus
+     */
     @PutMapping("/updateAnuncio/{id}")
     public ResponseEntity<?> update(@PathVariable("id")int id, @RequestBody AnuncioDto anuncioDto){
         if(!anuncioService.existsById(id))
             return new ResponseEntity(new Mensaje("no existe"), HttpStatus.NOT_FOUND);
+
 
         if(StringUtils.isBlank(anuncioDto.getDescripcion()))
             return new ResponseEntity(new Mensaje("el nombre es obligatorio"), HttpStatus.BAD_REQUEST);
@@ -205,6 +183,11 @@ public class AnuncioController {
         return new ResponseEntity(new Mensaje("anuncio actualizado"), HttpStatus.OK);
     }
 
+    /**
+     * Descripcion: este metodo tiene la funcionalidad de borrar un anuncio segun el id del anuncio
+     * @param id
+     * @return ResponseEntity con HttpStatus
+     */
     @DeleteMapping("/deleteAnuncio/{id}")
     public ResponseEntity<?> delete(@PathVariable("id")int id){
         if(!anuncioService.existsById(id))
@@ -213,6 +196,13 @@ public class AnuncioController {
         return new ResponseEntity(new Mensaje("anuncio eliminado"), HttpStatus.OK);
     }
 
+
+    /**
+     * Descripcion: este metodo bloquea (cambia el estado) un anuncio solo si el usuairo registrado es el administrador de la página
+     * @param id
+     * @param anuncioDto
+     * @return ResponseEntity con HttpStatus
+     */
     @PreAuthorize("hasRole('ADMIN')")
     @PutMapping("/updateAnuncioBloqueo/{id}")
     public ResponseEntity<?> updateBloqueoAdmin(@PathVariable("id")int id, @RequestBody AnuncioDto anuncioDto) {
@@ -227,7 +217,12 @@ public class AnuncioController {
         } else return new ResponseEntity(new Mensaje("el anuncio no se puede bloquear"), HttpStatus.BAD_REQUEST);
     }
 
-
+    /**
+     * Descripcion: este metodo activa (cambia el estado) un anuncio ya sea un usuario o el administrador
+     * @param id
+     * @param anuncioDto
+     * @return ResponseEntity con HttpStatus
+     */
     @PutMapping("/updateAnuncioActivar/{id}")
     public ResponseEntity<?> updateActivarAdmiUser(@PathVariable("id")int id, @RequestBody AnuncioDto anuncioDto) {
         if (!anuncioService.existsById(id))
@@ -241,6 +236,12 @@ public class AnuncioController {
 
     }
 
+    /**
+     * Descripcion: este metodo inactiva (cambia el estado) un anuncio ya sea un usuario o el administrador
+     * @param id
+     * @param anuncioDto
+     * @return ResponseEntity con HttpStatus
+     */
     @PutMapping("/updateAnuncioInactivo/{id}")
     public ResponseEntity<?> updateInactivoUser(@PathVariable("id")int id, @RequestBody AnuncioDto anuncioDto) {
         if (!anuncioService.existsById(id))
@@ -253,7 +254,12 @@ public class AnuncioController {
         } else return new ResponseEntity(new Mensaje("el anuncio no se puede desactivar"), HttpStatus.BAD_REQUEST);
     }
 
-
+    /**
+     * Descripcion: este metodo vende (cambia el estado) un anuncio solo si el usuario es usuario
+     * @param id
+     * @param anuncioDto
+     * @return  ResponseEntity con HttpStatus
+     */
     @PutMapping("/updateAnuncioVendido/{id}")
     public ResponseEntity<?> updateVendidoUser(@PathVariable("id")int id, @RequestBody AnuncioDto anuncioDto) {
         if (!anuncioService.existsById(id))

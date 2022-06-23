@@ -50,6 +50,7 @@ export class DetalleProductoComponent implements OnInit {
   cambiarEstadoActivo(){
     this.anuncioService.updateAnuncioActivar(this.anuncio).subscribe(
       data => {
+        document.getElementById("botonEstado").innerText= "ACTIVO";
         Swal.fire(
           'Exito',
           'Su anuncio ahora esta activo',
@@ -64,12 +65,12 @@ export class DetalleProductoComponent implements OnInit {
         );
       }
     );
-   // document.getElementById("botonEstado").innerText= "ACTIVO";
   }
 
   cambiarEstadoBloqueado(){
       this.anuncioService.updateAnuncioBloqueo(this.anuncio).subscribe(
         data => {
+          document.getElementById("botonEstado").innerText= "BLOQUEADO";
           Swal.fire(
             'Exito',
             'Su anuncio ahora esta BLOQUEADO',
@@ -85,13 +86,13 @@ export class DetalleProductoComponent implements OnInit {
           );
         }
       );
-     // document.getElementById("botonEstado").innerText= "BLOQUEADO";
   }
 
   cambiarEstadoInactivo(){
 
     this.anuncioService.updateAnuncioInactivo(this.anuncio).subscribe(
       data => {
+        document.getElementById("botonEstado").innerText= "INACTIVO";
         Swal.fire(
           'Exito',
           'Su anuncio ahora esta INACTIVO',
@@ -106,12 +107,13 @@ export class DetalleProductoComponent implements OnInit {
         );
       }
     );
-    // document.getElementById("botonEstado").innerText= "INACTIVO";
   }
 
+  
   cambiarEstadoVendido(){
     this.anuncioService.updateAnuncioVendido(this.anuncio).subscribe(
       data => {
+        document.getElementById("botonEstado").innerText= "VENDIDO";
         Swal.fire(
           'Exito',
           'Su anuncio ahora esta VENDIDO',
@@ -126,6 +128,5 @@ export class DetalleProductoComponent implements OnInit {
         );
       }
     );
-    // document.getElementById("botonEstado").innerText= "VENDIDO";
   }
 }
