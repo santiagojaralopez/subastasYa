@@ -26,10 +26,10 @@ public interface AnuncioRepository extends JpaRepository<Anuncio, Integer> {
     @Query("SELECT a FROM Anuncio a WHERE a.estado=3")
      List<Anuncio> findAnunciosByInactivo();
 
-    @Query("SELECT c.valor FROM Configuracion c WHERE c.nombre= 'cantidadAnunciosActivos'")
+    @Query("SELECT c.valor FROM Configuracion c WHERE c.nombre= 'maximo_anuncios'")
     int cantidadAnuncios();
 
-    @Query("SELECT c.valor FROM Configuracion c WHERE c.nombre= 'diasAnunciosActivos'")
+    @Query("SELECT c.valor FROM Configuracion c WHERE c.nombre= 'duracion_dias_anuncio'")
     int diasAnuncioActivo();
 
     @Query("SELECT a FROM Anuncio a WHERE a.usuario= :usuario")

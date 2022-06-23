@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import Swal from 'sweetalert2';
 import { Anuncio } from '../models/anuncio';
 import { EstadoAnuncio } from '../models/estadoAnuncio';
 import { AnuncioService } from '../service/anuncio.service';
@@ -14,12 +15,9 @@ import { TokenService } from '../service/token.service';
 })
 
 export class DetalleProductoComponent implements OnInit {
-
-  estado=true;
+  estado = true;
   anuncio: Anuncio;
 
-
-  
   constructor(
     private anuncioService: AnuncioService,
     private activatedRoute: ActivatedRoute,
@@ -43,14 +41,11 @@ export class DetalleProductoComponent implements OnInit {
     this.router.navigate(['/lista']);
   }
 
-  
   estadoAnuncio(){
-    if(this.anuncio.estado.id==1 || this.anuncio.estado.id==3){
-      this.estado=false;
+    if (this.anuncio.estado.id === 1 || this.anuncio.estado.id === 3) {
+      this.estado = false;
     }
   }
-
-
 
   cambiarEstadoActivo(){
     this.anuncioService.updateAnuncioActivar(this.anuncio).subscribe(
@@ -68,12 +63,10 @@ export class DetalleProductoComponent implements OnInit {
           'error'
         );
       }
-      
     );
    // document.getElementById("botonEstado").innerText= "ACTIVO";
   }
 
-  
   cambiarEstadoBloqueado(){
       this.anuncioService.updateAnuncioBloqueo(this.anuncio).subscribe(
         data => {
@@ -95,7 +88,6 @@ export class DetalleProductoComponent implements OnInit {
      // document.getElementById("botonEstado").innerText= "BLOQUEADO";
   }
 
-  
   cambiarEstadoInactivo(){
 
     this.anuncioService.updateAnuncioInactivo(this.anuncio).subscribe(
@@ -104,7 +96,7 @@ export class DetalleProductoComponent implements OnInit {
           'Exito',
           'Su anuncio ahora esta INACTIVO',
           'success'
-        )
+        );
       },
       err => {
         Swal.fire(
@@ -116,7 +108,6 @@ export class DetalleProductoComponent implements OnInit {
     );
     // document.getElementById("botonEstado").innerText= "INACTIVO";
   }
-
 
   cambiarEstadoVendido(){
     this.anuncioService.updateAnuncioVendido(this.anuncio).subscribe(
@@ -134,12 +125,7 @@ export class DetalleProductoComponent implements OnInit {
           'error'
         );
       }
-      
     );
     // document.getElementById("botonEstado").innerText= "VENDIDO";
   }
-
-
-
-
 }

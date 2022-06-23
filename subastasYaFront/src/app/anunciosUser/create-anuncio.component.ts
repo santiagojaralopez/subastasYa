@@ -34,7 +34,7 @@ export class CreateAnuncioComponent implements OnInit {
   urlImagen= fotoVariable();
 
   
-  imgUrl= "assets/images/user-placeholder.png";
+  //imgUrl= "assets/images/user-placeholder.png";
 
 
   ciudades: Ciudad[] = [];
@@ -112,10 +112,8 @@ export class CreateAnuncioComponent implements OnInit {
   }
 
 
-  async onCreate(){
+  onCreate(){
     this.nuevoProducto = new Producto(this.nombreProducto,"foto",this.tipoProducto);
-
-    myMethod();
     
     console.log(this.nuevoProducto)
     
@@ -144,25 +142,10 @@ export class CreateAnuncioComponent implements OnInit {
       }
     );
   
-  }
-
-
-   buttonPhoto(){
-    boton();
-  }
+  
 
 
 
 
 }
-
-
-
-
-
-
-function delay(ms: number) {
-  return new Promise( resolve => setTimeout(resolve, ms) );
 }
-
-
