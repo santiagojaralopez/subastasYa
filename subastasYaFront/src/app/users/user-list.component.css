@@ -99,3 +99,8 @@
 .botones {
     width: 90%;
 }
+
+.botonPup {
+    margin-left: 22px;
+    margin-top: 20px;
+}

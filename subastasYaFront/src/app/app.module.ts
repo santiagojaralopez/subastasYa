@@ -29,6 +29,7 @@ import { OffersComponent } from './offers/offers.component';
 import { UserEditProfileAdminComponent } from './edit-users-admin/user-edit-profile.component';
 import { ListaAnunciosUserComponent } from './producto/lista-anuncios-user.component';
 import { UserDetailComponent } from './users/user-detail.component';
+import { CreateAdminComponent } from './create-admin/create-admin.component';
 
 
 
@@ -53,7 +54,8 @@ import { UserDetailComponent } from './users/user-detail.component';
     OffersComponent,
     UserEditProfileAdminComponent,
     ListaAnunciosUserComponent,
-    UserDetailComponent
+    UserDetailComponent,
+    CreateAdminComponent
   ],
   imports: [
     BrowserModule,

@@ -4,6 +4,7 @@ import {map} from 'rxjs/operators';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Usuario } from '../models/usuario';
 import { UpdateUsuarioDTO } from '../models/update-user-dto';
+import { NuevoUsuario } from '../models/nuevo-usuario';
 
 @Injectable({
   providedIn: 'root'
@@ -37,5 +38,9 @@ export class UsuarioService {
 
   blockUser(username: string): Observable<Usuario> {
     return this.http.put<Usuario>(`${this.usuarioURL}/blockedUser/${username}`, {headers: this.httpHeaders})
+  }
+
+  createAnuncio(usuario: NuevoUsuario): Observable<any> {
+    return this.http.post<any>(this.usuarioURL + '/newUser', usuario);
   }
 }
