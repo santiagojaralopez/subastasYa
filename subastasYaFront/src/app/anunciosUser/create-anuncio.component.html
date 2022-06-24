@@ -42,12 +42,15 @@
                             <label class="cop">El precio indicado es en pesos Colombianos</label>
                         </div>
 
-                        <form (ngSubmit)="botonFoto()">
+                        <!--<form (ngSubmit)="botonFoto()">
                             <div class="form-group">
-                                <img id="user-photo" src="assets/images/user-placeholder.png" width="100" height="100">
                                 <button>Boton Foto Anuncio </button>
                             </div>
-                        </form>
+                        </form>-->
+                        <div class="form-group">
+                            <img id="photo" [src]=fotoProducto src="assets/images/user-placeholder.png" width="100" height="100">
+                            <input type="text" name="foto" id="foto" class="selectBox form-control" autocomplete="off" [(ngModel)]="fotoProducto" required>
+                        </div>
                     </div>
 
                     <div class="form-group">

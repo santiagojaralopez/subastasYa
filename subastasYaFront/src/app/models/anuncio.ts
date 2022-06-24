@@ -13,17 +13,15 @@ export class Anuncio {
     estado: EstadoAnuncio | undefined;
     valor: number = 0;
     producto: Producto | undefined;
-    foto: string;
 
     constructor(descripcion: string,
          usuario: Usuario,
-         ciudad: Ciudad,producto: Producto, valor: number, foto:string){
+         ciudad: Ciudad,producto: Producto, valor: number){
              this.descripcion = descripcion;
              this.usuario = usuario;
              this.ciudad = ciudad;
              this.producto = producto;
              this.valor = valor;
-             this.foto=foto;
          }
 
 

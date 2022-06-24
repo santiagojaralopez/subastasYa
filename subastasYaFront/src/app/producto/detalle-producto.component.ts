@@ -17,6 +17,7 @@ import { TokenService } from '../service/token.service';
 export class DetalleProductoComponent implements OnInit {
   estado = true;
   anuncio: Anuncio;
+  imagen: string;
 
   constructor(
     private anuncioService: AnuncioService,
@@ -25,11 +26,13 @@ export class DetalleProductoComponent implements OnInit {
     private tokenService: TokenService
   ) { }
 
+  
   ngOnInit() {
     const id = this.activatedRoute.snapshot.params.id;
     this.anuncioService.getAnuncio(id).subscribe(
       data => {
         this.anuncio = data;
+        this.foto();
       },
       err => {
         this.volver();
@@ -128,5 +131,11 @@ export class DetalleProductoComponent implements OnInit {
         );
       }
     );
+  }
+
+
+  foto(){
+    this.imagen=this.anuncio.producto.foto_producto;
+    console.log(this.imagen);
   }
 }

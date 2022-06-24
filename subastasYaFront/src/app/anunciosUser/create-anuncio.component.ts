@@ -59,6 +59,7 @@ export class CreateAnuncioComponent implements OnInit {
   valor: number;
   nombreProducto:string;
   tipoProducto: TipoProducto;
+  fotoProducto: string;
 
 
   //enums
@@ -113,15 +114,15 @@ export class CreateAnuncioComponent implements OnInit {
 
 
   onCreate(){
-    this.nuevoProducto = new Producto(this.nombreProducto,"foto",this.tipoProducto);
+    this.nuevoProducto = new Producto(this.nombreProducto,this.fotoProducto,this.tipoProducto);
     
-    console.log(this.nuevoProducto)
+    console.log(this.nuevoProducto.foto_producto)
     
     let user = this.findUserByUserName(this.tokenService.getUserName());
     this.usuario = user;
     
     console.log("holaaa url imagen: "+this.imgUrl)
-    this.nuevoAnuncio = new Anuncio(this.descripcion,this.usuario,this.ciudad,this.nuevoProducto,this.valor, this.imgUrl);
+    this.nuevoAnuncio = new Anuncio(this.descripcion,this.usuario,this.ciudad,this.nuevoProducto,this.valor);
     
     console.log(this.nuevoAnuncio);
 

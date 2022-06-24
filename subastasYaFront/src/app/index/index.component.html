@@ -25,7 +25,7 @@
     <div *ngFor="let anuncio of anuncios" class="prueba card shadow p-3 pt-5 pb-5 mb-4 bg-body rounded">
         <div class="row">
             <div class="col">
-                <img class="anouncementPicture img-responsive" src="https://d500.epimg.net/cincodias/imagenes/2021/09/06/smartphones/1630905071_616253_1630905168_noticia_normal.jpg">
+                <img class="anouncementPicture img-responsive" [src]=anuncio.producto.foto_producto>
             </div>
             <div class="col-6 anouncementTxt">
                 <h5>{{anuncio.producto.nombre}}</h5>

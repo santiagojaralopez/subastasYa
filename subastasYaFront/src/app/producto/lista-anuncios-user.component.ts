@@ -15,6 +15,7 @@ export class ListaAnunciosUserComponent implements OnInit {
   anuncios: Anuncio[] = [];
   usuarios: Usuario[] = [];
   usuario: Usuario;
+  imagen:string;
   
 
   constructor(
@@ -26,6 +27,7 @@ export class ListaAnunciosUserComponent implements OnInit {
 
   async ngOnInit() {
     const id = this.activatedRoute.snapshot.params.id;
+
     this.usuarioService.lista().subscribe(
       data => this.usuarios = data
     );
@@ -33,7 +35,7 @@ export class ListaAnunciosUserComponent implements OnInit {
     this.usuario = this.findUserByUserById(id);  
     await new Promise(f => setTimeout(f, 100));
     this.anuncioService.listByUser(this.usuario.nombreUsuario).subscribe(
-      data => this.anuncios = data
+      data => this.anuncios = data,
     );
   }
 
@@ -47,6 +49,12 @@ export class ListaAnunciosUserComponent implements OnInit {
       }
     });
     return user;
+  }
+
+  fotoAnuncios(){
+    this.anuncios.forEach(element=>{
+      this.imagen=element.producto.foto_producto;
+    });
   }
 
 }
